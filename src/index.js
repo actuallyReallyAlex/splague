@@ -1,15 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-// import './index.css';
+import App from './App.js'
+// import ThemingLayout from './ThemeTest'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>Hello, React!</h1>
-      </div>
-    )
-  }
-}
+import 'semantic-ui-css/semantic.min.css'
+import './style.css'
+// import './primitive.css'
+// import './eighties.css'
 
 ReactDOM.render(<App />, document.getElementById('root'))
