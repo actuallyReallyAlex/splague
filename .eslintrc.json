@@ -1,6 +1,7 @@
 {
-    "extends": "standard",
-    "rules": {
-        "space-before-function-paren": "off"
-    }
+  "extends": ["standard", "eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    "space-before-function-paren": "off",
+    "no-unused-vars": "warn"
+  }
 }
