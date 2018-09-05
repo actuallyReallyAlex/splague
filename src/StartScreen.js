@@ -74,7 +74,7 @@ class StartScreen extends Component {
 }
 
 StartScreen.propTypes = {
-  handleChoice: PropTypes.string
+  handleChoice: PropTypes.func
 }
 
 export default StartScreen
