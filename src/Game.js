@@ -3,7 +3,8 @@ import StartScreen from './StartScreen'
 
 class Game extends Component {
   state = {
-    morality: null
+    morality: null,
+    screen: 'Start Screen'
   }
 
   // When a user chooses "good" or "evil" on the start screen:
