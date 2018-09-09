@@ -3,12 +3,13 @@ import { Grid, Container } from 'semantic-ui-react'
 
 import StartScreen from './StartScreen'
 import MoralityButtonGroup from './MoralityButtonGroup'
-import FirstScreenForm from './FirstScreenForm'
+import NameForm from './NameForm'
 
 class Game extends Component {
   state = {
     morality: null,
-    screen: 'Start Screen'
+    screen: 'Start Screen',
+    name: null
   }
 
   // Changes color of body when user hovers over a morality button option
@@ -22,20 +23,19 @@ class Game extends Component {
   }
 
   // Does something when the screen has been changed.
-  handleScreenChange(screen) {
+  handleScreenChange(screenName) {
     this.resetBackground()
-
   }
 
   // When a user chooses "good" or "evil" on the start screen:
   // * set the state of the Game component
-  handleChoice(choice) {
-    const nextScreen = 'First Screen'
+  handleChoice = (choice) => {
+    const newScreen = 'Name Input Screen'
     this.setState({
       morality: choice,
-      screen: nextScreen
+      screen: newScreen
     })
-    this.handleScreenChange(nextScreen)
+    this.handleScreenChange(newScreen)
   }
 
   // When the user hovers off either button, the body background color is reset to white
@@ -44,8 +44,13 @@ class Game extends Component {
     body.style.backgroundColor = 'white'
   }
 
+  // For FirstScreenForm name submit input
+  onNameSubmit = name => {
+    this.setState({ name })
+  }
+
   render() {
-    if (this.state.screen === 'First Screen') {
+    if (this.state.screen === 'Name Input Screen') {
       return (
         <Container textAlign="center" className="full-height">
           <Grid
@@ -63,7 +68,11 @@ class Game extends Component {
                   handleChoice={this.handleChoice}
                   animated="fadeOutLeft delay-1s"
                 />
-                <FirstScreenForm />
+                <NameForm
+                  gameState={this.state}
+                  onNameSubmit={this.onNameSubmit}
+                  morality={this.state.morality}
+                />
               </Grid.Column>
             </Grid.Row>
           </Grid>
