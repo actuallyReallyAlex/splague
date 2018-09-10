@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container, Grid } from 'semantic-ui-react'
-import MoralityButtonGroup from './MoralityButtonGroup'
+import NameForm from '../NameForm'
+import MoralityButtonGroup from '../MoralityButtonGroup'
 import PropTypes from 'prop-types'
 
-const StartScreen = (props) => {
+const NameFormScreen = props => {
   return (
-    // Render a start screen with morality buttons.
     <Container textAlign="center" className="full-height">
       <Grid
         inverted
@@ -20,6 +20,11 @@ const StartScreen = (props) => {
               onHover={props.onHover}
               resetBackground={props.resetBackground}
               handleChoice={props.handleChoice}
+              animated="fadeOutLeft delay-1s"
+            />
+            <NameForm
+              onNameSubmit={props.onNameSubmit}
+              morality={props.morality}
             />
           </Grid.Column>
         </Grid.Row>
@@ -28,10 +33,12 @@ const StartScreen = (props) => {
   )
 }
 
-StartScreen.propTypes = {
+NameFormScreen.propTypes = {
   onHover: PropTypes.func,
   resetBackground: PropTypes.func,
-  handleChoice: PropTypes.func
+  handleChoice: PropTypes.func,
+  onNameSubmit: PropTypes.func,
+  morality: PropTypes.string
 }
 
-export default StartScreen
+export default NameFormScreen

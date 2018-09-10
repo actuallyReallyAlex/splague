@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { Grid, Container } from 'semantic-ui-react'
-
-import StartScreen from './StartScreen'
-import MoralityButtonGroup from './MoralityButtonGroup'
-import NameForm from './NameForm'
+import StartScreen from './Views/StartScreen'
+import NameFormScreen from './Views/NameFormScreen'
+import NameFormScreenFade from './Views/NameFormScreenFade'
 
 class Game extends Component {
   state = {
     morality: null,
+    name: '',
     screen: 'Start Screen',
-    name: null,
+    isNameSubmitted: false,
     shouldSetMainMenu: false
   }
 
@@ -17,7 +16,7 @@ class Game extends Component {
    * Changes background-color of body to either green or red depending on morality.
    * @param {String} morality Either "good" or "evil". Sets a theme for the rest of the game. Used here to show either a green or red background.
    */
-  onHover(morality) {
+  onHover = morality => {
     const body = document.body
     if (morality === 'good') {
       // Change body to green
@@ -33,7 +32,7 @@ class Game extends Component {
    * @param {String} screenName Name of the current screen being displayed to the user.
    * @todo Sort of unfinished. May have need to do other things on screen change besides change background color.
    */
-  handleScreenChange(screenName) {
+  handleScreenChange = screenName => {
     this.resetBackground()
   }
 
@@ -52,7 +51,7 @@ class Game extends Component {
   /**
    * Sets background-color of body to white.
    */
-  resetBackground() {
+  resetBackground = () => {
     const body = document.body
     body.style.backgroundColor = 'white'
   }
@@ -61,7 +60,7 @@ class Game extends Component {
    * Sets state when a user submits a name.
    */
   onNameSubmit = name => {
-    this.setState({ name, screen: 'Main Game' })
+    this.setState({ name, screen: 'Main Game', isNameSubmitted: true })
   }
 
   /**
@@ -76,67 +75,34 @@ class Game extends Component {
       // The Main Menu will be rendered
       // TODO: Render an actual menu. This heading is a placeholder.
       return <h1>Main Menu</h1>
-    } else if (this.state.name) {
+    } else if (this.state.isNameSubmitted) {
       // The user has chosen a morality, and a name
-      // REnder a nameform that fades out.
+      // Render a NameFormScreen that fades out.
       return (
-        <Container textAlign="center" className="full-height">
-          <Grid
-            inverted
-            columns={1}
-            divided
-            verticalAlign="middle"
-            className="full-height"
-          >
-            <Grid.Row>
-              <Grid.Column>
-                <NameForm
-                  gameState={this.state}
-                  onNameSubmit={this.onNameSubmit}
-                  morality={this.state.morality}
-                  nameValue={this.state.name}
-                  fadeOut={true}
-                  setToMainMenu={this.setToMainMenu}
-                />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
+        <NameFormScreenFade
+          onNameSubmit={this.onNameSubmit}
+          morality={this.state.morality}
+          nameValue={this.state.name}
+          fadeOut={true}
+          setToMainMenu={this.setToMainMenu}
+        />
       )
     } else if (this.state.screen === 'Name Input Screen') {
       // The user has chosen a morality
       // Fade out the button group, and show a name input
       return (
-        <Container textAlign="center" className="full-height">
-          <Grid
-            inverted
-            columns={1}
-            divided
-            verticalAlign="middle"
-            className="full-height"
-          >
-            <Grid.Row>
-              <Grid.Column>
-                <MoralityButtonGroup
-                  onHover={this.onHover}
-                  resetBackground={this.resetBackground}
-                  handleChoice={this.handleChoice}
-                  animated="fadeOutLeft delay-1s"
-                />
-                <NameForm
-                  gameState={this.state}
-                  onNameSubmit={this.onNameSubmit}
-                  morality={this.state.morality}
-                  nameValue={null}
-                />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
+        <NameFormScreen
+          onHover={this.onHover}
+          resetBackground={this.resetBackground}
+          handleChoice={this.handleChoice}
+          onNameSubmit={this.onNameSubmit}
+          morality={this.state.morality}
+        />
       )
     } else {
       // The user has not chosen a morality
-      // Show the morality button group
+      // Show the Start Screen
+      // * Contains MoralityButtonGroup
       return (
         <StartScreen
           morality={this.state.morality}
