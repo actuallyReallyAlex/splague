@@ -8,9 +8,18 @@ class NameForm extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
+    if (this.props.nameValue) {
+      // The user has chosen a name
+      // Do nothing except set the local state
       this.setState({ buttonsAreGone: true })
-    }, 2000)
+    } else {
+      // The user has not chosen a name.
+      // After 2 seconds, set the local state buttonsAreGone to "true"
+
+      setTimeout(() => {
+        this.setState({ buttonsAreGone: true })
+      }, 2000)
+    }
   }
 
   render() {
@@ -19,7 +28,13 @@ class NameForm extends Component {
         <Grid centered columns={1}>
           <Grid.Row centered columns={4}>
             <Grid.Column>
-              <CustomForm morality={this.props.morality} onNameSubmit={this.props.onNameSubmit}/>
+              <CustomForm
+                morality={this.props.morality}
+                onNameSubmit={this.props.onNameSubmit}
+                nameValue={this.props.nameValue}
+                fadeOut={this.props.fadeOut}
+                setToMainMenu={this.props.setToMainMenu}                
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -33,7 +48,10 @@ class NameForm extends Component {
 NameForm.propTypes = {
   gameState: PropTypes.object,
   morality: PropTypes.string,
-  onNameSubmit: PropTypes.func
+  onNameSubmit: PropTypes.func,
+  nameValue: PropTypes.string,
+  fadeOut: PropTypes.bool,
+  setToMainMenu: PropTypes.func
 }
 
 class CustomForm extends Component {
@@ -43,35 +61,92 @@ class CustomForm extends Component {
     this.props.onNameSubmit(nameValue)
   }
 
+  componentDidMount() {
+    const nameForm = document.getElementById('nameForm')
+    if (nameForm.classList.contains('fadeOutLeft')) {
+      // Set timeout to wait for animation to play.
+      // Then tell Game component to rerender as the Main Menu
+      setTimeout(() => {
+        this.props.setToMainMenu()
+      }, 2000);
+    }
+  }
+
   render() {
-    let morality = this.props.morality
-    if (morality === 'good') {
-      return (
-        <Form onSubmit={this.handleSubmit} className="animated fadeInRight">
-          <Form.Field>
-            <label>Doctor Name</label>
-            <input placeholder="Doctor Name" id="nameField" />
-          </Form.Field>
-          <Button type="submit">Begin</Button>
-        </Form>
-      )
+    if (this.props.fadeOut === true) {
+      // The user has submitted a name
+      // Fade out the name input form
+      let morality = this.props.morality
+      if (morality === 'good') {
+        // Display a name form for the "good" morality
+        return (
+          <Form onSubmit={this.handleSubmit} className="animated fadeOutLeft" id="nameForm">
+            <Form.Field>
+              <label>Doctor Name</label>
+              <input
+                placeholder="Doctor Name"
+                id="nameField"
+                value={this.props.nameValue}
+                readOnly
+              />
+            </Form.Field>
+            <Button type="submit">Begin</Button>
+          </Form>
+        )
+      } else {
+        // Display a name form for the "evil" morality
+        return (
+          <Form onSubmit={this.handleSubmit} className="animated fadeOutLeft" id="nameForm">
+            <Form.Field>
+              <label>Plague Name</label>
+              <input
+                placeholder="Plague Name"
+                id="nameField"
+                value={this.props.nameValue}
+                readOnly
+              />
+            </Form.Field>
+            <Button type="submit">Begin</Button>
+          </Form>
+        )
+      }
     } else {
-      return (
-        <Form onSubmit={this.handleSubmit} className="animated fadeInRight">
-          <Form.Field>
-            <label>Plague Name</label>
-            <input placeholder="Plague Name" id="nameField" />
-          </Form.Field>
-          <Button type="submit">Begin</Button>
-        </Form>
-      )
+      // The user has not submitted a name
+      // but the user has chosen a morality
+      let morality = this.props.morality
+      if (morality === 'good') {
+        // Display a name form for the "good" morality
+        return (
+          <Form onSubmit={this.handleSubmit} className="animated fadeInRight" id="nameForm">
+            <Form.Field>
+              <label>Doctor Name</label>
+              <input placeholder="Doctor Name" id="nameField" />
+            </Form.Field>
+            <Button type="submit">Begin</Button>
+          </Form>
+        )
+      } else {
+        // Display a name form for the "evil" morality
+        return (
+          <Form onSubmit={this.handleSubmit} className="animated fadeInRight" id="nameForm">
+            <Form.Field>
+              <label>Plague Name</label>
+              <input placeholder="Plague Name" id="nameField" />
+            </Form.Field>
+            <Button type="submit">Begin</Button>
+          </Form>
+        )
+      }
     }
   }
 }
 
 CustomForm.propTypes = {
   morality: PropTypes.string,
-  onNameSubmit: PropTypes.func
+  onNameSubmit: PropTypes.func,
+  fadeOut: PropTypes.bool,
+  nameValue: PropTypes.string,
+  setToMainMenu: PropTypes.func
 }
 
 export default NameForm
