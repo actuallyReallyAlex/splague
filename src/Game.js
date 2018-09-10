@@ -13,23 +13,33 @@ class Game extends Component {
     shouldSetMainMenu: false
   }
 
-  // Changes color of body when user hovers over a morality button option
+  /**
+   * Changes background-color of body to either green or red depending on morality.
+   * @param {String} morality Either "good" or "evil". Sets a theme for the rest of the game. Used here to show either a green or red background.
+   */
   onHover(morality) {
     const body = document.body
     if (morality === 'good') {
+      // Change body to green
       body.style.backgroundColor = '#016936'
     } else {
+      // Change body to red
       body.style.backgroundColor = '#B03060'
     }
   }
 
-  // Does something when the screen has been changed.
+  /**
+   * Used to reset the background-color of the body to white.
+   * @param {String} screenName Name of the current screen being displayed to the user.
+   * @todo Sort of unfinished. May have need to do other things on screen change besides change background color.
+   */
   handleScreenChange(screenName) {
     this.resetBackground()
   }
 
-  // When a user chooses "good" or "evil" on the start screen:
-  // * set the state of the Game component
+  /**
+   * Called when a user selects a morality from the start screen. Sets state and calls handleScreenChange().
+   */
   handleChoice = choice => {
     const newScreen = 'Name Input Screen'
     this.setState({
@@ -39,28 +49,36 @@ class Game extends Component {
     this.handleScreenChange(newScreen)
   }
 
-  // When the user hovers off either button, the body background color is reset to white
+  /**
+   * Sets background-color of body to white.
+   */
   resetBackground() {
     const body = document.body
     body.style.backgroundColor = 'white'
   }
 
-  // For NameForm name submit input
+  /**
+   * Sets state when a user submits a name.
+   */
   onNameSubmit = name => {
     this.setState({ name, screen: 'Main Game' })
   }
 
-  // ! This is broken. You were trying to figure out how to get this, so that the Game component rerenders to the Main Menu
+  /**
+   * Used to tell the Game component to render the Main Menu. Will be called once a user selects a morality, and inputs a name.
+   */
   setToMainMenu = () => {
     this.setState({ shouldSetMainMenu: true })
   }
 
   render() {
     if (this.state.shouldSetMainMenu) {
+      // The Main Menu will be rendered
+      // TODO: Render an actual menu. This heading is a placeholder.
       return <h1>Main Menu</h1>
     } else if (this.state.name) {
       // The user has chosen a morality, and a name
-      // Fade out the name input
+      // REnder a nameform that fades out.
       return (
         <Container textAlign="center" className="full-height">
           <Grid

@@ -10,12 +10,11 @@ class NameForm extends Component {
   componentDidMount() {
     if (this.props.nameValue) {
       // The user has chosen a name
-      // Do nothing except set the local state
+      // Set the local state
       this.setState({ buttonsAreGone: true })
     } else {
       // The user has not chosen a name.
       // After 2 seconds, set the local state buttonsAreGone to "true"
-
       setTimeout(() => {
         this.setState({ buttonsAreGone: true })
       }, 2000)
@@ -24,6 +23,9 @@ class NameForm extends Component {
 
   render() {
     if (this.state.buttonsAreGone) {
+      // The user has chosen a morality,
+      // and the morality buttons have faded out.
+      // Render the name form.
       return (
         <Grid centered columns={1}>
           <Grid.Row centered columns={4}>
@@ -40,6 +42,8 @@ class NameForm extends Component {
         </Grid>
       )
     } else {
+      // The user has not chosen a morality.
+      // Render nothing.
       return null
     }
   }

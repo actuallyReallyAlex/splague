@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 const StartScreen = (props) => {
   return (
+    // Render a start screen with morality buttons.
     <Container textAlign="center" className="full-height">
       <Grid
         inverted

@@ -6,7 +6,9 @@ const MoralityButtonGroup = props => {
   return (
     <Button.Group
       size="massive"
-      className={props.animated ? `animated ${props.animated}` : 'morality-button-group'}
+      className={
+        props.animated ? `animated ${props.animated}` : 'morality-button-group'
+      }
     >
       <Button
         positive
