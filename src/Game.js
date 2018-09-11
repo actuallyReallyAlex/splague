@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import StartScreen from './Views/StartScreen'
 import NameFormScreen from './Views/NameFormScreen'
 import NameFormScreenFade from './Views/NameFormScreenFade'
+import MenuScreen from './Views/MenuScreen'
 
 class Game extends Component {
   state = {
@@ -64,9 +65,11 @@ class Game extends Component {
   /**
    * Sets background-color of body to white.
    */
-  resetBackground = () => {
+  resetBackground = color => {
     const body = document.body
-    body.style.backgroundColor = 'white'
+    color
+      ? ((body.style.backgroundColor = color), (body.style.color = 'white'))
+      : (body.style.backgroundColor = 'white')
   }
 
   /**
@@ -93,9 +96,13 @@ class Game extends Component {
 
   render() {
     if (this.state.gameUI.shouldSetMainMenu) {
-      // The Main Menu will be rendered
-      // TODO: Render an actual menu. This heading is a placeholder.
-      return <h1>Main Menu</h1>
+      // The Menu Screen will be rendered
+      return (
+        <MenuScreen
+          player={this.state.player}
+          resetBackground={this.resetBackground}
+        />
+      )
     } else if (this.state.gameUI.isNameSubmitted) {
       // The user has chosen a morality, and a name
       // Render a NameFormScreen that fades out.
