@@ -1,6 +1,6 @@
 ![logo](header.svg)
 
-# splague <small>0.2.3</small>
+# splague <small>0.2.4</small>
 
 > Be prepared.
 
