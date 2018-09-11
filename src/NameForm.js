@@ -2,6 +2,43 @@ import React, { Component } from 'react'
 import { Grid, Form, Button } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
+/**
+ * Basic Name Form where user inputs either a Doctor Name or Plague Name that will stay for the game.
+ * @prop {Function} handleSubmit When the form is submitted, 'name' will be set in the Game component's state.
+ * @prop {String} className Classname(s) to add to the Form component. Useful in animation. For more than 1 classname, enter "class1 class2".
+ * @prop {String} label Either "Doctor Name" (Good) or "Plague Name" (Evil).
+ * @prop {String} onInput When the user types in the input, that name is saved to local state.
+ * @prop {String} name The inputted name. If the BasicNameForm is re-rendered, the value of the input comes from this prop.
+ */
+const BasicNameForm = props => {
+  return (
+    <Form
+      onSubmit={props.handleSubmit}
+      className={props.className}
+      id="nameForm"
+    >
+      <Form.Field>
+        <label>{props.label}</label>
+        <input
+          onChange={props.onInput}
+          placeholder={props.label}
+          id="nameField"
+          value={props.name}
+        />
+      </Form.Field>
+      <Button type="submit">Begin</Button>
+    </Form>
+  )
+}
+
+BasicNameForm.propTypes = {
+  handleSubmit: PropTypes.func,
+  className: PropTypes.string,
+  label: PropTypes.string,
+  onInput: PropTypes.func,
+  name: PropTypes.string
+}
+
 class NameForm extends Component {
   state = {
     buttonsAreGone: false
@@ -98,42 +135,24 @@ class CustomForm extends Component {
       if (morality === 'good') {
         // Display a name form for the "good" morality that has the inputted name and will fade out
         return (
-          <Form
-            onSubmit={this.handleSubmit}
+          <BasicNameForm
+            handleSubmit={this.handleSubmit}
+            onInput={this.onInput}
+            name={this.state.name}
+            label="Doctor Name"
             className="animated fadeOutLeft"
-            id="nameForm"
-          >
-            <Form.Field>
-              <label>Doctor Name</label>
-              <input
-                onChange={this.onInput}
-                placeholder="Doctor Name"
-                id="nameField"
-                value={this.state.name}
-              />
-            </Form.Field>
-            <Button type="submit">Begin</Button>
-          </Form>
+          />
         )
       } else {
         // Display a name form for the "evil" morality that has the inputted name and will fade out
         return (
-          <Form
-            onSubmit={this.handleSubmit}
+          <BasicNameForm
+            handleSubmit={this.handleSubmit}
+            onInput={this.onInput}
+            name={this.state.name}
+            label="Plague Name"
             className="animated fadeOutLeft"
-            id="nameForm"
-          >
-            <Form.Field>
-              <label>Plague Name</label>
-              <input
-                onChange={this.onInput}
-                placeholder="Plague Name"
-                id="nameField"
-                value={this.state.name}
-              />
-            </Form.Field>
-            <Button type="submit">Begin</Button>
-          </Form>
+          />
         )
       }
     } else {
@@ -143,34 +162,22 @@ class CustomForm extends Component {
       if (morality === 'good') {
         // Display a name form for the "good" morality that is empty and will not fade out
         return (
-          <Form onSubmit={this.handleSubmit} id="nameForm">
-            <Form.Field>
-              <label>Doctor Name</label>
-              <input
-                onChange={this.onInput}
-                placeholder="Doctor Name"
-                id="nameField"
-                value={this.state.name}
-              />
-            </Form.Field>
-            <Button type="submit">Begin</Button>
-          </Form>
+          <BasicNameForm
+            handleSubmit={this.handleSubmit}
+            onInput={this.onInput}
+            name={this.state.name}
+            label="Doctor Name"
+          />
         )
       } else {
         // Display a name form for the "evil" morality that is empty and will not fade out
         return (
-          <Form onSubmit={this.handleSubmit} id="nameForm">
-            <Form.Field>
-              <label>Plague Name</label>
-              <input
-                onChange={this.onInput}
-                placeholder="Plague Name"
-                id="nameField"
-                value={this.state.name}
-              />
-            </Form.Field>
-            <Button type="submit">Begin</Button>
-          </Form>
+          <BasicNameForm
+            handleSubmit={this.handleSubmit}
+            onInput={this.onInput}
+            name={this.state.name}
+            label="Plague Name"
+          />
         )
       }
     }
