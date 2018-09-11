@@ -5,11 +5,15 @@ import NameFormScreenFade from './Views/NameFormScreenFade'
 
 class Game extends Component {
   state = {
-    morality: null,
-    name: '',
-    screen: 'Start Screen',
-    isNameSubmitted: false,
-    shouldSetMainMenu: false
+    gameUI: {
+      screen: 'Start Screen',
+      isNameSubmitted: false,
+      shouldSetMainMenu: false
+    },
+    player: {
+      morality: null,
+      name: ''
+    }
   }
 
   /**
@@ -40,12 +44,21 @@ class Game extends Component {
    * Called when a user selects a morality from the start screen. Sets state and calls handleScreenChange().
    */
   handleChoice = choice => {
-    const newScreen = 'Name Input Screen'
-    this.setState({
-      morality: choice,
-      screen: newScreen
-    })
-    this.handleScreenChange(newScreen)
+    // Create a temporary object, spreading in the current player state
+    let { player } = this.state
+    // Update the morality within this temporary object
+    player.morality = choice
+    // Replace the current state with the temporary object
+    this.setState({ player })
+
+    // Create a temporary object, spreading in the current gameUI
+    let { gameUI } = this.state
+    // Update the screen within this temporary object
+    gameUI.screen = 'Name Input Screen'
+    // Replace the current state with the temporary object
+    this.setState({ gameUI })
+
+    this.handleScreenChange(gameUI.screen)
   }
 
   /**
@@ -60,34 +73,42 @@ class Game extends Component {
    * Sets state when a user submits a name.
    */
   onNameSubmit = name => {
-    this.setState({ name, screen: 'Main Game', isNameSubmitted: true })
+    let player = { ...this.state.player }
+    player.name = name
+    this.setState({ player })
+    let gameUI = { ...this.state.gameUI }
+    gameUI.screen = 'Main Game'
+    gameUI.isNameSubmitted = true
+    this.setState({ gameUI })
   }
 
   /**
    * Used to tell the Game component to render the Main Menu. Will be called once a user selects a morality, and inputs a name.
    */
   setToMainMenu = () => {
-    this.setState({ shouldSetMainMenu: true })
+    let gameUI = { ...this.state.gameUI }
+    gameUI.shouldSetMainMenu = true
+    this.setState({ gameUI })
   }
 
   render() {
-    if (this.state.shouldSetMainMenu) {
+    if (this.state.gameUI.shouldSetMainMenu) {
       // The Main Menu will be rendered
       // TODO: Render an actual menu. This heading is a placeholder.
       return <h1>Main Menu</h1>
-    } else if (this.state.isNameSubmitted) {
+    } else if (this.state.gameUI.isNameSubmitted) {
       // The user has chosen a morality, and a name
       // Render a NameFormScreen that fades out.
       return (
         <NameFormScreenFade
           onNameSubmit={this.onNameSubmit}
           morality={this.state.morality}
-          nameValue={this.state.name}
+          nameValue={this.state.player.name}
           fadeOut={true}
           setToMainMenu={this.setToMainMenu}
         />
       )
-    } else if (this.state.screen === 'Name Input Screen') {
+    } else if (this.state.gameUI.screen === 'Name Input Screen') {
       // The user has chosen a morality
       // Fade out the button group, and show a name input
       return (
@@ -96,7 +117,7 @@ class Game extends Component {
           resetBackground={this.resetBackground}
           handleChoice={this.handleChoice}
           onNameSubmit={this.onNameSubmit}
-          morality={this.state.morality}
+          morality={this.state.player.morality}
         />
       )
     } else {
@@ -105,7 +126,7 @@ class Game extends Component {
       // * Contains MoralityButtonGroup
       return (
         <StartScreen
-          morality={this.state.morality}
+          morality={this.state.player.morality}
           handleChoice={choice => {
             this.handleChoice(choice)
           }}
