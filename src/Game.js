@@ -13,6 +13,16 @@ class Game extends Component {
       classType: null,
       morality: null,
       name: ''
+    },
+    plague: {
+      mutations: 0
+    },
+    world: {
+      alivePopulation: 100,
+      deadPopulation: 0
+    },
+    cure: {
+      percentComplete: 0
     }
   }
 
