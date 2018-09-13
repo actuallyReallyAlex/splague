@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Label } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
 export default class MainSidebar extends Component {
@@ -64,6 +64,22 @@ export default class MainSidebar extends Component {
           <Menu.Item>
             <Menu.Header>{identity} Information</Menu.Header>
             <Menu.Menu>
+              <Menu.Item
+                name="Class Type"
+                active={activeItem === this.props.player.classType}
+                onClick={this.handleItemClick}
+              >
+                <Label>{this.props.player.classType}</Label>
+                Class Type
+              </Menu.Item>
+              <Menu.Item
+                name="Class Name"
+                active={activeItem === this.props.player.className}
+                onClick={this.handleItemClick}
+              >
+                <Label>{this.props.player.className}</Label>
+                Class Name
+              </Menu.Item>
               <Menu.Item
                 name="Other Stuffs"
                 active={activeItem === 'Other Stuffs'}
