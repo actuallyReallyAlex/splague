@@ -1,5 +1,22 @@
 # Change Log
 
+## [v0.3.4](https://github.com/alexlee-dev/splague/tree/v0.3.4) (2018-09-13)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.3.3...v0.3.4)
+
+**Closed issues:**
+
+- Homepage Formatting Incorrectly on Mobile [\#1](https://github.com/alexlee-dev/splague/issues/1)
+
+## [v0.3.3](https://github.com/alexlee-dev/splague/tree/v0.3.3) (2018-09-13)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.3.2...v0.3.3)
+
+**Closed issues:**
+
+- Write API into docs [\#8](https://github.com/alexlee-dev/splague/issues/8)
+
+## [v0.3.2](https://github.com/alexlee-dev/splague/tree/v0.3.2) (2018-09-13)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.3.1...v0.3.2)
+
 ## [v0.3.1](https://github.com/alexlee-dev/splague/tree/v0.3.1) (2018-09-13)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.3.0...v0.3.1)
 
