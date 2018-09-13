@@ -152,6 +152,9 @@ class Game extends Component {
         this.state.gameUI.currentScreen,
         this.state.gameUI,
         this.state.player,
+        this.state.plague,
+        this.state.cure,
+        this.state.world,
         this.methods,
         true
       )
@@ -160,6 +163,9 @@ class Game extends Component {
         this.state.gameUI.currentScreen,
         this.state.gameUI,
         this.state.player,
+        this.state.plague,
+        this.state.cure,
+        this.state.world,
         this.methods
       )
     }
