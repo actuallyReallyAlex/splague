@@ -6,20 +6,18 @@ const MoralityButtonGroup = props => {
   return (
     <Button.Group
       size="massive"
-      className={
-        props.animated ? `animated ${props.animated}` : 'morality-button-group'
-      }
+      className={props.className}
     >
       <Button
         positive
         className="good"
         onMouseOver={() => {
-          props.onHover('good')
+          props.startScreenMethods.handleHover('good')
         }}
         onMouseLeave={() => {
-          props.resetBackground()
+          props.startScreenMethods.resetBackground()
         }}
-        onClick={() => props.handleChoice('good')}
+        onClick={() => props.startScreenMethods.handleMoralityChoice('good')}
       >
         <Icon name="user md" />
       </Button>
@@ -28,12 +26,12 @@ const MoralityButtonGroup = props => {
         negative
         className="evil"
         onMouseOver={() => {
-          props.onHover('evil')
+          props.startScreenMethods.handleHover('evil')
         }}
         onMouseLeave={() => {
-          props.resetBackground()
+          props.startScreenMethods.resetBackground()
         }}
-        onClick={() => props.handleChoice('evil')}
+        onClick={() => props.startScreenMethods.handleMoralityChoice('evil')}
       >
         <Icon name="bug" />
       </Button>
@@ -42,10 +40,8 @@ const MoralityButtonGroup = props => {
 }
 
 MoralityButtonGroup.propTypes = {
-  onHover: PropTypes.func,
-  resetBackground: PropTypes.func,
-  handleChoice: PropTypes.func,
-  animated: PropTypes.string
+  startScreenMethods: PropTypes.object,
+  className: PropTypes.string
 }
 
 export default MoralityButtonGroup

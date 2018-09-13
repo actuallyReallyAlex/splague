@@ -14,7 +14,7 @@ const MenuScreen = props => {
     : props.resetBackground('#252839')
 
   return (
-    <div className="full-height">
+    <div className={props.className + ' full-height'}>
       <MainSidebar player={props.player} />
       <div style={styles} className="full-height">
         <h1>Hello world.</h1>
@@ -25,7 +25,8 @@ const MenuScreen = props => {
 
 MenuScreen.propTypes = {
   player: PropTypes.object,
-  resetBackground: PropTypes.func
+  resetBackground: PropTypes.func,
+  className: PropTypes.string
 }
 
 export default MenuScreen

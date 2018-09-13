@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Grid } from 'semantic-ui-react'
-import NameForm from '../NameForm'
-import MoralityButtonGroup from '../MoralityButtonGroup'
+import StartMenuForm from '../StartMenuForm'
 import PropTypes from 'prop-types'
 
 const NameFormScreen = props => {
@@ -16,15 +15,11 @@ const NameFormScreen = props => {
       >
         <Grid.Row>
           <Grid.Column>
-            <MoralityButtonGroup
-              onHover={props.onHover}
-              resetBackground={props.resetBackground}
-              handleChoice={props.handleChoice}
-              animated="fadeOutLeft delay-1s"
-            />
-            <NameForm
-              onNameSubmit={props.onNameSubmit}
-              morality={props.morality}
+            <StartMenuForm
+              input={true}
+              player={props.player}
+              nameFormMethods={props.nameFormMethods}
+              className={props.className}
             />
           </Grid.Column>
         </Grid.Row>
@@ -34,11 +29,9 @@ const NameFormScreen = props => {
 }
 
 NameFormScreen.propTypes = {
-  onHover: PropTypes.func,
-  resetBackground: PropTypes.func,
-  handleChoice: PropTypes.func,
-  onNameSubmit: PropTypes.func,
-  morality: PropTypes.string
+  className: PropTypes.string,
+  player: PropTypes.object,
+  nameFormMethods: PropTypes.object
 }
 
 export default NameFormScreen

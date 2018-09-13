@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, Grid } from 'semantic-ui-react'
-import MoralityButtonGroup from '../MoralityButtonGroup'
+import StartMenuForm from '../StartMenuForm'
 import PropTypes from 'prop-types'
 
-const StartScreen = props => {
+const ClassFormScreen = props => {
   return (
     <Container textAlign="center" className="full-height">
       <Grid
@@ -15,8 +15,10 @@ const StartScreen = props => {
       >
         <Grid.Row>
           <Grid.Column>
-            <MoralityButtonGroup
-              startScreenMethods={props.startScreenMethods}
+            <StartMenuForm
+              dropdown={true}
+              player={props.player}
+              classFormMethods={props.classFormMethods}
               className={props.className}
             />
           </Grid.Column>
@@ -26,9 +28,10 @@ const StartScreen = props => {
   )
 }
 
-StartScreen.propTypes = {
-  startScreenMethods: PropTypes.object,
-  className: PropTypes.string
+ClassFormScreen.propTypes = {
+  className: PropTypes.string,
+  player: PropTypes.object,
+  classFormMethods: PropTypes.object
 }
 
-export default StartScreen
+export default ClassFormScreen
