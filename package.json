@@ -6,6 +6,12 @@
   "directories": {
     "doc": "docs"
   },
+  "files": [
+    "src",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "animate.css": "^3.7.0",
     "prop-types": "^15.6.2",
