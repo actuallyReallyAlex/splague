@@ -12,38 +12,6 @@ $color5: rgba(0, 134, 242, 1); */
   font-family: "Montserrat", sans-serif;
 }
 
-/* Loading Screen Text */
-div#app:empty:before {
-  color: white;
-}
-
-/* Main */
-main {
-  background-color: #31393c;
-  color: white;
-}
-
-/* Anchors in Main */
-main .anchor span {
-  color: white;
-}
-
-/* Sidebar */
-.sidebar,
-body {
-  background-color: #31393c;
-}
-
-/* Sidebar Bottom */
-body.close .sidebar-toggle {
-  background-color: #31393c;
-}
-
-/* Sidebar Links */
-.sidebar ul li a {
-  color: white;
-}
-
 /* Main Cover Logo */
 .cover-main img {
   max-width: 325px;
