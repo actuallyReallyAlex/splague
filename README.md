@@ -7,7 +7,7 @@ Be prepared.
 ## Attribution
 Death Mask by [Catherine Please](https://thenounproject.com/CatherinePlease/) from [the Noun Project](https://thenounproject.com/).
 
-## [Changelog](https://www.splague.com/docs/chagelog.md)
+## [Changelog](https://www.splague.com/docs/#/changelog)
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/splague.svg
