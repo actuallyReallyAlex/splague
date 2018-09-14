@@ -15,7 +15,13 @@ const MenuScreen = props => {
 
   return (
     <div className={props.className + ' full-height'}>
-      <MainSidebar player={props.player} />
+      <MainSidebar
+        gameUI={props.gameUI}
+        player={props.player}
+        plague={props.plague}
+        cure={props.cure}
+        world={props.world}
+      />
       <div style={styles} className="full-height">
         <h1>Hello world.</h1>
       </div>
@@ -24,9 +30,13 @@ const MenuScreen = props => {
 }
 
 MenuScreen.propTypes = {
-  player: PropTypes.object,
   resetBackground: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  gameUI: PropTypes.object,
+  player: PropTypes.object,
+  plague: PropTypes.object,
+  cure: PropTypes.object,
+  world: PropTypes.object
 }
 
 export default MenuScreen

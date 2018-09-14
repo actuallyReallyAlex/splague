@@ -6,7 +6,7 @@ export default class MainSidebar extends Component {
   handleItemClick = name => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state || {}
+    // const { activeItem } = this.state || {}
 
     const identity = this.props.player.morality === 'good' ? 'Doctor' : 'Plague'
 
@@ -43,48 +43,42 @@ export default class MainSidebar extends Component {
           <Menu.Item>
             <Menu.Header>World Information</Menu.Header>
             <Menu.Menu>
-              <Menu.Item
-                name="Population"
-                active={activeItem === 'Population'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name="Plague Progression"
-                active={activeItem === 'Plague Progression'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name="Cure Progression"
-                active={activeItem === 'Cure Progression'}
-                onClick={this.handleItemClick}
-              />
+              <Menu.Item name="Alive Population">
+                <Label>{this.props.world.alivePopulation}</Label>
+                Alive Population
+              </Menu.Item>
+              <Menu.Item name="Dead Population">
+                <Label>{this.props.world.deadPopulation}</Label>
+                Dead Population
+              </Menu.Item>
             </Menu.Menu>
           </Menu.Item>
 
           <Menu.Item>
             <Menu.Header>{identity} Information</Menu.Header>
             <Menu.Menu>
-              <Menu.Item
-                name="Class Type"
-                active={activeItem === this.props.player.classType}
-                onClick={this.handleItemClick}
-              >
+              <Menu.Item name="Class Type">
                 <Label>{this.props.player.classType}</Label>
                 Class Type
               </Menu.Item>
-              <Menu.Item
-                name="Class Name"
-                active={activeItem === this.props.player.className}
-                onClick={this.handleItemClick}
-              >
+              <Menu.Item name="Class Name">
                 <Label>{this.props.player.className}</Label>
                 Class Name
               </Menu.Item>
-              <Menu.Item
-                name="Other Stuffs"
-                active={activeItem === 'Other Stuffs'}
-                onClick={this.handleItemClick}
-              />
+              <Menu.Item name="Plague Mutations">
+                <Label>{this.props.plague.mutations}</Label>
+                Plague Mutations
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu.Item>
+
+          <Menu.Item>
+            <Menu.Header>Cure Information</Menu.Header>
+            <Menu.Menu>
+              <Menu.Item name="Completion">
+                <Label>{this.props.cure.percentComplete}</Label>
+                Completion
+              </Menu.Item>
             </Menu.Menu>
           </Menu.Item>
         </Menu>
@@ -94,5 +88,8 @@ export default class MainSidebar extends Component {
 }
 
 MainSidebar.propTypes = {
-  player: PropTypes.object
+  player: PropTypes.object,
+  world: PropTypes.object,
+  plague: PropTypes.object,
+  cure: PropTypes.object
 }
