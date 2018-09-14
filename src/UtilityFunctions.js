@@ -62,6 +62,9 @@ export function findNextScreen(currentScreen) {
  * @param {String} screenName The name of the screen to render.
  * @param {Object} gameUI The gameUI state from the Game component.
  * @param {Object} player The player state from the Game component.
+ * @param {Object} plague The plague state from the Game component.
+ * @param {Object} cure The cure state from the Game component.
+ * @param {Object} world The world state from the Game component.
  * @param {Object} methods All methods that are to be used by components. From the state from the Game Component.
  * @param {Boolean} fadeOut If true, the view will fade out upon render. If false, the view will not fade out. Default = false.
  * @returns {React Component} View - Returns the react component that makes up the view.
@@ -70,6 +73,9 @@ export function renderView(
   screenName,
   gameUI,
   player,
+  plague,
+  cure,
+  world,
   methods,
   fadeOut = false
 ) {
@@ -84,8 +90,11 @@ export function renderView(
           return (
             <StartScreen
               startScreenMethods={methods.startScreenMethods}
-              player={player}
               gameUI={gameUI}
+              player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               className="animated fadeOutLeft"
             />
           )
@@ -93,8 +102,11 @@ export function renderView(
           return (
             <StartScreen
               startScreenMethods={methods.startScreenMethods}
-              player={player}
               gameUI={gameUI}
+              player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               className="animated fadeInUpBig"
             />
           )
@@ -108,8 +120,11 @@ export function renderView(
           return (
             <NameFormScreen
               nameFormMethods={methods.nameFormMethods}
-              player={player}
               gameUI={gameUI}
+              player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               className="animated fadeOutLeft"
             />
           )
@@ -117,8 +132,11 @@ export function renderView(
           return (
             <NameFormScreen
               nameFormMethods={methods.nameFormMethods}
-              player={player}
               gameUI={gameUI}
+              player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               className="animated fadeInRight"
             />
           )
@@ -132,8 +150,11 @@ export function renderView(
           return (
             <ClassFormScreen
               classFormMethods={methods.classFormMethods}
-              player={player}
               gameUI={gameUI}
+              player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               className="animated fadeOutLeft"
             />
           )
@@ -141,8 +162,11 @@ export function renderView(
           return (
             <ClassFormScreen
               classFormMethods={methods.classFormMethods}
-              player={player}
               gameUI={gameUI}
+              player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               className="animated fadeInRight"
             />
           )
@@ -155,7 +179,11 @@ export function renderView(
         if (fadeOut) {
           return (
             <MenuScreen
+              gameUI={gameUI}
               player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               resetBackground={methods.startScreenMethods.resetBackground}
               className="animated fadeOutLeft delay-1s"
             />
@@ -163,7 +191,11 @@ export function renderView(
         } else {
           return (
             <MenuScreen
+              gameUI={gameUI}
               player={player}
+              plague={plague}
+              cure={cure}
+              world={world}
               resetBackground={methods.startScreenMethods.resetBackground}
               className="animated fadeIn"
             />
