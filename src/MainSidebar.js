@@ -15,14 +15,15 @@ export default class MainSidebar extends Component {
       left: 0,
       top: 0,
       bottom: 0,
-      // padding: '4px 0.5rem',
       padding: '4px 1rem',
-      // margin: '2px',
-      // color: '#8ff',
-      // background: '#222'
       background: '#1b1c1d',
       width: '250px'
     }
+
+    const alivePopNum = this.props.world.alivePopulation
+    const alivePopFormatted = alivePopNum.toLocaleString()
+    const deadPopNum = this.props.world.deadPopulation
+    const deadPopFormatted = deadPopNum.toLocaleString()
 
     return (
       <div style={semStyle}>
@@ -44,11 +45,11 @@ export default class MainSidebar extends Component {
             <Menu.Header>World Information</Menu.Header>
             <Menu.Menu>
               <Menu.Item name="Alive Population">
-                <Label>{this.props.world.alivePopulation}</Label>
+                <Label>{alivePopFormatted}</Label>
                 Alive Population
               </Menu.Item>
               <Menu.Item name="Dead Population">
-                <Label>{this.props.world.deadPopulation}</Label>
+                <Label>{deadPopFormatted}</Label>
                 Dead Population
               </Menu.Item>
             </Menu.Menu>
