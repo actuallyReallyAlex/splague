@@ -18,7 +18,7 @@ class Game extends Component {
       mutations: 0
     },
     world: {
-      alivePopulation: 100,
+      alivePopulation: 450000000,
       deadPopulation: 0
     },
     cure: {
