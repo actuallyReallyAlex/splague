@@ -156,7 +156,9 @@ class Game extends Component {
       // To infect someone, value must be greater than 0.75
       const infectionValue = Math.random()
 
-      console.log(infectionValue)
+      const shouldInfect = infectionValue > 0.75 ? true : false
+
+      console.log(infectionValue + ' ' + shouldInfect)
 
       infectionValue > 0.75 ? this.infectPopulation(1) : null
     }
