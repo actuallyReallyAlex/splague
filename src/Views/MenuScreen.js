@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MainSidebar from '../MainSidebar'
+import Plague from '../Plague'
 
 const MenuScreen = props => {
   const styles = {
@@ -24,6 +25,14 @@ const MenuScreen = props => {
       />
       <div style={styles} className="full-height">
         <h1>Hello world.</h1>
+        <Plague
+          plagueMethods={props.plagueMethods}
+          gameUI={props.gameUI}
+          player={props.player}
+          plague={props.plague}
+          cure={props.cure}
+          world={props.world}
+        />
       </div>
     </div>
   )
@@ -36,7 +45,8 @@ MenuScreen.propTypes = {
   player: PropTypes.object,
   plague: PropTypes.object,
   cure: PropTypes.object,
-  world: PropTypes.object
+  world: PropTypes.object,
+  plagueMethods: PropTypes.object
 }
 
 export default MenuScreen
