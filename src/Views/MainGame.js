@@ -3,19 +3,35 @@ import PropTypes from 'prop-types'
 import MainSidebar from '../MainSidebar'
 
 const MainGame = props => {
+  // Applied to div to the right of the sidebar. Ensures that div is scootched over from sidebar.
   const styles = {
     marginLeft: '250px'
   }
 
+  // Morality
   let morality = props.player.morality
 
+  // Changes background to white or dark color
   morality === 'good'
     ? props.resetBackground()
     : props.resetBackground('#252839')
 
-  let hasBegun = props.plague.hasBegun
+  // Plague
+  let plagueHasBegun = props.plague.hasBegun
 
-  hasBegun === false ? props.plagueMethods.beginInfection() : null
+  if (plagueHasBegun) {
+    // If the plague has already begun
+    // Do nothing
+  } else {
+    // If the plague has not begun
+    // start the plague
+    // Decide if a person will be infected every 3 seconds
+    const infectionDecisionTimer = setInterval(() => {
+      props.plagueMethods.decideToInfect()
+    }, 3000)
+
+    props.plagueMethods.beginInfection()
+  }
 
   return (
     <div className={props.className + ' full-height'}>
