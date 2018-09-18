@@ -26,7 +26,7 @@ const MainGame = props => {
     // If the plague has not begun
     // start the plague
     // Decide if a person will be infected every 3 seconds
-    const infectionDecisionTimer = setInterval(() => {
+    setInterval(() => {
       props.plagueMethods.decideToInfect()
     }, 3000)
 
