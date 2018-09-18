@@ -22,6 +22,8 @@ export default class MainSidebar extends Component {
 
     const alivePopNum = this.props.world.alivePopulation
     const alivePopFormatted = alivePopNum.toLocaleString()
+    const infectedPopNum = this.props.world.infectedPopulation
+    const infectedPopFormatted = infectedPopNum.toLocaleString()
     const deadPopNum = this.props.world.deadPopulation
     const deadPopFormatted = deadPopNum.toLocaleString()
 
@@ -47,6 +49,10 @@ export default class MainSidebar extends Component {
               <Menu.Item name="Alive Population">
                 <Label>{alivePopFormatted}</Label>
                 Alive Population
+              </Menu.Item>
+              <Menu.Item name="Infected Population">
+                <Label>{infectedPopFormatted}</Label>
+                Infected Population
               </Menu.Item>
               <Menu.Item name="Dead Population">
                 <Label>{deadPopFormatted}</Label>
