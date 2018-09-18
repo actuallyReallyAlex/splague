@@ -179,6 +179,7 @@ export function renderView(
         if (fadeOut) {
           return (
             <MenuScreen
+              plagueMethods={methods.plagueMethods}
               gameUI={gameUI}
               player={player}
               plague={plague}
@@ -191,6 +192,7 @@ export function renderView(
         } else {
           return (
             <MenuScreen
+              plagueMethods={methods.plagueMethods}
               gameUI={gameUI}
               player={player}
               plague={plague}
