@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MainSidebar from '../MainSidebar'
-import Plague from '../Plague'
 
-const MenuScreen = props => {
+const MainGame = props => {
   const styles = {
     marginLeft: '250px'
   }
@@ -13,6 +12,10 @@ const MenuScreen = props => {
   morality === 'good'
     ? props.resetBackground()
     : props.resetBackground('#252839')
+
+  let hasBegun = props.plague.hasBegun
+
+  hasBegun === false ? props.plagueMethods.beginInfection() : null
 
   return (
     <div className={props.className + ' full-height'}>
@@ -25,20 +28,12 @@ const MenuScreen = props => {
       />
       <div style={styles} className="full-height">
         <h1>Hello world.</h1>
-        <Plague
-          plagueMethods={props.plagueMethods}
-          gameUI={props.gameUI}
-          player={props.player}
-          plague={props.plague}
-          cure={props.cure}
-          world={props.world}
-        />
       </div>
     </div>
   )
 }
 
-MenuScreen.propTypes = {
+MainGame.propTypes = {
   resetBackground: PropTypes.func,
   className: PropTypes.string,
   gameUI: PropTypes.object,
@@ -49,4 +44,4 @@ MenuScreen.propTypes = {
   plagueMethods: PropTypes.object
 }
 
-export default MenuScreen
+export default MainGame

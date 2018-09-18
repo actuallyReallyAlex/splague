@@ -1,7 +1,7 @@
 /* eslint react/display-name: off, no-console: off */
 import React from 'react'
 import StartScreen from './Views/StartScreen'
-import MenuScreen from './Views/MenuScreen'
+import MainGame from './Views/MainGame'
 import NameFormScreen from './Views/NameFormScreen'
 import ClassFormScreen from './Views/ClassFormScreen'
 
@@ -178,7 +178,7 @@ export function renderView(
       view: () => {
         if (fadeOut) {
           return (
-            <MenuScreen
+            <MainGame
               plagueMethods={methods.plagueMethods}
               gameUI={gameUI}
               player={player}
@@ -191,7 +191,7 @@ export function renderView(
           )
         } else {
           return (
-            <MenuScreen
+            <MainGame
               plagueMethods={methods.plagueMethods}
               gameUI={gameUI}
               player={player}
