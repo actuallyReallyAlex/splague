@@ -1,7 +1,7 @@
 /* eslint react/display-name: off, no-console: off */
 import React from 'react'
 import StartScreen from './Views/StartScreen'
-import MenuScreen from './Views/MenuScreen'
+import MainGame from './Views/MainGame'
 import NameFormScreen from './Views/NameFormScreen'
 import ClassFormScreen from './Views/ClassFormScreen'
 
@@ -65,6 +65,7 @@ export function findNextScreen(currentScreen) {
  * @param {Object} plague The plague state from the Game component.
  * @param {Object} cure The cure state from the Game component.
  * @param {Object} world The world state from the Game component.
+ * @param {Object} log The log state from the Game component.
  * @param {Object} methods All methods that are to be used by components. From the state from the Game Component.
  * @param {Boolean} fadeOut If true, the view will fade out upon render. If false, the view will not fade out. Default = false.
  * @returns {React Component} View - Returns the react component that makes up the view.
@@ -76,6 +77,7 @@ export function renderView(
   plague,
   cure,
   world,
+  log,
   methods,
   fadeOut = false
 ) {
@@ -95,6 +97,7 @@ export function renderView(
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               className="animated fadeOutLeft"
             />
           )
@@ -107,6 +110,7 @@ export function renderView(
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               className="animated fadeInUpBig"
             />
           )
@@ -125,6 +129,7 @@ export function renderView(
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               className="animated fadeOutLeft"
             />
           )
@@ -137,6 +142,7 @@ export function renderView(
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               className="animated fadeInRight"
             />
           )
@@ -155,6 +161,7 @@ export function renderView(
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               className="animated fadeOutLeft"
             />
           )
@@ -167,6 +174,7 @@ export function renderView(
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               className="animated fadeInRight"
             />
           )
@@ -178,24 +186,28 @@ export function renderView(
       view: () => {
         if (fadeOut) {
           return (
-            <MenuScreen
+            <MainGame
+              plagueMethods={methods.plagueMethods}
               gameUI={gameUI}
               player={player}
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               resetBackground={methods.startScreenMethods.resetBackground}
               className="animated fadeOutLeft delay-1s"
             />
           )
         } else {
           return (
-            <MenuScreen
+            <MainGame
+              plagueMethods={methods.plagueMethods}
               gameUI={gameUI}
               player={player}
               plague={plague}
               cure={cure}
               world={world}
+              log={log}
               resetBackground={methods.startScreenMethods.resetBackground}
               className="animated fadeIn"
             />

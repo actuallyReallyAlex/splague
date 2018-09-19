@@ -15,15 +15,18 @@ class Game extends Component {
       name: ''
     },
     plague: {
-      mutations: 0
+      mutations: 0,
+      hasBegun: false
     },
     world: {
       alivePopulation: 450000000,
+      infectedPopulation: 0,
       deadPopulation: 0
     },
     cure: {
       percentComplete: 0
-    }
+    },
+    log: {}
   }
 
   /**
@@ -125,6 +128,63 @@ class Game extends Component {
     this.handleScreenChange(this.state.gameUI.currentScreen)
   }
 
+  beginInfection = () => {
+    let { plague } = this.state
+    plague.hasBegun = true
+    this.setState({ plague })
+  }
+
+  /**
+   * Responsible for infecting the population.
+   * @param {Number} numberToInfect The number of healthy people to infect. Must not be larger than the current alive population.
+   */
+  infectPopulation = (numberToInfect, isPatientZero = false) => {
+    let { world } = this.state
+    const currentInfectedPopulation = world.infectedPopulation
+    world.infectedPopulation = currentInfectedPopulation + numberToInfect
+    if (isPatientZero) {
+      this.logAnEvent(
+        'patientZero',
+        'Patient Zero has been infected. The plague has begun.'
+      )
+    }
+    this.setState({ world })
+  }
+
+  /**
+   * Responsible for deciding if a person will become infected. Will run every 1 second of gametime.
+   * @param {Boolean} override If set to true, will automatically infect 1 person, and not do any math logic.
+   * @param {Boolean} isPatientZero If set to true, will be passed to infectPopulation(), eventually adding a comment to the log that patient zero was infected.
+   */
+  decideToInfect = (override = false, isPatientZero = false) => {
+    if (override) {
+      this.infectPopulation(1)
+    } else {
+      // To infect someone, value must be greater than 0.75
+      const infectionValue = Math.random()
+
+      if (isPatientZero) {
+        infectionValue > 0.75 ? this.infectPopulation(1, true) : null
+      } else {
+        infectionValue > 0.75 ? this.infectPopulation(1) : null
+      }
+    }
+  }
+
+  /**
+   * Logs an event to the log.
+   * @param {String} key Key to add to the log object.
+   * @param {String} value Value to add to the log object. Will be used as text for the log item.
+   */
+  logAnEvent = (key, value) => {
+    let log = {
+      [key]: value
+    }
+    // let { log } = this.state
+    // log[key] = log[value]
+    this.setState({ log })
+  }
+
   startScreenMethods = {
     resetBackground: this.resetBackground,
     handleMoralityChoice: this.handleMoralityChoice,
@@ -140,10 +200,17 @@ class Game extends Component {
     handleClassSubmit: this.handleClassSubmit
   }
 
+  plagueMethods = {
+    infectPopulation: this.infectPopulation,
+    decideToInfect: this.decideToInfect,
+    beginInfection: this.beginInfection
+  }
+
   methods = {
     startScreenMethods: this.startScreenMethods,
     nameFormMethods: this.nameFormMethods,
-    classFormMethods: this.classFormMethods
+    classFormMethods: this.classFormMethods,
+    plagueMethods: this.plagueMethods
   }
 
   render() {
@@ -155,6 +222,7 @@ class Game extends Component {
         this.state.plague,
         this.state.cure,
         this.state.world,
+        this.state.log,
         this.methods,
         true
       )
@@ -166,6 +234,7 @@ class Game extends Component {
         this.state.plague,
         this.state.cure,
         this.state.world,
+        this.state.log,
         this.methods
       )
     }
