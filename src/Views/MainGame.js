@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MainSidebar from '../MainSidebar'
+import Log from '../Log'
 
 const MainGame = props => {
   // Applied to div to the right of the sidebar. Ensures that div is scootched over from sidebar.
   const styles = {
-    marginLeft: '250px'
+    marginLeft: '250px',
+    padding: '20px',
+    color: 'white'
   }
 
   // Morality
@@ -27,7 +30,7 @@ const MainGame = props => {
     // start the plague
     // Decide if a person will be infected every 3 seconds
     setInterval(() => {
-      props.plagueMethods.decideToInfect()
+      props.plagueMethods.decideToInfect(false, true)
     }, 3000)
 
     props.plagueMethods.beginInfection()
@@ -41,9 +44,10 @@ const MainGame = props => {
         plague={props.plague}
         cure={props.cure}
         world={props.world}
+        log={props.log}
       />
       <div style={styles} className="full-height">
-        <h1>Hello world.</h1>
+        <Log log={props.log}/>
       </div>
     </div>
   )
@@ -57,6 +61,7 @@ MainGame.propTypes = {
   plague: PropTypes.object,
   cure: PropTypes.object,
   world: PropTypes.object,
+  log: PropTypes.object,
   plagueMethods: PropTypes.object
 }
 
