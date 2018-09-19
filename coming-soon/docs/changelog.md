@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.4.0](https://github.com/alexlee-dev/splague/tree/v0.4.0) (2018-09-19)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.3.5...v0.4.0)
+
+**Implemented enhancements:**
+
+- Add Infection Ability [\#14](https://github.com/alexlee-dev/splague/issues/14)
+- Add "Plague" or "Boss" to Game State [\#10](https://github.com/alexlee-dev/splague/issues/10)
+- Infection start [\#15](https://github.com/alexlee-dev/splague/pull/15) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.3.5](https://github.com/alexlee-dev/splague/tree/v0.3.5) (2018-09-13)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.3.4...v0.3.5)
 
