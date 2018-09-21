@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.0](https://github.com/alexlee-dev/splague/tree/v0.5.0) (2018-09-21)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.4.0...v0.5.0)
+
+**Implemented enhancements:**
+
+- Time Threshold on Patient Zero Infection [\#16](https://github.com/alexlee-dev/splague/issues/16)
+- Fixes Patient Zero Logic [\#20](https://github.com/alexlee-dev/splague/pull/20) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.4.0](https://github.com/alexlee-dev/splague/tree/v0.4.0) (2018-09-19)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.3.5...v0.4.0)
 
