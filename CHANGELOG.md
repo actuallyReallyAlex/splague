@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.1](https://github.com/alexlee-dev/splague/tree/v0.5.1) (2018-09-21)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.0...v0.5.1)
+
+**Fixed bugs:**
+
+- User Can Start Game Without Setting name or type [\#18](https://github.com/alexlee-dev/splague/issues/18)
+- Fixes Issue \#18 [\#21](https://github.com/alexlee-dev/splague/pull/21) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.0](https://github.com/alexlee-dev/splague/tree/v0.5.0) (2018-09-21)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.4.0...v0.5.0)
 
