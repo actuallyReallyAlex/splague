@@ -97,7 +97,9 @@ const SimpleInput = props => {
                 value={props.value}
               />
             </Form.Field>
-            <Button type="submit">Continue</Button>
+            <Button disabled={props.value !== '' ? false : true} type="submit">
+              Continue
+            </Button>
           </Form>
         </Grid.Column>
       </Grid.Row>
@@ -131,7 +133,10 @@ const SimpleDropdown = props => {
             className={props.className}
             id="classForm"
             onSubmit={() => {
-              props.classFormMethods.handleClassSubmit(props.playerClassType, props.playerClassName)
+              props.classFormMethods.handleClassSubmit(
+                props.playerClassType,
+                props.playerClassName
+              )
             }}
           >
             <Form.Field>
@@ -144,7 +149,12 @@ const SimpleDropdown = props => {
                 onChange={props.handleClassChange}
               />
             </Form.Field>
-            <Button type="submit">Begin ...</Button>
+            <Button
+              disabled={props.playerClassName !== '' ? false : true}
+              type="submit"
+            >
+              Begin ...
+            </Button>
           </Form>
         </Grid.Column>
       </Grid.Row>
