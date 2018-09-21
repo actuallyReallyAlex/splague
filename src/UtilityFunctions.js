@@ -188,6 +188,7 @@ export function renderView(
           return (
             <MainGame
               plagueMethods={methods.plagueMethods}
+              gameMethods={methods.gameMethods}
               gameUI={gameUI}
               player={player}
               plague={plague}
@@ -202,6 +203,7 @@ export function renderView(
           return (
             <MainGame
               plagueMethods={methods.plagueMethods}
+              gameMethods={methods.gameMethods}
               gameUI={gameUI}
               player={player}
               plague={plague}

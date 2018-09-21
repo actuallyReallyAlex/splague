@@ -1,56 +1,59 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import MainSidebar from '../MainSidebar'
 import Log from '../Log'
 
-const MainGame = props => {
-  // Applied to div to the right of the sidebar. Ensures that div is scootched over from sidebar.
-  const styles = {
-    marginLeft: '250px',
-    padding: '20px',
-    color: 'white'
+class MainGame extends Component {
+  componentDidMount() {
+    let morality = this.props.player.morality
+
+    // Changes background to white or dark color
+    morality === 'good'
+      ? this.props.resetBackground()
+      : this.props.resetBackground('#252839')
+
+    // Logs an event to the Game Log after 2 seconds
+    setTimeout(() => {
+      this.props.gameMethods.logAnEvent('gameStart', 'Welcome to Splague!')
+    }, 2000)
+
+    // Infects Patient Zero after 10 seconds
+    setTimeout(() => {
+      this.props.plagueMethods.infectPopulation(1, true)
+    }, 10000)
+
+    // Sets infection decision interval for every 3 seconds, after 10.5 seconds
+    setTimeout(() => {
+      setInterval(() => {
+        this.props.plagueMethods.decideToInfect()
+      }, 3000)
+    }, 10500)
   }
 
-  // Morality
-  let morality = props.player.morality
+  render() {
+    // Applied to div to the right of the sidebar. Ensures that div is scootched over from sidebar.
+    const styles = {
+      marginLeft: '250px',
+      padding: '20px',
+      color: 'white'
+    }
 
-  // Changes background to white or dark color
-  morality === 'good'
-    ? props.resetBackground()
-    : props.resetBackground('#252839')
-
-  // Plague
-  let plagueHasBegun = props.plague.hasBegun
-
-  if (plagueHasBegun) {
-    // If the plague has already begun
-    // Do nothing
-  } else {
-    // If the plague has not begun
-    // start the plague
-    // Decide if a person will be infected every 3 seconds
-    setInterval(() => {
-      props.plagueMethods.decideToInfect(false, true)
-    }, 3000)
-
-    props.plagueMethods.beginInfection()
-  }
-
-  return (
-    <div className={props.className + ' full-height'}>
-      <MainSidebar
-        gameUI={props.gameUI}
-        player={props.player}
-        plague={props.plague}
-        cure={props.cure}
-        world={props.world}
-        log={props.log}
-      />
-      <div style={styles} className="full-height">
-        <Log log={props.log}/>
+    return (
+      <div className={this.props.className + ' full-height'}>
+        <MainSidebar
+          gameUI={this.props.gameUI}
+          player={this.props.player}
+          plague={this.props.plague}
+          cure={this.props.cure}
+          world={this.props.world}
+          log={this.props.log}
+        />
+        <div style={styles} className="full-height">
+          <Log log={this.props.log} player={this.props.player} />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 MainGame.propTypes = {
@@ -62,7 +65,8 @@ MainGame.propTypes = {
   cure: PropTypes.object,
   world: PropTypes.object,
   log: PropTypes.object,
-  plagueMethods: PropTypes.object
+  plagueMethods: PropTypes.object,
+  gameMethods: PropTypes.object
 }
 
 export default MainGame

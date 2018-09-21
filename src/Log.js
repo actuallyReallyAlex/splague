@@ -15,12 +15,26 @@ const Log = props => {
       </Header>
 
       {Object.keys(props.log).map((logItem, i) => {
+        const dictionary = {
+          gameStart: {
+            author: 'Splague',
+            metaData: null,
+            avatar: 'http://i.pravatar.cc/300'
+          },
+          patientZero: {
+            author: props.player.name,
+            metaData: 'Day 0',
+            avatar: 'http://i.pravatar.cc/300'
+          }
+        }
+
         return (
           <LogItem
             key={i}
-            author="Plague"
-            metaData="Day 0"
+            author={dictionary[logItem].author}
+            metaData={dictionary[logItem].metaData}
             text={props.log[logItem]}
+            avatar={dictionary[logItem].avatar}
           />
         )
       })}
@@ -29,7 +43,8 @@ const Log = props => {
 }
 
 Log.propTypes = {
-  log: PropTypes.object
+  log: PropTypes.object,
+  player: PropTypes.object
 }
 
 export default Log
