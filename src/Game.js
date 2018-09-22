@@ -109,6 +109,7 @@ class Game extends Component {
 
   /**
    * Sets state when a user submits a name.
+   * @param {String} name User inputted name.
    */
   handleNameSubmit = name => {
     let { player } = this.state
@@ -118,6 +119,11 @@ class Game extends Component {
     this.handleScreenChange(this.state.gameUI.currentScreen)
   }
 
+  /**
+   * Responsible for setting state when a user submits a class.
+   * @param {String} classType A type of class. Either Plague or Faction.
+   * @param {String} className A specific subset of either a Plague or Faction.
+   */
   handleClassSubmit = (classType, className) => {
     let { player } = this.state
     player.classType = classType
@@ -172,6 +178,14 @@ class Game extends Component {
     this.setState({ log })
   }
 
+  /**
+   * Clears the Game Log.
+   */
+  clearLog = () => {
+    let log = {}
+    this.setState({ log })
+  }
+
   startScreenMethods = {
     resetBackground: this.resetBackground,
     handleMoralityChoice: this.handleMoralityChoice,
@@ -193,7 +207,8 @@ class Game extends Component {
   }
 
   gameMethods = {
-    logAnEvent: this.logAnEvent
+    logAnEvent: this.logAnEvent,
+    clearLog: this.clearLog
   }
 
   methods = {
