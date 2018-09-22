@@ -49,7 +49,11 @@ class MainGame extends Component {
           log={this.props.log}
         />
         <div style={styles} className="full-height">
-          <Log log={this.props.log} player={this.props.player} />
+          <Log
+            log={this.props.log}
+            player={this.props.player}
+            gameMethods={this.props.gameMethods}
+          />
         </div>
       </div>
     )
