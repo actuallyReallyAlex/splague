@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.2](https://github.com/alexlee-dev/splague/tree/v0.5.2) (2018-09-22)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.1...v0.5.2)
+
+**Implemented enhancements:**
+
+- Add Ability to Clear Log [\#19](https://github.com/alexlee-dev/splague/issues/19)
+- Fix issue \#19 - Add ability to clear Game Log [\#23](https://github.com/alexlee-dev/splague/pull/23) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.1](https://github.com/alexlee-dev/splague/tree/v0.5.1) (2018-09-21)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.0...v0.5.1)
 
