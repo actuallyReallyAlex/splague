@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.5](https://github.com/alexlee-dev/splague/tree/v0.5.5) (2018-09-22)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.4...v0.5.5)
+
+**Implemented enhancements:**
+
+- Avatars / Icons for Plague & Faction Types [\#13](https://github.com/alexlee-dev/splague/issues/13)
+- Fix issue \#13   add icons [\#29](https://github.com/alexlee-dev/splague/pull/29) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.4](https://github.com/alexlee-dev/splague/tree/v0.5.4) (2018-09-22)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.3...v0.5.4)
 
