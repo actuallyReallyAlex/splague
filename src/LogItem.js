@@ -21,7 +21,7 @@ const evilMetaDataStyle = {
 const LogItem = props => {
   return (
     <Comment
-      className="animated fadeInUp"
+      className="animated fadeInUp slow"
       style={
         props.player.morality === 'good'
           ? goodAuthorAndTextStyle
