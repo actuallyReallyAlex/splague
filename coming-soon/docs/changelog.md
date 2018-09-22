@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.4](https://github.com/alexlee-dev/splague/tree/v0.5.4) (2018-09-22)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.3...v0.5.4)
+
+**Fixed bugs:**
+
+- Game Log Text is White | Can't Read When User is 'Good' [\#24](https://github.com/alexlee-dev/splague/issues/24)
+- Fix issue \#24   game log color [\#26](https://github.com/alexlee-dev/splague/pull/26) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.3](https://github.com/alexlee-dev/splague/tree/v0.5.3) (2018-09-22)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.2...v0.5.3)
 
