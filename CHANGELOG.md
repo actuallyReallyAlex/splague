@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.7](https://github.com/alexlee-dev/splague/tree/v0.5.7) (2018-09-22)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.6...v0.5.7)
+
+**Implemented enhancements:**
+
+- Plague / Faction Avatar on MainGame Sidebar [\#28](https://github.com/alexlee-dev/splague/issues/28)
+- Added Class Icons to MainSidebar [\#31](https://github.com/alexlee-dev/splague/pull/31) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.6](https://github.com/alexlee-dev/splague/tree/v0.5.6) (2018-09-22)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.5...v0.5.6)
 
