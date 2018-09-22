@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.3](https://github.com/alexlee-dev/splague/tree/v0.5.3) (2018-09-22)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.2...v0.5.3)
+
+**Implemented enhancements:**
+
+- Add Testing Button To Skip Pre-Game Inputs [\#22](https://github.com/alexlee-dev/splague/issues/22)
+- Created a Skip Button [\#25](https://github.com/alexlee-dev/splague/pull/25) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.2](https://github.com/alexlee-dev/splague/tree/v0.5.2) (2018-09-22)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.1...v0.5.2)
 
