@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.6](https://github.com/alexlee-dev/splague/tree/v0.5.6) (2018-09-22)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.5...v0.5.6)
+
+**Implemented enhancements:**
+
+- Make LogItem's Fade In Slower [\#27](https://github.com/alexlee-dev/splague/issues/27)
+- Makes LogItems fade in slightly slower. [\#30](https://github.com/alexlee-dev/splague/pull/30) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.5](https://github.com/alexlee-dev/splague/tree/v0.5.5) (2018-09-22)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.4...v0.5.5)
 
