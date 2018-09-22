@@ -4,6 +4,7 @@ import StartScreen from './Views/StartScreen'
 import MainGame from './Views/MainGame'
 import NameFormScreen from './Views/NameFormScreen'
 import ClassFormScreen from './Views/ClassFormScreen'
+import Skip from './Skip'
 
 /**
  * Database of screen routes.
@@ -90,29 +91,35 @@ export function renderView(
       view: () => {
         if (fadeOut) {
           return (
-            <StartScreen
-              startScreenMethods={methods.startScreenMethods}
-              gameUI={gameUI}
-              player={player}
-              plague={plague}
-              cure={cure}
-              world={world}
-              log={log}
-              className="animated fadeOutLeft"
-            />
+            <div>
+              <Skip startScreenMethods={methods.startScreenMethods} />
+              <StartScreen
+                startScreenMethods={methods.startScreenMethods}
+                gameUI={gameUI}
+                player={player}
+                plague={plague}
+                cure={cure}
+                world={world}
+                log={log}
+                className="animated fadeOutLeft"
+              />
+            </div>
           )
         } else {
           return (
-            <StartScreen
-              startScreenMethods={methods.startScreenMethods}
-              gameUI={gameUI}
-              player={player}
-              plague={plague}
-              cure={cure}
-              world={world}
-              log={log}
-              className="animated fadeInUpBig"
-            />
+            <div className="full-height">
+              <Skip startScreenMethods={methods.startScreenMethods} />
+              <StartScreen
+                startScreenMethods={methods.startScreenMethods}
+                gameUI={gameUI}
+                player={player}
+                plague={plague}
+                cure={cure}
+                world={world}
+                log={log}
+                className="animated fadeInUpBig"
+              />
+            </div>
           )
         }
       }

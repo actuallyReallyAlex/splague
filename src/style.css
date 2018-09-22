@@ -13,3 +13,9 @@ body {
 .clear-log-button {
   margin-left: 20px !important;
 }
+
+
+.skip-button {
+  left: 0;
+  top: 0;
+}
