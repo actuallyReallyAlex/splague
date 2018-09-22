@@ -172,11 +172,21 @@ class Game extends Component {
     this.setState({ log })
   }
 
+  skip = () => {
+    let { gameUI } = this.state
+    gameUI.currentScreen = 'Main Game'
+    this.handleMoralityChoice('evil')
+    this.handleNameSubmit('Black Death')
+    this.handleClassSubmit('Plague', 'Bubonic')
+    this.setState({ gameUI })
+  }
+
   startScreenMethods = {
     resetBackground: this.resetBackground,
     handleMoralityChoice: this.handleMoralityChoice,
     handleScreenChange: this.handleScreenChange,
-    handleHover: this.handleHover
+    handleHover: this.handleHover,
+    skip: this.skip
   }
 
   nameFormMethods = {
