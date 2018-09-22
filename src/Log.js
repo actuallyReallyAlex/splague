@@ -4,14 +4,21 @@ import PropTypes from 'prop-types'
 import LogItem from './LogItem'
 import './style.css'
 
-const logStyle = {
-  color: 'white'
+const goodLogStyle = {
+  color: 'rgba(0,0,0,.87)'
+}
+
+const evilLogStyle = {
+  color: 'rgba(255,255,255,.87)'
 }
 
 const Log = props => {
   return (
     <Comment.Group>
-      <Header as="h3" style={logStyle}>
+      <Header
+        as="h3"
+        style={props.player.morality === 'good' ? goodLogStyle : evilLogStyle}
+      >
         Log
         <Button
           size="mini"
@@ -43,6 +50,7 @@ const Log = props => {
             metaData={dictionary[logItem].metaData}
             text={props.log[logItem]}
             avatar={dictionary[logItem].avatar}
+            player={props.player}
           />
         )
       })}
