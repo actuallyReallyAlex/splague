@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
-import { Menu, Label } from 'semantic-ui-react'
+import { Menu, Label, Image } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
+import bubonicIcon from './bubonic.svg'
+import septicemicIcon from './septicemic.svg'
+import pneumonicIcon from './pneumonic.svg'
+import earthTribeIcon from './earthTribe.svg'
+import warlordsIcon from './warlords.svg'
+import tradesmenIcon from './tradesmen.svg'
 
 export default class MainSidebar extends Component {
   handleItemClick = name => this.setState({ activeItem: name })
@@ -27,6 +33,33 @@ export default class MainSidebar extends Component {
     const deadPopNum = this.props.world.deadPopulation
     const deadPopFormatted = deadPopNum.toLocaleString()
 
+    const iconDictionary = [
+      {
+        name: 'Earth Tribe',
+        icon: earthTribeIcon
+      },
+      {
+        name: 'Tradesmen',
+        icon: tradesmenIcon
+      },
+      {
+        name: 'Warlords',
+        icon: warlordsIcon
+      },
+      {
+        name: 'Bubonic',
+        icon: bubonicIcon
+      },
+      {
+        name: 'Septicemic',
+        icon: septicemicIcon
+      },
+      {
+        name: 'Pneumonic',
+        icon: pneumonicIcon
+      }
+    ]
+
     return (
       <div style={semStyle}>
         <Menu
@@ -39,6 +72,16 @@ export default class MainSidebar extends Component {
         >
           <Menu.Item>
             <Menu.Header>
+              <Image
+                size="small"
+                circular
+                centered
+                src={
+                  iconDictionary.find(obj => {
+                    return obj.name === this.props.player.className
+                  }).icon
+                }
+              />
               <h1>{this.props.player.name}</h1>
             </Menu.Header>
           </Menu.Item>
