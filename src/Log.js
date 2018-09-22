@@ -3,6 +3,8 @@ import { Comment, Header, Button } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import LogItem from './LogItem'
 import './style.css'
+import splagueIcon from './splague.svg'
+import patientZeroIcon from './patientZero.svg'
 
 const goodLogStyle = {
   color: 'rgba(0,0,0,.87)'
@@ -34,12 +36,12 @@ const Log = props => {
           gameStart: {
             author: 'Splague',
             metaData: null,
-            avatar: 'http://i.pravatar.cc/300'
+            avatar: splagueIcon
           },
           patientZero: {
             author: props.player.name,
             metaData: 'Day 0',
-            avatar: 'http://i.pravatar.cc/300'
+            avatar: patientZeroIcon
           }
         }
 

@@ -5,6 +5,12 @@ import MainGame from './Views/MainGame'
 import NameFormScreen from './Views/NameFormScreen'
 import ClassFormScreen from './Views/ClassFormScreen'
 import Skip from './Skip'
+import bubonicIcon from './bubonic.svg'
+import septicemicIcon from './septicemic.svg'
+import pneumonicIcon from './pneumonic.svg'
+import earthTribeIcon from './earthTribe.svg'
+import warlordsIcon from './warlords.svg'
+import tradesmenIcon from './tradesmen.svg'
 
 /**
  * Database of screen routes.
@@ -235,29 +241,19 @@ export function renderView(
 
 export const factionOptions = [
   {
-    text: 'جزائري',
-    value: 'جزائري',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=1' }
+    text: 'Earth Tribe',
+    value: 'Earth Tribe',
+    image: { avatar: true, src: earthTribeIcon }
   },
   {
-    text: 'Deutsche',
-    value: 'Deutsche',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=2' }
+    text: 'Tradesmen',
+    value: 'Tradesmen',
+    image: { avatar: true, src: tradesmenIcon }
   },
   {
-    text: 'English',
-    value: 'English',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=3' }
-  },
-  {
-    text: 'Français',
-    value: 'Français',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=4' }
-  },
-  {
-    text: 'Italiano',
-    value: 'Italiano',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=5' }
+    text: 'Warlords',
+    value: 'Warlords',
+    image: { avatar: true, src: warlordsIcon }
   }
 ]
 
@@ -265,16 +261,16 @@ export const plagueOptions = [
   {
     text: 'Bubonic',
     value: 'Bubonic',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=6' }
+    image: { avatar: true, src: bubonicIcon }
   },
   {
     text: 'Septicemic',
     value: 'Septicemic',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=7' }
+    image: { avatar: true, src: septicemicIcon }
   },
   {
     text: 'Pneumonic',
     value: 'Pneumonic',
-    image: { avatar: true, src: 'http://i.pravatar.cc/150?img=8' }
+    image: { avatar: true, src: pneumonicIcon }
   }
 ]
