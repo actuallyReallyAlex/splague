@@ -7,6 +7,10 @@ Be prepared.
 ## Attribution
 Death Mask by [Catherine Please](https://thenounproject.com/CatherinePlease/) from [the Noun Project](https://thenounproject.com/).
 
+Medical Icons by [prettycons](https://www.flaticon.com/authors/prettycons) from [www.flaticon.com](www.flaticon.com).
+
+Travel Icons by [prettycons](https://www.flaticon.com/authors/prettycons) from [www.flaticon.com](www.flaticon.com).
+
 ## [Changelog](https://www.splague.com/docs/#/changelog)
 
 <!-- Markdown link & img dfn's -->
