@@ -1,5 +1,6 @@
 // https://stackoverflow.com/questions/15505225/inject-css-stylesheet-as-string-using-javascript
 
+// Array of Images to choose from
 const images = [
   './images/bubonic.svg',
   './images/earthTribe.svg',
@@ -10,6 +11,10 @@ const images = [
   './images/warlords.svg'
 ]
 
+/**
+ * Creates a node, adds a style to it from a provided string, and appends that node to the body of the document.
+ * @param {String} str String of style to set, complete with selector.
+ */
 function addStyleString(str) {
   var node = document.createElement('style')
   node.innerHTML = str
@@ -36,13 +41,11 @@ function getRandomPath(images, lastPath) {
   // If the user saw an image last time, i.e.
   // the lastPath has been set in localStorage
   if (lastPath) {
-    console.log('lastPath = ', lastPath)
     // Make a new path
     let path = images[Math.floor(Math.random() * images.length)]
 
     // If the path was the same as the lastPath
     while (isTheSame(path, lastPath)) {
-      console.log('the path was the same as the last path!')
       path = images[Math.floor(Math.random() * images.length)]
     }
 
@@ -50,7 +53,6 @@ function getRandomPath(images, lastPath) {
 
     return path
   } else {
-    console.log('There is no lastPath yet.')
     // Make a new path
     let path = images[Math.floor(Math.random() * images.length)]
 
@@ -65,5 +67,9 @@ if (typeof Storage !== 'undefined') {
   // Get a path to a random image
   // Garunteed not to be an image the user saw most recently.
   const path = getRandomPath(images, localStorage.getItem('lastPath'))
+  addStyleString(`.cover-main img { content: url(${path}) }`)
+} else {
+  // No garuntee that the path won't be the same as the lastPath.
+  const path = images[Math.floor(Math.random() * images.length)]
   addStyleString(`.cover-main img { content: url(${path}) }`)
 }
