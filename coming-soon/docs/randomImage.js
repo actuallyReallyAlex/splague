@@ -36,6 +36,7 @@ function getRandomPath(images, lastPath) {
   // If the user saw an image last time, i.e.
   // the lastPath has been set in localStorage
   if (lastPath) {
+    console.log('lastPath = ', lastPath)
     // Make a new path
     let path = images[Math.floor(Math.random() * images.length)]
 
@@ -45,10 +46,15 @@ function getRandomPath(images, lastPath) {
       path = images[Math.floor(Math.random() * images.length)]
     }
 
+    localStorage.setItem('lastPath', path)
+
     return path
   } else {
+    console.log('There is no lastPath yet.')
     // Make a new path
     let path = images[Math.floor(Math.random() * images.length)]
+
+    localStorage.setItem('lastPath', path)
 
     return path
   }
@@ -59,6 +65,5 @@ if (typeof Storage !== 'undefined') {
   // Get a path to a random image
   // Garunteed not to be an image the user saw most recently.
   const path = getRandomPath(images, localStorage.getItem('lastPath'))
-  localStorage.setItem('lastPath', path)
   addStyleString(`.cover-main img { content: url(${path}) }`)
 }
