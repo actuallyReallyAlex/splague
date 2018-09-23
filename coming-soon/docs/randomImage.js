@@ -1,21 +1,12 @@
+// https://stackoverflow.com/questions/15505225/inject-css-stylesheet-as-string-using-javascript
+
+import { ls } from 'local-storage'
+
 function addStyleString(str) {
   var node = document.createElement('style')
   node.innerHTML = str
   document.body.appendChild(node)
 }
-
-// const dictionary = [
-//   'http://i.pravatar.cc/300?img=1',
-//   'http://i.pravatar.cc/300?img=2',
-//   'http://i.pravatar.cc/300?img=3',
-//   'http://i.pravatar.cc/300?img=4',
-//   'http://i.pravatar.cc/300?img=5',
-//   'http://i.pravatar.cc/300?img=6',
-//   'http://i.pravatar.cc/300?img=7',
-//   'http://i.pravatar.cc/300?img=8',
-//   'http://i.pravatar.cc/300?img=9',
-//   'http://i.pravatar.cc/300?img=10'
-// ]
 
 const images = [
   './images/bubonic.svg',
@@ -23,17 +14,25 @@ const images = [
   './images/patientZero.svg',
   './images/pneumonic.svg',
   './images/septicemic.svg',
-  './images/splague.svg',
   './images/tradesmen.svg',
   './images/warlords.svg'
 ]
 
-let url = images[Math.floor(Math.random()*images.length)]
+let path = images[Math.floor(Math.random() * images.length)]
 
-addStyleString(
-  `.cover-main img { content: url(${url}) }`
-)
-// addStyleString('body { background: silver }');
-// This way allows you to add CSS in multiple passes
+addStyleString(`.cover-main img { content: url(${path}) }`)
 
-// content: url('https://assets.pernod-ricard.com/uk/media_images/test.jpg');
+if (typeof Storage !== 'undefined') {
+  // // Store current path, so that when the user refreshes, they never get the same image twice in a row
+  // localStorage.setItem("lastname", "Smith");
+  // // Retrieve
+  // document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+
+  ls('foo', 'bar')
+  // <- true
+
+  console.log(ls('foo'))
+  // <- 'bar'
+} else {
+  // Sorry! No Web Storage support..
+}
