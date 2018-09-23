@@ -28,7 +28,7 @@ function addStyleString(str) {
  * @returns {Boolean} Returns true if the strings are the same, and false otherwise.
  */
 function isTheSame(firstString, secondString) {
-  firstString === secondString ? true : false
+  return firstString === secondString ? true : false
 }
 
 /**
