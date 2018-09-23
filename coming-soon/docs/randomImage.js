@@ -5,7 +5,7 @@ function addStyleString(str) {
 }
 
 addStyleString(
-  '.cover-main img { content: url("https://assets.pernod-ricard.com/uk/media_images/test.jpg" }'
+  '.cover-main img { content: url("https://assets.pernod-ricard.com/uk/media_images/test.jpg") }'
 )
 // addStyleString('body { background: silver }');
 // This way allows you to add CSS in multiple passes
