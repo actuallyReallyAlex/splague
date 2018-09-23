@@ -59,5 +59,6 @@ if (typeof Storage !== 'undefined') {
   // Get a path to a random image
   // Garunteed not to be an image the user saw most recently.
   const path = getRandomPath(images, localStorage.getItem('lastPath'))
+  localStorage.setItem('lastPath', path)
   addStyleString(`.cover-main img { content: url(${path}) }`)
 }
