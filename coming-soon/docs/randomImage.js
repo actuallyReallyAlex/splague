@@ -1,6 +1,6 @@
 // https://stackoverflow.com/questions/15505225/inject-css-stylesheet-as-string-using-javascript
 
-import { ls } from 'local-storage'
+const ls = require('local-storage')
 
 function addStyleString(str) {
   var node = document.createElement('style')
