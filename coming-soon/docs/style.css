@@ -9,12 +9,13 @@ $color5: rgba(0, 134, 242, 1); */
 
 /* All */
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Main Cover Logo */
 .cover-main img {
   max-width: 325px;
+  content: url('https://assets.pernod-ricard.com/uk/media_images/test.jpg');
 }
 
 /* Logo in Sidebar */
