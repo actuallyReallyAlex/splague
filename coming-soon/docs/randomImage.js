@@ -1,7 +1,5 @@
 // https://stackoverflow.com/questions/15505225/inject-css-stylesheet-as-string-using-javascript
 
-const ls = require('local-storage')
-
 function addStyleString(str) {
   var node = document.createElement('style')
   node.innerHTML = str
@@ -27,12 +25,7 @@ if (typeof Storage !== 'undefined') {
   // localStorage.setItem("lastname", "Smith");
   // // Retrieve
   // document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-
-  ls('foo', 'bar')
-  // <- true
-
-  console.log(ls('foo'))
-  // <- 'bar'
+  localStorage.setItem('alex', 'lee');
 } else {
   // Sorry! No Web Storage support..
 }
