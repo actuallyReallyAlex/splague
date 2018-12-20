@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import Game from './Game'
 import * as serviceWorker from './serviceWorker'
 import { Grommet, grommet } from 'grommet'
 import { Provider } from 'react-redux'
@@ -9,7 +9,7 @@ import store from './redux/store/store'
 ReactDOM.render(
   <Provider store={store}>
     <Grommet theme={grommet}>
-      <App />
+      <Game />
     </Grommet>
   </Provider>,
   document.getElementById('root')

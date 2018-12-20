@@ -1,6 +1,12 @@
 import { LOL_BUTT } from '../actions/actions'
 
-const game = (state = [], action) => {
+const initialState = {
+  ui: {
+    screen: 'chooseMorality'
+  }
+}
+
+const game = (state = initialState, action) => {
   switch (action.type) {
     case LOL_BUTT:
       return state
