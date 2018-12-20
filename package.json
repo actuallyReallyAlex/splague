@@ -1,7 +1,16 @@
 {
   "name": "splague",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.5.7",
+  "description": "Be prepared.",
+  "directories": {
+    "doc": "docs"
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -21,5 +30,23 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexlee-dev/splague.git"
+  },
+  "keywords": [
+    "splague",
+    "plague",
+    "game",
+    "sick",
+    "infection",
+    "virus",
+    "death"
+  ],
+  "author": "Alex Lee <alexlee-dev>",
+  "bugs": {
+    "url": "https://github.com/alexlee-dev/splague/issues"
+  },
+  "homepage": "https://www.splague.com/"
 }
