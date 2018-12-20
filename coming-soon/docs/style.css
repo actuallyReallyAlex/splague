@@ -1,0 +1,23 @@
+/* Coolors Exported Palette - coolors.co/31393c-ef860c-efb60c-005df2-0086f2 */
+
+/* RGB */
+/* $color1: rgba(49, 57, 60, 1);
+$color2: rgba(239, 134, 12, 1);
+$color3: rgba(239, 182, 12, 1);
+$color4: rgba(0, 93, 242, 1);
+$color5: rgba(0, 134, 242, 1); */
+
+/* All */
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Main Cover Logo */
+.cover-main img {
+  max-width: 250px;
+}
+
+/* Logo in Sidebar */
+.app-name-link img {
+  max-width: 225px;
+}
