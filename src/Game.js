@@ -9,7 +9,6 @@ class Game extends Component {
     const Screen = screens[ui.screen]
     return (
       <Box fill>
-        <h1>Game Component</h1>
         <Screen />
       </Box>
     )

@@ -1,15 +1,23 @@
-import { LOL_BUTT } from '../actions/actions'
+import { CHOOSE_MORALITY } from '../actions/actions'
 
 const initialState = {
   ui: {
     screen: 'chooseMorality'
+  },
+  player: {
+    morality: null
   }
 }
 
 const game = (state = initialState, action) => {
   switch (action.type) {
-    case LOL_BUTT:
-      return state
+    case CHOOSE_MORALITY:
+      return {
+        ...state,
+        player: {
+          morality: action.payload.morality
+        }
+      }
     default:
       return state
   }
