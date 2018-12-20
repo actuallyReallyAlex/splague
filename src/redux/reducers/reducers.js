@@ -1,11 +1,12 @@
-import { CHOOSE_MORALITY } from '../actions/actions'
+import { CHOOSE_MORALITY, CHANGE_SCREEN } from '../actions/actions'
 
 const initialState = {
   ui: {
     screen: 'chooseMorality'
   },
   player: {
-    morality: null
+    morality: null,
+    name: null
   }
 }
 
@@ -16,6 +17,13 @@ const game = (state = initialState, action) => {
         ...state,
         player: {
           morality: action.payload.morality
+        }
+      }
+    case CHANGE_SCREEN:
+      return {
+        ...state,
+        ui: {
+          screen: action.payload.screen
         }
       }
     default:

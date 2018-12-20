@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Box, RadioButton } from 'grommet'
-import { chooseMorality } from '../redux/actions/actions'
+import { Box, RadioButton, Button } from 'grommet'
+import { chooseMorality, changeScreen } from '../redux/actions/actions'
 
 class ChooseMorality extends Component {
   handleMoralitySelection = e => {
     const { dispatch } = this.props
     dispatch(chooseMorality(e.target.name))
+  }
+
+  handleContinue = () => {
+    const { dispatch } = this.props
+    dispatch(changeScreen('chooseName'))
   }
 
   render() {
@@ -27,6 +32,11 @@ class ChooseMorality extends Component {
             onChange={this.handleMoralitySelection}
           />
         </Box>
+        {player.morality && (
+          <Box margin={{ top: 'large' }} style={{ position: 'absolute' }}>
+            <Button label="Continue" onClick={this.handleContinue} primary />
+          </Box>
+        )}
       </Box>
     )
   }
