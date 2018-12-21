@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar'
 
 const Home = ({ player, ui }) => {
   return (
-    <Box fill>
+    <Box background={player.morality === 'good' ? 'white' : '#252839'} fill>
       <Sidebar />
     </Box>
   )

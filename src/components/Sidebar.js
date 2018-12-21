@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Box, Image, Heading, Text } from 'grommet'
+import { Box, Heading, Text } from 'grommet'
 import SidebarData from './SidebarData'
 
 class Sidebar extends Component {
@@ -10,17 +10,13 @@ class Sidebar extends Component {
     return (
       <Box
         align="center"
-        background="dark-1"
+        background="#1b1c1d"
         fill="vertical"
         pad="large"
         width="250px"
       >
-        <Box background="brand" height="small" width="small" round="full">
-          {/* <Image
-            style={{ borderRadius: '100%' }}
-            fit="cover"
-            src="./images/tradesmen.svg"
-          /> */}
+        <Box align="center" background="brand" height="small" justify="center" width="small" round="full">
+          <Text size="small">Image Placeholder</Text>
         </Box>
         <Box fill="horizontal" justify="start">
           <Heading level="2">{player.name}</Heading>

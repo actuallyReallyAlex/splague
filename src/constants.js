@@ -1,7 +1,7 @@
-import ChooseMorality from './screens/chooseMorality'
-import ChooseName from './screens/chooseName'
-import ChooseType from './screens/chooseType'
-import Home from './screens/home'
+import ChooseMorality from './screens/ChooseMorality'
+import ChooseName from './screens/ChooseName'
+import ChooseType from './screens/ChooseType'
+import Home from './screens/Home'
 
 export const screens = {
   chooseMorality: ChooseMorality,

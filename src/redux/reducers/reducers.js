@@ -35,7 +35,7 @@ const developmentState = {
     mutations: 0
   },
   player: {
-    morality: 'good',
+    morality: 'evil',
     name: 'Alex',
     type: 'Tradesmen'
   },
