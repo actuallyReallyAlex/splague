@@ -15,12 +15,12 @@ class Sidebar extends Component {
         pad="large"
         width="250px"
       >
-        <Box height="small" width="small" round="full">
-          <Image
+        <Box background="brand" height="small" width="small" round="full">
+          {/* <Image
             style={{ borderRadius: '100%' }}
             fit="cover"
             src="./images/tradesmen.svg"
-          />
+          /> */}
         </Box>
         <Box fill="horizontal" justify="start">
           <Heading level="2">{player.name}</Heading>
@@ -53,7 +53,10 @@ class Sidebar extends Component {
           <Text weight="bold" size="small">
             Cure Information
           </Text>
-          <SidebarData label="Completion" data={cure.percentComplete} />
+          <SidebarData
+            label="Completion"
+            data={`${Math.floor((cure.percentComplete / 100) * 100)} %`}
+          />
         </Box>
       </Box>
     )
