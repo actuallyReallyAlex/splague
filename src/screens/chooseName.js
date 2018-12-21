@@ -1,26 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Box, Button, FormField, TextInput } from 'grommet'
-import { chooseMorality } from '../redux/actions/actions'
+import { chooseName, changeScreen } from '../redux/actions/actions'
 
 class ChooseName extends Component {
-  handleMoralitySelection = e => {
+  state = {
+    name: ''
+  }
+
+  playerName = React.createRef()
+
+  handleNameSelection = () => {
     const { dispatch } = this.props
-    dispatch(chooseMorality(e.target.name))
+    const { name } = this.state
+    dispatch(chooseName(name))
+    dispatch(changeScreen('chooseType'))
+  }
+
+  handleNameChange = e => {
+    const name = e.target.value
+    this.setState(() => ({ name }))
   }
 
   render() {
-    const { player } = this.props
+    const { name } = this.state
     return (
       <Box align="center" fill justify="center">
         <Box>
           <FormField label="Name">
-            <TextInput />
+            <TextInput onChange={this.handleNameChange} ref={this.playerName} />
           </FormField>
         </Box>
-        {player.name && (
-          <Box margin={{ top: 'large' }} style={{ position: 'absolute' }}>
-            <Button label="Continue" primary />
+        {name && (
+          <Box margin={{ top: 'xlarge' }} style={{ position: 'absolute' }}>
+            <Button label="Continue" onClick={this.handleNameSelection} primary />
           </Box>
         )}
       </Box>

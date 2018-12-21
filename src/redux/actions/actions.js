@@ -1,4 +1,6 @@
 export const CHOOSE_MORALITY = 'CHOOSE_MORALITY'
+export const CHOOSE_NAME = 'CHOOSE_NAME'
+export const CHOOSE_TYPE = 'CHOOSE_TYPE'
 export const CHANGE_SCREEN = 'CHANGE_SCREEN'
 
 /**
@@ -23,6 +25,32 @@ export const changeScreen = nextScreen => {
     type: CHANGE_SCREEN,
     payload: {
       screen: nextScreen
+    }
+  }
+}
+
+/**
+ * Sets a player name.
+ * @param {String} name Player name.
+ */
+export const chooseName = name => {
+  return {
+    type: CHOOSE_NAME,
+    payload: {
+      name
+    }
+  }
+}
+
+/**
+ * Sets a player's type.
+ * @param {String} type Faction Type or Plague Type.
+ */
+export const chooseType = type => {
+  return {
+    type: CHOOSE_TYPE,
+    payload: {
+      type
     }
   }
 }
