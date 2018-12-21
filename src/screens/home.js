@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Box, Heading } from 'grommet'
+import { Box } from 'grommet'
 import Sidebar from '../components/Sidebar'
 
 const Home = ({ player, ui }) => {

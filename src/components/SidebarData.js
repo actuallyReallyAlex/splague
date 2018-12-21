@@ -20,7 +20,7 @@ const SidebarData = ({ data, label }) => {
 }
 
 SidebarData.propTypes = {
-  data: PropTypes.oneOfType(['string', 'number']).isRequired,
+  data: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string.isRequired
 }
 

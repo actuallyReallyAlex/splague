@@ -6,24 +6,46 @@ import {
 } from '../actions/actions'
 
 const initialState = {
-  ui: {
-    screen: 'chooseMorality'
+  cure: {
+    percentComplete: 0
+  },
+  plague: {
+    mutations: 0
   },
   player: {
     morality: null,
     name: null,
     type: null
+  },
+  ui: {
+    screen: 'chooseMorality'
+  },
+  world: {
+    alivePopulation: 450000000,
+    deadPopulation: 0,
+    infectedPopulation: 0
   }
 }
 
 const developmentState = {
-  ui: {
-    screen: 'home'
+  cure: {
+    percentComplete: 0
+  },
+  plague: {
+    mutations: 0
   },
   player: {
     morality: 'good',
     name: 'Alex',
     type: 'Tradesmen'
+  },
+  ui: {
+    screen: 'home'
+  },
+  world: {
+    alivePopulation: 450000000,
+    deadPopulation: 0,
+    infectedPopulation: 0
   }
 }
 
