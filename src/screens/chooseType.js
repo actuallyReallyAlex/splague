@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Box, Button, FormField, Select } from 'grommet'
-import { chooseType, changeScreen } from '../redux/actions/actions'
+import { chooseType, changeScreen, transitionScreen } from '../redux/actions/actions'
 import { plagueTypes, factionTypes } from '../constants'
 
 class ChooseType extends Component {
@@ -13,7 +13,12 @@ class ChooseType extends Component {
     const { dispatch } = this.props
     const { type } = this.state
     dispatch(chooseType(type))
-    dispatch(changeScreen('home'))
+    dispatch(transitionScreen(true, 'animated fadeOut'))
+
+    setTimeout(() => {
+      dispatch(transitionScreen(false, 'animated fadeIn'))
+      dispatch(changeScreen('home'))
+    }, 1500)
   }
 
   handleTypeChange = e => {
@@ -22,19 +27,40 @@ class ChooseType extends Component {
   }
 
   render() {
-    const { morality } = this.props.player
+    const { player, ui } = this.props
     const { type } = this.state
 
     return (
-      <Box align="center" background={morality === 'good' ? 'accent-1' : '#252839'} fill justify="center">
+      <Box
+        align="center"
+        background={player.morality === 'good' ? 'accent-1' : '#252839'}
+        className={ui.transitionClasses}
+        fill
+        justify="center"
+      >
         <Box>
-          <FormField label={morality === 'good' ? 'Faction' : 'Plague Type'}>
-            <Select onChange={this.handleTypeChange} options={morality === 'good' ? factionTypes : plagueTypes} value={type} />
+          <FormField
+            label={player.morality === 'good' ? 'Faction' : 'Plague Type'}
+          >
+            <Select
+              onChange={this.handleTypeChange}
+              options={player.morality === 'good' ? factionTypes : plagueTypes}
+              value={type}
+            />
           </FormField>
         </Box>
         {type && (
-          <Box margin={{ top: 'xlarge' }} style={{ position: 'absolute' }}>
-            <Button label="Begin ..." onClick={this.handleBegin} primary />
+          <Box
+            className="animated fadeInUp"
+            margin={{ top: 'xlarge' }}
+            style={{ position: 'absolute' }}
+          >
+            <Button
+              className="animated pulse infinite slow"
+              label="Begin ..."
+              onClick={this.handleBegin}
+              primary
+            />
           </Box>
         )}
       </Box>

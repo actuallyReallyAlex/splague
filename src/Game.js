@@ -8,7 +8,12 @@ class Game extends Component {
     const { ui } = this.props
     const Screen = screens[ui.screen]
     return (
-      <Box fill>
+      <Box
+        background={ui.background}
+        className={ui.screen === 'chooseMorality' && 'animated fadeIn slow'}
+        fill
+        style={{ transition: 'all 2000ms cubic-bezier(0.42, 0, 0.58, 1)' }}
+      >
         <Screen />
       </Box>
     )

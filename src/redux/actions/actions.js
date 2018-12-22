@@ -40,11 +40,12 @@ export const changeBackground = background => {
   }
 }
 
-export const transitionScreen = isTransitioning => {
+export const transitionScreen = (isTransitioning, transitionClasses) => {
   return {
     type: TRANSITION_SCREEN,
     payload: {
-      isTransitioning
+      isTransitioning,
+      transitionClasses
     }
   }
 }

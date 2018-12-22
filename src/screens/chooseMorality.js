@@ -9,10 +9,6 @@ import {
 } from '../redux/actions/actions'
 
 class ChooseMorality extends Component {
-  state = {
-    morality: null
-  }
-
   setBackgroundColor = morality => {
     switch (morality) {
       case 'good':
@@ -25,32 +21,32 @@ class ChooseMorality extends Component {
   }
 
   handleHoverGood = () => {
-    const { ui, dispatch } = this.props
-    const { morality } = this.state
+    const { dispatch, ui } = this.props
+    const { morality } = this.props.player
     if (!morality) {
       dispatch(changeBackground('accent-1'))
     } else {
-      if (ui.background !== 'accent-1') {
+      if (ui.background !== 'accent-1' && !ui.isTransitioning) {
         dispatch(changeBackground('accent-1'))
       }
     }
   }
 
   handleHoverBad = () => {
-    const { ui, dispatch } = this.props
-    const { morality } = this.state
+    const { dispatch, ui } = this.props
+    const { morality } = this.props.player
     if (!morality) {
       dispatch(changeBackground('#252839'))
     } else {
-      if (ui.background !== '#252839') {
+      if (ui.background !== '#252839' && !ui.isTransitioning) {
         dispatch(changeBackground('#252839'))
       }
     }
   }
 
   handleMouseLeave = () => {
-    const { ui, dispatch } = this.props
-    const { morality } = this.state
+    const { dispatch, ui } = this.props
+    const { morality } = this.props.player
     if (!morality) {
       dispatch(changeBackground('white'))
     } else {
@@ -65,19 +61,17 @@ class ChooseMorality extends Component {
   handleMoralitySelection = e => {
     const { dispatch } = this.props
     const morality = e.target.name
-    const background = this.setBackgroundColor(morality)
-    this.setState(() => ({ morality, background }))
     dispatch(chooseMorality(morality))
   }
 
   handleContinue = () => {
     const { dispatch } = this.props
-    dispatch(transitionScreen(true))
+    dispatch(transitionScreen(true, 'animated fadeOut'))
 
     setTimeout(() => {
-      dispatch(transitionScreen(false))
+      dispatch(transitionScreen(false, 'animated fadeIn'))
       dispatch(changeScreen('chooseName'))
-    }, 2000)
+    }, 1500)
   }
 
   render() {
@@ -85,28 +79,11 @@ class ChooseMorality extends Component {
     return (
       <Box
         align="center"
-        animation={
-          !ui.isTransitioning && {
-            type: 'fadeIn',
-            delay: 0,
-            duration: 2000
-          }
-        }
-        background={ui.background}
+        className={ui.transitionClasses}
         fill
         justify="center"
-        style={{ transition: 'all 2000ms cubic-bezier(0.42, 0, 0.58, 1)' }}
       >
-        <Box
-          align="center"
-          animation={
-            ui.isTransitioning && {
-              type: 'fadeOut',
-              delay: 0,
-              duration: 2000
-            }
-          }
-        >
+        <Box align="center">
           <Box direction="row" gap="medium">
             <Box
               onMouseLeave={this.handleMouseLeave}
@@ -114,6 +91,7 @@ class ChooseMorality extends Component {
             >
               <RadioButton
                 checked={player.morality === 'good'}
+                disabled={ui.isTransitioning}
                 label="Good"
                 name="good"
                 onChange={this.handleMoralitySelection}
@@ -125,6 +103,7 @@ class ChooseMorality extends Component {
             >
               <RadioButton
                 checked={player.morality === 'evil'}
+                disabled={ui.isTransitioning}
                 label="Evil"
                 name="evil"
                 onChange={this.handleMoralitySelection}
@@ -132,7 +111,11 @@ class ChooseMorality extends Component {
             </Box>
           </Box>
           {player.morality && (
-            <Box margin={{ top: 'xlarge' }} style={{ position: 'absolute' }}>
+            <Box
+              className="animated fadeInUp"
+              margin={{ top: 'xlarge' }}
+              style={{ position: 'absolute' }}
+            >
               <Button label="Continue" onClick={this.handleContinue} primary />
             </Box>
           )}

@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Box, Button, FormField, TextInput } from 'grommet'
-import { chooseName, changeScreen } from '../redux/actions/actions'
+import {
+  chooseName,
+  changeScreen,
+  transitionScreen
+} from '../redux/actions/actions'
 
 class ChooseName extends Component {
   state = {
@@ -14,7 +18,12 @@ class ChooseName extends Component {
     const { dispatch } = this.props
     const { name } = this.state
     dispatch(chooseName(name))
-    dispatch(changeScreen('chooseType'))
+    dispatch(transitionScreen(true, 'animated fadeOut'))
+
+    setTimeout(() => {
+      dispatch(transitionScreen(false, 'animated fadeIn'))
+      dispatch(changeScreen('chooseType'))
+    }, 1500)
   }
 
   handleNameChange = e => {
@@ -24,11 +33,12 @@ class ChooseName extends Component {
 
   render() {
     const { name } = this.state
-    const { ui, morality } = this.props.player
+    const { ui, player } = this.props
     return (
       <Box
         align="center"
-        background={morality === 'good' ? 'accent-1' : '#252839'}
+        background={player.morality === 'good' ? 'accent-1' : '#252839'}
+        className={ui.transitionClasses}
         fill
         justify="center"
       >
@@ -38,7 +48,11 @@ class ChooseName extends Component {
           </FormField>
         </Box>
         {name && (
-          <Box margin={{ top: 'xlarge' }} style={{ position: 'absolute' }}>
+          <Box
+            className="animated fadeInUp"
+            margin={{ top: 'xlarge' }}
+            style={{ position: 'absolute' }}
+          >
             <Button
               label="Continue"
               onClick={this.handleNameSelection}

@@ -22,7 +22,8 @@ const initialState = {
   ui: {
     background: 'white',
     screen: 'chooseMorality',
-    isTransitioning: false
+    isTransitioning: false,
+    transitionClasses: "animated fadeIn slow"
   },
   world: {
     alivePopulation: 450000000,
@@ -46,7 +47,8 @@ const developmentState = {
   ui: {
     background: 'white',
     screen: 'home',
-    isTransitioning: false
+    isTransitioning: false,
+    transitionClasses: "animated fadeIn slow"
   },
   world: {
     alivePopulation: 450000000,
@@ -102,7 +104,8 @@ const game = (state = initialState, action) => {
         ...state,
         ui: {
           ...state.ui,
-          isTransitioning: action.payload.isTransitioning
+          isTransitioning: action.payload.isTransitioning,
+          transitionClasses: action.payload.transitionClasses
         }
       }
     default:
