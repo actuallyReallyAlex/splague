@@ -2,7 +2,9 @@ import {
   CHOOSE_MORALITY,
   CHANGE_SCREEN,
   CHOOSE_NAME,
-  CHOOSE_TYPE
+  CHOOSE_TYPE,
+  TRANSITION_SCREEN,
+  CHANGE_BACKGROUND
 } from '../actions/actions'
 
 const initialState = {
@@ -18,7 +20,9 @@ const initialState = {
     type: null
   },
   ui: {
-    screen: 'chooseMorality'
+    background: 'white',
+    screen: 'chooseMorality',
+    isTransitioning: false
   },
   world: {
     alivePopulation: 450000000,
@@ -40,7 +44,9 @@ const developmentState = {
     type: 'Tradesmen'
   },
   ui: {
-    screen: 'home'
+    background: 'white',
+    screen: 'home',
+    isTransitioning: false
   },
   world: {
     alivePopulation: 450000000,
@@ -49,7 +55,7 @@ const developmentState = {
   }
 }
 
-const game = (state = developmentState, action) => {
+const game = (state = initialState, action) => {
   switch (action.type) {
     case CHOOSE_MORALITY:
       return {
@@ -81,6 +87,22 @@ const game = (state = developmentState, action) => {
         ui: {
           ...state.ui,
           screen: action.payload.screen
+        }
+      }
+    case CHANGE_BACKGROUND:
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          background: action.payload.background
+        }
+      }
+    case TRANSITION_SCREEN:
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          isTransitioning: action.payload.isTransitioning
         }
       }
     default:

@@ -2,6 +2,8 @@ export const CHOOSE_MORALITY = 'CHOOSE_MORALITY'
 export const CHOOSE_NAME = 'CHOOSE_NAME'
 export const CHOOSE_TYPE = 'CHOOSE_TYPE'
 export const CHANGE_SCREEN = 'CHANGE_SCREEN'
+export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
+export const TRANSITION_SCREEN = 'TRANSITION_SCREEN'
 
 /**
  * Choose a morality for the player.
@@ -25,6 +27,24 @@ export const changeScreen = nextScreen => {
     type: CHANGE_SCREEN,
     payload: {
       screen: nextScreen
+    }
+  }
+}
+
+export const changeBackground = background => {
+  return {
+    type: CHANGE_BACKGROUND,
+    payload: {
+      background
+    }
+  }
+}
+
+export const transitionScreen = isTransitioning => {
+  return {
+    type: TRANSITION_SCREEN,
+    payload: {
+      isTransitioning
     }
   }
 }

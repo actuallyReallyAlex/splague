@@ -24,8 +24,14 @@ class ChooseName extends Component {
 
   render() {
     const { name } = this.state
+    const { morality } = this.props.player
     return (
-      <Box align="center" fill justify="center">
+      <Box
+        align="center"
+        background={morality === 'good' ? 'white' : '#252839'}
+        fill
+        justify="center"
+      >
         <Box>
           <FormField label="Name">
             <TextInput onChange={this.handleNameChange} ref={this.playerName} />
@@ -33,7 +39,11 @@ class ChooseName extends Component {
         </Box>
         {name && (
           <Box margin={{ top: 'xlarge' }} style={{ position: 'absolute' }}>
-            <Button label="Continue" onClick={this.handleNameSelection} primary />
+            <Button
+              label="Continue"
+              onClick={this.handleNameSelection}
+              primary
+            />
           </Box>
         )}
       </Box>

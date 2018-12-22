@@ -26,7 +26,7 @@ class ChooseType extends Component {
     const { type } = this.state
 
     return (
-      <Box align="center" fill justify="center">
+      <Box align="center" background={morality === 'good' ? 'white' : '#252839'} fill justify="center">
         <Box>
           <FormField label={morality === 'good' ? 'Faction' : 'Plague Type'}>
             <Select onChange={this.handleTypeChange} options={morality === 'good' ? factionTypes : plagueTypes} value={type} />
