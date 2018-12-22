@@ -27,17 +27,24 @@ class ChooseMorality extends Component {
   handleHoverGood = () => {
     const { ui, dispatch } = this.props
     const { morality } = this.state
-    if (morality !== 'good' || ui.background !== 'accent-1') {
+    if (!morality) {
       dispatch(changeBackground('accent-1'))
+    } else {
+      if (ui.background !== 'accent-1') {
+        dispatch(changeBackground('accent-1'))
+      }
     }
   }
 
   handleHoverBad = () => {
     const { ui, dispatch } = this.props
     const { morality } = this.state
-    if (morality !== 'evil' || ui.background !== '252839') {
-      
+    if (!morality) {
       dispatch(changeBackground('#252839'))
+    } else {
+      if (ui.background !== '#252839') {
+        dispatch(changeBackground('#252839'))
+      }
     }
   }
 
@@ -79,48 +86,57 @@ class ChooseMorality extends Component {
       <Box
         align="center"
         animation={
-          ui.isTransitioning
-            ? { type: 'fadeOut', delay: 0, duration: 2000 }
-            : {
-                type: 'fadeIn',
-                delay: 0,
-                duration: 2000
-              }
+          !ui.isTransitioning && {
+            type: 'fadeIn',
+            delay: 0,
+            duration: 2000
+          }
         }
         background={ui.background}
         fill
         justify="center"
         style={{ transition: 'all 2000ms cubic-bezier(0.42, 0, 0.58, 1)' }}
       >
-        <Box direction="row" gap="medium">
-          <Box
-            onMouseLeave={this.handleMouseLeave}
-            onMouseEnter={this.handleHoverGood}
-          >
-            <RadioButton
-              checked={player.morality === 'good'}
-              label="Good"
-              name="good"
-              onChange={this.handleMoralitySelection}
-            />
+        <Box
+          align="center"
+          animation={
+            ui.isTransitioning && {
+              type: 'fadeOut',
+              delay: 0,
+              duration: 2000
+            }
+          }
+        >
+          <Box direction="row" gap="medium">
+            <Box
+              onMouseLeave={this.handleMouseLeave}
+              onMouseEnter={this.handleHoverGood}
+            >
+              <RadioButton
+                checked={player.morality === 'good'}
+                label="Good"
+                name="good"
+                onChange={this.handleMoralitySelection}
+              />
+            </Box>
+            <Box
+              onMouseLeave={this.handleMouseLeave}
+              onMouseEnter={this.handleHoverBad}
+            >
+              <RadioButton
+                checked={player.morality === 'evil'}
+                label="Evil"
+                name="evil"
+                onChange={this.handleMoralitySelection}
+              />
+            </Box>
           </Box>
-          <Box
-            onMouseLeave={this.handleMouseLeave}
-            onMouseEnter={this.handleHoverBad}
-          >
-            <RadioButton
-              checked={player.morality === 'evil'}
-              label="Evil"
-              name="evil"
-              onChange={this.handleMoralitySelection}
-            />
-          </Box>
+          {player.morality && (
+            <Box margin={{ top: 'xlarge' }} style={{ position: 'absolute' }}>
+              <Button label="Continue" onClick={this.handleContinue} primary />
+            </Box>
+          )}
         </Box>
-        {player.morality && (
-          <Box margin={{ top: 'xlarge' }} style={{ position: 'absolute' }}>
-            <Button label="Continue" onClick={this.handleContinue} primary />
-          </Box>
-        )}
       </Box>
     )
   }

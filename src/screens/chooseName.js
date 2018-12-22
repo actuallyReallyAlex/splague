@@ -24,11 +24,11 @@ class ChooseName extends Component {
 
   render() {
     const { name } = this.state
-    const { morality } = this.props.player
+    const { ui, morality } = this.props.player
     return (
       <Box
         align="center"
-        background={morality === 'good' ? 'white' : '#252839'}
+        background={morality === 'good' ? 'accent-1' : '#252839'}
         fill
         justify="center"
       >
