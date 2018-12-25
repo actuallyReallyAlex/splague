@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Box, Button, FormField, Select } from 'grommet'
-import { chooseType, changeScreen, transitionScreen } from '../redux/actions/actions'
+import {
+  chooseType,
+  changeScreen,
+  transitionScreen
+} from '../redux/actions/actions'
 import { plagueTypes, factionTypes } from '../constants'
 
 class ChooseType extends Component {
@@ -9,7 +13,8 @@ class ChooseType extends Component {
     type: ''
   }
 
-  handleBegin = () => {
+  handleBegin = e => {
+    e.preventDefault()
     const { dispatch } = this.props
     const { type } = this.state
     dispatch(chooseType(type))
@@ -60,6 +65,7 @@ class ChooseType extends Component {
               label="Begin ..."
               onClick={this.handleBegin}
               primary
+              type="button"
             />
           </Box>
         )}

@@ -23,7 +23,7 @@ const initialState = {
     background: 'white',
     screen: 'chooseMorality',
     isTransitioning: false,
-    transitionClasses: "animated fadeIn slow"
+    transitionClasses: 'animated fadeIn slow'
   },
   world: {
     alivePopulation: 450000000,
@@ -48,7 +48,7 @@ const developmentState = {
     background: 'white',
     screen: 'home',
     isTransitioning: false,
-    transitionClasses: "animated fadeIn slow"
+    transitionClasses: 'animated fadeIn slow'
   },
   world: {
     alivePopulation: 450000000,

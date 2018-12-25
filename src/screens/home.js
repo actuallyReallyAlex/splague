@@ -5,7 +5,11 @@ import Sidebar from '../components/Sidebar'
 
 const Home = ({ player, ui }) => {
   return (
-    <Box background={player.morality === 'good' ? 'white' : '#252839'} className={ui.transitionClasses} fill>
+    <Box
+      background={player.morality === 'good' ? 'white' : '#252839'}
+      className={ui.transitionClasses}
+      fill
+    >
       <Sidebar />
     </Box>
   )

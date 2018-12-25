@@ -64,7 +64,8 @@ class ChooseMorality extends Component {
     dispatch(chooseMorality(morality))
   }
 
-  handleContinue = () => {
+  handleContinue = e => {
+    e.preventDefault()
     const { dispatch } = this.props
     dispatch(transitionScreen(true, 'animated fadeOut'))
 
@@ -83,43 +84,50 @@ class ChooseMorality extends Component {
         fill
         justify="center"
       >
-        <Box align="center">
-          <Box direction="row" gap="medium">
-            <Box
-              onMouseLeave={this.handleMouseLeave}
-              onMouseEnter={this.handleHoverGood}
-            >
-              <RadioButton
-                checked={player.morality === 'good'}
-                disabled={ui.isTransitioning}
-                label="Good"
-                name="good"
-                onChange={this.handleMoralitySelection}
-              />
+        <form>
+          <Box align="center">
+            <Box direction="row" gap="medium">
+              <Box
+                onMouseLeave={this.handleMouseLeave}
+                onMouseEnter={this.handleHoverGood}
+              >
+                <RadioButton
+                  checked={player.morality === 'good'}
+                  disabled={ui.isTransitioning}
+                  label="Good"
+                  name="good"
+                  onChange={this.handleMoralitySelection}
+                />
+              </Box>
+              <Box
+                onMouseLeave={this.handleMouseLeave}
+                onMouseEnter={this.handleHoverBad}
+              >
+                <RadioButton
+                  checked={player.morality === 'evil'}
+                  disabled={ui.isTransitioning}
+                  label="Evil"
+                  name="evil"
+                  onChange={this.handleMoralitySelection}
+                />
+              </Box>
             </Box>
-            <Box
-              onMouseLeave={this.handleMouseLeave}
-              onMouseEnter={this.handleHoverBad}
-            >
-              <RadioButton
-                checked={player.morality === 'evil'}
-                disabled={ui.isTransitioning}
-                label="Evil"
-                name="evil"
-                onChange={this.handleMoralitySelection}
-              />
-            </Box>
+            {player.morality && (
+              <Box
+                className="animated fadeInUp"
+                margin={{ top: 'xlarge' }}
+                style={{ position: 'absolute' }}
+              >
+                <Button
+                  label="Continue"
+                  onClick={this.handleContinue}
+                  primary
+                  type="button"
+                />
+              </Box>
+            )}
           </Box>
-          {player.morality && (
-            <Box
-              className="animated fadeInUp"
-              margin={{ top: 'xlarge' }}
-              style={{ position: 'absolute' }}
-            >
-              <Button label="Continue" onClick={this.handleContinue} primary />
-            </Box>
-          )}
-        </Box>
+        </form>
       </Box>
     )
   }
