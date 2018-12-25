@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.6.1](https://github.com/alexlee-dev/splague/tree/v0.6.1) (2018-12-25)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.6.0...v0.6.1)
+
 ## [v0.6.0](https://github.com/alexlee-dev/splague/tree/v0.6.0) (2018-12-25)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.7...v0.6.0)
 
