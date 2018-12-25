@@ -30,6 +30,10 @@ class Sidebar extends Component {
             data={world.alivePopulation.toLocaleString()}
           />
           <SidebarData
+            label="Healthy Population"
+            data={world.healthyPopulation.toLocaleString()}
+          />
+          <SidebarData
             label="Infected Population"
             data={world.infectedPopulation.toLocaleString()}
           />

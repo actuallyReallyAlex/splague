@@ -4,7 +4,8 @@ import {
   CHOOSE_NAME,
   CHOOSE_TYPE,
   TRANSITION_SCREEN,
-  CHANGE_BACKGROUND
+  CHANGE_BACKGROUND,
+  INFECT_POPULATION
 } from '../actions/actions'
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
     percentComplete: 0
   },
   plague: {
-    mutations: 0
+    mutations: 0,
+    speed: 1000
   },
   player: {
     morality: null,
@@ -28,6 +30,7 @@ const initialState = {
   world: {
     alivePopulation: 450000000,
     deadPopulation: 0,
+    healthyPopulation: 450000000,
     infectedPopulation: 0
   }
 }
@@ -37,27 +40,29 @@ const developmentState = {
     percentComplete: 0
   },
   plague: {
-    mutations: 0
+    mutations: 0,
+    speed: 1000
   },
   player: {
     morality: 'evil',
     name: 'Alex',
-    type: 'Tradesmen'
+    type: 'Bubonic'
   },
   ui: {
-    background: 'white',
+    background: '#252839',
     screen: 'home',
     isTransitioning: false,
-    transitionClasses: 'animated fadeIn slow'
+    transitionClasses: 'animated fadeIn'
   },
   world: {
     alivePopulation: 450000000,
     deadPopulation: 0,
+    healthyPopulation: 450000000,
     infectedPopulation: 0
   }
 }
 
-const game = (state = initialState, action) => {
+const game = (state = developmentState, action) => {
   switch (action.type) {
     case CHOOSE_MORALITY:
       return {
@@ -106,6 +111,17 @@ const game = (state = initialState, action) => {
           ...state.ui,
           isTransitioning: action.payload.isTransitioning,
           transitionClasses: action.payload.transitionClasses
+        }
+      }
+    case INFECT_POPULATION:
+      return {
+        ...state,
+        world: {
+          ...state.world,
+          healthyPopulation: (state.world.healthyPopulation -=
+            action.payload.numberToInfect),
+          infectedPopulation: (state.world.infectedPopulation +=
+            action.payload.numberToInfect)
         }
       }
     default:

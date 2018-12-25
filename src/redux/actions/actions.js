@@ -4,6 +4,7 @@ export const CHOOSE_TYPE = 'CHOOSE_TYPE'
 export const CHANGE_SCREEN = 'CHANGE_SCREEN'
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const TRANSITION_SCREEN = 'TRANSITION_SCREEN'
+export const INFECT_POPULATION = 'INFECT_POPULATION'
 
 /**
  * Choose a morality for the player.
@@ -72,6 +73,15 @@ export const chooseType = type => {
     type: CHOOSE_TYPE,
     payload: {
       type
+    }
+  }
+}
+
+export const infectPopulation = numberToInfect => {
+  return {
+    type: INFECT_POPULATION,
+    payload: {
+      numberToInfect
     }
   }
 }

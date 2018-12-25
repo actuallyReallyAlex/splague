@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Box } from 'grommet'
 import { screens } from './constants'
+import PlagueLogic from './components/PlagueLogic'
 
 class Game extends Component {
   render() {
@@ -15,6 +16,7 @@ class Game extends Component {
         style={{ transition: 'all 2000ms cubic-bezier(0.42, 0, 0.58, 1)' }}
       >
         <Screen />
+        <PlagueLogic />
       </Box>
     )
   }
