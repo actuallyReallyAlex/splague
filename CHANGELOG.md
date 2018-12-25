@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.6.0](https://github.com/alexlee-dev/splague/tree/v0.6.0) (2018-12-25)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.7...v0.6.0)
+
+**Implemented enhancements:**
+
+- Create side project based on image randomizer. [\#36](https://github.com/alexlee-dev/splague/issues/36)
+- Add Docs Link to Coming Soon Page [\#34](https://github.com/alexlee-dev/splague/issues/34)
+- Replace Docs Coverpage Icon [\#33](https://github.com/alexlee-dev/splague/issues/33)
+- 📦 Rebuild with Redux + Grommet. Remove Semantic-UI [\#42](https://github.com/alexlee-dev/splague/pull/42) ([alexlee-dev](https://github.com/alexlee-dev))
+- Issue \#33   documentation logo [\#37](https://github.com/alexlee-dev/splague/pull/37) ([alexlee-dev](https://github.com/alexlee-dev))
+- Added link to documentation on Coming-Soon Page [\#35](https://github.com/alexlee-dev/splague/pull/35) ([alexlee-dev](https://github.com/alexlee-dev))
+
+**Fixed bugs:**
+
+- Coverpage Image Repeating [\#39](https://github.com/alexlee-dev/splague/issues/39)
+- Docs Coverpage Image is Too Large [\#38](https://github.com/alexlee-dev/splague/issues/38)
+- Fixes isTheSame\(\) [\#41](https://github.com/alexlee-dev/splague/pull/41) ([alexlee-dev](https://github.com/alexlee-dev))
+- Smaller coverpage image. [\#40](https://github.com/alexlee-dev/splague/pull/40) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.5.7](https://github.com/alexlee-dev/splague/tree/v0.5.7) (2018-09-22)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.5.6...v0.5.7)
 
