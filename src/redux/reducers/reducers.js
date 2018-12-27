@@ -128,12 +128,10 @@ const game = (state = developmentState, action) => {
         }
       }
     case ADD_LOG_ITEM:
-      const { log } = state
       const { logItem } = action.payload
-      log.push(logItem)
       return {
         ...state,
-        log
+        log: [...state.log, logItem]
       }
     default:
       return state
