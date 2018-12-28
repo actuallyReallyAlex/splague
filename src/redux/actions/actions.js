@@ -5,6 +5,7 @@ export const CHANGE_SCREEN = 'CHANGE_SCREEN'
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const TRANSITION_SCREEN = 'TRANSITION_SCREEN'
 export const INFECT_POPULATION = 'INFECT_POPULATION'
+export const ADD_LOG_ITEM = 'ADD_LOG_ITEM'
 
 /**
  * Choose a morality for the player.
@@ -82,6 +83,15 @@ export const infectPopulation = numberToInfect => {
     type: INFECT_POPULATION,
     payload: {
       numberToInfect
+    }
+  }
+}
+
+export const addLogItem = logItem => {
+  return {
+    type: ADD_LOG_ITEM,
+    payload: {
+      logItem
     }
   }
 }

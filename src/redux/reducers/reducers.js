@@ -5,13 +5,15 @@ import {
   CHOOSE_TYPE,
   TRANSITION_SCREEN,
   CHANGE_BACKGROUND,
-  INFECT_POPULATION
+  INFECT_POPULATION,
+  ADD_LOG_ITEM
 } from '../actions/actions'
 
 const initialState = {
   cure: {
     percentComplete: 0
   },
+  log: [],
   plague: {
     mutations: 0,
     speed: 1000
@@ -39,6 +41,7 @@ const developmentState = {
   cure: {
     percentComplete: 0
   },
+  log: [],
   plague: {
     mutations: 0,
     speed: 1000
@@ -123,6 +126,12 @@ const game = (state = developmentState, action) => {
           infectedPopulation: (state.world.infectedPopulation +=
             action.payload.numberToInfect)
         }
+      }
+    case ADD_LOG_ITEM:
+      const { logItem } = action.payload
+      return {
+        ...state,
+        log: [...state.log, logItem]
       }
     default:
       return state

@@ -37,7 +37,7 @@ class PlagueLogic extends Component {
   }
 
   componentDidMount() {
-    this.calculateInfection()
+    // this.calculateInfection()
   }
 
   render() {
