@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { Box, Button } from 'grommet'
 import LogItem from './LogItem'
 import { addLogItem } from '../redux/actions/actions'
 
 class Log extends Component {
+  static propTypes = {
+    log: PropTypes.array
+  }
+  static defaultProps = {
+    log: []
+  }
+  
   componentDidMount() {
     const { dispatch } = this.props
     setTimeout(() => {
