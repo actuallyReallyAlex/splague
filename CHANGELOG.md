@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.7.0](https://github.com/alexlee-dev/splague/tree/v0.7.0) (2018-12-28)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.6.1...v0.7.0)
+
+**Implemented enhancements:**
+
+- ✨ 4. Game Log [\#44](https://github.com/alexlee-dev/splague/pull/44) ([alexlee-dev](https://github.com/alexlee-dev))
+- hotfix [\#43](https://github.com/alexlee-dev/splague/pull/43) ([jpggvilaca](https://github.com/jpggvilaca))
+
 ## [v0.6.1](https://github.com/alexlee-dev/splague/tree/v0.6.1) (2018-12-25)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.6.0...v0.6.1)
 
