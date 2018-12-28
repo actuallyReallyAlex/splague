@@ -22,14 +22,7 @@ class Log extends Component {
         pad="small"
         width="300px"
       >
-        {log.map(({ additionalInfo, description, icon, title }) => (
-          <LogItem
-            additionalInfo={additionalInfo}
-            description={description}
-            icon={icon}
-            title={title}
-          />
-        ))}
+        {log.map((item, index) => <LogItem {...item} key={`log-${index}`} />)}
       </Box>
     )
   }
