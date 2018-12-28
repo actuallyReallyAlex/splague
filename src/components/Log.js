@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Box } from 'grommet'
+import { Box, Button } from 'grommet'
 import LogItem from './LogItem'
 import { addLogItem } from '../redux/actions/actions'
 
@@ -13,7 +13,7 @@ class Log extends Component {
   }
 
   render() {
-    const { log } = this.props
+    const { dispatch, log } = this.props
     return (
       <Box
         background="#424344"
@@ -22,7 +22,15 @@ class Log extends Component {
         pad="small"
         width="300px"
       >
-        {log.map((item, index) => <LogItem {...item} key={`log-${index}`} />)}
+        {log.map((item, index) => (
+          <LogItem {...item} key={`log-${index}`} />
+        ))}
+        <Button
+          label="Test"
+          onClick={() =>
+            dispatch(addLogItem({ title: 'test', description: 'testy' }))
+          }
+        />
       </Box>
     )
   }
