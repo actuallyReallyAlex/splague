@@ -4,7 +4,7 @@ import { Box, Text } from 'grommet'
 import { User } from 'grommet-icons'
 
 const LogItem = ({ additionalInfo, description, icon, title }) => {
-  const Icon = icon || User
+  const Icon = icon
   return (
     <Box
       background="white"
@@ -40,8 +40,12 @@ const LogItem = ({ additionalInfo, description, icon, title }) => {
 LogItem.propTypes = {
   additionalInfo: PropTypes.string,
   description: PropTypes.string.isRequired,
-  icon: PropTypes.node,
+  icon: PropTypes.func,
   title: PropTypes.string.isRequired
+}
+
+LogItem.defaultProps = {
+  icon: User
 }
 
 export default LogItem
