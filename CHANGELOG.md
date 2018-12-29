@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.8.1](https://github.com/alexlee-dev/splague/tree/v0.8.1) (2018-12-29)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.8.0...v0.8.1)
+
+**Implemented enhancements:**
+
+- 🎨 6 - Favicon [\#46](https://github.com/alexlee-dev/splague/pull/46) ([alexlee-dev](https://github.com/alexlee-dev))
+
+## [v0.8.0](https://github.com/alexlee-dev/splague/tree/v0.8.0) (2018-12-29)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.7.0...v0.8.0)
+
+**Implemented enhancements:**
+
+- ✅ 5. Snapshot Tests [\#45](https://github.com/alexlee-dev/splague/pull/45) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.7.0](https://github.com/alexlee-dev/splague/tree/v0.7.0) (2018-12-28)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.6.1...v0.7.0)
 
