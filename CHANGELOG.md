@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.8.2](https://github.com/alexlee-dev/splague/tree/v0.8.2) (2018-12-29)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.8.1...v0.8.2)
+
+**Implemented enhancements:**
+
+- ✅ 9 - CI Test Script [\#47](https://github.com/alexlee-dev/splague/pull/47) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.8.1](https://github.com/alexlee-dev/splague/tree/v0.8.1) (2018-12-29)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.8.0...v0.8.1)
 
