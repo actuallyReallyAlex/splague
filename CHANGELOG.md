@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.9.0](https://github.com/alexlee-dev/splague/tree/v0.9.0) (2018-12-29)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.8.2...v0.9.0)
+
+**Implemented enhancements:**
+
+- 🔀 8 - Redux File Structure [\#49](https://github.com/alexlee-dev/splague/pull/49) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✏️ 7 - Sidebar Padding [\#48](https://github.com/alexlee-dev/splague/pull/48) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.8.2](https://github.com/alexlee-dev/splague/tree/v0.8.2) (2018-12-29)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.8.1...v0.8.2)
 
