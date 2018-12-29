@@ -1,0 +1,498 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> Should render snapshot of Sidebar component. 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  width: 250px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #1b1c1d;
+  color: #f8f8f8;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  padding: 48px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  height: 192px;
+  width: 192px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #7D4CDB;
+  color: #f8f8f8;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0px;
+  border-radius: 100%;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  padding: 0px;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin-bottom: 24px;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  padding: 0px;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin-bottom: 6px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  background: #999999;
+  color: #444444;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+}
+
+.c4 {
+  font-size: 34px;
+  line-height: 40px;
+  max-width: 816px;
+  font-weight: 600;
+}
+
+.c2 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.c6 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+.c8 {
+  font-size: 12px;
+  line-height: 18px;
+  color: #EDEDED;
+}
+
+.c10 {
+  font-size: 12px;
+  line-height: 18px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+@media only screen and (max-width:768px) {
+  .c0 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c0 {
+    padding: 24px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c1 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c1 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c3 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c3 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c5 {
+    margin-bottom: 12px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c5 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c7 {
+    margin-bottom: 3px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c7 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c9 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c9 {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c9 {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c4 {
+    font-size: 22px;
+    line-height: 28px;
+    max-width: 528px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <span
+      className="c2"
+      size="small"
+    >
+      Image Placeholder
+    </span>
+  </div>
+  <div
+    className="c3"
+  >
+    <h2
+      className="c4"
+    >
+      Alex
+    </h2>
+  </div>
+  <div
+    className="c5"
+  >
+    <span
+      className="c6"
+      size="small"
+    >
+      World Information
+    </span>
+    <div
+      className="c7"
+    >
+      <span
+        className="c8"
+        size="xsmall"
+      >
+        Alive Population
+      </span>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+          size="xsmall"
+          style={
+            Object {
+              "letterSpacing": "-1px",
+            }
+          }
+        >
+          450,000,000
+        </span>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <span
+        className="c8"
+        size="xsmall"
+      >
+        Healthy Population
+      </span>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+          size="xsmall"
+          style={
+            Object {
+              "letterSpacing": "-1px",
+            }
+          }
+        >
+          450,000,000
+        </span>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <span
+        className="c8"
+        size="xsmall"
+      >
+        Infected Population
+      </span>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+          size="xsmall"
+          style={
+            Object {
+              "letterSpacing": "-1px",
+            }
+          }
+        >
+          0
+        </span>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <span
+        className="c8"
+        size="xsmall"
+      >
+        Dead Population
+      </span>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+          size="xsmall"
+          style={
+            Object {
+              "letterSpacing": "-1px",
+            }
+          }
+        >
+          0
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c5"
+  >
+    <span
+      className="c6"
+      size="small"
+    >
+      Player Information
+    </span>
+    <div
+      className="c7"
+    >
+      <span
+        className="c8"
+        size="xsmall"
+      >
+        Class Type
+      </span>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+          size="xsmall"
+          style={
+            Object {
+              "letterSpacing": "-1px",
+            }
+          }
+        >
+          Bubonic
+        </span>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <span
+        className="c8"
+        size="xsmall"
+      >
+        Plague Mutations
+      </span>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+          size="xsmall"
+          style={
+            Object {
+              "letterSpacing": "-1px",
+            }
+          }
+        >
+          0
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c5"
+  >
+    <span
+      className="c6"
+      size="small"
+    >
+      Cure Information
+    </span>
+    <div
+      className="c7"
+    >
+      <span
+        className="c8"
+        size="xsmall"
+      >
+        Completion
+      </span>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+          size="xsmall"
+          style={
+            Object {
+              "letterSpacing": "-1px",
+            }
+          }
+        >
+          0 %
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
