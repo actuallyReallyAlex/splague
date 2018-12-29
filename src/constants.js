@@ -13,5 +13,3 @@ export const screens = {
 export const plagueTypes = ['Bubonic', 'Septicemic', 'Pneumonic']
 
 export const factionTypes = ['Earth Tribe', 'Tradesmen', 'Warlords']
-
-// This is just a comment to get the filename changes to build.

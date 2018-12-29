@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Box, Heading, Text } from 'grommet'
 import SidebarData from './SidebarData'
 
 export class Sidebar extends Component {
-  state = {}
+  static propTypes = {
+    // From mapStateToProps()
+    cure: PropTypes.object.isRequired,
+    // From connect()
+    dispatch: PropTypes.func.isRequired,
+    // From mapStateToProps()
+    log: PropTypes.array.isRequired,
+    // From mapStateToProps()
+    plague: PropTypes.object.isRequired,
+    // From mapStateToProps()
+    player: PropTypes.object.isRequired,
+    // From mapStateToProps()
+    ui: PropTypes.object.isRequired,
+    // From mapStateToProps()
+    world: PropTypes.object.isRequired
+  }
+
   render() {
     const { cure, plague, player, world } = this.props
     return (
@@ -15,7 +32,14 @@ export class Sidebar extends Component {
         pad="small"
         width="250px"
       >
-        <Box align="center" background="brand" height="small" justify="center" width="small" round="full">
+        <Box
+          align="center"
+          background="brand"
+          height="small"
+          justify="center"
+          width="small"
+          round="full"
+        >
           <Text size="small">Image Placeholder</Text>
         </Box>
         <Box fill="horizontal" justify="start">

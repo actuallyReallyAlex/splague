@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Box } from 'grommet'
 import Sidebar from '../components/Sidebar'
@@ -17,6 +18,23 @@ export const Home = ({ player, ui }) => {
       </Box>
     </Box>
   )
+}
+
+Home.propTypes = {
+  // From mapStateToProps()
+  cure: PropTypes.object.isRequired,
+  // From connect()
+  dispatch: PropTypes.func.isRequired,
+  // From mapStateToProps()
+  log: PropTypes.array.isRequired,
+  // From mapStateToProps()
+  plague: PropTypes.object.isRequired,
+  // From mapStateToProps()
+  player: PropTypes.object.isRequired,
+  // From mapStateToProps()
+  ui: PropTypes.object.isRequired,
+  // From mapStateToProps()
+  world: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => {

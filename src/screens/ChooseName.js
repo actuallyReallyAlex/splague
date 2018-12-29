@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Box, Button, FormField, TextInput } from 'grommet'
 import {
@@ -8,6 +9,23 @@ import {
 } from '../redux/actions/actions'
 
 export class ChooseName extends Component {
+  static propTypes = {
+    // From mapStateToProps()
+    cure: PropTypes.object.isRequired,
+    // From connect()
+    dispatch: PropTypes.func.isRequired,
+    // From mapStateToProps()
+    log: PropTypes.array.isRequired,
+    // From mapStateToProps()
+    plague: PropTypes.object.isRequired,
+    // From mapStateToProps()
+    player: PropTypes.object.isRequired,
+    // From mapStateToProps()
+    ui: PropTypes.object.isRequired,
+    // From mapStateToProps()
+    world: PropTypes.object.isRequired
+  }
+
   state = {
     error: false,
     name: ''

@@ -7,7 +7,10 @@ import { addLogItem } from '../redux/actions/actions'
 
 export class Log extends Component {
   static propTypes = {
-    log: PropTypes.array
+    // From connect()
+    dispatch: PropTypes.func.isRequired,
+    // From mapStateToProps()
+    log: PropTypes.array.isRequired
   }
   static defaultProps = {
     log: []
