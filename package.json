@@ -28,7 +28,8 @@
     "react-test-renderer": "^16.7.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "REACT_APP_ENVIRONMENT=dev react-scripts start",
+    "start-initial": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test",
     "test-dev": "react-scripts test",

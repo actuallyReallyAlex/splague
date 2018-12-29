@@ -150,111 +150,11 @@ exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`]
   border-radius: 100%;
 }
 
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  box-sizing: border-box;
-  outline: none;
-  max-width: 100%;
-  margin: 0px;
-  height: 24px;
-  width: 24px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border: solid 2px #7D4CDB;
-  min-width: 0;
-  min-height: 0;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding: 0px;
-  border-radius: 100%;
-}
-
-.c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  box-sizing: border-box;
-  outline: none;
-  max-width: 100%;
-  margin-top: 96px;
-  min-width: 0;
-  min-height: 0;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding: 0px;
-}
-
-.c15 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  box-sizing: border-box;
-  outline: none;
-  max-width: 100%;
-  margin: 0px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  min-width: 0;
-  min-height: 0;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding: 0px;
-}
-
 .c10 {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   width: 24px;
-}
-
-.c14 {
-  display: inline-block;
-  box-sizing: border-box;
-  cursor: pointer;
-  outline: none;
-  font: inherit;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  margin: 0;
-  background: transparent;
-  overflow: visible;
-  text-transform: none;
-  border: 2px solid #7D4CDB;
-  border-radius: 18px;
-  color: #444444;
-  padding: 4px 22px;
-  font-size: 18px;
-  line-height: 24px;
-  background: #7D4CDB;
-  color: #f8f8f8;
-  border-radius: 18px;
-  -webkit-transition: 0.1s ease-in-out;
-  transition: 0.1s ease-in-out;
-}
-
-.c14:hover {
-  box-shadow: 0px 0px 0px 2px #7D4CDB;
 }
 
 .c4 {
@@ -280,14 +180,6 @@ exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`]
   margin: 0;
   z-index: 1;
   cursor: pointer;
-}
-
-.c12 {
-  box-sizing: border-box;
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  fill: #7D4CDB;
 }
 
 .c6 {
@@ -384,50 +276,8 @@ exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`]
   }
 }
 
-@media only screen and (max-width:768px) {
-  .c11 {
-    margin: 0px;
-  }
-}
-
-@media only screen and (max-width:768px) {
-  .c11 {
-    border: solid 2px #7D4CDB;
-  }
-}
-
-@media only screen and (max-width:768px) {
-  .c11 {
-    padding: 0px;
-  }
-}
-
-@media only screen and (max-width:768px) {
-  .c13 {
-    margin-top: 48px;
-  }
-}
-
-@media only screen and (max-width:768px) {
-  .c13 {
-    padding: 0px;
-  }
-}
-
-@media only screen and (max-width:768px) {
-  .c15 {
-    margin: 0px;
-  }
-}
-
-@media only screen and (max-width:768px) {
-  .c15 {
-    padding: 0px;
-  }
-}
-
 <div
-  className="animated fadeIn c0"
+  className="animated fadeIn slow c0"
 >
   <form>
     <div
@@ -485,7 +335,7 @@ exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`]
               className="c6 c7"
             >
               <input
-                checked={true}
+                checked={false}
                 className="c8"
                 disabled={false}
                 name="evil"
@@ -495,48 +345,14 @@ exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`]
                 type="radio"
               />
               <div
-                className="c11"
-              >
-                <svg
-                  className="c12"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    cx={12}
-                    cy={12}
-                    r={6}
-                  />
-                </svg>
-              </div>
+                className="c9"
+              />
             </div>
             <span>
               Evil
             </span>
           </label>
         </div>
-      </div>
-      <div
-        className="animated fadeInUp c13"
-        style={
-          Object {
-            "position": "absolute",
-          }
-        }
-      >
-        <button
-          className="c14"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          type="button"
-        >
-          <div
-            className="c15"
-          >
-            Continue
-          </div>
-        </button>
       </div>
     </div>
   </form>

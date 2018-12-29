@@ -258,7 +258,7 @@ exports[`<ChooseName /> Should render snapshot of ChooseName screen. 1`] = `
 }
 
 <div
-  className="animated fadeIn c0"
+  className="animated fadeIn slow c0"
 >
   <form>
     <div
