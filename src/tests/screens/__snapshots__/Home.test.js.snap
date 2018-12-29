@@ -432,7 +432,7 @@ exports[`<Home /> Should render snapshot of Home screen. 1`] = `
 }
 
 <div
-  className="animated fadeIn c0"
+  className="animated fadeIn slow c0"
 >
   <div
     className="c1"
@@ -455,9 +455,7 @@ exports[`<Home /> Should render snapshot of Home screen. 1`] = `
       >
         <h2
           className="c6"
-        >
-          Alex
-        </h2>
+        />
       </div>
       <div
         className="c7"
@@ -598,9 +596,7 @@ exports[`<Home /> Should render snapshot of Home screen. 1`] = `
                   "letterSpacing": "-1px",
                 }
               }
-            >
-              Bubonic
-            </span>
+            />
           </div>
         </div>
         <div
