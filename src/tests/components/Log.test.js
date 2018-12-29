@@ -4,14 +4,13 @@ import 'jest-styled-components'
 import { Log } from '../../components/Log'
 import log from '../fixtures/log'
 
+const dispatch = jest.fn()
+
 describe('<Log />', () => {
   it('Should render snapshot of Log component.', () => {
-    const component = renderer.create(<Log />).toJSON()
-    expect(component).toMatchSnapshot()
-  })
-
-  it('Should render Log correctly with log data.', () => {
-    const component = renderer.create(<Log log={log} />).toJSON()
+    const component = renderer
+      .create(<Log dispatch={dispatch} log={log} />)
+      .toJSON()
     expect(component).toMatchSnapshot()
   })
 })
