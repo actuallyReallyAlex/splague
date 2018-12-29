@@ -12,7 +12,7 @@ class Sidebar extends Component {
         align="center"
         background="#1b1c1d"
         fill="vertical"
-        pad="large"
+        pad="small"
         width="250px"
       >
         <Box align="center" background="brand" height="small" justify="center" width="small" round="full">
