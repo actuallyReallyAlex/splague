@@ -8,7 +8,7 @@ import {
   transitionScreen
 } from '../redux/actions/actions'
 
-class ChooseMorality extends Component {
+export class ChooseMorality extends Component {
   setBackgroundColor = morality => {
     switch (morality) {
       case 'good':

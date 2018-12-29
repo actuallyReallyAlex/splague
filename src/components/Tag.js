@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Box, Text } from 'grommet'
 
-const Tag = ({ label }) => {
+export const Tag = ({ label }) => {
   return (
     <Box
       background="dark-6"

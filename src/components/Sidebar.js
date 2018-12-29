@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Box, Heading, Text } from 'grommet'
 import SidebarData from './SidebarData'
 
-class Sidebar extends Component {
+export class Sidebar extends Component {
   state = {}
   render() {
     const { cure, plague, player, world } = this.props

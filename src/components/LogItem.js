@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Box, Text } from 'grommet'
 import { User } from 'grommet-icons'
 
-const LogItem = ({ additionalInfo, description, icon, title }) => {
+export const LogItem = ({ additionalInfo, description, icon, title }) => {
   const Icon = icon
   return (
     <Box
