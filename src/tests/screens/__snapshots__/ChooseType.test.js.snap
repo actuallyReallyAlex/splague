@@ -386,7 +386,7 @@ exports[`<ChooseType /> Should render snapshot of ChooseType screen. 1`] = `
 }
 
 <div
-  className="animated fadeIn slow c0"
+  className="animated fadeIn c0"
 >
   <div
     className="c1"
