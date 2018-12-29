@@ -1,19 +1,15 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import ShallowRenderer from 'react-test-renderer/shallow'
 import 'jest-styled-components'
-import { Provider } from 'react-redux'
-import store from '../../redux/store/store'
-import Home from '../../screens/Home'
+import { Home } from '../../screens/Home'
+import developmentState from '../fixtures/developmentState'
 
 describe('<Home />', () => {
   it('Should render snapshot of Home screen.', () => {
-    const component = renderer
-      .create(
-        <Provider store={store}>
-          <Home />
-        </Provider>
-      )
-      .toJSON()
-    expect(component).toMatchSnapshot()
+    const { player, ui } = developmentState
+    const renderer = new ShallowRenderer()
+    renderer.render(<Home player={player} ui={ui} />)
+    const result = renderer.getRenderOutput()
+    expect(result).toMatchSnapshot()
   })
 })
