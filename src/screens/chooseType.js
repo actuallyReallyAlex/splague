@@ -8,7 +8,7 @@ import {
 } from '../redux/actions/actions'
 import { plagueTypes, factionTypes } from '../constants'
 
-class ChooseType extends Component {
+export class ChooseType extends Component {
   state = {
     type: ''
   }

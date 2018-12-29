@@ -285,7 +285,9 @@ exports[`<Sidebar /> Should render snapshot of Sidebar component. 1`] = `
   >
     <h2
       className="c4"
-    />
+    >
+      Alex
+    </h2>
   </div>
   <div
     className="c5"
@@ -426,7 +428,9 @@ exports[`<Sidebar /> Should render snapshot of Sidebar component. 1`] = `
               "letterSpacing": "-1px",
             }
           }
-        />
+        >
+          Bubonic
+        </span>
       </div>
     </div>
     <div

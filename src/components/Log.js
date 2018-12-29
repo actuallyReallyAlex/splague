@@ -5,7 +5,7 @@ import { Box, Button } from 'grommet'
 import LogItem from './LogItem'
 import { addLogItem } from '../redux/actions/actions'
 
-class Log extends Component {
+export class Log extends Component {
   static propTypes = {
     log: PropTypes.array
   }

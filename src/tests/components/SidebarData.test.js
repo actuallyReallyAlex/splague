@@ -1,9 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import 'jest-styled-components'
-import { Provider } from 'react-redux'
-import store from '../../redux/store/store'
-import SidebarData from '../../components/SidebarData'
+import { SidebarData } from '../../components/SidebarData'
 import developmentState from '../fixtures/developmentState'
 
 describe('<SidebarData />', () => {
@@ -11,12 +9,10 @@ describe('<SidebarData />', () => {
     const { world } = developmentState
     const component = renderer
       .create(
-        <Provider store={store}>
-          <SidebarData
-            label="Alive Population"
-            data={world.alivePopulation.toLocaleString()}
-          />
-        </Provider>
+        <SidebarData
+          label="Alive Population"
+          data={world.alivePopulation.toLocaleString()}
+        />
       )
       .toJSON()
     expect(component).toMatchSnapshot()

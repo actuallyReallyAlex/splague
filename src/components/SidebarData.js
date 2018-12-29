@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Box, Text } from 'grommet'
 import Tag from './Tag'
 
-const SidebarData = ({ data, label }) => {
+export const SidebarData = ({ data, label }) => {
   return (
     <Box
       align="center"

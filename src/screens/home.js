@@ -4,7 +4,7 @@ import { Box } from 'grommet'
 import Sidebar from '../components/Sidebar'
 import Log from '../components/Log'
 
-const Home = ({ player, ui }) => {
+export const Home = ({ player, ui }) => {
   return (
     <Box
       background={player.morality === 'good' ? 'white' : '#252839'}

@@ -1,6 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Log /> Should render Log correctly with log data. 1`] = `
+.c3 {
+  display: inline-block;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  fill: #FFFFFF;
+  stroke: #FFFFFF;
+}
+
+.c3 g {
+  fill: inherit;
+  stroke: inherit;
+}
+
+.c3 *:not([stroke])[fill="none"] {
+  stroke-width: 0;
+}
+
+.c3 *[stroke*="#"],
+.c3 *[STROKE*="#"] {
+  stroke: inherit;
+  fill: none;
+}
+
+.c3 *[fill-rule],
+.c3 *[FILL-RULE],
+.c3 *[fill*="#"],
+.c3 *[FILL*="#"] {
+  fill: inherit;
+  stroke: none;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -22,7 +56,7 @@ exports[`<Log /> Should render Log correctly with log data. 1`] = `
   padding: 12px;
 }
 
-.c2 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -48,6 +82,87 @@ exports[`<Log /> Should render Log correctly with log data. 1`] = `
 }
 
 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  background: #FFFFFF;
+  color: #444444;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  height: 50px;
+  width: 50px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #000000;
+  color: #f8f8f8;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0px;
+  border-radius: 100%;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 0px;
+}
+
+.c4 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: 12px;
+}
+
+.c9 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  height: 12px;
+}
+
+.c10 {
   display: inline-block;
   box-sizing: border-box;
   cursor: pointer;
@@ -69,8 +184,30 @@ exports[`<Log /> Should render Log correctly with log data. 1`] = `
   transition: 0.1s ease-in-out;
 }
 
-.c1:hover {
+.c10:hover {
   box-shadow: 0px 0px 0px 2px #6FFFB0;
+}
+
+.c6 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.c7 {
+  margin: 0px;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  color: grey;
+}
+
+.c8 {
+  font-size: 14px;
+  line-height: 20px;
 }
 
 @media only screen and (max-width:768px) {
@@ -86,6 +223,36 @@ exports[`<Log /> Should render Log correctly with log data. 1`] = `
 }
 
 @media only screen and (max-width:768px) {
+  .c11 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c11 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c1 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c1 {
+    padding: 6px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c1 {
+    border-radius: 6px;
+  }
+}
+
+@media only screen and (max-width:768px) {
   .c2 {
     margin: 0px;
   }
@@ -97,18 +264,83 @@ exports[`<Log /> Should render Log correctly with log data. 1`] = `
   }
 }
 
+@media only screen and (max-width:768px) {
+  .c5 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c5 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c9 {
+    height: 6px;
+  }
+}
+
 <div
   className="c0"
 >
+  <div
+    className="animated fadeInUp c1"
+  >
+    <div
+      className="c2"
+    >
+      <svg
+        aria-label="Alert"
+        className="c3"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12,17 L12,19 M12,10 L12,16 M12,3 L2,22 L22,22 L12,3 Z"
+          fill="none"
+          stroke="#000"
+          strokeWidth="2"
+        />
+      </svg>
+    </div>
+    <div
+      className="c4"
+    />
+    <div
+      className="c5"
+    >
+      <span
+        className="c6"
+      >
+        Test Item 1
+      </span>
+      <span
+        className="c7"
+        size="small"
+      >
+        Additional Info
+      </span>
+      <span
+        className="c8"
+        size="small"
+      >
+        Test Description
+      </span>
+    </div>
+  </div>
+  <div
+    className="c9"
+  />
   <button
-    className="c1"
+    className="c10"
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
     type="button"
   >
     <div
-      className="c2"
+      className="c11"
     >
       Test
     </div>

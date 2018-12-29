@@ -7,7 +7,7 @@ import {
   transitionScreen
 } from '../redux/actions/actions'
 
-class ChooseName extends Component {
+export class ChooseName extends Component {
   state = {
     error: false,
     name: ''
