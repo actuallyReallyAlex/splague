@@ -13,35 +13,37 @@ class PlagueLogic extends Component {
     world: PropTypes.object.isRequired
   }
 
+  infectionInterval = setInterval(() => {
+    this.willInfect()
+      .then(willInfect => {
+        const { dispatch, world } = this.props
+        const currentInfectedPopulation = world.infectedPopulation
+        const infectionMultiplier = 0.25
+        let numberToInfect = Math.floor(
+          currentInfectedPopulation * infectionMultiplier
+        )
+        if (numberToInfect < 1) {
+          numberToInfect += 1
+        }
+        if (world.healthyPopulation < numberToInfect) {
+          numberToInfect = world.healthyPopulation
+          clearInterval(this.infectionInterval)
+        }
+        willInfect && dispatch(infectPopulation(numberToInfect))
+      })
+      .catch(err => {})
+  }, this.props.plague.speed)
+
   willInfect = () => {
     const infectionValue = Math.random()
+    const { world } = this.props
     return new Promise((resolve, reject) => {
-      infectionValue > 0.75 ? resolve(true) : reject(false)
+      if (infectionValue > 0.75 && world.healthyPopulation > 0) {
+        resolve(true)
+      } else {
+        reject(false)
+      }
     })
-  }
-
-  calculateInfection = () => {
-    const { plague } = this.props
-    setInterval(() => {
-      this.willInfect()
-        .then(willInfect => {
-          const { dispatch, world } = this.props
-          const currentInfectedPopulation = world.infectedPopulation
-          const infectionMultiplier = 0.25
-          let numberToInfect = Math.floor(
-            currentInfectedPopulation * infectionMultiplier
-          )
-          if (numberToInfect < 1) {
-            numberToInfect += 1
-          }
-          willInfect && dispatch(infectPopulation(numberToInfect))
-        })
-        .catch(err => {})
-    }, plague.speed)
-  }
-
-  componentDidMount() {
-    // this.calculateInfection()
   }
 
   render() {
