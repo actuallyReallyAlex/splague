@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.9.1](https://github.com/alexlee-dev/splague/tree/v0.9.1) (2018-12-29)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.9.0...v0.9.1)
+
+**Implemented enhancements:**
+
+- ✏️ 11 - PropTypes [\#52](https://github.com/alexlee-dev/splague/pull/52) ([alexlee-dev](https://github.com/alexlee-dev))
+- 🚀 10 - Continuous Integration [\#50](https://github.com/alexlee-dev/splague/pull/50) ([alexlee-dev](https://github.com/alexlee-dev))
+
+**Fixed bugs:**
+
+- ✏️ Attempt to Fix Travis CI Failing [\#51](https://github.com/alexlee-dev/splague/pull/51) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.9.0](https://github.com/alexlee-dev/splague/tree/v0.9.0) (2018-12-29)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.8.2...v0.9.0)
 
