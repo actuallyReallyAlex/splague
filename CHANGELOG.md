@@ -1,5 +1,15 @@
 # Change Log
 
+## [Unreleased](https://github.com/alexlee-dev/splague/tree/HEAD)
+
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.9.2...HEAD)
+
+**Implemented enhancements:**
+
+- ✏️ 16 - Edit Infection Max [\#57](https://github.com/alexlee-dev/splague/pull/57) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✏️ 15 - Edit `mapStateToProps\(\)` [\#56](https://github.com/alexlee-dev/splague/pull/56) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✏️ 14 - GitHub Changelog Generator Command [\#55](https://github.com/alexlee-dev/splague/pull/55) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.9.2](https://github.com/alexlee-dev/splague/tree/v0.9.2) (2018-12-30)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.9.1...v0.9.2)
 
