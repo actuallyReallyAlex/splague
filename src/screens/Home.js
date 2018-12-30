@@ -21,24 +21,16 @@ export const Home = ({ player, ui }) => {
 }
 
 Home.propTypes = {
-  // From mapStateToProps()
-  cure: PropTypes.object.isRequired,
   // From connect()
   dispatch: PropTypes.func.isRequired,
   // From mapStateToProps()
-  log: PropTypes.array.isRequired,
-  // From mapStateToProps()
-  plague: PropTypes.object.isRequired,
-  // From mapStateToProps()
   player: PropTypes.object.isRequired,
   // From mapStateToProps()
-  ui: PropTypes.object.isRequired,
-  // From mapStateToProps()
-  world: PropTypes.object.isRequired
+  ui: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => {
-  return state
+const mapStateToProps = ({ player, ui }) => {
+  return { player, ui }
 }
 
 export default connect(mapStateToProps)(Home)

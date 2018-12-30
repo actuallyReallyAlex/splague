@@ -10,20 +10,12 @@ import {
 
 export class ChooseName extends Component {
   static propTypes = {
-    // From mapStateToProps()
-    cure: PropTypes.object.isRequired,
     // From connect()
     dispatch: PropTypes.func.isRequired,
-    // From mapStateToProps()
-    log: PropTypes.array.isRequired,
-    // From mapStateToProps()
-    plague: PropTypes.object.isRequired,
     // From mapStateToProps()
     player: PropTypes.object.isRequired,
     // From mapStateToProps()
     ui: PropTypes.object.isRequired,
-    // From mapStateToProps()
-    world: PropTypes.object.isRequired
   }
 
   state = {
@@ -63,7 +55,7 @@ export class ChooseName extends Component {
 
   render() {
     const { error, name } = this.state
-    const { ui, player } = this.props
+    const { player, ui } = this.props
     return (
       <Box
         align="center"
@@ -106,8 +98,8 @@ export class ChooseName extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return state
+const mapStateToProps = ({ player, ui }) => {
+  return { player, ui }
 }
 
 export default connect(mapStateToProps)(ChooseName)
