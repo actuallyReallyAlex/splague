@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.9.2](https://github.com/alexlee-dev/splague/tree/v0.9.2) (2018-12-30)
+[Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.9.1...v0.9.2)
+
+**Implemented enhancements:**
+
+- ✏️ 13 - Travis CI Tag [\#54](https://github.com/alexlee-dev/splague/pull/54) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✏️ 12 - Travis Config [\#53](https://github.com/alexlee-dev/splague/pull/53) ([alexlee-dev](https://github.com/alexlee-dev))
+
 ## [v0.9.1](https://github.com/alexlee-dev/splague/tree/v0.9.1) (2018-12-29)
 [Full Changelog](https://github.com/alexlee-dev/splague/compare/v0.9.0...v0.9.1)
 
