@@ -2,6 +2,7 @@
 Be prepared.
 
 [![NPM Version][npm-image]][npm-url]
+[![Travis CI Build][travis-build-image]][travis-link]
 [![NPM Total Downloads][npm-downloads]][npm-url]
 
 ## Attribution
@@ -17,3 +18,5 @@ Travel Icons by [prettycons](https://www.flaticon.com/authors/prettycons) from [
 [npm-image]: https://img.shields.io/npm/v/splague.svg
 [npm-downloads]: https://img.shields.io/npm/dt/splague.svg
 [npm-url]: https://www.npmjs.com/package/splague
+[travis-build-image]: https://img.shields.io/travis/alexlee-dev/splague.svg
+[travis-link]: https://travis-ci.org/alexlee-dev/splague
