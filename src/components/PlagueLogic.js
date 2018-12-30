@@ -5,9 +5,13 @@ import { infectPopulation } from '../redux/actions/actions'
 
 class PlagueLogic extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired
+    // From connect()
+    dispatch: PropTypes.func.isRequired,
+    // From mapStateToProps()
+    plague: PropTypes.object.isRequired,
+    // From mapStateToProps()
+    world: PropTypes.object.isRequired
   }
-  state = {}
 
   willInfect = () => {
     const infectionValue = Math.random()
@@ -45,8 +49,8 @@ class PlagueLogic extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return state
+const mapStateToProps = ({ plague, world }) => {
+  return { plague, world }
 }
 
 export default connect(mapStateToProps)(PlagueLogic)

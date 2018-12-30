@@ -11,13 +11,9 @@ export class Sidebar extends Component {
     // From connect()
     dispatch: PropTypes.func.isRequired,
     // From mapStateToProps()
-    log: PropTypes.array.isRequired,
-    // From mapStateToProps()
     plague: PropTypes.object.isRequired,
     // From mapStateToProps()
     player: PropTypes.object.isRequired,
-    // From mapStateToProps()
-    ui: PropTypes.object.isRequired,
     // From mapStateToProps()
     world: PropTypes.object.isRequired
   }
@@ -87,8 +83,8 @@ export class Sidebar extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return state
+const mapStateToProps = ({ cure, plague, player, world }) => {
+  return { cure, plague, player, world }
 }
 
 export default connect(mapStateToProps)(Sidebar)
