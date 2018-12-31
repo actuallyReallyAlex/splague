@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Box, RadioButton, Button } from 'grommet'
+import { chooseMorality } from '../redux/actions/player'
 import {
-  chooseMorality,
   changeBackground,
   changeScreen,
   transitionScreen
-} from '../redux/actions/actions'
+} from '../redux/actions/ui'
 
 export class ChooseMorality extends Component {
   static propTypes = {
@@ -16,9 +16,9 @@ export class ChooseMorality extends Component {
     // From mapStateToProps()
     player: PropTypes.object.isRequired,
     // From mapStateToProps()
-    ui: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired
   }
-  
+
   setBackgroundColor = morality => {
     switch (morality) {
       case 'good':

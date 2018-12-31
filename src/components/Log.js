@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { Box, Button } from 'grommet'
 import LogItem from './LogItem'
-import { addLogItem } from '../redux/actions/actions'
+import { addLogItem } from '../redux/actions/log'
 
 export class Log extends Component {
   static propTypes = {
