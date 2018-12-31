@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Box, Button, FormField, Select } from 'grommet'
-import {
-  chooseType,
-  changeScreen,
-  transitionScreen
-} from '../redux/actions/actions'
+import { chooseType } from '../redux/actions/player'
+import { changeScreen, transitionScreen } from '../redux/actions/ui'
 import { plagueTypes, factionTypes } from '../constants'
 
 export class ChooseType extends Component {
@@ -16,7 +13,7 @@ export class ChooseType extends Component {
     // From mapStateToProps()
     player: PropTypes.object.isRequired,
     // From mapStateToProps()
-    ui: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired
   }
 
   state = {
