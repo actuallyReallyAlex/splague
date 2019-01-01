@@ -20,6 +20,11 @@ if (process.env.REACT_APP_ENVIRONMENT === 'dev') {
 
 export default (state = plagueState, action) => {
   switch (action.type) {
+    case 'SET_PLAGUE_SPEED':
+      return {
+        ...state,
+        speed: action.payload.plagueSpeed
+      }
     default:
       return state
   }
