@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Box } from 'grommet'
 import { screens } from './constants'
 import PlagueLogic from './components/PlagueLogic'
+import WorldLogic from './components/WorldLogic'
 
 class Game extends Component {
   render() {
@@ -17,6 +18,7 @@ class Game extends Component {
       >
         <Screen />
         <PlagueLogic />
+        <WorldLogic />
       </Box>
     )
   }
