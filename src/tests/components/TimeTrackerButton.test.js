@@ -1,23 +1,21 @@
 import React from 'react'
 import ShallowRenderer from 'react-test-renderer/shallow'
 import 'jest-styled-components'
-import { Sidebar } from '../../components/Sidebar'
+import { TimeTrackerButton } from '../../components/TimeTrackerButton'
 import developmentState from '../fixtures/developmentState'
 
 const dispatch = jest.fn()
 
-describe('<Sidebar />', () => {
-  it('Should render snapshot of Sidebar component.', () => {
-    const { cure, log, plague, player, ui, world } = developmentState
+describe('<TimeTrackerButton />', () => {
+  it('Should render snapshot of TimeTrackerButton component.', () => {
+    const { world } = developmentState
     const renderer = new ShallowRenderer()
+
     renderer.render(
-      <Sidebar
-        cure={cure}
+      <TimeTrackerButton
         dispatch={dispatch}
-        log={log}
-        plague={plague}
-        player={player}
-        ui={ui}
+        label="Label"
+        time={1}
         world={world}
       />
     )
