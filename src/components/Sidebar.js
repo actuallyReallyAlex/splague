@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Box, Heading, Text } from 'grommet'
 import SidebarData from './SidebarData'
+import TimeTracker from './TimeTracker'
 
 export class Sidebar extends Component {
   static propTypes = {
@@ -41,6 +42,7 @@ export class Sidebar extends Component {
         <Box fill="horizontal" justify="start">
           <Heading level="2">{player.name}</Heading>
         </Box>
+        <TimeTracker />
         <Box fill="horizontal" justify="start" margin={{ bottom: 'medium' }}>
           <Text weight="bold" size="small">
             World Information
