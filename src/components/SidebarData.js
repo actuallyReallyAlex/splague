@@ -24,4 +24,8 @@ SidebarData.propTypes = {
   label: PropTypes.string.isRequired
 }
 
+SidebarData.defaultProps = {
+  data: ''
+}
+
 export default SidebarData
