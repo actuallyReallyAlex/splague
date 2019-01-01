@@ -13,6 +13,10 @@ class PlagueLogic extends Component {
     world: PropTypes.object.isRequired
   }
 
+  state = {
+    speed: 1000
+  }
+
   infectionInterval = setInterval(() => {
     this.willInfect()
       .then(willInfect => {
@@ -44,6 +48,35 @@ class PlagueLogic extends Component {
         reject(false)
       }
     })
+  }
+
+  componentDidUpdate() {
+    const { speed } = this.state
+    const { plague } = this.props
+    if (speed !== plague.speed) {
+      clearInterval(this.infectionInterval)
+      this.setState(() => ({ speed: plague.speed }))
+      this.infectionInterval = setInterval(() => {
+        this.willInfect()
+          .then(willInfect => {
+            const { dispatch, world } = this.props
+            const currentInfectedPopulation = world.infectedPopulation
+            const infectionMultiplier = 0.25
+            let numberToInfect = Math.floor(
+              currentInfectedPopulation * infectionMultiplier
+            )
+            if (numberToInfect < 1) {
+              numberToInfect += 1
+            }
+            if (world.healthyPopulation < numberToInfect) {
+              numberToInfect = world.healthyPopulation
+              clearInterval(this.infectionInterval)
+            }
+            willInfect && dispatch(infectPopulation(numberToInfect))
+          })
+          .catch(err => {})
+      }, plague.speed)
+    }
   }
 
   render() {
