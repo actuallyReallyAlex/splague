@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- ✨ 17 - Speed Buttons [\#59](https://github.com/alexlee-dev/splague/pull/59) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✏️ 19 - Split Redux Actions [\#58](https://github.com/alexlee-dev/splague/pull/58) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✏️ 16 - Edit Infection Max [\#57](https://github.com/alexlee-dev/splague/pull/57) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✏️ 15 - Edit `mapStateToProps\(\)` [\#56](https://github.com/alexlee-dev/splague/pull/56) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✏️ 14 - GitHub Changelog Generator Command [\#55](https://github.com/alexlee-dev/splague/pull/55) ([alexlee-dev](https://github.com/alexlee-dev))
