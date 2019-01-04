@@ -3976,7 +3976,7 @@ exports[`<Sidebar /> Should render snapshot of Sidebar component. 1`] = `
       label="Class Type"
     />
     <SidebarData
-      data={0}
+      data={1}
       label="Plague Mutations"
     />
   </ForwardRef>
@@ -4774,7 +4774,7 @@ exports[`<Sidebar /> Should render snapshot of Sidebar component. 1`] = `
       Cure Information
     </Text>
     <SidebarData
-      data="0 %"
+      data="50 %"
       label="Completion"
     />
   </ForwardRef>
