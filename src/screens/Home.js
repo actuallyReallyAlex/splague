@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Box } from 'grommet'
 import Sidebar from '../components/Sidebar'
 import Log from '../components/Log'
+import Navbar from '../components/Navbar'
 
 export const Home = ({ player, ui }) => {
   return (
@@ -12,6 +13,7 @@ export const Home = ({ player, ui }) => {
       className={ui.transitionClasses}
       fill
     >
+      <Navbar />
       <Box direction="row" fill justify="between">
         <Sidebar />
         <Log />
