@@ -2,13 +2,13 @@ import React from 'react'
 import ShallowRenderer from 'react-test-renderer/shallow'
 import 'jest-styled-components'
 import { ChooseMorality } from '../../screens/ChooseMorality'
-import developmentState from '../fixtures/developmentState'
+import { initialState } from '../fixtures/developmentState'
 
 const dispatch = jest.fn()
 
 describe('<ChooseMorality />', () => {
   it('Should render snapshot of ChooseMorality screen.', () => {
-    const { cure, log, plague, player, ui, world } = developmentState
+    const { cure, log, plague, player, ui, world } = initialState
     const renderer = new ShallowRenderer()
     renderer.render(
       <ChooseMorality
