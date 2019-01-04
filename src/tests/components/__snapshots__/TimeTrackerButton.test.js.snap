@@ -3,7 +3,7 @@
 exports[`<TimeTrackerButton /> Should render snapshot of TimeTrackerButton component. 1`] = `
 <ForwardRef
   align="center"
-  background="white"
+  background="green"
   direction="column"
   justify="center"
   margin="none"
@@ -792,7 +792,7 @@ exports[`<TimeTrackerButton /> Should render snapshot of TimeTrackerButton compo
   width="10%"
 >
   <ForwardRef
-    disabled={false}
+    disabled={true}
     fill={true}
     focusIndicator={true}
     hoverIndicator={true}

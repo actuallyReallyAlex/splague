@@ -2,7 +2,7 @@ import React from 'react'
 import ShallowRenderer from 'react-test-renderer/shallow'
 import 'jest-styled-components'
 import { TimeTrackerButton } from '../../components/TimeTrackerButton'
-import developmentState from '../fixtures/developmentState'
+import { developmentState } from '../fixtures/developmentState'
 
 const dispatch = jest.fn()
 

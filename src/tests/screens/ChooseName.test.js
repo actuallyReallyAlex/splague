@@ -2,7 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import 'jest-styled-components'
 import { ChooseName } from '../../screens/ChooseName'
-import developmentState from '../fixtures/developmentState'
+import { developmentState } from '../fixtures/developmentState'
 
 const dispatch = jest.fn()
 

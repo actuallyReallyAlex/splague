@@ -1589,7 +1589,7 @@ exports[`<TimeTracker /> Should render snapshot of TimeTracker component. 1`] = 
     />
   </ForwardRef>
   <SidebarData
-    data=""
+    data={0}
     label="Day"
   />
 </ForwardRef>
