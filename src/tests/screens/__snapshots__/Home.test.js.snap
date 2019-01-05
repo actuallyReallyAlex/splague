@@ -784,6 +784,7 @@ exports[`<Home /> Should render snapshot of Home screen. 1`] = `
     }
   }
 >
+  <Connect(Navbar) />
   <ForwardRef
     direction="row"
     fill={true}
