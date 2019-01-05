@@ -6,6 +6,9 @@
 
 **Implemented enhancements:**
 
+- Gametime in Game [\#12](https://github.com/alexlee-dev/splague/issues/12)
+- ✨ 21 - Navbar [\#61](https://github.com/alexlee-dev/splague/pull/61) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✅ 20 - Redux Tests [\#60](https://github.com/alexlee-dev/splague/pull/60) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✨ 17 - Speed Buttons [\#59](https://github.com/alexlee-dev/splague/pull/59) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✏️ 19 - Split Redux Actions [\#58](https://github.com/alexlee-dev/splague/pull/58) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✏️ 16 - Edit Infection Max [\#57](https://github.com/alexlee-dev/splague/pull/57) ([alexlee-dev](https://github.com/alexlee-dev))
