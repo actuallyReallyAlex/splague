@@ -5,6 +5,7 @@ import { Box } from 'grommet'
 import Sidebar from '../components/Sidebar'
 import Log from '../components/Log'
 import Navbar from '../components/Navbar'
+import Main from '../components/Main';
 
 export const Home = ({ player, ui }) => {
   return (
@@ -16,6 +17,7 @@ export const Home = ({ player, ui }) => {
       <Navbar />
       <Box direction="row" fill justify="between">
         <Sidebar />
+        <Main />
         <Log />
       </Box>
     </Box>

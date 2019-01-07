@@ -27,7 +27,8 @@ export class Sidebar extends Component {
         background="#1b1c1d"
         fill="vertical"
         pad="small"
-        width="250px"
+        // width="250px"
+        width="15%"
       >
         <Box
           align="center"

@@ -31,7 +31,8 @@ export class Log extends Component {
         fill="vertical"
         gap="small"
         pad="small"
-        width="300px"
+        // width="300px"
+        width="15%"
       >
         {log.map((item, index) => (
           <LogItem {...item} key={`log-${index}`} />
