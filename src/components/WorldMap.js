@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { base, Box, WorldMap as GrommetWorldMap } from 'grommet'
-import { NorthAmericaCoordinates } from '../WorldMapMethods'
+import { deconstructContinentState, NorthAmerica} from '../utilities'
 
 const theme = {
   ...base,
@@ -19,6 +19,7 @@ const theme = {
 
 const countNorthAmerica = () => {
   const northAmericaPlaces = []
+  const NorthAmericaCoordinates = deconstructContinentState(NorthAmerica)
   for (let i = 0; i < NorthAmericaCoordinates.length; i++) {
     const place = {
       name: `testPlace-${i}`,

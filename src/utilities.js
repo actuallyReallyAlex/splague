@@ -1,5 +1,5 @@
 // From Grommet
-const NorthAmerica = {
+export const NorthAmerica = {
   name: 'North America',
   origin: [0, 0],
   area: [[21, 0], [39, 0], [39, 6], [22, 26], [16, 23], [2, 12], [0, 7]],
@@ -184,11 +184,15 @@ const replaceElement = (array, replaceThis, withThat) => {
  * @returns An array of coordinates, corresponding to each dot on the map of the continent.
  */
 export const deconstructContinentState = continent => {
+  // Full string as an svg path.
   const svgString = buildContinentState(continent)
+  // Split that string into an array of strings
   const svgArray = svgString.split(' ')
+  // Remove 'h0's
   const svgArrayNoh0 = removeElement(svgArray, 'h0')
+  // Replace 'M' with nothing
   const svgArrayNoM = replaceElement(svgArrayNoh0, 'M', '')
-
+  // An array of arrays
   const arrays = svgArrayNoM.map(element => {
     const splitUp = element.split(',')
     return [parseInt(splitUp[0]), parseInt(splitUp[1])]
@@ -204,6 +208,7 @@ export const deconstructContinentState = continent => {
         if (arrays[i + k][1] === 0) {
           numberOfManualDots++
         } else {
+          // Once you encounter an array that is a true dot, stop incrementing the number of manual dots.
           break
         }
       }
@@ -211,7 +216,8 @@ export const deconstructContinentState = continent => {
       // Now that we know how many dots need to be added manually,
       // create an array for each one
       for (let l = 1; l < numberOfManualDots + 1; l++) {
-        // The last true dot in this row
+        // The last true dot in this row\
+        // ? Should this be arrays[arrays.indexOf(element) - 1] ?
         const baseDot = arrays[i - 1]
 
         // Make a new array where the first element is the base dot's first element plus 10
@@ -240,6 +246,17 @@ export const deconstructContinentState = continent => {
     return result
   }, [])
 
+  const arrayOfPoints = removeElement(svgArrayFull, 0, 1)
+
+  const arrayOfCoordinates = arrayOfPoints.reduce((result, element, i) => {
+    const x = element[0] / FACTOR
+    const y = element[1] / FACTOR
+
+    const latLon = coordToLatLon([x, y], [0, 0], [93, 44])
+    result.push(latLon)
+    return result
+  }, [])
+
   // const segments = svgArray.reduce((result, element, i) => {
   //   if (element === "m10,0") {
   //     console.log(svgArray[i - 2]);
@@ -258,5 +275,8 @@ export const deconstructContinentState = continent => {
 
   // return segments;
 
-  return removeElement(svgArrayFull, 0, 1)
+  return arrayOfCoordinates
 }
+
+// console.log('hi')
+console.log(deconstructContinentState(NorthAmerica))
