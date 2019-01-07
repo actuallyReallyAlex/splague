@@ -34,6 +34,7 @@ export const NorthAmerica = [
   [71, -70]
 ]
 
+// Actually, just the first dot on the left for each row.
 export const realNorthAmerica = [
   [72.39773812874454, -83.20430107526882],
   [72.39773812874454, -56.483870967741936],

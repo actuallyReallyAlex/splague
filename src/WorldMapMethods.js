@@ -178,8 +178,8 @@ export const coordToLatLon = (coord, origin, extent) => {
   return [lat, lon];
 };
 
-// console.log(latLonToCoord([72, -85], origin, extent));
-// console.log(coordToLatLon([23, 1], origin, extent));
+console.log(latLonToCoord([72, -85], origin, extent));
+console.log(coordToLatLon([23, 1], origin, extent));
 
 
 export const deconstructContinentState = () => {
@@ -281,8 +281,10 @@ export const deconstructContinentState = () => {
 
 const NorthAmericaPoints = deconstructContinentState(NorthAmerica)
 
+console.log(NorthAmericaPoints)
+
 export const NorthAmericaCoordinates = NorthAmericaPoints.map(coordinates => {
   return coordToLatLon(coordinates, origin, extent)
 })
 
-// console.log(NorthAmericaCoordinates)
+console.log(NorthAmericaCoordinates)
