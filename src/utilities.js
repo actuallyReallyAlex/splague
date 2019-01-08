@@ -1,5 +1,5 @@
 // From Grommet
-export const NorthAmerica = {
+const NorthAmerica = {
   name: 'North America',
   origin: [0, 0],
   area: [[21, 0], [39, 0], [39, 6], [22, 26], [16, 23], [2, 12], [0, 7]],
@@ -78,6 +78,25 @@ export const NorthAmerica = {
   ]
 }
 
+const Australia = {
+  name: 'Australia',
+  origin: [74, 32],
+  area: [[4, 0], [7, 1], [15, 7], [13, 9], [0, 6], [0, 2]],
+  dots: [
+    [4, 0, 1],
+    [2, 1, 6],
+    [0, 2, 9],
+    [0, 3, 10],
+    [0, 4, 10],
+    [0, 5, 3],
+    [5, 5, 5],
+    [5, 6, 4],
+    [15, 7, 1],
+    [14, 8, 1],
+    [13, 9, 1],
+  ],
+},
+
 // All from Grommet
 const FACTOR = 10
 const MAP_LAT_BOTTOM = -50.0 // empirically determined
@@ -86,6 +105,8 @@ const MAP_LON_LEFT = -171.0 // empirically determined
 const MAP_LON_RIGHT = 184.0 // empirically determined
 const MAP_LON_DELTA = MAP_LON_RIGHT - MAP_LON_LEFT
 const maxCoordinate = (a, b) => [Math.max(a[0], b[0]), Math.max(a[1], b[1])]
+const origin = [0, 0]
+const extent = [93, 44]
 
 // Builds a Continent
 const buildContinentState = ({ area, dots, origin }) => {
@@ -118,21 +139,6 @@ const mapValues = extent => {
       )
   )
   return { mapRadius, mapOffsetY }
-}
-
-// Takes in an array of latitude and longitude, and returns points on the map.
-const latLonToCoord = (latLon, origin, extent) => {
-  const { mapRadius, mapOffsetY } = mapValues(extent)
-  const x = Math.round(((latLon[1] - MAP_LON_LEFT) * extent[0]) / MAP_LON_DELTA)
-  const latitudeRad = (latLon[0] * Math.PI) / 180
-  const y =
-    extent[1] +
-    mapOffsetY -
-    Math.round(
-      (mapRadius / 2) *
-        Math.log((1 + Math.sin(latitudeRad)) / (1 - Math.sin(latitudeRad)))
-    )
-  return [x, y] // the coordinate value of this point on the map image
 }
 
 // Takes in points, and returns latitude and longitude.
@@ -177,7 +183,6 @@ const replaceElement = (array, replaceThis, withThat) => {
   return array.map(element => element.replace(replaceThis, withThat))
 }
 
-// ! Refactor and fix this. It's messy.
 /**
  * Deconstructs an svg string into an array of coordinates.
  * @param {Object} continent Continent to work with. Given by Grommet.
@@ -217,29 +222,12 @@ export const deconstructContinentState = continent => {
       // create an array for each one
       for (let l = 1; l < numberOfManualDots + 1; l++) {
         // The last true dot in this row\
-        // ? Should this be arrays[arrays.indexOf(element) - 1] ?
         const baseDot = arrays[i - 1]
 
         // Make a new array where the first element is the base dot's first element plus 10
         const newDotArray = [baseDot[0] + l * 10, baseDot[1]]
         result.push(newDotArray)
       }
-
-      // let previousElement = arrays[i - 1];
-      // if (previousElement[0] === 0) {
-      //   for (let j = 1; j < 100; j++) {
-      //     previousElement = arrays[i - j];
-      //     if (previousElement[0] !== 0) {
-      //       break;
-      //     }
-      //   }
-      // }
-      // if (previousElement === arrays[i - 1]) {
-      //   previousElement = [arrays[i - 1][0] + 10, arrays[i - 1][1]]
-      // }
-      // result.push(previousElement);
-
-      // result.push(element)
     } else {
       result.push(element)
     }
@@ -248,35 +236,14 @@ export const deconstructContinentState = continent => {
 
   const arrayOfPoints = removeElement(svgArrayFull, 0, 1)
 
-  const arrayOfCoordinates = arrayOfPoints.reduce((result, element, i) => {
+  const arrayOfCoordinates = arrayOfPoints.reduce((result, element) => {
     const x = element[0] / FACTOR
     const y = element[1] / FACTOR
 
-    const latLon = coordToLatLon([x, y], [0, 0], [93, 44])
+    const latLon = coordToLatLon([x, y], origin, extent)
     result.push(latLon)
     return result
   }, [])
 
-  // const segments = svgArray.reduce((result, element, i) => {
-  //   if (element === "m10,0") {
-  //     console.log(svgArray[i - 2]);
-  //   }
-  //   const array = element.replace("M", "").split(",");
-  //   // console.log(array)
-
-  //   const x = parseInt(array[0]) / FACTOR;
-  //   const y = parseInt(array[1]) / FACTOR;
-
-  //   const latLon = coordToLatLon([x, y], [0, 0], [93, 44]);
-
-  //   result.push(latLon);
-  //   return result;
-  // }, []);
-
-  // return segments;
-
   return arrayOfCoordinates
 }
-
-// console.log('hi')
-console.log(deconstructContinentState(NorthAmerica))

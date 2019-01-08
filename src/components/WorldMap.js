@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { base, Box, WorldMap as GrommetWorldMap } from 'grommet'
-import { deconstructContinentState, NorthAmerica} from '../utilities'
+import { NorthAmerica } from '../constants'
 
 const theme = {
   ...base,
@@ -19,7 +19,7 @@ const theme = {
 
 const countNorthAmerica = () => {
   const northAmericaPlaces = []
-  const NorthAmericaCoordinates = deconstructContinentState(NorthAmerica)
+  const NorthAmericaCoordinates = NorthAmerica.coordinates
   for (let i = 0; i < NorthAmericaCoordinates.length; i++) {
     const place = {
       name: `testPlace-${i}`,
@@ -69,26 +69,6 @@ class WorldMap extends Component {
       >
         <GrommetWorldMap
           a11yTitle="WorldMap"
-          continents={[
-            { color: 'blue', name: 'Africa', onHover: e => console.log(e) },
-            {
-              color: 'red',
-              name: 'North America',
-              onHover: e => console.log(e)
-            },
-            { color: 'green', name: 'Asia', onHover: e => console.log(e) },
-            {
-              color: 'yellow',
-              name: 'Australia',
-              onHover: e => console.log(e)
-            },
-            { color: 'purple', name: 'Europe', onHover: e => console.log(e) },
-            {
-              color: 'pink',
-              name: 'South America',
-              onHover: e => console.log(e)
-            }
-          ]}
           onSelectPlace={this.handleSelectPlace}
           places={places}
           style={{ border: 'red solid 3px' }}
