@@ -94,8 +94,8 @@ const Australia = {
     [15, 7, 1],
     [14, 8, 1],
     [13, 9, 1],
-  ],
-},
+  ]
+}
 
 // All from Grommet
 const FACTOR = 10
@@ -247,3 +247,5 @@ export const deconstructContinentState = continent => {
 
   return arrayOfCoordinates
 }
+
+console.log(deconstructContinentState(Australia))

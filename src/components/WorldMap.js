@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { base, Box, WorldMap as GrommetWorldMap } from 'grommet'
-import { NorthAmerica } from '../constants'
+import { NorthAmerica, Australia } from '../constants'
 
 const theme = {
   ...base,
@@ -17,23 +17,23 @@ const theme = {
   }
 }
 
-const countNorthAmerica = () => {
-  const northAmericaPlaces = []
-  const NorthAmericaCoordinates = NorthAmerica.coordinates
-  for (let i = 0; i < NorthAmericaCoordinates.length; i++) {
+const countAustralia = () => {
+  const australiaPlaces = []
+  const AustraliaCoordinates = Australia.coordinates
+  for (let i = 0; i < AustraliaCoordinates.length; i++) {
     const place = {
       name: `testPlace-${i}`,
       color: 'accent-1',
-      location: NorthAmericaCoordinates[i]
+      location: AustraliaCoordinates[i]
     }
-    northAmericaPlaces.push(place)
+    australiaPlaces.push(place)
   }
-  return northAmericaPlaces
+  return australiaPlaces
 }
 
 class WorldMap extends Component {
   state = {
-    places: countNorthAmerica()
+    places: countAustralia()
   }
 
   handleSelectPlace = place => {
