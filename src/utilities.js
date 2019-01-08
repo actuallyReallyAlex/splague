@@ -93,7 +93,93 @@ const Australia = {
     [5, 6, 4],
     [15, 7, 1],
     [14, 8, 1],
-    [13, 9, 1],
+    [13, 9, 1]
+  ]
+}
+
+const Asia = {
+  name: 'Asia',
+  origin: [52, 1],
+  area: [
+    [16, 0],
+    [38, 5],
+    [40, 7],
+    [28, 17],
+    [24, 25],
+    [29, 29],
+    [19, 29],
+    [11, 24],
+    [3, 23],
+    [0, 20],
+    [0, 19],
+    [6, 13],
+    [7, 6]
+  ],
+  dots: [
+    [16, 0, 1],
+    [17, 1, 2],
+    [18, 2, 2],
+    [15, 3, 6],
+    [28, 3, 1],
+    [30, 3, 1],
+    [10, 4, 2],
+    [13, 4, 10],
+    [24, 4, 1],
+    [9, 5, 22],
+    [32, 5, 1],
+    [38, 5, 1],
+    [7, 6, 2],
+    [10, 6, 1],
+    [12, 6, 27],
+    [7, 7, 34],
+    [7, 8, 31],
+    [7, 9, 26],
+    [34, 9, 3],
+    [7, 10, 22],
+    [31, 10, 1],
+    [33, 10, 1],
+    [7, 11, 21],
+    [32, 11, 2],
+    [7, 12, 21],
+    [32, 12, 1],
+    [6, 13, 22],
+    [32, 13, 1],
+    [6, 14, 22],
+    [5, 15, 22],
+    [3, 16, 2],
+    [6, 16, 20],
+    [2, 17, 3],
+    [6, 17, 16],
+    [24, 17, 1],
+    [28, 17, 1],
+    [1, 18, 22],
+    [26, 18, 2],
+    [0, 19, 24],
+    [0, 20, 5],
+    [6, 20, 17],
+    [2, 21, 5],
+    [10, 21, 14],
+    [2, 22, 5],
+    [11, 22, 4],
+    [16, 22, 4],
+    [3, 23, 3],
+    [11, 23, 2],
+    [17, 23, 3],
+    [23, 23, 1],
+    [11, 24, 2],
+    [18, 24, 2],
+    [23, 24, 1],
+    [24, 25, 1],
+    [18, 26, 1],
+    [22, 26, 1],
+    [18, 27, 1],
+    [20, 27, 4],
+    [18, 28, 1],
+    [21, 28, 1],
+    [23, 28, 1],
+    [26, 28, 3],
+    [19, 29, 1],
+    [28, 29, 2]
   ]
 }
 
@@ -173,6 +259,19 @@ const removeElement = (array, unwantedElement, elementIndex = null) => {
 }
 
 /**
+ * Removes an element from an array.
+ * @param {Array} array Array of elements to work with.
+ * @param {String} unwantedElement The element you wish to remove from the array.
+ * @param {Number} elementIndex If provided, will match this index term.
+ * @returns {Array} An array without the unwanted element(s).
+ */
+const filterPredicate = (unwantedElement, element, elementIndex) => {
+  return elementIndex
+    ? unwantedElement !== element[elementIndex]
+    : unwantedElement !== element
+}
+
+/**
  * Replaces a string with another string in an array.
  * @param {Array} array Array to work with.
  * @param {String} replaceThis String to be replaced.
@@ -194,9 +293,11 @@ export const deconstructContinentState = continent => {
   // Split that string into an array of strings
   const svgArray = svgString.split(' ')
   // Remove 'h0's
-  const svgArrayNoh0 = removeElement(svgArray, 'h0')
+  // const svgArrayNoh0 = removeElement(svgArray, 'h0')
+  const svgArrayNoh0 = svgArray.filter(element => element !== 'h0')
   // Replace 'M' with nothing
-  const svgArrayNoM = replaceElement(svgArrayNoh0, 'M', '')
+  // const svgArrayNoM = replaceElement(svgArrayNoh0, 'M', '')
+  const svgArrayNoM = svgArrayNoh0.map(element => element.replace('M', ''))
   // An array of arrays
   const arrays = svgArrayNoM.map(element => {
     const splitUp = element.split(',')
@@ -234,7 +335,8 @@ export const deconstructContinentState = continent => {
     return result
   }, [])
 
-  const arrayOfPoints = removeElement(svgArrayFull, 0, 1)
+  // const arrayOfPoints = removeElement(svgArrayFull, 0, 1)
+  const arrayOfPoints = svgArrayFull.filter(element => filterPredicate(0, element, 1))
 
   const arrayOfCoordinates = arrayOfPoints.reduce((result, element) => {
     const x = element[0] / FACTOR

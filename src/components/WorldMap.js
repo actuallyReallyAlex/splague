@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { base, Box, WorldMap as GrommetWorldMap } from 'grommet'
-import { NorthAmerica, Australia } from '../constants'
+import { NorthAmerica, Australia, justLeftDotsNA } from '../constants'
 
 const theme = {
   ...base,
@@ -17,24 +17,46 @@ const theme = {
   }
 }
 
-const countAustralia = () => {
-  const australiaPlaces = []
-  const AustraliaCoordinates = Australia.coordinates
-  for (let i = 0; i < AustraliaCoordinates.length; i++) {
+const buildPlaces = continent => {
+  const places = []
+  const continentCoordinates = continent.coordinates
+  for (let i = 0; i < continentCoordinates.length; i++) {
     const place = {
       name: `testPlace-${i}`,
       color: 'accent-1',
-      location: AustraliaCoordinates[i]
+      location: continentCoordinates[i]
     }
-    australiaPlaces.push(place)
+    places.push(place)
   }
-  return australiaPlaces
+  return places
 }
 
 class WorldMap extends Component {
   state = {
-    places: countAustralia()
+    // places: countJustLeftDotsNA()
+    // places: buildPlaces(NorthAmerica)
+    places: [],
+    // index: 0
   }
+
+  // makeDots = () => {
+  //   setInterval(() => {
+  //     const { index, places } = this.state
+  //     const newPlace = {
+  //       color: 'accent-1',
+  //       location: NorthAmerica.coordinates[index]
+  //     }
+  //     const newPlaces = [...places, newPlace]
+  //     const newIndex = index + 1
+  //     this.setState(() => ({ index: newIndex, places: newPlaces }))
+  //   }, 50)
+  // }
+
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.makeDots()
+  //   }, 10000);
+  // }
 
   handleSelectPlace = place => {
     console.log(place)
@@ -64,14 +86,14 @@ class WorldMap extends Component {
         align="center"
         justify="center"
         pad="medium"
-        style={{ border: 'red solid 3px' }}
+        // style={{ border: 'red solid 3px' }}
         width="70%"
       >
         <GrommetWorldMap
           a11yTitle="WorldMap"
           onSelectPlace={this.handleSelectPlace}
           places={places}
-          style={{ border: 'red solid 3px' }}
+          // style={{ border: 'red solid 3px' }}
           theme={theme}
         />
       </Box>
