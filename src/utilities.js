@@ -215,6 +215,8 @@ const buildContinentState = ({ area, dots, origin }) => {
   return stateDots
 }
 
+console.log(buildContinentState(NorthAmerica))
+
 // Returns specifics about the map
 const mapValues = extent => {
   const mapRadius = ((extent[0] / MAP_LON_DELTA) * 360) / (2 * Math.PI)
@@ -243,43 +245,10 @@ export const coordToLatLon = (coord, origin, extent) => {
  * @param {Number} elementIndex If provided, will match this index term.
  * @returns {Array} An array without the unwanted element(s).
  */
-const removeElement = (array, unwantedElement, elementIndex = null) => {
-  return array.reduce((result, element) => {
-    let searchTerm
-    if (elementIndex) {
-      searchTerm = element[elementIndex]
-    } else {
-      searchTerm = element
-    }
-    if (searchTerm !== unwantedElement) {
-      result.push(element)
-    }
-    return result
-  }, [])
-}
-
-/**
- * Removes an element from an array.
- * @param {Array} array Array of elements to work with.
- * @param {String} unwantedElement The element you wish to remove from the array.
- * @param {Number} elementIndex If provided, will match this index term.
- * @returns {Array} An array without the unwanted element(s).
- */
 const filterPredicate = (unwantedElement, element, elementIndex) => {
   return elementIndex
     ? unwantedElement !== element[elementIndex]
     : unwantedElement !== element
-}
-
-/**
- * Replaces a string with another string in an array.
- * @param {Array} array Array to work with.
- * @param {String} replaceThis String to be replaced.
- * @param {String} withThat String to replace with.
- * @returns {Array} An array with the replaced elements.
- */
-const replaceElement = (array, replaceThis, withThat) => {
-  return array.map(element => element.replace(replaceThis, withThat))
 }
 
 /**
@@ -289,65 +258,50 @@ const replaceElement = (array, replaceThis, withThat) => {
  */
 export const deconstructContinentState = continent => {
   // Full string as an svg path.
-  const svgString = buildContinentState(continent)
-  // Split that string into an array of strings
-  const svgArray = svgString.split(' ')
-  // Remove 'h0's
-  // const svgArrayNoh0 = removeElement(svgArray, 'h0')
-  const svgArrayNoh0 = svgArray.filter(element => element !== 'h0')
-  // Replace 'M' with nothing
-  // const svgArrayNoM = replaceElement(svgArrayNoh0, 'M', '')
-  const svgArrayNoM = svgArrayNoh0.map(element => element.replace('M', ''))
-  // An array of arrays
-  const arrays = svgArrayNoM.map(element => {
-    const splitUp = element.split(',')
-    return [parseInt(splitUp[0]), parseInt(splitUp[1])]
-  })
-
-  const svgArrayFull = arrays.reduce((result, element, i) => {
-    if (element[1] === 0) {
-      // This is a dot that needs to be added manually
-      let numberOfManualDots = 0
-      // Count how many dots need to be created manually before the next real dot
-      // 100 is just an arbitrary number larger than any number of manual dots you'll ever encounter
-      for (let k = 0; k < 100; k++) {
-        if (arrays[i + k][1] === 0) {
-          numberOfManualDots++
-        } else {
-          // Once you encounter an array that is a true dot, stop incrementing the number of manual dots.
-          break
+  return buildContinentState(continent)
+    .split(' ')
+    .filter(element => filterPredicate('h0', element))
+    .map(element => element.replace('M', ''))
+    .map(element => {
+      const splitUp = element.split(',')
+      return [parseInt(splitUp[0]), parseInt(splitUp[1])]
+    })
+    .reduce((result, element, i, arr) => {
+      if (element[1] === 0) {
+        // This is a dot that needs to be added manually
+        let numberOfManualDots = 0
+        // Count how many dots need to be created manually before the next real dot
+        // 100 is just an arbitrary number larger than any number of manual dots you'll ever encounter
+        for (let k = 0; k < 100; k++) {
+          if (arr[i + k][1] === 0) {
+            numberOfManualDots++
+          } else {
+            // Once you encounter an array that is a true dot, stop incrementing the number of manual dots.
+            break
+          }
         }
+
+        // Now that we know how many dots need to be added manually,
+        // create an array for each one
+        for (let l = 1; l < numberOfManualDots + 1; l++) {
+          // The last true dot in this row\
+          const baseDot = arr[i - 1]
+
+          // Make a new array where the first element is the base dot's first element plus 10
+          const newDotArray = [baseDot[0] + l * 10, baseDot[1]]
+          result.push(newDotArray)
+        }
+      } else {
+        result.push(element)
       }
-
-      // Now that we know how many dots need to be added manually,
-      // create an array for each one
-      for (let l = 1; l < numberOfManualDots + 1; l++) {
-        // The last true dot in this row\
-        const baseDot = arrays[i - 1]
-
-        // Make a new array where the first element is the base dot's first element plus 10
-        const newDotArray = [baseDot[0] + l * 10, baseDot[1]]
-        result.push(newDotArray)
-      }
-    } else {
-      result.push(element)
-    }
-    return result
-  }, [])
-
-  // const arrayOfPoints = removeElement(svgArrayFull, 0, 1)
-  const arrayOfPoints = svgArrayFull.filter(element => filterPredicate(0, element, 1))
-
-  const arrayOfCoordinates = arrayOfPoints.reduce((result, element) => {
-    const x = element[0] / FACTOR
-    const y = element[1] / FACTOR
-
-    const latLon = coordToLatLon([x, y], origin, extent)
-    result.push(latLon)
-    return result
-  }, [])
-
-  return arrayOfCoordinates
+      return result
+    }, [])
+    .filter(element => filterPredicate(0, element, 1))
+    .map(element => {
+      const x = element[0] / FACTOR
+      const y = element[1] / FACTOR
+      return coordToLatLon([x, y], origin, extent)
+    })
 }
 
 console.log(deconstructContinentState(Australia))
