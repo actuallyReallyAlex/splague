@@ -137,6 +137,14 @@ export const coordToLatLon = (coord, origin, extent) => {
   return [lat, lon]
 }
 
+
+
+// -------------------------
+// My functions below
+// You can console.log() `deconstructContinentState(Asia)` to get an array of coordinates.
+// -------------------------
+
+
 /**
  * Removes an element from an array.
  * @param {Array} array Array of elements to work with.
