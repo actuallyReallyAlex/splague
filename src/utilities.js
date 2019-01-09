@@ -166,13 +166,13 @@ export const deconstructContinentState = continent => {
       return [parseInt(splitUp[0]), parseInt(splitUp[1])]
     })
     .reduce((result, element, i, arr) => {
-      if (element[1] === 0) {
+      if (isNaN(element[0])) {
         // This is a dot that needs to be added manually
         let numberOfManualDots = 0
         // Count how many dots need to be created manually before the next real dot
         // 100 is just an arbitrary number larger than any number of manual dots you'll ever encounter
-        for (let k = 0; k < 100; k++) {
-          if (arr[i + k][1] === 0) {
+        for (let k = 0; k < 100 && k + i < arr.length; k++) {
+          if (isNaN(arr[i + k][0])) {
             numberOfManualDots++
           } else {
             // Once you encounter an array that is a true dot, stop incrementing the number of manual dots.
@@ -202,5 +202,3 @@ export const deconstructContinentState = continent => {
       return coordToLatLon([x, y], origin, extent)
     })
 }
-
-console.log(deconstructContinentState(Asia))
