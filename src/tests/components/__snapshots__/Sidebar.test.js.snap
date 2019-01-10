@@ -783,7 +783,7 @@ exports[`<Sidebar /> Should render snapshot of Sidebar component. 1`] = `
       },
     }
   }
-  width="250px"
+  width="15%"
 >
   <ForwardRef
     align="center"

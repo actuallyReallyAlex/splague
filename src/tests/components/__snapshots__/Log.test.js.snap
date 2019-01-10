@@ -44,7 +44,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   outline: none;
   max-width: 100%;
   margin: 0px;
-  width: 300px;
+  width: 15%;
   background: #424344;
   color: #f8f8f8;
   min-width: 0;
