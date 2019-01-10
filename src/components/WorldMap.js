@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { base, Box, WorldMap as GrommetWorldMap } from 'grommet'
-import { NorthAmerica, Australia, justLeftDotsNA } from '../constants'
+import { deconstructContinentState } from '../utilities'
 
 const theme = {
   ...base,
@@ -19,7 +19,7 @@ const theme = {
 
 const buildPlaces = continent => {
   const places = []
-  const continentCoordinates = continent.coordinates
+  const continentCoordinates = deconstructContinentState(continent)
   for (let i = 0; i < continentCoordinates.length; i++) {
     const place = {
       name: `testPlace-${i}`,
@@ -33,30 +33,8 @@ const buildPlaces = continent => {
 
 class WorldMap extends Component {
   state = {
-    // places: countJustLeftDotsNA()
-    // places: buildPlaces(NorthAmerica)
-    places: [],
-    // index: 0
+    places: []
   }
-
-  // makeDots = () => {
-  //   setInterval(() => {
-  //     const { index, places } = this.state
-  //     const newPlace = {
-  //       color: 'accent-1',
-  //       location: NorthAmerica.coordinates[index]
-  //     }
-  //     const newPlaces = [...places, newPlace]
-  //     const newIndex = index + 1
-  //     this.setState(() => ({ index: newIndex, places: newPlaces }))
-  //   }, 50)
-  // }
-
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     this.makeDots()
-  //   }, 10000);
-  // }
 
   handleSelectPlace = place => {
     console.log(place)
@@ -91,6 +69,7 @@ class WorldMap extends Component {
       >
         <GrommetWorldMap
           a11yTitle="WorldMap"
+          continents={[{ name: 'Asia', color: 'blue' }]}
           onSelectPlace={this.handleSelectPlace}
           places={places}
           // style={{ border: 'red solid 3px' }}
