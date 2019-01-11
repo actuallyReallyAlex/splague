@@ -269,8 +269,6 @@ exports[`<ChooseName /> Should render snapshot of ChooseName screen. 1`] = `
       >
         <div
           className="c3"
-          onBlur={[Function]}
-          onFocus={[Function]}
         >
           <div
             className="c4"
