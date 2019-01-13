@@ -8,8 +8,8 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   flex: 0 0 auto;
   width: 24px;
   height: 24px;
-  fill: #FFFFFF;
-  stroke: #FFFFFF;
+  fill: white;
+  stroke: white;
 }
 
 .c3 g {
@@ -44,9 +44,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   outline: none;
   max-width: 100%;
   margin: 0px;
-  width: 15%;
-  background: #424344;
-  color: #f8f8f8;
+  width: 20%;
   min-width: 0;
   min-height: 0;
   -webkit-flex-direction: column;
@@ -54,6 +52,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   flex-direction: column;
   height: 100%;
   padding: 12px;
+  overflow: scroll;
 }
 
 .c1 {
@@ -65,15 +64,12 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   outline: none;
   max-width: 100%;
   margin: 0px;
-  background: #FFFFFF;
-  color: #444444;
   min-width: 0;
   min-height: 0;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
   padding: 12px;
-  border-radius: 12px;
 }
 
 .c2 {
@@ -85,14 +81,12 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   outline: none;
   max-width: 100%;
   margin: 0px;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #000000;
-  color: #f8f8f8;
   min-width: 0;
   min-height: 0;
   -webkit-flex-direction: column;
@@ -103,7 +97,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   -ms-flex-pack: center;
   justify-content: center;
   padding: 0px;
-  border-radius: 100%;
+  border-radius: 12px;
 }
 
 .c5 {
@@ -115,11 +109,34 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   outline: none;
   max-width: 100%;
   margin: 0px;
+  width: 192px;
   min-width: 0;
   min-height: 0;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  padding: 0px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   padding: 0px;
 }
 
@@ -130,14 +147,14 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   width: 12px;
 }
 
-.c9 {
+.c10 {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   height: 12px;
 }
 
-.c10 {
+.c11 {
   display: inline-block;
   box-sizing: border-box;
   cursor: pointer;
@@ -149,9 +166,9 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   background: transparent;
   overflow: visible;
   text-transform: none;
-  border: 2px solid #6FFFB0;
+  border: 2px solid #7D4CDB;
   border-radius: 18px;
-  color: #f8f8f8;
+  color: #444444;
   padding: 4px 22px;
   font-size: 18px;
   line-height: 24px;
@@ -159,17 +176,22 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   transition: 0.1s ease-in-out;
 }
 
-.c10:hover {
-  box-shadow: 0px 0px 0px 2px #6FFFB0;
-}
-
-.c6 {
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: bold;
+.c11:hover {
+  box-shadow: 0px 0px 0px 2px #7D4CDB;
 }
 
 .c7 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+.c8 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.c9 {
   margin: 0px;
   font-size: 14px;
   line-height: 20px;
@@ -180,11 +202,6 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   color: grey;
 }
 
-.c8 {
-  font-size: 14px;
-  line-height: 20px;
-}
-
 @media only screen and (max-width:768px) {
   .c0 {
     margin: 0px;
@@ -210,24 +227,24 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
 }
 
 @media only screen and (max-width:768px) {
-  .c1 {
+  .c2 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c2 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c2 {
     border-radius: 6px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c2 {
-    margin: 0px;
-  }
-}
-
-@media only screen and (max-width:768px) {
-  .c2 {
-    padding: 0px;
-  }
-}
-
-@media only screen and (max-width:768px) {
   .c5 {
     margin: 0px;
   }
@@ -240,19 +257,41 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
 }
 
 @media only screen and (max-width:768px) {
-  .c9 {
+  .c6 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c6 {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c10 {
     height: 6px;
   }
 }
 
 <div
   className="c0"
+  style={
+    Object {
+      "background": "rgb(30, 32, 46)",
+    }
+  }
 >
   <div
     className="animated fadeInUp c1"
   >
     <div
       className="c2"
+      style={
+        Object {
+          "background": "rgb(40, 41, 62)",
+        }
+      }
     >
       <svg
         aria-label="Alert"
@@ -273,13 +312,22 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
     <div
       className="c5"
     >
-      <span
+      <div
         className="c6"
       >
-        Test Item 1
-      </span>
+        <span
+          className="c7"
+          size="small"
+        >
+          Test Item 1
+        </span>
+        <span
+          className="c8"
+          size="small"
+        />
+      </div>
       <span
-        className="c7"
+        className="c9"
         size="small"
       >
         Additional Info
@@ -293,10 +341,10 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
     </div>
   </div>
   <div
-    className="c9"
+    className="c10"
   />
   <button
-    className="c10"
+    className="c11"
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
