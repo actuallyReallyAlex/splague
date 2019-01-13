@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import sample from 'lodash.sample'
-import { Box, Button, FormField, TextInput } from 'grommet'
+import { Box, Button, Form, FormField, TextInput } from 'grommet'
 import { Update } from 'grommet-icons'
 import { chooseName } from '../redux/actions/player'
 import { changeScreen, transitionScreen } from '../redux/actions/ui'
@@ -79,7 +79,7 @@ export class ChooseName extends Component {
         fill
         justify="center"
       >
-        <form>
+        <Form onSubmit={e => this.handleNameSelection(e)}>
           <Box align="center">
             <Box align="end" direction="row" gap="medium">
               <FormField
@@ -114,7 +114,7 @@ export class ChooseName extends Component {
               </Box>
             )}
           </Box>
-        </form>
+        </Form>
       </Box>
     )
   }

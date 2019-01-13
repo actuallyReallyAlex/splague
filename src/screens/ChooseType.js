@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Box, Button, FormField, Select } from 'grommet'
+import { Box, Button, FormField, Select, Form } from 'grommet'
 import { chooseType } from '../redux/actions/player'
 import { changeScreen, transitionScreen } from '../redux/actions/ui'
 import { plagueTypes, factionTypes } from '../constants'
@@ -51,15 +51,19 @@ export class ChooseType extends Component {
         justify="center"
       >
         <Box>
-          <FormField
-            label={player.morality === 'good' ? 'Faction' : 'Plague Type'}
-          >
-            <Select
-              onChange={this.handleTypeChange}
-              options={player.morality === 'good' ? factionTypes : plagueTypes}
-              value={type}
-            />
-          </FormField>
+          <Form onSubmit={e => this.handleBegin(e)}>
+            <FormField
+              label={player.morality === 'good' ? 'Faction' : 'Plague Type'}
+            >
+              <Select
+                onChange={this.handleTypeChange}
+                options={
+                  player.morality === 'good' ? factionTypes : plagueTypes
+                }
+                value={type}
+              />
+            </FormField>
+          </Form>
         </Box>
         {type && (
           <Box

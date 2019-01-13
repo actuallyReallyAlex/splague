@@ -396,79 +396,83 @@ exports[`<ChooseType /> Should render snapshot of ChooseType screen. 1`] = `
   <div
     className="c1"
   >
-    <div
-      className="c2"
+    <form
+      onSubmit={[Function]}
     >
       <div
-        className="c3"
+        className="c2"
       >
-        <label
-          className="c4"
+        <div
+          className="c3"
         >
-          Plague Type
-        </label>
-      </div>
-      <div
-        className="c5"
-      >
-        <button
-          aria-label="Open Drop"
-          className="c6 c7"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="button"
+          <label
+            className="c4"
+          >
+            Plague Type
+          </label>
+        </div>
+        <div
+          className="c5"
         >
-          <div
-            className="c8"
+          <button
+            aria-label="Open Drop"
+            className="c6 c7"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="button"
           >
             <div
-              className="c9"
+              className="c8"
             >
               <div
-                className="c10"
+                className="c9"
               >
-                <input
-                  autoComplete="off"
-                  className="c11 c12"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  readOnly={true}
-                  tabIndex="-1"
-                  type="text"
-                  value=""
-                />
+                <div
+                  className="c10"
+                >
+                  <input
+                    autoComplete="off"
+                    className="c11 c12"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    readOnly={true}
+                    tabIndex="-1"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="c13"
+                style={
+                  Object {
+                    "minWidth": "auto",
+                  }
+                }
+              >
+                <svg
+                  aria-label="FormDown"
+                  className="c14"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline
+                    fill="none"
+                    points="18 9 12 15 6 9"
+                    stroke="#000"
+                    strokeWidth="2"
+                  />
+                </svg>
               </div>
             </div>
-            <div
-              className="c13"
-              style={
-                Object {
-                  "minWidth": "auto",
-                }
-              }
-            >
-              <svg
-                aria-label="FormDown"
-                className="c14"
-                viewBox="0 0 24 24"
-              >
-                <polyline
-                  fill="none"
-                  points="18 9 12 15 6 9"
-                  stroke="#000"
-                  strokeWidth="2"
-                />
-              </svg>
-            </div>
-          </div>
-        </button>
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
   
 </div>
