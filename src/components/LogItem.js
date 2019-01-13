@@ -3,29 +3,28 @@ import PropTypes from 'prop-types'
 import { Box, Text } from 'grommet'
 import { User } from 'grommet-icons'
 
-export const LogItem = ({ additionalInfo, description, icon, title }) => {
+export const LogItem = ({ additionalInfo, description, icon, time, title }) => {
   const Icon = icon
   return (
-    <Box
-      background="white"
-      className="animated fadeInUp"
-      direction="row"
-      gap="small"
-      pad="small"
-      round="small"
-    >
+    <Box className="animated fadeInUp" direction="row" gap="small" pad="small">
       <Box
         align="center"
-        background="black"
-        height="50px"
+        height="40px"
         justify="center"
-        round="full"
-        width="50px"
+        round="small"
+        style={{ background: 'rgb(40, 41, 62)' }}
+        width="40px"
       >
         <Icon color="white" />
       </Box>
-      <Box>
-        <Text weight="bold">{title}</Text>
+      <Box width="small">
+        <Box justify="between" direction="row" fill="horizontal">
+          <Text size="small" weight="bold">
+            {title}
+          </Text>
+          <Text size="small">{time}</Text>
+        </Box>
+
         {additionalInfo && (
           <Text color="grey" margin="none" size="small">
             {additionalInfo}
@@ -41,6 +40,7 @@ LogItem.propTypes = {
   additionalInfo: PropTypes.string,
   description: PropTypes.string.isRequired,
   icon: PropTypes.func,
+  time: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
 
