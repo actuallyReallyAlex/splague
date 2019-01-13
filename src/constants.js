@@ -14,6 +14,16 @@ export const plagueTypes = ['Bubonic', 'Septicemic', 'Pneumonic']
 
 export const factionTypes = ['Earth Tribe', 'Tradesmen', 'Warlords']
 
+export const goodNames = {
+  adjectives: ['Happy', 'Fast', 'Amazing', 'Wonderful', 'Wise'],
+  nouns: ['Cure']
+}
+
+export const evilNames = {
+  adjectives: ['Black', 'Evil', 'Slow', 'Fast', 'Quick', 'Sinister', 'Sleepless', 'Oozing', 'Powerful', 'Swift', 'Cold'],
+  nouns: ['Death', 'Pain', 'Spot', 'Punch', 'Knife', 'Sword', 'Illness', 'Sickness', 'Plague', 'Crow', 'Buzzard', 'Sludge', 'Slime']
+}
+
 export const Afria = {
   coordinates: [
     [32.46392431882024, -3.0430107526881613],
