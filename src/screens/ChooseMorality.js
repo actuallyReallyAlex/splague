@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Box, RadioButton, Button } from 'grommet'
+import { Box, Button, Form, RadioButton } from 'grommet'
 import { chooseMorality } from '../redux/actions/player'
 import {
   changeBackground,
@@ -94,7 +94,7 @@ export class ChooseMorality extends Component {
         fill
         justify="center"
       >
-        <form>
+        <Form onSubmit={e => this.handleContinue(e)}>
           <Box align="center">
             <Box direction="row" gap="medium">
               <Box
@@ -137,7 +137,7 @@ export class ChooseMorality extends Component {
               </Box>
             )}
           </Box>
-        </form>
+        </Form>
       </Box>
     )
   }
