@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import sample from 'lodash.sample'
 import { Box, Button, FormField, TextInput } from 'grommet'
+import { Update } from 'grommet-icons'
 import { chooseName } from '../redux/actions/player'
 import { changeScreen, transitionScreen } from '../redux/actions/ui'
+import { goodNames, evilNames } from '../constants'
 
 export class ChooseName extends Component {
   static propTypes = {
@@ -50,6 +53,21 @@ export class ChooseName extends Component {
     }
   }
 
+  handleRandomName = () => {
+    const { morality } = this.props.player
+    const nameGroup = morality === 'good' ? goodNames : evilNames
+    let randomName = `The ${sample(nameGroup.adjectives)} ${sample(
+      nameGroup.nouns
+    )}`
+    while (randomName === this.playerName.current.value) {
+      randomName = `The ${sample(nameGroup.adjectives)} ${sample(
+        nameGroup.nouns
+      )}`
+    }
+    this.playerName.current.value = randomName
+    this.setState(() => ({ name: randomName }))
+  }
+
   render() {
     const { error, name } = this.state
     const { player, ui } = this.props
@@ -63,16 +81,23 @@ export class ChooseName extends Component {
       >
         <form>
           <Box align="center">
-            <Box>
+            <Box align="end" direction="row" gap="medium">
               <FormField
                 error={error && "Name can't be blank. Please try again."}
-                label="Name"
+                label={player.morality === 'good' ? 'Cure Name' : 'Plague Name'}
               >
                 <TextInput
                   onChange={this.handleNameChange}
                   ref={this.playerName}
                 />
               </FormField>
+              <Box>
+                <Button
+                  icon={<Update />}
+                  onClick={this.handleRandomName}
+                  plain
+                />
+              </Box>
             </Box>
             {name && (
               <Box

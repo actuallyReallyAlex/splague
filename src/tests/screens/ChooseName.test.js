@@ -24,4 +24,7 @@ describe('<ChooseName />', () => {
       .toJSON()
     expect(component).toMatchSnapshot()
   })
+  it('Should generate a random name if random name button is clicked.', () => {})
+  it('Should have the value of the name set by the user if a name is set.', () => {})
+  it('Should show the Continue button if a name is entered.', () => {})
 })
