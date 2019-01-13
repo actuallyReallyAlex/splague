@@ -56,9 +56,13 @@ export class ChooseName extends Component {
   handleRandomName = () => {
     const { morality } = this.props.player
     const nameGroup = morality === 'good' ? goodNames : evilNames
-    let randomName = `The ${sample(nameGroup.adjectives)} ${sample(nameGroup.nouns)}`
+    let randomName = `The ${sample(nameGroup.adjectives)} ${sample(
+      nameGroup.nouns
+    )}`
     while (randomName === this.playerName.current.value) {
-      randomName = `The ${sample(nameGroup.adjectives)} ${sample(nameGroup.nouns)}`
+      randomName = `The ${sample(nameGroup.adjectives)} ${sample(
+        nameGroup.nouns
+      )}`
     }
     this.playerName.current.value = randomName
     this.setState(() => ({ name: randomName }))
