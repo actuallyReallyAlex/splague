@@ -6,7 +6,7 @@ import { User } from 'grommet-icons'
 export const LogItem = ({ additionalInfo, description, icon, time, title }) => {
   const Icon = icon
   return (
-    <Box className="animated fadeInUp" direction="row" gap="small" pad="small">
+    <Box flex={false} className="animated fadeInUp" direction="row" gap="small" pad="small">
       <Box
         align="center"
         height="40px"

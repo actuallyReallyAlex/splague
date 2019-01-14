@@ -36,7 +36,7 @@ export class Log extends Component {
       <Box
         fill="vertical"
         gap="small"
-        overflow="scroll"
+        overflow="auto"
         pad="small"
         style={{ background: 'rgb(30, 32, 46)' }}
         width="20%"
