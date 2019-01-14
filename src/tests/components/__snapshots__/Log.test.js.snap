@@ -52,7 +52,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   flex-direction: column;
   height: 100%;
   padding: 12px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .c1 {
@@ -69,6 +69,9 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
   padding: 12px;
 }
 
