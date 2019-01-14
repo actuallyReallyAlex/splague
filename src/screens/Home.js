@@ -5,15 +5,11 @@ import { Box } from 'grommet'
 import Sidebar from '../components/Sidebar'
 import Log from '../components/Log'
 import Navbar from '../components/Navbar'
-import Main from '../components/Main';
+import Main from '../components/Main'
 
 export const Home = ({ player, ui }) => {
   return (
-    <Box
-      background={player.morality === 'good' ? 'white' : '#252839'}
-      className={ui.transitionClasses}
-      fill
-    >
+    <Box background="#252839" className={ui.transitionClasses} fill>
       <Navbar />
       <Box direction="row" fill justify="between">
         <Sidebar />
