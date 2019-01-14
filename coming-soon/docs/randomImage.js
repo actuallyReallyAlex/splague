@@ -3,12 +3,9 @@
 // Array of Images to choose from
 const images = [
   './images/bubonic.svg',
-  './images/earthTribe.svg',
   './images/patientZero.svg',
   './images/pneumonic.svg',
-  './images/septicemic.svg',
-  './images/tradesmen.svg',
-  './images/warlords.svg'
+  './images/septicemic.svg'
 ]
 
 /**
