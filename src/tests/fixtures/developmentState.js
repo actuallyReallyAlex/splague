@@ -14,8 +14,9 @@ export const initialState = {
   },
   ui: {
     background: 'white',
-    screen: 'chooseMorality',
+    isLogOpen: true,
     isTransitioning: false,
+    screen: 'chooseMorality',
     transitionClasses: 'animated fadeIn slow'
   },
   world: {
@@ -44,8 +45,9 @@ export const developmentState = {
   },
   ui: {
     background: '#252839',
-    screen: 'home',
+    isLogOpen: true,
     isTransitioning: false,
+    screen: 'home',
     transitionClasses: 'animated fadeIn'
   },
   world: {
