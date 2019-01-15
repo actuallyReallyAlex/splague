@@ -7,6 +7,16 @@
 **Implemented enhancements:**
 
 - Gametime in Game [\#12](https://github.com/alexlee-dev/splague/issues/12)
+- Randomly Generated Plague Names [\#11](https://github.com/alexlee-dev/splague/issues/11)
+- 📝 31 - Update Documentation [\#70](https://github.com/alexlee-dev/splague/pull/70) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✏️ 30 - Single Background [\#69](https://github.com/alexlee-dev/splague/pull/69) ([alexlee-dev](https://github.com/alexlee-dev))
+- 🎨 29 - Update Log UI [\#68](https://github.com/alexlee-dev/splague/pull/68) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✏️ 28 - Grommet Form [\#67](https://github.com/alexlee-dev/splague/pull/67) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✨ 27 - Randomize Name [\#66](https://github.com/alexlee-dev/splague/pull/66) ([alexlee-dev](https://github.com/alexlee-dev))
+- 📦 26 - Grommet Update [\#65](https://github.com/alexlee-dev/splague/pull/65) ([alexlee-dev](https://github.com/alexlee-dev))
+- 📦 24 - Webpack Dev Server [\#64](https://github.com/alexlee-dev/splague/pull/64) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✅ 23 - Code Coverage [\#63](https://github.com/alexlee-dev/splague/pull/63) ([alexlee-dev](https://github.com/alexlee-dev))
+- ✨ 22 - WorldMap [\#62](https://github.com/alexlee-dev/splague/pull/62) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✨ 21 - Navbar [\#61](https://github.com/alexlee-dev/splague/pull/61) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✅ 20 - Redux Tests [\#60](https://github.com/alexlee-dev/splague/pull/60) ([alexlee-dev](https://github.com/alexlee-dev))
 - ✨ 17 - Speed Buttons [\#59](https://github.com/alexlee-dev/splague/pull/59) ([alexlee-dev](https://github.com/alexlee-dev))
