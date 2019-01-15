@@ -43,4 +43,26 @@ describe('UI Reducer', () => {
       transitionClasses: 'active fadeOut'
     })
   })
+
+  it('Should close log.', () => {
+    const action = {
+      type: 'CLOSE_LOG'
+    }
+    const state = uiReducer(initialState.ui, action)
+    expect(state).toEqual({
+      ...initialState.ui,
+      isLogOpen: false
+    })
+  })
+
+  it('Should open log.', () => {
+    const action = {
+      type: 'OPEN_LOG'
+    }
+    const state = uiReducer(initialState.ui, action)
+    expect(state).toEqual({
+      ...initialState.ui,
+      isLogOpen: true
+    })
+  })
 })

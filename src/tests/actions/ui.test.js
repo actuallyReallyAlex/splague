@@ -1,7 +1,9 @@
 import {
   changeScreen,
   changeBackground,
-  transitionScreen
+  transitionScreen,
+  closeLog,
+  openLog
 } from '../../redux/actions/ui'
 
 describe('UI Actions', () => {
@@ -33,6 +35,20 @@ describe('UI Actions', () => {
         isTransitioning: true,
         transitionClasses: 'animated fadeOut'
       }
+    })
+  })
+
+  it('Should setup closeLog action object.', () => {
+    const action = closeLog()
+    expect(action).toEqual({
+      type: 'CLOSE_LOG'
+    })
+  })
+
+  it('Should setup openLog action object.', () => {
+    const action = openLog()
+    expect(action).toEqual({
+      type: 'OPEN_LOG'
     })
   })
 })
