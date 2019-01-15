@@ -2,15 +2,17 @@
 
 const uiReducerInitialState = {
   background: 'white',
-  screen: 'chooseMorality',
+  isLogOpen: true,
   isTransitioning: false,
+  screen: 'chooseMorality',
   transitionClasses: 'animated fadeIn slow'
 }
 
 const uiReducerDevelopmentState = {
   background: '#252839',
-  screen: 'home',
+  isLogOpen: true,
   isTransitioning: false,
+  screen: 'home',
   transitionClasses: 'animated fadeIn'
 }
 
@@ -33,6 +35,16 @@ export default (state = uiState, action) => {
       return {
         ...state,
         background: action.payload.background
+      }
+    case 'CLOSE_LOG':
+      return {
+        ...state,
+        isLogOpen: false
+      }
+    case 'OPEN_LOG':
+      return {
+        ...state,
+        isLogOpen: true
       }
     case 'TRANSITION_SCREEN':
       return {

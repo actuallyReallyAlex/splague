@@ -1,5 +1,7 @@
 export const CHANGE_SCREEN = 'CHANGE_SCREEN'
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
+export const CLOSE_LOG = 'CLOSE_LOG'
+export const OPEN_LOG = 'OPEN_LOG'
 export const TRANSITION_SCREEN = 'TRANSITION_SCREEN'
 
 /**
@@ -25,6 +27,24 @@ export const changeBackground = background => {
     payload: {
       background
     }
+  }
+}
+
+/**
+ * Closes the log.
+ */
+export const closeLog = () => {
+  return {
+    type: CLOSE_LOG
+  }
+}
+
+/**
+ * Opens the log.
+ */
+export const openLog = () => {
+  return {
+    type: OPEN_LOG
   }
 }
 

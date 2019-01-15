@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Log /> Should render snapshot of Log component. 1`] = `
-.c3 {
+.c6 {
   display: inline-block;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
@@ -12,25 +12,25 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   stroke: white;
 }
 
-.c3 g {
+.c6 g {
   fill: inherit;
   stroke: inherit;
 }
 
-.c3 *:not([stroke])[fill="none"] {
+.c6 *:not([stroke])[fill="none"] {
   stroke-width: 0;
 }
 
-.c3 *[stroke*="#"],
-.c3 *[STROKE*="#"] {
+.c6 *[stroke*="#"],
+.c6 *[STROKE*="#"] {
   stroke: inherit;
   fill: none;
 }
 
-.c3 *[fill-rule],
-.c3 *[FILL-RULE],
-.c3 *[fill*="#"],
-.c3 *[FILL*="#"] {
+.c6 *[fill-rule],
+.c6 *[FILL-RULE],
+.c6 *[fill*="#"],
+.c6 *[FILL*="#"] {
   fill: inherit;
   stroke: none;
 }
@@ -44,6 +44,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   outline: none;
   max-width: 100%;
   margin: 0px;
+  height: 100%;
   width: 20%;
   min-width: 0;
   min-height: 0;
@@ -69,13 +70,30 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  padding: 12px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  margin: 0px;
+  min-width: 0;
+  min-height: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   padding: 12px;
 }
 
-.c2 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -103,7 +121,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   border-radius: 12px;
 }
 
-.c5 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -121,7 +139,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   padding: 0px;
 }
 
-.c6 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -143,21 +161,21 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   padding: 0px;
 }
 
-.c4 {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  width: 12px;
-}
-
-.c10 {
+.c3 {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   height: 12px;
 }
 
-.c11 {
+.c7 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: 12px;
+}
+
+.c13 {
   display: inline-block;
   box-sizing: border-box;
   cursor: pointer;
@@ -179,22 +197,30 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
   transition: 0.1s ease-in-out;
 }
 
-.c11:hover {
+.c13:hover {
   box-shadow: 0px 0px 0px 2px #7D4CDB;
 }
 
-.c7 {
+.c2 {
+  margin: 0px;
+  font-size: 34px;
+  line-height: 40px;
+  max-width: 816px;
+  font-weight: 600;
+}
+
+.c10 {
   font-size: 14px;
   line-height: 20px;
   font-weight: bold;
 }
 
-.c8 {
+.c11 {
   font-size: 14px;
   line-height: 20px;
 }
 
-.c9 {
+.c12 {
   margin: 0px;
   font-size: 14px;
   line-height: 20px;
@@ -230,66 +256,105 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
 }
 
 @media only screen and (max-width:768px) {
-  .c2 {
+  .c4 {
     margin: 0px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c2 {
+  .c4 {
+    padding: 6px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c5 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c5 {
     padding: 0px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c2 {
+  .c5 {
     border-radius: 6px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c5 {
+  .c8 {
     margin: 0px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c5 {
+  .c8 {
     padding: 0px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c6 {
+  .c9 {
     margin: 0px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c6 {
+  .c9 {
     padding: 0px;
   }
 }
 
 @media only screen and (max-width:768px) {
-  .c10 {
+  .c3 {
     height: 6px;
   }
 }
 
+@media only screen and (max-width:768px) {
+  .c2 {
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c2 {
+    font-size: 26px;
+    line-height: 32px;
+    max-width: 624px;
+  }
+}
+
 <div
-  className="c0"
+  className="animated slideInRight c0"
   style={
     Object {
       "background": "rgb(30, 32, 46)",
+      "transition": "1s",
     }
   }
 >
   <div
-    className="animated fadeInUp c1"
+    className="c1"
+  >
+    <h2
+      className="c2"
+    >
+      Log
+    </h2>
+  </div>
+  <div
+    className="c3"
+  />
+  <div
+    className="animated fadeInUp c4"
   >
     <div
-      className="c2"
+      className="c5"
       style={
         Object {
           "background": "rgb(40, 41, 62)",
@@ -298,7 +363,7 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
     >
       <svg
         aria-label="Alert"
-        className="c3"
+        className="c6"
         viewBox="0 0 24 24"
       >
         <path
@@ -310,33 +375,33 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
       </svg>
     </div>
     <div
-      className="c4"
+      className="c7"
     />
     <div
-      className="c5"
+      className="c8"
     >
       <div
-        className="c6"
+        className="c9"
       >
         <span
-          className="c7"
+          className="c10"
           size="small"
         >
           Test Item 1
         </span>
         <span
-          className="c8"
+          className="c11"
           size="small"
         />
       </div>
       <span
-        className="c9"
+        className="c12"
         size="small"
       >
         Additional Info
       </span>
       <span
-        className="c8"
+        className="c11"
         size="small"
       >
         Test Description
@@ -344,10 +409,10 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
     </div>
   </div>
   <div
-    className="c10"
+    className="c3"
   />
   <button
-    className="c11"
+    className="c13"
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
