@@ -1,4 +1,2 @@
-* [splague](?id=splague)
-* [API](api.md)
-  * [Creating a View](api?id=creating-a-view)
+* [Splague](?id=splague)
 * [Changelog](changelog.md)
