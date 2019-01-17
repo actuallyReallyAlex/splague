@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { base, Box, WorldMap as GrommetWorldMap } from 'grommet'
 import { deconstructContinentState } from '../utilities'
 
@@ -17,7 +18,7 @@ const theme = {
   }
 }
 
-class WorldMap extends Component {
+export class WorldMap extends Component {
   state = {
     places: []
   }
@@ -51,4 +52,6 @@ class WorldMap extends Component {
   }
 }
 
-export default WorldMap
+const mapStateToProps = ({ world }) => ({ world })
+
+export default connect(mapStateToProps)(WorldMap)

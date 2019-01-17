@@ -24,7 +24,7 @@ export const plagueNames = {
   nouns: ['Death', 'Pain', 'Spot', 'Punch', 'Knife', 'Sword', 'Illness', 'Sickness', 'Plague', 'Crow', 'Buzzard', 'Sludge', 'Slime']
 }
 
-export const Afria = {
+export const Africa = {
   coordinates: [
     [32.46392431882024, -3.0430107526881613],
     [32.46392431882024, 0.7741935483871032],
