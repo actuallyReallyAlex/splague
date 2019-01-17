@@ -1,16 +1,16 @@
 import {
-  chooseMorality,
+  chooseMode,
   chooseName,
   chooseType
 } from '../../redux/actions/player'
 
 describe('Player Actions', () => {
-  it('Should setup chooseMorality action object.', () => {
-    const action = chooseMorality('good')
+  it('Should setup chooseMode action object.', () => {
+    const action = chooseMode('cure')
     expect(action).toEqual({
-      type: 'CHOOSE_MORALITY',
+      type: 'CHOOSE_MODE',
       payload: {
-        morality: 'good'
+        mode: 'cure'
       }
     })
   })

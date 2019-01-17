@@ -4,7 +4,7 @@ const uiReducerInitialState = {
   background: 'white',
   isLogOpen: true,
   isTransitioning: false,
-  screen: 'chooseMorality',
+  screen: 'chooseMode',
   transitionClasses: 'animated fadeIn slow'
 }
 

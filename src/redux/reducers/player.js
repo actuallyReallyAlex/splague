@@ -1,13 +1,13 @@
 // Player Reducer
 
 const playerReducerInitialState = {
-  morality: null,
+  mode: null,
   name: null,
   type: null
 }
 
 const playerReducerDevelopmentState = {
-  morality: 'evil',
+  mode: 'evil',
   name: 'Alex',
   type: 'Bubonic'
 }
@@ -22,10 +22,10 @@ if (process.env.REACT_APP_ENVIRONMENT === 'dev') {
 
 export default (state = playerState, action) => {
   switch (action.type) {
-    case 'CHOOSE_MORALITY':
+    case 'CHOOSE_MODE':
       return {
         ...state,
-        morality: action.payload.morality
+        mode: action.payload.mode
       }
     case 'CHOOSE_NAME':
       return {

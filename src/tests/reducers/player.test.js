@@ -7,14 +7,14 @@ describe('Player Reducer', () => {
     expect(state).toEqual(initialState.player)
   })
 
-  it('Should set morality.', () => {
+  it('Should set mode.', () => {
     const action = {
-      type: 'CHOOSE_MORALITY',
-      payload: { morality: 'good' }
+      type: 'CHOOSE_MODE',
+      payload: { mode: 'cure' }
     }
     const state = playerReducer(initialState.player, action)
     expect(state).toEqual({
-      morality: 'good',
+      mode: 'cure',
       name: null,
       type: null
     })
@@ -27,7 +27,7 @@ describe('Player Reducer', () => {
     }
     const state = playerReducer(initialState.player, action)
     expect(state).toEqual({
-      morality: null,
+      mode: null,
       name: 'Alex',
       type: null
     })
@@ -40,7 +40,7 @@ describe('Player Reducer', () => {
     }
     const state = playerReducer(initialState.player, action)
     expect(state).toEqual({
-      morality: null,
+      mode: null,
       name: null,
       type: 'Bubonic'
     })
