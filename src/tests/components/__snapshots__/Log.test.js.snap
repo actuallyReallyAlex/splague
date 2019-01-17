@@ -392,7 +392,9 @@ exports[`<Log /> Should render snapshot of Log component. 1`] = `
         <span
           className="c11"
           size="small"
-        />
+        >
+          12:00 PM
+        </span>
       </div>
       <span
         className="c12"

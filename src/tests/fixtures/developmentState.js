@@ -8,7 +8,7 @@ export const initialState = {
     speed: 1000
   },
   player: {
-    morality: null,
+    mode: null,
     name: null,
     type: null
   },
@@ -16,7 +16,7 @@ export const initialState = {
     background: 'white',
     isLogOpen: true,
     isTransitioning: false,
-    screen: 'chooseMorality',
+    screen: 'chooseMode',
     transitionClasses: 'animated fadeIn slow'
   },
   world: {
@@ -39,7 +39,7 @@ export const developmentState = {
     speed: 500
   },
   player: {
-    morality: 'evil',
+    mode: 'evil',
     name: 'Alex',
     type: 'Bubonic'
   },

@@ -6,7 +6,7 @@ import { Box, Button, Form, FormField, TextInput } from 'grommet'
 import { Update } from 'grommet-icons'
 import { chooseName } from '../redux/actions/player'
 import { changeScreen, transitionScreen } from '../redux/actions/ui'
-import { goodNames, evilNames } from '../constants'
+import { cureNames, plagueNames } from '../constants'
 
 export class ChooseName extends Component {
   static propTypes = {
@@ -54,8 +54,8 @@ export class ChooseName extends Component {
   }
 
   handleRandomName = () => {
-    const { morality } = this.props.player
-    const nameGroup = morality === 'good' ? goodNames : evilNames
+    const { mode } = this.props.player
+    const nameGroup = mode === 'cure' ? cureNames : plagueNames
     let randomName = `The ${sample(nameGroup.adjectives)} ${sample(
       nameGroup.nouns
     )}`
@@ -74,7 +74,7 @@ export class ChooseName extends Component {
     return (
       <Box
         align="center"
-        background={player.morality === 'good' ? 'accent-1' : '#252839'}
+        background={player.mode === 'cure' ? 'accent-1' : '#252839'}
         className={ui.transitionClasses}
         fill
         justify="center"
@@ -84,7 +84,7 @@ export class ChooseName extends Component {
             <Box align="end" direction="row" gap="medium">
               <FormField
                 error={error && "Name can't be blank. Please try again."}
-                label={player.morality === 'good' ? 'Cure Name' : 'Plague Name'}
+                label={player.mode === 'cure' ? 'Cure Name' : 'Plague Name'}
               >
                 <TextInput
                   onChange={this.handleNameChange}

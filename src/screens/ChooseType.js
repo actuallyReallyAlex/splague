@@ -45,7 +45,7 @@ export class ChooseType extends Component {
     return (
       <Box
         align="center"
-        background={player.morality === 'good' ? 'accent-1' : '#252839'}
+        background={player.mode === 'cure' ? 'accent-1' : '#252839'}
         className={ui.transitionClasses}
         fill
         justify="center"
@@ -53,12 +53,12 @@ export class ChooseType extends Component {
         <Box>
           <Form onSubmit={e => this.handleBegin(e)}>
             <FormField
-              label={player.morality === 'good' ? 'Faction' : 'Plague Type'}
+              label={player.mode === 'cure' ? 'Faction' : 'Plague Type'}
             >
               <Select
                 onChange={this.handleTypeChange}
                 options={
-                  player.morality === 'good' ? factionTypes : plagueTypes
+                  player.mode === 'cure' ? factionTypes : plagueTypes
                 }
                 value={type}
               />

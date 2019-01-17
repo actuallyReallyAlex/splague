@@ -1,16 +1,16 @@
-export const CHOOSE_MORALITY = 'CHOOSE_MORALITY'
+export const CHOOSE_MODE = 'CHOOSE_MODE'
 export const CHOOSE_NAME = 'CHOOSE_NAME'
 export const CHOOSE_TYPE = 'CHOOSE_TYPE'
 
 /**
- * Choose a morality for the player.
- * @param {String} morality Either "good" or "evil". The player's morality choice for the game.
+ * Choose a mode for the player.
+ * @param {String} mode Either "cure" or "plague". The player's mode choice for the game.
  */
-export const chooseMorality = morality => {
+export const chooseMode = mode => {
   return {
-    type: CHOOSE_MORALITY,
+    type: CHOOSE_MODE,
     payload: {
-      morality
+      mode
     }
   }
 }

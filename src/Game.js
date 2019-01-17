@@ -12,7 +12,7 @@ class Game extends Component {
     return (
       <Box
         background={ui.background}
-        className={ui.screen === 'chooseMorality' && 'animated fadeIn slow'}
+        className={ui.screen === 'chooseMode' && 'animated fadeIn slow'}
         fill
         style={{ transition: 'all 2000ms cubic-bezier(0.42, 0, 0.58, 1)' }}
       >

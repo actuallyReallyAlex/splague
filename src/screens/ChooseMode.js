@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Box, Button, Form, RadioButton } from 'grommet'
-import { chooseMorality } from '../redux/actions/player'
+import { chooseMode } from '../redux/actions/player'
 import {
   changeBackground,
   changeScreen,
   transitionScreen
 } from '../redux/actions/ui'
 
-export class ChooseMorality extends Component {
+export class ChooseMode extends Component {
   static propTypes = {
     // From connect()
     dispatch: PropTypes.func.isRequired,
@@ -19,21 +19,21 @@ export class ChooseMorality extends Component {
     ui: PropTypes.object.isRequired
   }
 
-  setBackgroundColor = morality => {
-    switch (morality) {
-      case 'good':
+  setBackgroundColor = mode => {
+    switch (mode) {
+      case 'cure':
         return 'accent-1'
-      case 'evil':
+      case 'plague':
         return '#252839'
       default:
         return 'white'
     }
   }
 
-  handleHoverGood = () => {
+  handleHoverCure = () => {
     const { dispatch, ui } = this.props
-    const { morality } = this.props.player
-    if (!morality) {
+    const { mode } = this.props.player
+    if (!mode) {
       dispatch(changeBackground('accent-1'))
     } else {
       if (ui.background !== 'accent-1' && !ui.isTransitioning) {
@@ -44,8 +44,8 @@ export class ChooseMorality extends Component {
 
   handleHoverBad = () => {
     const { dispatch, ui } = this.props
-    const { morality } = this.props.player
-    if (!morality) {
+    const { mode } = this.props.player
+    if (!mode) {
       dispatch(changeBackground('#252839'))
     } else {
       if (ui.background !== '#252839' && !ui.isTransitioning) {
@@ -56,22 +56,22 @@ export class ChooseMorality extends Component {
 
   handleMouseLeave = () => {
     const { dispatch, ui } = this.props
-    const { morality } = this.props.player
-    if (!morality) {
+    const { mode } = this.props.player
+    if (!mode) {
       dispatch(changeBackground('white'))
     } else {
-      if (morality === 'good' && ui.background === '#252839') {
+      if (mode === 'cure' && ui.background === '#252839') {
         dispatch(changeBackground('accent-1'))
-      } else if (morality === 'evil' && ui.background === 'accent-1') {
+      } else if (mode === 'plague' && ui.background === 'accent-1') {
         dispatch(changeBackground('#252839'))
       }
     }
   }
 
-  handleMoralitySelection = e => {
+  handleModeSelection = e => {
     const { dispatch } = this.props
-    const morality = e.target.name
-    dispatch(chooseMorality(morality))
+    const mode = e.target.name
+    dispatch(chooseMode(mode))
   }
 
   handleContinue = e => {
@@ -99,14 +99,14 @@ export class ChooseMorality extends Component {
             <Box direction="row" gap="medium">
               <Box
                 onMouseLeave={this.handleMouseLeave}
-                onMouseEnter={this.handleHoverGood}
+                onMouseEnter={this.handleHoverCure}
               >
                 <RadioButton
-                  checked={player.morality === 'good'}
+                  checked={player.mode === 'cure'}
                   disabled={ui.isTransitioning}
-                  label="Good"
-                  name="good"
-                  onChange={this.handleMoralitySelection}
+                  label="Cure"
+                  name="cure"
+                  onChange={this.handleModeSelection}
                 />
               </Box>
               <Box
@@ -114,15 +114,15 @@ export class ChooseMorality extends Component {
                 onMouseEnter={this.handleHoverBad}
               >
                 <RadioButton
-                  checked={player.morality === 'evil'}
+                  checked={player.mode === 'plague'}
                   disabled={ui.isTransitioning}
-                  label="Evil"
-                  name="evil"
-                  onChange={this.handleMoralitySelection}
+                  label="Plague"
+                  name="plague"
+                  onChange={this.handleModeSelection}
                 />
               </Box>
             </Box>
-            {player.morality && (
+            {player.mode && (
               <Box
                 className="animated fadeInUp"
                 margin={{ top: 'xlarge' }}
@@ -147,4 +147,4 @@ const mapStateToProps = ({ player, ui }) => {
   return { player, ui }
 }
 
-export default connect(mapStateToProps)(ChooseMorality)
+export default connect(mapStateToProps)(ChooseMode)

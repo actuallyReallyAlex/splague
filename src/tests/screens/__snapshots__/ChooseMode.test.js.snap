@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`] = `
+exports[`<ChooseMode /> Should render snapshot of ChooseMode screen. 1`] = `
 <ForwardRef
   align="center"
   className="animated fadeIn slow"
@@ -4146,8 +4146,8 @@ exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`]
           <ForwardRef
             checked={false}
             disabled={false}
-            label="Good"
-            name="good"
+            label="Cure"
+            name="cure"
             onChange={[Function]}
             theme={
               Object {
@@ -5802,8 +5802,8 @@ exports[`<ChooseMorality /> Should render snapshot of ChooseMorality screen. 1`]
           <ForwardRef
             checked={false}
             disabled={false}
-            label="Evil"
-            name="evil"
+            label="Plague"
+            name="plague"
             onChange={[Function]}
             theme={
               Object {

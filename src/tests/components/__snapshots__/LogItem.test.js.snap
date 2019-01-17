@@ -248,7 +248,9 @@ exports[`<LogItem /> Should render snapshot of LogItem component. 1`] = `
       <span
         className="c7"
         size="small"
-      />
+      >
+        12:00 PM
+      </span>
     </div>
     <span
       className="c8"
