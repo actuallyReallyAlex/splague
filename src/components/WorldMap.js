@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { base, Box, WorldMap as GrommetWorldMap } from 'grommet'
-import { deconstructContinentState } from '../utilities'
+import { deconstructContinentState } from '../util/utilities'
 
 const theme = {
   ...base,
@@ -19,6 +20,10 @@ const theme = {
 }
 
 export class WorldMap extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    world: PropTypes.object.isRequired
+  }
   state = {
     places: []
   }

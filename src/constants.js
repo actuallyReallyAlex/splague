@@ -20,8 +20,34 @@ export const cureNames = {
 }
 
 export const plagueNames = {
-  adjectives: ['Black', 'Evil', 'Slow', 'Fast', 'Quick', 'Sinister', 'Sleepless', 'Oozing', 'Powerful', 'Swift', 'Cold'],
-  nouns: ['Death', 'Pain', 'Spot', 'Punch', 'Knife', 'Sword', 'Illness', 'Sickness', 'Plague', 'Crow', 'Buzzard', 'Sludge', 'Slime']
+  adjectives: [
+    'Black',
+    'Evil',
+    'Slow',
+    'Fast',
+    'Quick',
+    'Sinister',
+    'Sleepless',
+    'Oozing',
+    'Powerful',
+    'Swift',
+    'Cold'
+  ],
+  nouns: [
+    'Death',
+    'Pain',
+    'Spot',
+    'Punch',
+    'Knife',
+    'Sword',
+    'Illness',
+    'Sickness',
+    'Plague',
+    'Crow',
+    'Buzzard',
+    'Sludge',
+    'Slime'
+  ]
 }
 
 export const Africa = {
@@ -200,7 +226,8 @@ export const Africa = {
     [-32.463924318820226, 19.860215053763454],
     [-32.463924318820226, 23.67741935483872],
     [-32.463924318820226, 27.494623655913983]
-  ]
+  ],
+  name: 'Africa'
 }
 
 export const Asia = {
@@ -691,7 +718,8 @@ export const Asia = {
     [-7.611917659036522, 103.83870967741933],
     [-7.611917659036522, 138.19354838709677],
     [-7.611917659036522, 142.01075268817203]
-  ]
+  ],
+  name: 'Asia'
 }
 
 export const Australia = {
@@ -747,7 +775,8 @@ export const Australia = {
     [-38.66796666369966, 172.5483870967742],
     [-41.585907860802784, 168.73118279569894],
     [-44.377704593221615, 164.91397849462368]
-  ]
+  ],
+  name: 'Australia'
 }
 
 export const Europe = {
@@ -896,7 +925,8 @@ export const Europe = {
     [35.62608440799375, 27.494623655913983],
     [35.62608440799375, 31.311827956989248],
     [35.62608440799375, 35.12903225806451]
-  ]
+  ],
+  name: 'Europe'
 }
 
 export const NorthAmerica = {
@@ -1284,7 +1314,8 @@ export const NorthAmerica = {
     [15.091235533601685, -90.83870967741936],
     [11.376121998318009, -87.02150537634408],
     [7.611917659036522, -83.20430107526882]
-  ]
+  ],
+  name: 'North America'
 }
 
 export const SouthAmerica = {
@@ -1398,5 +1429,15 @@ export const SouthAmerica = {
     [-49.58048992914297, -75.56989247311827],
     [-49.58048992914297, -71.75268817204301],
     [-51.99304403707033, -71.75268817204301]
-  ]
+  ],
+  name: 'South America'
 }
+
+export const continents = [
+  Africa,
+  Asia,
+  Australia,
+  Europe,
+  NorthAmerica,
+  SouthAmerica
+]
