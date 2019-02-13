@@ -38,9 +38,8 @@ export const calculateWorldPopulations = continentsObject => {
 }
 
 export const buildLocationsObject = continentObject => {
-  const { coordinates, deadPopulation, healthyPopulation, infectedPopulation, infectionMultiplier, locations } = continentObject
+  // const { coordinates, deadPopulation, healthyPopulation, infectedPopulation, infectionMultiplier, locations } = continentObject
   
-  if ()
   console.log({ continentObject })
   return {
     deadLocations: [],

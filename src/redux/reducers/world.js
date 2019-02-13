@@ -17,68 +17,86 @@ const worldReducerInitialState = {
   continents: {
     Africa: {
       coordinates: Africa.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 1216000000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Africa',
+      popuplation: {
+        healthyPopulation: 1216000000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     Asia: {
       coordinates: Asia.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 4463000000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Asia',
+      popuplation: {
+        healthyPopulation: 4463000000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     Australia: {
       coordinates: Australia.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 24600000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Australia',
+      popuplation: {
+        healthyPopulation: 24600000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     Europe: {
       coordinates: Europe.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 714400000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Europe',
+      popuplation: {
+        healthyPopulation: 714400000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     NorthAmerica: {
       coordinates: NorthAmerica.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 579000000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'North America',
+      popuplation: {
+        healthyPopulation: 579000000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     SouthAmerica: {
       coordinates: SouthAmerica.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 422500000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'South America',
+      popuplation: {
+        healthyPopulation: 422500000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     }
   },
@@ -94,68 +112,86 @@ const worldReducerDevelopmentState = {
   continents: {
     Africa: {
       coordinates: Africa.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 1216000000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Africa',
+      popuplation: {
+        healthyPopulation: 1216000000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     Asia: {
       coordinates: Asia.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 4463000000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Asia',
+      popuplation: {
+        healthyPopulation: 4463000000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     Australia: {
       coordinates: Australia.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 24600000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Australia',
+      popuplation: {
+        healthyPopulation: 24600000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     Europe: {
       coordinates: Europe.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 714400000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'Europe',
+      popuplation: {
+        healthyPopulation: 714400000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     NorthAmerica: {
       coordinates: NorthAmerica.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 579000000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'North America',
+      popuplation: {
+        healthyPopulation: 579000000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     },
     SouthAmerica: {
       coordinates: SouthAmerica.coordinates,
-      deadPopulation: 0,
-      healthyPopulation: 422500000,
-      infectedPopulation: 0,
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
         infectedLocations: []
+      },
+      name: 'South America',
+      popuplation: {
+        healthyPopulation: 422500000,
+        infectedPopulation: 0,
+        deadPopulation: 0
       }
     }
   },
@@ -176,17 +212,47 @@ if (process.env.REACT_APP_ENVIRONMENT === 'dev') {
 
 export default (state = worldState, action) => {
   switch (action.type) {
+    // case 'CALCULATE_POPULATION':
+    //   let { continent, newPopulation } = action.payload
+    //   const { name } = continent
+    //   const { s, i, d } = newPopulation
+    //   const newContinentObj = {
+    //     ...state[continent],
+    //     healthyPopulation: s,
+    //     infectedPopulation: i,
+    //     deadPopulation: d
+    //   }
+
+    //   const newPopulationsObject = calculateWorldPopulations(state.continents)
+
+    //   const newLocationsObject = buildLocationsObject(state.continents[name])
+
+    //   return {
+    //     ...state,
+    //     continents: {
+    //       ...state.continents,
+    //       [name]: {
+    //         ...state.continents[name],
+    //         ...newContinentObj,
+    //         locations: {
+    //           ...state.continents[name].locations,
+    //           ...newLocationsObject
+    //         }
+    //       }
+    //     },
+    //     healthyPopulation: newPopulationsObject.healthyPopulation,
+    //     infectedPopulation: newPopulationsObject.infectedPopulation,
+    //     deadPopulation: newPopulationsObject.deadPopulation
+    //   }
     case 'INFECT_POPULATION':
-      const { continent, numberToInfect } = action.payload
+      const { continent, location, numberToInfect } = action.payload
       const { name } = continent
       const newContinentObj = {
         ...state[continent],
-        healthyPopulation: (state.continents[
-          name
-        ].healthyPopulation -= numberToInfect),
-        infectedPopulation: (state.continents[
-          name
-        ].infectedPopulation += numberToInfect)
+        location,
+        // TODO: FINISH THIS?!
+        // healthyPopulation: state.continents[continent].healthyPopulation - numberToInfect,
+        infectedPopulation: numberToInfect
       }
 
       const newPopulationsObject = calculateWorldPopulations(state.continents)

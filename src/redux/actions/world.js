@@ -1,6 +1,21 @@
+// import { simple } from 'plague-modeller'
+import plagueModeller from '../../util/tempPlagueModeller'
 export const INFECT_POPULATION = 'INFECT_POPULATION'
 export const INCREASE_DAY = 'INCREASE_DAY'
 export const SET_DAY_LENGTH = 'SET_DAY_LENGTH'
+export const CALCULATE_POPULATION = 'CALCULATE_POPULATION'
+
+export const calculatePopulation = (continent, location, infectionObject) => {
+  const { s, i, d } = infectionObject
+  return {
+    type: CALCULATE_POPULATION,
+    payload: {
+      continent,
+      location,
+      newPopulation: plagueModeller(s, i, d)
+    }
+  }
+}
 
 export const increaseDay = () => {
   return {
