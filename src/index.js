@@ -5,10 +5,13 @@ import './style.css'
 import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './redux/store/store'
+import { Grommet, grommet } from 'grommet'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Game />
+    <Grommet full theme={grommet}>
+      <Game />
+    </Grommet>
   </Provider>,
   document.getElementById('root')
 )
