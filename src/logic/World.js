@@ -1,7 +1,12 @@
 // World Logic
 
 import store from '../redux/store/store'
-import { increaseDay, infectPatientZero } from '../redux/actions/world'
+import {
+  increaseDay,
+  infectPatientZero,
+  infectPopulation
+} from '../redux/actions/world'
+import plagueModeller from 'plague-modeller'
 
 // Day Increaser
 setInterval(() => {
@@ -13,10 +18,55 @@ setTimeout(() => {
   store.dispatch(infectPatientZero())
 }, 10000)
 
-//     // Set a 10 second timeout until patient zero is infected
-//     setTimeout(() => {
-//       infectPatientZero(dispatch, world)
-//     }, 10000)
+// Infection Interval
+setInterval(() => {
+  // Skip the first time
+  const state = store.getState()
+  const { continents, day, patientZeroContinent } = state.world
+  if (day === 1) {
+    return
+  } else {
+    // Random boolean to decide if should infect
+    const randomBool = Math.random() >= 0.5
+    if (randomBool) {
+      if (day < 11) {
+        // Keep the infection localized to one continent
+        // Calculate population changes
+        const {
+          healthyPopulation,
+          infectedPopulation,
+          deadPopulation
+        } = continents[patientZeroContinent]
+        const populationChanges = plagueModeller(
+          healthyPopulation,
+          infectedPopulation,
+          deadPopulation
+        )
+        const { healthy, infected, dead } = populationChanges
+        const healthyPopulationDifference = healthyPopulation - healthy
+        const infectedPopulationDifference = infected - infectedPopulation
+        const deadPopulationDifference = dead - deadPopulation
+        // Dispatch Infect Population Action
+        store.dispatch(
+          infectPopulation(
+            patientZeroContinent,
+            healthy,
+            healthyPopulationDifference,
+            infected,
+            infectedPopulationDifference,
+            dead,
+            deadPopulationDifference
+          )
+        )
+      } else {
+        // It doesn't matter what continent is infected now
+        // Calculate population changes
+        const populationChanges = plagueModeller()
+        // TODO: Do this.
+      }
+    }
+  }
+}, 10000)
 
 //     setInterval(() => {
 //       shouldInfect(world).then(result =>

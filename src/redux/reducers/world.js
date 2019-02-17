@@ -93,7 +93,8 @@ const worldReducerInitialState = {
   day: 0,
   deadPopulation: 0,
   healthyPopulation: 7419500000,
-  infectedPopulation: 0
+  infectedPopulation: 0,
+  patientZeroContinent: null
 }
 
 export default (state = worldReducerInitialState, action) => {
@@ -105,6 +106,7 @@ export default (state = worldReducerInitialState, action) => {
       return Object.assign({}, state, {
         healthyPopulation: state.healthyPopulation - 1,
         infectedPopulation: state.infectedPopulation + 1,
+        patientZeroContinent: randomContinentName,
         continents: {
           ...state.continents,
           [randomContinentName]: {
@@ -113,6 +115,32 @@ export default (state = worldReducerInitialState, action) => {
               state.continents[randomContinentName].healthyPopulation - 1,
             infectedPopulation:
               state.continents[randomContinentName].infectedPopulation + 1
+          }
+        }
+      })
+    case 'INFECT_POPULATION':
+      const {
+        continentName,
+        healthyPopulation,
+        healthyPopulationDifference,
+        infectedPopulation,
+        infectedPopulationDifference,
+        deadPopulation,
+        deadPopulationDifference
+      } = action.payload
+      return Object.assign({}, state, {
+        healthyPopulation:
+          state.healthyPopulation - healthyPopulationDifference,
+        infectedPopulation:
+          state.infectedPopulation + infectedPopulationDifference,
+        deadPopulation: state.deadPopulation + deadPopulationDifference,
+        continents: {
+          ...state.continents,
+          [continentName]: {
+            ...state.continents[continentName],
+            healthyPopulation,
+            infectedPopulation,
+            deadPopulation
           }
         }
       })
