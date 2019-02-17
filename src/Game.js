@@ -1,7 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import './logic/World'
 
-const Game = () => {
-  return <h1>GAME</h1>
+const Game = ({ dispatch, world }) => {
+  return (
+    <div>
+      <h2>World State</h2>
+      <pre>{JSON.stringify(world, null, 2)}</pre>
+    </div>
+  )
 }
 
-export default Game
+const mapStateToProps = state => state
+
+export default connect(mapStateToProps)(Game)
