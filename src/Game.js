@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './logic/world'
-import { Box, WorldMap } from 'grommet'
+import { Box } from 'grommet'
+import WorldMap from './components/WorldMap'
 
 const Game = ({ dispatch, world }) => {
   const importantState = world
