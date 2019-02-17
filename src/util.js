@@ -43,7 +43,7 @@ export const buildPlaces = () => {
 
     infectedLocations.forEach(location => {
       const placeObject = {
-        color: 'green',
+        color: '#00FF00',
         location
       }
       finalPlaces.push(placeObject)

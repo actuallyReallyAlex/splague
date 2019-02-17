@@ -9,7 +9,7 @@ import {
 } from '../redux/actions/world'
 import plagueModeller from 'plague-modeller'
 import sample from 'lodash.sample'
-import { buildPlaces } from '../util';
+import { buildPlaces } from '../util'
 
 /**
  * Calculates population differences, and dispatches the action to infect the population.
@@ -42,6 +42,23 @@ const calculateInfection = continentName => {
       deadPopulationDifference
     )
   )
+}
+
+const calculateAdditionalLocations = continentName => {
+  const state = store.getState()
+  const continentObject = state.world.continents[continentName]
+  const { locations, populationPerCoordinate } = continentObject
+  const newInfectedPopulation = continentObject.infectedPopulation
+  const { infectedLocations } = locations
+
+  if (
+    (infectedLocations.length + 1) * populationPerCoordinate <=
+    newInfectedPopulation
+  ) {
+    console.log('SHOULD ADD A NEW DOT TO INFECTED_LOCATIONS ARRAY')
+  } else {
+    console.log('SHOULD NOT ADD A NEW DOT TO INFECTED_LOCATIONS ARRAY')
+  }
 }
 
 /**
@@ -83,11 +100,15 @@ setInterval(() => {
         // Keep the infection localized to one continent
         // Calculate population changes
         calculateInfection(patientZeroContinent)
+        // Calculate if you should add another location to the infected locations array
+        calculateAdditionalLocations(patientZeroContinent)
       } else {
         // It doesn't matter what continent is infected now
         // Calculate population changes
         const randomContinentName = sample(continentNames)
         calculateInfection(randomContinentName)
+        // Calculate if you should add another location to the infected locations array
+        calculateAdditionalLocations(randomContinentName)
       }
     }
   }
