@@ -31,6 +31,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
+        healthyLocations: [Africa.coordinates],
         infectedLocations: []
       }
     },
@@ -42,6 +43,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
+        healthyLocations: [Asia.coordinates],
         infectedLocations: []
       }
     },
@@ -53,6 +55,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
+        healthyLocations: [Australia.coordinates],
         infectedLocations: []
       }
     },
@@ -64,6 +67,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
+        healthyLocations: [Europe.coordinates],
         infectedLocations: []
       }
     },
@@ -75,6 +79,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
+        healthyLocations: [NorthAmerica.coordinates],
         infectedLocations: []
       }
     },
@@ -86,6 +91,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
+        healthyLocations: [SouthAmerica.coordinates],
         infectedLocations: []
       }
     }
