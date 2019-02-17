@@ -90,6 +90,7 @@ const worldReducerInitialState = {
       }
     }
   },
+  continentNames: continentNames,
   day: 0,
   deadPopulation: 0,
   healthyPopulation: 7419500000,

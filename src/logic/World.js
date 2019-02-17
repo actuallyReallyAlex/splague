@@ -7,6 +7,7 @@ import {
   infectPopulation
 } from '../redux/actions/world'
 import plagueModeller from 'plague-modeller'
+import sample from 'lodash.sample'
 
 // Day Increaser
 setInterval(() => {
@@ -22,7 +23,7 @@ setTimeout(() => {
 setInterval(() => {
   // Skip the first time
   const state = store.getState()
-  const { continents, day, patientZeroContinent } = state.world
+  const { continents, continentNames, day, patientZeroContinent } = state.world
   if (day === 1) {
     return
   } else {
@@ -61,8 +62,33 @@ setInterval(() => {
       } else {
         // It doesn't matter what continent is infected now
         // Calculate population changes
-        const populationChanges = plagueModeller()
-        // TODO: Do this.
+        const randomContinentName = sample(continentNames)
+        const {
+          healthyPopulation,
+          infectedPopulation,
+          deadPopulation
+        } = continents[randomContinentName]
+        const populationChanges = plagueModeller(
+          healthyPopulation,
+          infectedPopulation,
+          deadPopulation
+        )
+        const { healthy, infected, dead } = populationChanges
+        const healthyPopulationDifference = healthyPopulation - healthy
+        const infectedPopulationDifference = infected - infectedPopulation
+        const deadPopulationDifference = dead - deadPopulation
+        // Dispatch Infect Population Action
+        store.dispatch(
+          infectPopulation(
+            randomContinentName,
+            healthy,
+            healthyPopulationDifference,
+            infected,
+            infectedPopulationDifference,
+            dead,
+            deadPopulationDifference
+          )
+        )
       }
     }
   }
