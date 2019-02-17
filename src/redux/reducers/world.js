@@ -110,6 +110,7 @@ export default (state = worldReducerInitialState, action) => {
     case 'INCREASE_DAY':
       return Object.assign({}, state, { day: state.day + 1 })
     case 'INFECT_PATIENT_ZERO':
+      // Choose a random continent to infect
       const randomContinentName = sample(continentNames)
       return Object.assign({}, state, {
         healthyPopulation: state.healthyPopulation - 1,
@@ -154,6 +155,29 @@ export default (state = worldReducerInitialState, action) => {
       })
     case 'SET_PLACES':
       return Object.assign({}, state, { places: action.payload.places })
+    case 'SET_INFECTED_LOCATION':
+      const continentObject = state.continents[action.payload.continentName]
+      const { healthyLocations, infectedLocations } = continentObject.locations
+      const newHealthyLocationsArray = healthyLocations.filter(
+        location => location !== action.payload.coordinates
+      )
+      const newInfectedLocationsArray = [
+        ...infectedLocations,
+        action.payload.coordinates
+      ]
+      return Object.assign({}, state, {
+        continents: {
+          ...state.continents,
+          [action.payload.continentName]: {
+            ...state.continents[action.payload.continentName],
+            locations: {
+              ...state.continents[action.payload.continentName].locations,
+              infectedLocations: newInfectedLocationsArray,
+              healthyLocations: newHealthyLocationsArray
+            }
+          }
+        }
+      })
     default:
       return state
   }

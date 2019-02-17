@@ -4,10 +4,12 @@ import store from '../redux/store/store'
 import {
   increaseDay,
   infectPatientZero,
-  infectPopulation
+  infectPopulation,
+  setInfectedLocation
 } from '../redux/actions/world'
 import plagueModeller from 'plague-modeller'
 import sample from 'lodash.sample'
+import { buildPlaces } from '../util';
 
 /**
  * Calculates population differences, and dispatches the action to infect the population.
@@ -54,6 +56,14 @@ setInterval(() => {
  */
 setTimeout(() => {
   store.dispatch(infectPatientZero())
+  const state = store.getState()
+  const { patientZeroContinent } = state.world
+  // Choose a random dot in that continent to infect
+  const randomDot = sample(
+    state.world.continents[patientZeroContinent].locations.healthyLocations
+  )
+  store.dispatch(setInfectedLocation(randomDot, patientZeroContinent))
+  buildPlaces()
 }, 10000)
 
 /**

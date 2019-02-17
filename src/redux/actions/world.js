@@ -2,6 +2,7 @@ export const INCREASE_DAY = 'INCREASE_DAY'
 export const INFECT_PATIENT_ZERO = 'INFECT_PATIENT_ZERO'
 export const INFECT_POPULATION = 'INFECT_POPULATION'
 export const SET_PLACES = 'SET_PLACES'
+export const SET_INFECTED_LOCATION = 'SET_INFECTED_LOCATION'
 
 export const increaseDay = () => ({ type: INCREASE_DAY })
 export const infectPatientZero = () => ({ type: INFECT_PATIENT_ZERO })
@@ -26,3 +27,7 @@ export const infectPopulation = (
   }
 })
 export const setPlaces = places => ({ type: SET_PLACES, payload: { places } })
+export const setInfectedLocation = (coordinates, continentName) => ({
+  type: SET_INFECTED_LOCATION,
+  payload: { coordinates, continentName }
+})
