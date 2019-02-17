@@ -13,18 +13,24 @@
   ],
   "dependencies": {
     "animate.css": "^3.7.0",
+    "braces": "^2.3.1",
+    "eslint-plugin-flowtype": "^3.4.2",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "grommet": "^2.3.1",
     "grommet-icons": "^4.1.0",
     "lodash.sample": "^4.2.1",
     "moment": "^2.23.0",
-    "plague-modeller": "^0.2.4",
+    "plague-modeller": "^0.3.0",
     "polished": "^2.3.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "^2.1.5",
     "redux": "^4.0.1",
-    "styled-components": "^4.1.3"
+    "styled-components": "^4.1.3",
+    "world-mapper": "^0.3.0"
   },
   "devDependencies": {
     "codecov": "^3.1.0",

@@ -3,14 +3,9 @@ import {
   buildLocationsObject,
   calculateWorldPopulations
 } from '../../util/world'
-import {
-  Africa,
-  Asia,
-  Australia,
-  Europe,
-  NorthAmerica,
-  SouthAmerica
-} from '../../constants'
+import worldMapper from 'world-mapper'
+
+const { Africa, Asia, Australia, Europe, NorthAmerica, SouthAmerica } = worldMapper
 
 const worldReducerInitialState = {
   alivePopulation: 7419500000,
@@ -265,11 +260,11 @@ export default (state = worldState, action) => {
           ...state.continents,
           [name]: {
             ...state.continents[name],
-            ...newContinentObj,
-            locations: {
-              ...state.continents[name].locations,
-              ...newLocationsObject
-            }
+            ...newContinentObj
+            // locations: {
+            //   ...state.continents[name].locations,
+            //   ...newLocationsObject
+            // }
           }
         },
         healthyPopulation: newPopulationsObject.healthyPopulation,

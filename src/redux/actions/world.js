@@ -1,5 +1,5 @@
 // import { simple } from 'plague-modeller'
-import plagueModeller from '../../util/tempPlagueModeller'
+import plagueModeller from 'plague-modeller'
 export const INFECT_POPULATION = 'INFECT_POPULATION'
 export const INCREASE_DAY = 'INCREASE_DAY'
 export const SET_DAY_LENGTH = 'SET_DAY_LENGTH'
