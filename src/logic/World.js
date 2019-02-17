@@ -59,10 +59,11 @@ setTimeout(() => {
   const state = store.getState()
   const { patientZeroContinent } = state.world
   // Choose a random dot in that continent to infect
-  const randomDot = sample(
+  const infectionLocation = sample(
     state.world.continents[patientZeroContinent].locations.healthyLocations
   )
-  store.dispatch(setInfectedLocation(randomDot, patientZeroContinent))
+  store.dispatch(setInfectedLocation(infectionLocation, patientZeroContinent))
+  // Rebuild the places
   buildPlaces()
 }, 10000)
 
