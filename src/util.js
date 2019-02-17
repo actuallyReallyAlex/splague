@@ -1,6 +1,9 @@
 import store from './redux/store/store'
 import { setPlaces } from './redux/actions/world'
 
+/**
+ * Build places objects for the WorldMap.
+ */
 export const buildPlaces = () => {
   let finalPlaces = []
   const state = store.getState()
@@ -14,9 +17,8 @@ export const buildPlaces = () => {
     'SouthAmerica'
   ]
 
-  for (let i = 0; i < continentNames.length; i++) {
-    const currentContinentName = continentNames[i]
-    const currentContinentObject = continents[currentContinentName]
+  continentNames.forEach(continentName => {
+    const currentContinentObject = continents[continentName]
     const {
       deadLocations,
       healthyLocations,
@@ -46,7 +48,8 @@ export const buildPlaces = () => {
       }
       finalPlaces.push(placeObject)
     })
-  }
+  })
+
   store.dispatch(setPlaces(finalPlaces))
 }
 
