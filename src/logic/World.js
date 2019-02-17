@@ -9,6 +9,35 @@ import {
 import plagueModeller from 'plague-modeller'
 import sample from 'lodash.sample'
 
+const calculateInfection = continentName => {
+  const state = store.getState()
+  const { continents } = state.world
+  const { healthyPopulation, infectedPopulation, deadPopulation } = continents[
+    continentName
+  ]
+  const populationChanges = plagueModeller(
+    healthyPopulation,
+    infectedPopulation,
+    deadPopulation
+  )
+  const { healthy, infected, dead } = populationChanges
+  const healthyPopulationDifference = healthyPopulation - healthy
+  const infectedPopulationDifference = infected - infectedPopulation
+  const deadPopulationDifference = dead - deadPopulation
+  // Dispatch Infect Population Action
+  store.dispatch(
+    infectPopulation(
+      continentName,
+      healthy,
+      healthyPopulationDifference,
+      infected,
+      infectedPopulationDifference,
+      dead,
+      deadPopulationDifference
+    )
+  )
+}
+
 // Day Increaser
 setInterval(() => {
   store.dispatch(increaseDay())
@@ -23,7 +52,7 @@ setTimeout(() => {
 setInterval(() => {
   // Skip the first time
   const state = store.getState()
-  const { continents, continentNames, day, patientZeroContinent } = state.world
+  const { continentNames, day, patientZeroContinent } = state.world
   if (day === 1) {
     return
   } else {
@@ -33,62 +62,12 @@ setInterval(() => {
       if (day < 11) {
         // Keep the infection localized to one continent
         // Calculate population changes
-        const {
-          healthyPopulation,
-          infectedPopulation,
-          deadPopulation
-        } = continents[patientZeroContinent]
-        const populationChanges = plagueModeller(
-          healthyPopulation,
-          infectedPopulation,
-          deadPopulation
-        )
-        const { healthy, infected, dead } = populationChanges
-        const healthyPopulationDifference = healthyPopulation - healthy
-        const infectedPopulationDifference = infected - infectedPopulation
-        const deadPopulationDifference = dead - deadPopulation
-        // Dispatch Infect Population Action
-        store.dispatch(
-          infectPopulation(
-            patientZeroContinent,
-            healthy,
-            healthyPopulationDifference,
-            infected,
-            infectedPopulationDifference,
-            dead,
-            deadPopulationDifference
-          )
-        )
+        calculateInfection(patientZeroContinent)
       } else {
         // It doesn't matter what continent is infected now
         // Calculate population changes
         const randomContinentName = sample(continentNames)
-        const {
-          healthyPopulation,
-          infectedPopulation,
-          deadPopulation
-        } = continents[randomContinentName]
-        const populationChanges = plagueModeller(
-          healthyPopulation,
-          infectedPopulation,
-          deadPopulation
-        )
-        const { healthy, infected, dead } = populationChanges
-        const healthyPopulationDifference = healthyPopulation - healthy
-        const infectedPopulationDifference = infected - infectedPopulation
-        const deadPopulationDifference = dead - deadPopulation
-        // Dispatch Infect Population Action
-        store.dispatch(
-          infectPopulation(
-            randomContinentName,
-            healthy,
-            healthyPopulationDifference,
-            infected,
-            infectedPopulationDifference,
-            dead,
-            deadPopulationDifference
-          )
-        )
+        calculateInfection(randomContinentName)
       }
     }
   }
