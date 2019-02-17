@@ -33,7 +33,8 @@ const worldReducerInitialState = {
         deadLocations: [],
         healthyLocations: Africa.coordinates,
         infectedLocations: []
-      }
+      },
+      populationPerCoordinate: 6988506
     },
     Asia: {
       coordinates: Asia.coordinates,
@@ -45,7 +46,8 @@ const worldReducerInitialState = {
         deadLocations: [],
         healthyLocations: Asia.coordinates,
         infectedLocations: []
-      }
+      },
+      populationPerCoordinate: 9183128
     },
     Australia: {
       coordinates: Australia.coordinates,
@@ -57,7 +59,8 @@ const worldReducerInitialState = {
         deadLocations: [],
         healthyLocations: Australia.coordinates,
         infectedLocations: []
-      }
+      },
+      populationPerCoordinate: 482353
     },
     Europe: {
       coordinates: Europe.coordinates,
@@ -69,7 +72,8 @@ const worldReducerInitialState = {
         deadLocations: [],
         healthyLocations: Europe.coordinates,
         infectedLocations: []
-      }
+      },
+      populationPerCoordinate: 4961112
     },
     NorthAmerica: {
       coordinates: NorthAmerica.coordinates,
@@ -81,7 +85,8 @@ const worldReducerInitialState = {
         deadLocations: [],
         healthyLocations: NorthAmerica.coordinates,
         infectedLocations: []
-      }
+      },
+      populationPerCoordinate: 1511750
     },
     SouthAmerica: {
       coordinates: SouthAmerica.coordinates,
@@ -93,7 +98,8 @@ const worldReducerInitialState = {
         deadLocations: [],
         healthyLocations: SouthAmerica.coordinates,
         infectedLocations: []
-      }
+      },
+      populationPerCoordinate: 3876147
     }
   },
   continentNames: continentNames,
