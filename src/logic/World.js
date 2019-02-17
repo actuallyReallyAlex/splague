@@ -1,52 +1,163 @@
 // World Logic
 
 import store from '../redux/store/store'
-import { increaseDay } from '../redux/actions/world';
+import { increaseDay, infectPatientZero } from '../redux/actions/world'
 
 // Day Increaser
 setInterval(() => {
   store.dispatch(increaseDay())
-}, 12000);
+}, 10000)
 
+// Infect Patient Zero
+setTimeout(() => {
+  store.dispatch(infectPatientZero())
+}, 10000)
 
+//     // Set a 10 second timeout until patient zero is infected
+//     setTimeout(() => {
+//       infectPatientZero(dispatch, world)
+//     }, 10000)
 
-// class WorldLogic extends Component {
-//   static propTypes = {
-//     // From connect()
-//     dispatch: PropTypes.func.isRequired,
-//     // From mapStateToProps()
-//     world: PropTypes.object.isRequired
+//     setInterval(() => {
+//       shouldInfect(world).then(result =>
+//         console.log('From shouldInfect(): ', result)
+//       )
+
+//       // Decide if should infect - (PROMISE)
+//       // THEN -> willInfect
+//       // If YES
+//       // Dispatch call for new population count with current population
+//       // If NO
+//       // Do nothing
+//       // this.willInfect()
+//       //   .then(willInfect => {
+//       //     const { dispatch, world } = this.props
+//       //     const currentInfectedPopulation = world.infectedPopulation
+//       //     const continentToInfect = this.chooseContinent()
+//       //     const infectionMultiplier = 0.25
+//       //     let numberToInfect = Math.floor(
+//       //       currentInfectedPopulation * infectionMultiplier
+//       //     )
+//       //     if (numberToInfect < 1) {
+//       //       numberToInfect += 1
+//       //     }
+//       //     if (world.healthyPopulation < numberToInfect) {
+//       //       numberToInfect = world.healthyPopulation
+//       //       clearInterval(this.infectionInterval)
+//       //     }
+//       //     willInfect && dispatch(infectPopulation(numberToInfect))
+//       //   })
+//       //   .catch(err => {
+//       //     console.error(err)
+//       //   })
+//     }, this.props.plague.speed)
 //   }
 
-//   state = {
-//     dayLength: 12000
-//   }
+//   // beginInfection = () => {
+//   //   const startingContinent = this.chooseRandomContinent()
+//   // }
 
-//   dayIncreaseInterval = setInterval(() => {
-//     const { dispatch } = this.props
-//     dispatch(increaseDay())
-//   }, this.props.world.dayLength)
+//   // chooseRandomContinent = () => {
+//   //   return sample(continents)
+//   // }
 
-//   componentDidUpdate() {
-//     const { dayLength } = this.state
-//     const { world } = this.props
-//     if (dayLength !== world.dayLength) {
-//       clearInterval(this.dayIncreaseInterval)
-//       this.setState(() => ({ dayLength: world.dayLength }))
-//       this.dayIncreaseInterval = setInterval(() => {
-//         const { dispatch } = this.props
-//         dispatch(increaseDay())
-//       }, world.dayLength)
-//     }
-//   }
+//   // infect = () => {
+//   //   const { dispatch, world } = this.props
+//   //   const currentInfectedPopulation = world.infectedPopulation
+//   //   const infectionMultiplier = 0.25
+//   //   let numberToInfect = Math.floor(
+//   //     currentInfectedPopulation * infectionMultiplier
+//   //   )
+//   //   if (numberToInfect < 1) {
+//   //     numberToInfect += 1
+//   //   }
+//   //   if (world.healthyPopulation < numberToInfect) {
+//   //     numberToInfect = world.healthyPopulation
+//   //     clearInterval(this.infectionInterval)
+//   //   }
+//   //   willInfect && dispatch(infectPopulation(numberToInfect))
+//   // }
+
+//   // chooseContinent = () => {
+//   //   const { world } = this.props
+
+//   //   return new Promise((resolve, reject) => {
+
+//   //   })
+//   // }
+
+//   // infectionInterval = setInterval(() => {
+//   //   this.willInfect()
+//   //     .then(willInfect => {
+//   //       const { dispatch, world } = this.props
+//   //       const currentInfectedPopulation = world.infectedPopulation
+//   //       const continentToInfect = this.chooseContinent()
+//   //       const infectionMultiplier = 0.25
+//   //       let numberToInfect = Math.floor(
+//   //         currentInfectedPopulation * infectionMultiplier
+//   //       )
+//   //       if (numberToInfect < 1) {
+//   //         numberToInfect += 1
+//   //       }
+//   //       if (world.healthyPopulation < numberToInfect) {
+//   //         numberToInfect = world.healthyPopulation
+//   //         clearInterval(this.infectionInterval)
+//   //       }
+//   //       willInfect && dispatch(infectPopulation(numberToInfect))
+//   //     })
+//   //     .catch(err => {
+//   //       console.error(err)
+//   //     })
+//   // }, this.props.plague.speed)
+
+//   // willInfect = () => {
+//   //   const infectionValue = Math.random()
+//   //   const { world } = this.props
+//   //   return new Promise((resolve, reject) => {
+//   //     if (infectionValue > 0.75 && world.healthyPopulation > 0) {
+//   //       resolve(true)
+//   //     } else {
+//   //       reject(false)
+//   //     }
+//   //   })
+//   // }
+
+//   // componentDidUpdate() {
+//   //   const { speed } = this.state
+//   //   const { plague } = this.props
+//   //   if (speed !== plague.speed) {
+//   //     clearInterval(this.infectionInterval)
+//   //     this.setState(() => ({ speed: plague.speed }))
+//   //     this.infectionInterval = setInterval(() => {
+//   //       this.willInfect()
+//   //         .then(willInfect => {
+//   //           const { dispatch, world } = this.props
+//   //           const currentInfectedPopulation = world.infectedPopulation
+//   //           const infectionMultiplier = 0.25
+//   //           let numberToInfect = Math.floor(
+//   //             currentInfectedPopulation * infectionMultiplier
+//   //           )
+//   //           if (numberToInfect < 1) {
+//   //             numberToInfect += 1
+//   //           }
+//   //           if (world.healthyPopulation < numberToInfect) {
+//   //             numberToInfect = world.healthyPopulation
+//   //             clearInterval(this.infectionInterval)
+//   //           }
+//   //           willInfect && dispatch(infectPopulation(numberToInfect))
+//   //         })
+//   //         .catch(err => {})
+//   //     }, plague.speed)
+//   //   }
+//   // }
 
 //   render() {
 //     return null
 //   }
 // }
 
-// const mapStateToProps = ({ world }) => {
-//   return { world }
+// const mapStateToProps = ({ plague, world }) => {
+//   return { plague, world }
 // }
 
-// export default connect(mapStateToProps)(WorldLogic)
+// export default connect(mapStateToProps)(PlagueLogic)

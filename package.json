@@ -16,11 +16,13 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "lodash.sample": "^4.2.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-redux": "^6.0.0",
     "react-scripts": "^2.1.5",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "world-mapper": "^0.3.0"
   },
   "devDependencies": {},
   "scripts": {
