@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Navbar /> Should render snapshot of Navbar component. 1`] = `
-<Context.Consumer>
-  [Function]
-</Context.Consumer>
-`;
