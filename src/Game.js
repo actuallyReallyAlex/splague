@@ -5,29 +5,18 @@ import { Box } from 'grommet'
 import WorldMap from './components/WorldMap'
 
 const Game = ({ dispatch, world }) => {
-  const importantState = world
-
-  const continentNames = [
-    'Africa',
-    'Asia',
-    'Australia',
-    'Europe',
-    'NorthAmerica',
-    'SouthAmerica'
-  ]
-
-  // Remove coordinates for now. This doesn't change.
-  for (let i = 0; i < continentNames.length; i++) {
-    const currentContinent = continentNames[i]
-    delete importantState.continents[currentContinent].coordinates
-    delete importantState.continents[currentContinent].locations
+  const importantInfo = {
+    alivePopulation: world.alivePopulation,
+    deadPopulation: world.deadPopulation,
+    infectedPopulation: world.infectedPopulation,
+    patientZeroContinent: world.patientZeroContinent,
+    day: world.day
   }
-
   return (
     <Box background="black" direction="row" fill pad="large">
       <Box overflow="auto">
         <h2>World State</h2>
-        <pre>{JSON.stringify(importantState, null, 2)}</pre>
+        <pre>{JSON.stringify(importantInfo, null, 2)}</pre>
       </Box>
       <Box justify="center" pad="medium">
         <WorldMap />

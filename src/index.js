@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './redux/store/store'
 import { Grommet, grommet } from 'grommet'
+import './util'
 
 ReactDOM.render(
   <Provider store={store}>

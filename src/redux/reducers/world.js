@@ -31,7 +31,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
-        healthyLocations: [Africa.coordinates],
+        healthyLocations: Africa.coordinates,
         infectedLocations: []
       }
     },
@@ -43,7 +43,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
-        healthyLocations: [Asia.coordinates],
+        healthyLocations: Asia.coordinates,
         infectedLocations: []
       }
     },
@@ -55,7 +55,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
-        healthyLocations: [Australia.coordinates],
+        healthyLocations: Australia.coordinates,
         infectedLocations: []
       }
     },
@@ -67,7 +67,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
-        healthyLocations: [Europe.coordinates],
+        healthyLocations: Europe.coordinates,
         infectedLocations: []
       }
     },
@@ -79,7 +79,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
-        healthyLocations: [NorthAmerica.coordinates],
+        healthyLocations: NorthAmerica.coordinates,
         infectedLocations: []
       }
     },
@@ -91,7 +91,7 @@ const worldReducerInitialState = {
       infectionMultiplier: 1,
       locations: {
         deadLocations: [],
-        healthyLocations: [SouthAmerica.coordinates],
+        healthyLocations: SouthAmerica.coordinates,
         infectedLocations: []
       }
     }
@@ -101,7 +101,8 @@ const worldReducerInitialState = {
   deadPopulation: 0,
   healthyPopulation: 7419500000,
   infectedPopulation: 0,
-  patientZeroContinent: null
+  patientZeroContinent: null,
+  places: []
 }
 
 export default (state = worldReducerInitialState, action) => {
@@ -151,6 +152,8 @@ export default (state = worldReducerInitialState, action) => {
           }
         }
       })
+    case 'SET_PLACES':
+      return Object.assign({}, state, { places: action.payload.places })
     default:
       return state
   }
