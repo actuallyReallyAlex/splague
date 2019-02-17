@@ -6,7 +6,8 @@ body {
   padding: 0;
 }
 
-/* @font-face {
-  font-family: 'Comfortaa', cursive;
-  src: local('Comfortaa'), url(./fonts/Comfortaa-Regular.ttf) format('ttf');
-} */
+/* Just for the beginning testing */
+body {
+  background: black;
+  color: white;
+}
