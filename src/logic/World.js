@@ -9,6 +9,10 @@ import {
 import plagueModeller from 'plague-modeller'
 import sample from 'lodash.sample'
 
+/**
+ * Calculates population differences, and dispatches the action to infect the population.
+ * @param {String} continentName Name of Continent to Infect
+ */
 const calculateInfection = continentName => {
   const state = store.getState()
   const { continents } = state.world
@@ -38,28 +42,33 @@ const calculateInfection = continentName => {
   )
 }
 
-// Day Increaser
+/**
+ * Day Increaser. Interval to increase the day number.
+ */
 setInterval(() => {
   store.dispatch(increaseDay())
 }, 10000)
 
-// Infect Patient Zero
+/**
+ * After 10 seconds, will infect Patient Zero, of a random continent.
+ */
 setTimeout(() => {
   store.dispatch(infectPatientZero())
 }, 10000)
 
-// Infection Interval
+/**
+ * Interval to infect. Doesn't necessarily mean an infection will happen.
+ */
 setInterval(() => {
-  // Skip the first time
   const state = store.getState()
   const { continentNames, day, patientZeroContinent } = state.world
-  if (day === 1) {
-    return
-  } else {
+  // Skip the first time, since the interval will run the same time that Patient Zero is being infected
+  if (day !== 1) {
     // Random boolean to decide if should infect
     const randomBool = Math.random() >= 0.5
     if (randomBool) {
       if (day < 11) {
+        // If the day is less than 11,
         // Keep the infection localized to one continent
         // Calculate population changes
         calculateInfection(patientZeroContinent)
