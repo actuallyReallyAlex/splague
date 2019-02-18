@@ -5,12 +5,19 @@ import { Box } from 'grommet'
 import WorldMap from './components/WorldMap'
 
 const Game = ({ dispatch, world }) => {
+  const { continents } = world
   const importantInfo = {
-    healthyPopulation: world.healthyPopulation,
-    deadPopulation: world.deadPopulation,
     infectedPopulation: world.infectedPopulation,
     patientZeroContinent: world.patientZeroContinent,
-    day: world.day
+    day: world.day,
+    continents: {
+      Africa: continents.Africa.infectedPopulation,
+      Asia: continents.Asia.infectedPopulation,
+      Australia: continents.Australia.infectedPopulation,
+      Europe: continents.Europe.infectedPopulation,
+      NorthAmerica: continents.NorthAmerica.infectedPopulation,
+      SouthAmerica: continents.SouthAmerica.infectedPopulation
+    }
   }
   return (
     <Box background="black" direction="row" fill pad="large">
