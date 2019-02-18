@@ -108,7 +108,7 @@ const worldReducerInitialState = {
   infectedPopulation: 0,
   patientZeroContinent: null,
   places: [],
-  speed: 1000
+  speed: 10000
 }
 
 export default (state = worldReducerInitialState, action) => {

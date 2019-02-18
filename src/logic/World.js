@@ -57,19 +57,13 @@ const calculateAdditionalLocations = continentName => {
   const newInfectedPopulation = continentObject.infectedPopulation
   const { infectedLocations } = locations
 
-  console.log({ newInfectedPopulation })
-
   // If the number of infected individuals has gotten to the point where
   // a new dot is needed to represent infection size,
   // then assign that new coordinate.
-
-  // * 48 people    50 people per dot     1 location already
-  // * ^ no new dot until at least 100 people
-  // * if 100 >= (100 * (1 + 1))
-  // TODO: You were trying to figure out this stuff
   if (
-    (infectedLocations.length + 1) * populationPerCoordinate <=
-    newInfectedPopulation
+    (populationPerCoordinate * (infectedLocations.length + 1)) /
+      newInfectedPopulation <
+    infectedLocations.length
   ) {
     store.dispatch(
       setInfectedLocation(getRandomLocation(continentName), continentName)
@@ -81,14 +75,14 @@ const calculateAdditionalLocations = continentName => {
 /**
  * Day Increaser. Interval to increase the day number.
  */
-setInterval(() => {
+const dayIncreaser = setInterval(() => {
   store.dispatch(increaseDay())
 }, speed)
 
 /**
  * After 10 seconds, will infect Patient Zero, of a random continent.
  */
-setTimeout(() => {
+const patientZeroTimeout = setTimeout(() => {
   store.dispatch(infectPatientZero())
   const state = store.getState()
   const { patientZeroContinent } = state.world
@@ -104,7 +98,7 @@ setTimeout(() => {
 /**
  * Interval to infect. Doesn't necessarily mean an infection will happen.
  */
-setInterval(() => {
+const infectionInterval = setInterval(() => {
   const state = store.getState()
   const { continentNames, day, patientZeroContinent } = state.world
   // Skip the first time, since the interval will run the same time that Patient Zero is being infected
