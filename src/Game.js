@@ -6,7 +6,7 @@ import WorldMap from './components/WorldMap'
 
 const Game = ({ dispatch, world }) => {
   const importantInfo = {
-    alivePopulation: world.alivePopulation,
+    healthyPopulation: world.healthyPopulation,
     deadPopulation: world.deadPopulation,
     infectedPopulation: world.infectedPopulation,
     patientZeroContinent: world.patientZeroContinent,

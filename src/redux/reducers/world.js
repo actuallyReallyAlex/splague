@@ -21,7 +21,7 @@ const continentNames = [
 ]
 
 const worldReducerInitialState = {
-  alivePopulation: 7419500000,
+  healthyPopulation: 7419500000,
   continents: {
     Africa: {
       coordinates: Africa.coordinates,
