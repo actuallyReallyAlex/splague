@@ -9,7 +9,7 @@ import {
 } from '../redux/actions/world'
 import plagueModeller from 'plague-modeller'
 import sample from 'lodash.sample'
-import { buildPlaces, getAdjacentLocation } from '../util'
+import { buildPlaces, getRandomLocation } from '../util'
 
 /**
  * Calculates population differences, and dispatches the action to infect the population.
@@ -60,7 +60,7 @@ const calculateAdditionalLocations = continentName => {
     // ! JUST FOR TESTING
 
     store.dispatch(
-      setInfectedLocation(getAdjacentLocation(continentName), continentName)
+      setInfectedLocation(getRandomLocation(continentName), continentName)
     )
     buildPlaces()
     // console.log('SHOULD NOT ADD A NEW DOT TO INFECTED_LOCATIONS ARRAY')

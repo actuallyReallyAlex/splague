@@ -90,3 +90,18 @@ export const getAdjacentLocation = continentName => {
 
   return newInfectionLocation
 }
+
+export const getRandomLocation = continentName => {
+  const state = store.getState()
+  const { infectedLocations } = state.world.continents[continentName].locations
+  const { coordinates } = state.world.continents[continentName]
+
+  let newLocation = sample(coordinates)
+
+  // Make sure that the new location isn't already infected
+  while (infectedLocations.indexOf(newLocation) > -1) {
+    newLocation = sample(coordinates)
+  }
+
+  return newLocation
+}
