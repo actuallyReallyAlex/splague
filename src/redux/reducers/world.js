@@ -160,6 +160,10 @@ export default (state = worldReducerInitialState, action) => {
         }
       })
     case 'SET_PLACES':
+      console.log('Setting places...')
+      console.log({
+        newPlaces: action.payload.places
+      })
       return Object.assign({}, state, { places: action.payload.places })
     case 'SET_INFECTED_LOCATION':
       const continentObject = state.continents[action.payload.continentName]
