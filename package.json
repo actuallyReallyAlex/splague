@@ -31,7 +31,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "REACT_APP_ENVIRONMENT=dev react-scripts start",
+    "start": "REACT_APP_ENVIRONMENT=dev BROWSER=none react-scripts start",
     "start-initial": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test --coverage && codecov",
