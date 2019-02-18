@@ -21,7 +21,6 @@ const continentNames = [
 ]
 
 const worldReducerInitialState = {
-  healthyPopulation: 7419500000,
   continents: {
     Africa: {
       coordinates: Africa.coordinates,
@@ -108,7 +107,8 @@ const worldReducerInitialState = {
   healthyPopulation: 7419500000,
   infectedPopulation: 0,
   patientZeroContinent: null,
-  places: []
+  places: [],
+  speed: 1000
 }
 
 export default (state = worldReducerInitialState, action) => {

@@ -11,6 +11,8 @@ import plagueModeller from 'plague-modeller'
 import sample from 'lodash.sample'
 import { buildPlaces, getRandomLocation } from '../util'
 
+const { speed } = store.getState().world
+
 /**
  * Calculates population differences, and dispatches the action to infect the population.
  * @param {String} continentName Name of Continent to Infect
@@ -55,9 +57,16 @@ const calculateAdditionalLocations = continentName => {
   const newInfectedPopulation = continentObject.infectedPopulation
   const { infectedLocations } = locations
 
+  console.log({ newInfectedPopulation })
+
   // If the number of infected individuals has gotten to the point where
   // a new dot is needed to represent infection size,
   // then assign that new coordinate.
+
+  // * 48 people    50 people per dot     1 location already
+  // * ^ no new dot until at least 100 people
+  // * if 100 >= (100 * (1 + 1))
+  // TODO: You were trying to figure out this stuff
   if (
     (infectedLocations.length + 1) * populationPerCoordinate <=
     newInfectedPopulation
@@ -74,7 +83,7 @@ const calculateAdditionalLocations = continentName => {
  */
 setInterval(() => {
   store.dispatch(increaseDay())
-}, 10000)
+}, speed)
 
 /**
  * After 10 seconds, will infect Patient Zero, of a random continent.
@@ -90,7 +99,7 @@ setTimeout(() => {
   store.dispatch(setInfectedLocation(infectionLocation, patientZeroContinent))
   // Rebuild the places
   buildPlaces()
-}, 10000)
+}, speed)
 
 /**
  * Interval to infect. Doesn't necessarily mean an infection will happen.
@@ -101,7 +110,7 @@ setInterval(() => {
   // Skip the first time, since the interval will run the same time that Patient Zero is being infected
   if (day !== 1) {
     // Random boolean to decide if should infect
-    const randomBool = Math.random() >= 0.5
+    const randomBool = Math.random() >= 0.05
     if (randomBool) {
       if (day < 11) {
         // If the day is less than 11,
@@ -120,4 +129,4 @@ setInterval(() => {
       }
     }
   }
-}, 10000)
+}, speed)
