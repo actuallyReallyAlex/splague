@@ -44,6 +44,10 @@ const calculateInfection = continentName => {
   )
 }
 
+/**
+ * Calculates if an additional dot is needed. If so, will dispatch the action to create one.
+ * @param {String} continentName Name of Continent.
+ */
 const calculateAdditionalLocations = continentName => {
   const state = store.getState()
   const continentObject = state.world.continents[continentName]
@@ -51,19 +55,17 @@ const calculateAdditionalLocations = continentName => {
   const newInfectedPopulation = continentObject.infectedPopulation
   const { infectedLocations } = locations
 
+  // If the number of infected individuals has gotten to the point where
+  // a new dot is needed to represent infection size,
+  // then assign that new coordinate.
   if (
     (infectedLocations.length + 1) * populationPerCoordinate <=
     newInfectedPopulation
   ) {
-    console.log('SHOULD ADD A NEW DOT TO INFECTED_LOCATIONS ARRAY')
-  } else {
-    // ! JUST FOR TESTING
-
     store.dispatch(
       setInfectedLocation(getRandomLocation(continentName), continentName)
     )
     buildPlaces()
-    // console.log('SHOULD NOT ADD A NEW DOT TO INFECTED_LOCATIONS ARRAY')
   }
 }
 
