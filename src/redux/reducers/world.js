@@ -28,6 +28,9 @@ const worldReducerInitialState = {
       healthyPopulation: 1216000000,
       infectedPopulation: 0,
       infectionMultiplier: 1,
+      infectionSpreadFrom: null,
+      infectionSpreadTo: [],
+      isInfectionIntervalRunning: false,
       locations: {
         deadLocations: [],
         healthyLocations: Africa.coordinates,
@@ -41,6 +44,9 @@ const worldReducerInitialState = {
       healthyPopulation: 4463000000,
       infectedPopulation: 0,
       infectionMultiplier: 1,
+      infectionSpreadFrom: null,
+      infectionSpreadTo: [],
+      isInfectionIntervalRunning: false,
       locations: {
         deadLocations: [],
         healthyLocations: Asia.coordinates,
@@ -54,6 +60,9 @@ const worldReducerInitialState = {
       healthyPopulation: 24600000,
       infectedPopulation: 0,
       infectionMultiplier: 1,
+      infectionSpreadFrom: null,
+      infectionSpreadTo: [],
+      isInfectionIntervalRunning: false,
       locations: {
         deadLocations: [],
         healthyLocations: Australia.coordinates,
@@ -67,6 +76,9 @@ const worldReducerInitialState = {
       healthyPopulation: 714400000,
       infectedPopulation: 0,
       infectionMultiplier: 1,
+      infectionSpreadFrom: null,
+      infectionSpreadTo: [],
+      isInfectionIntervalRunning: false,
       locations: {
         deadLocations: [],
         healthyLocations: Europe.coordinates,
@@ -80,6 +92,9 @@ const worldReducerInitialState = {
       healthyPopulation: 579000000,
       infectedPopulation: 0,
       infectionMultiplier: 1,
+      infectionSpreadFrom: null,
+      infectionSpreadTo: [],
+      isInfectionIntervalRunning: false,
       locations: {
         deadLocations: [],
         healthyLocations: NorthAmerica.coordinates,
@@ -93,6 +108,9 @@ const worldReducerInitialState = {
       healthyPopulation: 422500000,
       infectedPopulation: 0,
       infectionMultiplier: 1,
+      infectionSpreadFrom: null,
+      infectionSpreadTo: [],
+      isInfectionIntervalRunning: false,
       locations: {
         deadLocations: [],
         healthyLocations: SouthAmerica.coordinates,
@@ -108,7 +126,7 @@ const worldReducerInitialState = {
   infectedPopulation: 0,
   patientZeroContinent: null,
   places: [],
-  speed: 10000
+  speed: 3000
 }
 
 export default (state = worldReducerInitialState, action) => {
@@ -129,7 +147,9 @@ export default (state = worldReducerInitialState, action) => {
             healthyPopulation:
               state.continents[randomContinentName].healthyPopulation - 1,
             infectedPopulation:
-              state.continents[randomContinentName].infectedPopulation + 1
+              state.continents[randomContinentName].infectedPopulation + 1,
+            isInfectionIntervalRunning: true,
+            infectionSpreadFrom: 'patientZero'
           }
         }
       })
@@ -155,7 +175,8 @@ export default (state = worldReducerInitialState, action) => {
             ...state.continents[continentName],
             healthyPopulation,
             infectedPopulation,
-            deadPopulation
+            deadPopulation,
+            isInfectionIntervalRunning: true
           }
         }
       })
@@ -181,6 +202,25 @@ export default (state = worldReducerInitialState, action) => {
               infectedLocations: newInfectedLocationsArray,
               healthyLocations: newHealthyLocationsArray
             }
+          }
+        }
+      })
+    case 'INFECTION_SPREAD_FROM':
+      const { infectionSpreadFrom, infectionSpreadTo } = action.payload
+
+      return Object.assign({}, state, {
+        continents: {
+          ...state.continents,
+          [infectionSpreadTo]: {
+            ...state.continents[infectionSpreadTo],
+            infectionSpreadFrom: infectionSpreadFrom
+          },
+          [infectionSpreadFrom]: {
+            ...state.continents[infectionSpreadFrom],
+            infectionSpreadTo: [
+              ...state.continents[infectionSpreadFrom.infectionSpreadTo],
+              infectionSpreadTo
+            ]
           }
         }
       })
