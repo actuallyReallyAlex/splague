@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "jsx": "react",
+    "outDir": "./build",
+    "noEmit": false,
+    "isolatedModules": false,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "./src/server/**/*",
+    "./index.d.ts"
+  ]
+}
