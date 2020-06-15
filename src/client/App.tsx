@@ -1,6 +1,7 @@
 import * as React from "react";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
+import StateContext from "./context/state";
 
 /**
  * Application.
@@ -64,9 +65,7 @@ const App: React.SFC<{}> = () => {
    */
   React.useEffect(() => {
     if (localStorage.getItem("state")) {
-      console.log("RETRIEVED STATE");
       const loadedState = JSON.parse(localStorage.getItem("state"));
-      console.log(loadedState);
       setMoney(loadedState.money);
       setItem1Count(loadedState.item1Count);
       setItem1Cost(loadedState.item1Cost);
@@ -85,70 +84,72 @@ const App: React.SFC<{}> = () => {
   }, []);
 
   return (
-    <div id="app">
-      <h1>splague</h1>
-      <span>Money - ${money}</span>
-      <span>Item 1 - {item1Count}</span>
-      <button
-        disabled={money < item1Cost}
-        onClick={() => {
-          const newMoney = money - item1Cost;
-          setMoney(Math.round(newMoney * 100) / 100);
-          setItem1Count(item1Count + 1);
-        }}
-      >
-        BUY {itemMultiplier}x - ${item1Cost}
-      </button>
+    <StateContext.Provider value={JSON.stringify({ money })}>
+      <div id="app">
+        <h1>splague</h1>
+        <span>Money - ${money}</span>
+        <span>Item 1 - {item1Count}</span>
+        <button
+          disabled={money < item1Cost}
+          onClick={() => {
+            const newMoney = money - item1Cost;
+            setMoney(Math.round(newMoney * 100) / 100);
+            setItem1Count(item1Count + 1);
+          }}
+        >
+          BUY {itemMultiplier}x - ${item1Cost}
+        </button>
 
-      <span>Item 2 - {item2Count}</span>
-      <button
-        disabled={money < item2Cost}
-        onClick={() => {
-          const newMoney = money - item2Cost;
-          setMoney(Math.round(newMoney * 100) / 100);
-          setItem2Count(item2Count + 1);
-        }}
-      >
-        BUY {itemMultiplier}x - ${item2Cost}
-      </button>
+        <span>Item 2 - {item2Count}</span>
+        <button
+          disabled={money < item2Cost}
+          onClick={() => {
+            const newMoney = money - item2Cost;
+            setMoney(Math.round(newMoney * 100) / 100);
+            setItem2Count(item2Count + 1);
+          }}
+        >
+          BUY {itemMultiplier}x - ${item2Cost}
+        </button>
 
-      <span>Item 3 - {item3Count}</span>
-      <button
-        disabled={money < item3Cost}
-        onClick={() => {
-          const newMoney = money - item3Cost;
-          setMoney(Math.round(newMoney * 100) / 100);
-          setItem3Count(item3Count + 1);
-        }}
-      >
-        BUY {itemMultiplier}x - ${item3Cost}
-      </button>
+        <span>Item 3 - {item3Count}</span>
+        <button
+          disabled={money < item3Cost}
+          onClick={() => {
+            const newMoney = money - item3Cost;
+            setMoney(Math.round(newMoney * 100) / 100);
+            setItem3Count(item3Count + 1);
+          }}
+        >
+          BUY {itemMultiplier}x - ${item3Cost}
+        </button>
 
-      <span>Item 4 - {item4Count}</span>
-      <button
-        disabled={money < item4Cost}
-        onClick={() => {
-          const newMoney = money - item4Cost;
-          setMoney(Math.round(newMoney * 100) / 100);
-          setItem4Count(item4Count + 1);
-        }}
-      >
-        BUY {itemMultiplier}x - ${item4Cost}
-      </button>
+        <span>Item 4 - {item4Count}</span>
+        <button
+          disabled={money < item4Cost}
+          onClick={() => {
+            const newMoney = money - item4Cost;
+            setMoney(Math.round(newMoney * 100) / 100);
+            setItem4Count(item4Count + 1);
+          }}
+        >
+          BUY {itemMultiplier}x - ${item4Cost}
+        </button>
 
-      <span>Item 5 - {item5Count}</span>
-      <button
-        disabled={money < item5Cost}
-        onClick={() => {
-          const newMoney = money - item5Cost;
-          setMoney(Math.round(newMoney * 100) / 100);
-          setItem5Count(item5Count + 1);
-        }}
-      >
-        BUY {itemMultiplier}x - ${item5Cost}
-      </button>
-      <LoadingIndicator isLoading={isLoading} />
-    </div>
+        <span>Item 5 - {item5Count}</span>
+        <button
+          disabled={money < item5Cost}
+          onClick={() => {
+            const newMoney = money - item5Cost;
+            setMoney(Math.round(newMoney * 100) / 100);
+            setItem5Count(item5Count + 1);
+          }}
+        >
+          BUY {itemMultiplier}x - ${item5Cost}
+        </button>
+        <LoadingIndicator isLoading={isLoading} />
+      </div>
+    </StateContext.Provider>
   );
 };
 
