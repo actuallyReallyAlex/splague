@@ -1,5 +1,13 @@
 import React from "react";
 
-const StateContext = React.createContext(JSON.stringify({ money: 10 }));
+type ContextProps = {
+  isLoading: boolean;
+  itemMultiplier: number;
+  money: number;
+  setIsLoading: any;
+  setMoney: any;
+};
+
+const StateContext = React.createContext<Partial<ContextProps>>({});
 
 export default StateContext;

@@ -1,24 +1,28 @@
 import * as React from "react";
-
-export interface LoadingIndicatorProps {
-  isLoading: boolean;
-}
+import StateContext from "../context/state";
 
 /**
  * Displays Loading Indicator.
  */
-const LoadingIndicator: React.SFC<LoadingIndicatorProps> = ({ isLoading }) => {
+const LoadingIndicator: React.SFC<{}> = () => {
   return (
-    <>
-      <div className={!isLoading ? "hidden" : "shade"} />
-      <div className={!isLoading ? "hidden" : undefined} id="loading-indicator">
-        <div className="orbit-spinner">
-          <div className="orbit" />
-          <div className="orbit" />
-          <div className="orbit" />
-        </div>
-      </div>
-    </>
+    <StateContext.Consumer>
+      {({ isLoading }) => (
+        <>
+          <div className={!isLoading ? "hidden" : "shade"} />
+          <div
+            className={!isLoading ? "hidden" : undefined}
+            id="loading-indicator"
+          >
+            <div className="orbit-spinner">
+              <div className="orbit" />
+              <div className="orbit" />
+              <div className="orbit" />
+            </div>
+          </div>
+        </>
+      )}
+    </StateContext.Consumer>
   );
 };
 
