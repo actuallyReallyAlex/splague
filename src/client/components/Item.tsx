@@ -7,7 +7,6 @@ export interface ItemProps {
   count: number;
   income: number;
   name: string;
-  setCost: any;
   setCount: any;
 }
 
@@ -17,7 +16,6 @@ const Item: React.SFC<ItemProps> = ({
   count,
   income,
   name,
-  setCost,
   setCount,
 }) => {
   return (

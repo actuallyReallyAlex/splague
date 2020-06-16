@@ -15,14 +15,12 @@ export const round = (n: number, decimals: number) =>
 /**
  * Creates an array of items.
  * @param itemCosts Array of costs for all items.
- * @param itemCostSetters Array of cost setters for all items.
  * @param itemCounts Array of counts for all items.
  * @param itemCountSetters Array of count setters for all itmes.
  * @param buyMultiplier Buy multiplier.
  */
 export const createGameItems = (
   itemCosts: number[],
-  itemCostSetters: any[],
   itemCounts: number[],
   itemCountSetters: any[],
   buyMultiplier: number
@@ -37,7 +35,6 @@ export const createGameItems = (
       count: itemCounts[i],
       income: round(itemCounts[i] * baseIncomeValues[i], 2),
       name: `Item ${i + 1}`,
-      setCost: itemCostSetters[i],
       setCount: itemCountSetters[i],
     });
   });

@@ -191,7 +191,6 @@ const App: React.SFC<{}> = () => {
 
   const items = createGameItems(
     itemCosts,
-    itemCostSetters,
     itemCounts,
     itemCountSetters,
     buyMultiplier
