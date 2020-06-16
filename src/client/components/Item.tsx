@@ -3,6 +3,7 @@ import StateContext from "../context/state";
 
 export interface ItemProps {
   baseIncome: number;
+  bonusMultiplier: number;
   cost: number;
   count: number;
   income: number;
@@ -12,6 +13,7 @@ export interface ItemProps {
 
 const Item: React.SFC<ItemProps> = ({
   baseIncome,
+  bonusMultiplier,
   cost,
   count,
   income,
@@ -32,6 +34,8 @@ const Item: React.SFC<ItemProps> = ({
               /second
             </span>
             <span>Base Income - ${baseIncome.toLocaleString()}/second</span>
+            <span>Bonus Multiplier - {bonusMultiplier}</span>
+            <span id="progress">Progress - {count % 10} / 10</span>
             <button
               disabled={money < cost}
               onClick={() => {

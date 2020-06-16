@@ -25,4 +25,11 @@ context("Splague", () => {
     cy.get("#reset").click();
     cy.get("#money").should("contain.text", "50");
   });
+
+  it("Should show item progres", () => {
+    cy.get("#money").should("contain.text", "50");
+    cy.get("#item-1-container > #progress").should("contain.text", "0 / 10");
+    cy.get("#item-1-container > button").click();
+    cy.get("#item-1-container > #progress").should("contain.text", "1 / 10");
+  });
 });

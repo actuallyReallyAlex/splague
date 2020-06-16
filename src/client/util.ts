@@ -31,9 +31,15 @@ export const createGameItems = (
   itemCosts.forEach((cost: number, i: number) => {
     items.push({
       baseIncome: round(baseIncomeValues[i], 2),
+      bonusMultiplier: 1 + Math.floor(itemCounts[i] / 10) * 0.05,
       cost: round(cost * Math.pow(1.07, itemCounts[i]) * buyMultiplier, 2),
       count: itemCounts[i],
-      income: round(itemCounts[i] * baseIncomeValues[i], 2),
+      income: round(
+        itemCounts[i] *
+          baseIncomeValues[i] *
+          (1 + Math.floor(itemCounts[i] / 10) * 0.05),
+        2
+      ),
       name: `Item ${i + 1}`,
       setCount: itemCountSetters[i],
     });
