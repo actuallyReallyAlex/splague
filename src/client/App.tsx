@@ -4,7 +4,7 @@ import useInterval from "./hooks/useInterval";
 import StateContext from "./context/state";
 import Item from "./components/Item";
 import { round } from "./util";
-import { baseIncome, basePrice } from "./constants";
+import { baseIncome, basePrice, startingValues } from "./constants";
 
 /**
  * Application.
@@ -142,6 +142,32 @@ const App: React.SFC<{}> = () => {
     >
       <div id="app">
         <h1>splague</h1>
+        <button
+          onClick={() => {
+            setIsLoading(true);
+            setMoney(startingValues.money);
+            setItem1Count(startingValues.item1Count);
+            setItem1Cost(startingValues.item1Cost);
+            setItem2Count(startingValues.item2Count);
+            setItem2Cost(startingValues.item2Cost);
+            setItem3Count(startingValues.item3Count);
+            setItem3Cost(startingValues.item3Cost);
+            setItem4Count(startingValues.item4Count);
+            setItem4Cost(startingValues.item4Cost);
+            setItem5Count(startingValues.item5Count);
+            setItem5Cost(startingValues.item5Cost);
+            localStorage.setItem(
+              "state",
+              JSON.stringify({
+                ...startingValues,
+              })
+            );
+            setIsLoading(false);
+          }}
+          type="button"
+        >
+          RESET
+        </button>
         <span>Money - ${money}</span>
         <span>Earnings - ${earnings}/second</span>
         <button
@@ -160,6 +186,7 @@ const App: React.SFC<{}> = () => {
                 break;
             }
           }}
+          type="button"
         >
           Buy Multiplier - {buyMultiplier}
         </button>
