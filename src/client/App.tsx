@@ -3,6 +3,8 @@ import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import StateContext from "./context/state";
 import Item from "./components/Item";
+import { round } from "./util";
+import { baseIncome, basePrice } from "./constants";
 
 /**
  * Application.
@@ -11,36 +13,36 @@ const App: React.SFC<{}> = () => {
   const [buyMultiplier, setBuyMultiplier] = React.useState(1);
   const [earnings, setEarnings] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [money, setMoney] = React.useState(10.0);
+  const [money, setMoney] = React.useState(50.0);
 
   const [item1Count, setItem1Count] = React.useState(0);
-  const [item1Cost, setItem1Cost] = React.useState(1.0);
+  const [item1Cost, setItem1Cost] = React.useState(basePrice.item1);
 
   const [item2Count, setItem2Count] = React.useState(0);
-  const [item2Cost, setItem2Cost] = React.useState(25.0);
+  const [item2Cost, setItem2Cost] = React.useState(basePrice.item2);
 
   const [item3Count, setItem3Count] = React.useState(0);
-  const [item3Cost, setItem3Cost] = React.useState(100.0);
+  const [item3Cost, setItem3Cost] = React.useState(basePrice.item3);
 
   const [item4Count, setItem4Count] = React.useState(0);
-  const [item4Cost, setItem4Cost] = React.useState(1000.0);
+  const [item4Cost, setItem4Cost] = React.useState(basePrice.item4);
 
   const [item5Count, setItem5Count] = React.useState(0);
-  const [item5Cost, setItem5Cost] = React.useState(5000.0);
+  const [item5Cost, setItem5Cost] = React.useState(basePrice.item5);
 
   /**
    * Earnings Interval
    */
   useInterval(() => {
     const newEarnings =
-      item1Count * 0.1 +
-      item2Count * 0.25 +
-      item3Count * 0.33 +
-      item4Count * 0.5 +
-      item5Count * 0.7;
+      item1Count * baseIncome.item1 +
+      item2Count * baseIncome.item2 +
+      item3Count * baseIncome.item3 +
+      item4Count * baseIncome.item4 +
+      item5Count * baseIncome.item5;
     const newMoney = money + newEarnings;
-    setMoney(() => Math.round(newMoney * 100) / 100);
-    setEarnings(newEarnings);
+    setMoney(() => round(newMoney, 2));
+    setEarnings(round(newEarnings, 2));
   }, 1000);
 
   /**
@@ -91,35 +93,36 @@ const App: React.SFC<{}> = () => {
 
   const items = [
     {
-      cost: item1Cost * buyMultiplier,
+      cost: round(item1Cost * Math.pow(1.07, item1Count) * buyMultiplier, 2),
+      // Price=BaseCost×Multiplier(#Owned)
       count: item1Count,
       name: "Item 1",
       setCost: setItem1Cost,
       setCount: setItem1Count,
     },
     {
-      cost: item2Cost * buyMultiplier,
+      cost: round(item2Cost * Math.pow(1.07, item2Count) * buyMultiplier, 2),
       count: item2Count,
       name: "Item 2",
       setCost: setItem2Cost,
       setCount: setItem2Count,
     },
     {
-      cost: item3Cost * buyMultiplier,
+      cost: round(item3Cost * Math.pow(1.07, item3Count) * buyMultiplier, 2),
       count: item3Count,
       name: "Item 3",
       setCost: setItem3Cost,
       setCount: setItem3Count,
     },
     {
-      cost: item4Cost * buyMultiplier,
+      cost: round(item4Cost * Math.pow(1.07, item4Count) * buyMultiplier, 2),
       count: item4Count,
       name: "Item 4",
       setCost: setItem4Cost,
       setCount: setItem4Count,
     },
     {
-      cost: item5Cost * buyMultiplier,
+      cost: round(item5Cost * Math.pow(1.07, item5Count) * buyMultiplier, 2),
       count: item5Count,
       name: "Item 5",
       setCost: setItem5Cost,
