@@ -1,4 +1,5 @@
 import * as React from "react";
+import formatDistance from "date-fns/formatDistance";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import StateContext from "./context/state";
@@ -10,6 +11,7 @@ import { baseIncome, basePrice, startingValues } from "./constants";
  * Application.
  */
 const App: React.SFC<{}> = () => {
+  const [gameStartTime, setGameStartTime] = React.useState(null);
   const [buyMultiplier, setBuyMultiplier] = React.useState(1);
   const [earnings, setEarnings] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -53,6 +55,7 @@ const App: React.SFC<{}> = () => {
       "state",
       JSON.stringify({
         buyMultiplier,
+        gameStartTime,
         money,
         item1Count,
         item1Cost,
@@ -86,6 +89,9 @@ const App: React.SFC<{}> = () => {
       setItem4Cost(loadedState.item4Cost);
       setItem5Count(loadedState.item5Count);
       setItem5Cost(loadedState.item5Cost);
+      setGameStartTime(loadedState.gameStartTime);
+    } else {
+      setGameStartTime(new Date());
     }
 
     setIsLoading(false);
@@ -144,6 +150,7 @@ const App: React.SFC<{}> = () => {
         <h1>splague</h1>
         <button
           onClick={() => {
+            const newGameStartTime = new Date();
             setIsLoading(true);
             setMoney(startingValues.money);
             setItem1Count(startingValues.item1Count);
@@ -156,10 +163,12 @@ const App: React.SFC<{}> = () => {
             setItem4Cost(startingValues.item4Cost);
             setItem5Count(startingValues.item5Count);
             setItem5Cost(startingValues.item5Cost);
+            setGameStartTime(newGameStartTime);
             localStorage.setItem(
               "state",
               JSON.stringify({
                 ...startingValues,
+                gameStartTime: newGameStartTime,
               })
             );
             setIsLoading(false);
@@ -168,6 +177,15 @@ const App: React.SFC<{}> = () => {
         >
           RESET
         </button>
+
+        {gameStartTime && (
+          <span>
+            Time Played -{" "}
+            {formatDistance(new Date(gameStartTime), new Date(), {
+              includeSeconds: true,
+            })}
+          </span>
+        )}
         <span>Money - ${money}</span>
         <span>Earnings - ${earnings}/second</span>
         <button
