@@ -62,8 +62,6 @@ const App: React.SFC<{}> = () => {
       item8Count * baseIncome.item8 +
       item9Count * baseIncome.item9 +
       item10Count * baseIncome.item10;
-    console.log(item10Count);
-    console.log(item10Cost);
     const newMoney = money + newEarnings;
     setMoney(() => round(newMoney, 2));
     setEarnings(round(newEarnings, 2));
@@ -141,72 +139,92 @@ const App: React.SFC<{}> = () => {
 
   const items = [
     {
+      baseIncome: round(baseIncome.item1, 2),
       cost: round(item1Cost * Math.pow(1.07, item1Count) * buyMultiplier, 2),
       // Price=BaseCost×Multiplier(#Owned)
       count: item1Count,
+      income: round(item1Count * baseIncome.item1, 2),
       name: "Item 1",
       setCost: setItem1Cost,
       setCount: setItem1Count,
     },
     {
+      baseIncome: round(baseIncome.item2, 2),
       cost: round(item2Cost * Math.pow(1.07, item2Count) * buyMultiplier, 2),
       count: item2Count,
+      income: round(item2Count * baseIncome.item2, 2),
       name: "Item 2",
       setCost: setItem2Cost,
       setCount: setItem2Count,
     },
     {
+      baseIncome: round(baseIncome.item3, 2),
       cost: round(item3Cost * Math.pow(1.07, item3Count) * buyMultiplier, 2),
       count: item3Count,
+      income: round(item3Count * baseIncome.item3, 2),
       name: "Item 3",
       setCost: setItem3Cost,
       setCount: setItem3Count,
     },
     {
+      baseIncome: round(baseIncome.item4, 2),
       cost: round(item4Cost * Math.pow(1.07, item4Count) * buyMultiplier, 2),
       count: item4Count,
+      income: round(item4Count * baseIncome.item4, 2),
       name: "Item 4",
       setCost: setItem4Cost,
       setCount: setItem4Count,
     },
     {
+      baseIncome: round(baseIncome.item5, 2),
       cost: round(item5Cost * Math.pow(1.07, item5Count) * buyMultiplier, 2),
       count: item5Count,
+      income: round(item5Count * baseIncome.item5, 2),
       name: "Item 5",
       setCost: setItem5Cost,
       setCount: setItem5Count,
     },
     {
+      baseIncome: round(baseIncome.item6, 2),
       cost: round(item6Cost * Math.pow(1.07, item6Count) * buyMultiplier, 2),
       count: item6Count,
+      income: round(item6Count * baseIncome.item6, 2),
       name: "Item 6",
       setCost: setItem6Cost,
       setCount: setItem6Count,
     },
     {
+      baseIncome: round(baseIncome.item7, 2),
       cost: round(item7Cost * Math.pow(1.07, item7Count) * buyMultiplier, 2),
       count: item7Count,
+      income: round(item7Count * baseIncome.item7, 2),
       name: "Item 7",
       setCost: setItem7Cost,
       setCount: setItem7Count,
     },
     {
+      baseIncome: round(baseIncome.item8, 2),
       cost: round(item8Cost * Math.pow(1.07, item8Count) * buyMultiplier, 2),
       count: item8Count,
+      income: round(item8Count * baseIncome.item8, 2),
       name: "Item 8",
       setCost: setItem8Cost,
       setCount: setItem8Count,
     },
     {
+      baseIncome: round(baseIncome.item9, 2),
       cost: round(item9Cost * Math.pow(1.07, item9Count) * buyMultiplier, 2),
       count: item9Count,
+      income: round(item9Count * baseIncome.item9, 2),
       name: "Item 9",
       setCost: setItem9Cost,
       setCount: setItem9Count,
     },
     {
+      baseIncome: round(baseIncome.item10, 2),
       cost: round(item10Cost * Math.pow(1.07, item10Count) * buyMultiplier, 2),
       count: item10Count,
+      income: round(item10Count * baseIncome.item10, 2),
       name: "Item 10",
       setCost: setItem10Cost,
       setCount: setItem10Count,

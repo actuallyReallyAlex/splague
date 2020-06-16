@@ -2,16 +2,20 @@ import * as React from "react";
 import StateContext from "../context/state";
 
 export interface ItemProps {
+  baseIncome: number;
   cost: number;
   count: number;
+  income: number;
   name: string;
   setCost: any;
   setCount: any;
 }
 
 const Item: React.SFC<ItemProps> = ({
+  baseIncome,
   cost,
   count,
+  income,
   name,
   setCost,
   setCount,
@@ -23,8 +27,9 @@ const Item: React.SFC<ItemProps> = ({
         return (
           <>
             <span>
-              Item {name} - {count}
+              Item {name} - {count}x - ${income}/second
             </span>
+            <span>Base Income - ${baseIncome}/second</span>
             <button
               disabled={money < cost}
               onClick={() => {
