@@ -19,7 +19,7 @@ const Item: React.SFC<ItemProps> = ({
   return (
     <StateContext.Consumer>
       {(context) => {
-        const { itemMultiplier, money, setMoney } = context;
+        const { buyMultiplier, money, setMoney } = context;
         return (
           <>
             <span>
@@ -33,7 +33,7 @@ const Item: React.SFC<ItemProps> = ({
                 setCount(count + 1);
               }}
             >
-              BUY {itemMultiplier}x - ${cost}
+              BUY {buyMultiplier}x - ${cost}
             </button>
           </>
         );

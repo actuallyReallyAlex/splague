@@ -8,10 +8,10 @@ import Item from "./components/Item";
  * Application.
  */
 const App: React.SFC<{}> = () => {
+  const [buyMultiplier, setBuyMultiplier] = React.useState(1);
   const [earnings, setEarnings] = React.useState(0);
-  const [money, setMoney] = React.useState(10.0);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [itemMultiplier, setItemMultiplier] = React.useState(1);
+  const [money, setMoney] = React.useState(10.0);
 
   const [item1Count, setItem1Count] = React.useState(0);
   const [item1Cost, setItem1Cost] = React.useState(1.0);
@@ -50,6 +50,7 @@ const App: React.SFC<{}> = () => {
     localStorage.setItem(
       "state",
       JSON.stringify({
+        buyMultiplier,
         money,
         item1Count,
         item1Cost,
@@ -61,7 +62,6 @@ const App: React.SFC<{}> = () => {
         item4Cost,
         item5Count,
         item5Cost,
-        itemMultiplier,
       })
     );
   }, 5000);
@@ -72,6 +72,7 @@ const App: React.SFC<{}> = () => {
   React.useEffect(() => {
     if (localStorage.getItem("state")) {
       const loadedState = JSON.parse(localStorage.getItem("state"));
+      setBuyMultiplier(loadedState.buyMultiplier);
       setMoney(loadedState.money);
       setItem1Count(loadedState.item1Count);
       setItem1Cost(loadedState.item1Cost);
@@ -83,7 +84,6 @@ const App: React.SFC<{}> = () => {
       setItem4Cost(loadedState.item4Cost);
       setItem5Count(loadedState.item5Count);
       setItem5Cost(loadedState.item5Cost);
-      setItemMultiplier(loadedState.itemMultiplier);
     }
 
     setIsLoading(false);
@@ -91,35 +91,35 @@ const App: React.SFC<{}> = () => {
 
   const items = [
     {
-      cost: item1Cost,
+      cost: item1Cost * buyMultiplier,
       count: item1Count,
       name: "Item 1",
       setCost: setItem1Cost,
       setCount: setItem1Count,
     },
     {
-      cost: item2Cost,
+      cost: item2Cost * buyMultiplier,
       count: item2Count,
       name: "Item 2",
       setCost: setItem2Cost,
       setCount: setItem2Count,
     },
     {
-      cost: item3Cost,
+      cost: item3Cost * buyMultiplier,
       count: item3Count,
       name: "Item 3",
       setCost: setItem3Cost,
       setCount: setItem3Count,
     },
     {
-      cost: item4Cost,
+      cost: item4Cost * buyMultiplier,
       count: item4Count,
       name: "Item 4",
       setCost: setItem4Cost,
       setCount: setItem4Count,
     },
     {
-      cost: item5Cost,
+      cost: item5Cost * buyMultiplier,
       count: item5Count,
       name: "Item 5",
       setCost: setItem5Cost,
@@ -130,8 +130,8 @@ const App: React.SFC<{}> = () => {
   return (
     <StateContext.Provider
       value={{
+        buyMultiplier,
         isLoading,
-        itemMultiplier,
         money,
         setIsLoading,
         setMoney,
@@ -141,6 +141,25 @@ const App: React.SFC<{}> = () => {
         <h1>splague</h1>
         <span>Money - ${money}</span>
         <span>Earnings - ${earnings}/second</span>
+        <button
+          onClick={() => {
+            switch (buyMultiplier) {
+              case 1:
+                setBuyMultiplier(5);
+                break;
+              case 5:
+                setBuyMultiplier(10);
+                break;
+              case 10:
+                setBuyMultiplier(1);
+                break;
+              default:
+                break;
+            }
+          }}
+        >
+          Buy Multiplier - {buyMultiplier}
+        </button>
 
         {items.map((itemProps) => (
           <Item key={itemProps.name} {...itemProps} />

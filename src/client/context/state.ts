@@ -1,8 +1,8 @@
 import React from "react";
 
 type ContextProps = {
+  buyMultiplier: number;
   isLoading: boolean;
-  itemMultiplier: number;
   money: number;
   setIsLoading: any;
   setMoney: any;
