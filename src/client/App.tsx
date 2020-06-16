@@ -99,6 +99,13 @@ const App: React.SFC<{}> = () => {
     setItem10Count,
   ];
 
+  const items = createGameItems(
+    itemCosts,
+    itemCounts,
+    itemCountSetters,
+    buyMultiplier
+  );
+
   /**
    * Earnings Interval
    */
@@ -128,27 +135,8 @@ const App: React.SFC<{}> = () => {
       JSON.stringify({
         buyMultiplier,
         gameStartTime,
+        items,
         money,
-        item1Count,
-        item1Cost,
-        item2Count,
-        item2Cost,
-        item3Count,
-        item3Cost,
-        item4Count,
-        item4Cost,
-        item5Count,
-        item5Cost,
-        item6Count,
-        item6Cost,
-        item7Count,
-        item7Cost,
-        item8Count,
-        item8Cost,
-        item9Count,
-        item9Cost,
-        item10Count,
-        item10Cost,
       })
     );
   }, 5000);
@@ -158,43 +146,24 @@ const App: React.SFC<{}> = () => {
    */
   React.useEffect(() => {
     if (localStorage.getItem("state")) {
-      const loadedState = JSON.parse(localStorage.getItem("state"));
-      setBuyMultiplier(loadedState.buyMultiplier);
-      setMoney(loadedState.money);
-      setItem1Count(loadedState.item1Count);
-      setItem1Cost(loadedState.item1Cost);
-      setItem2Count(loadedState.item2Count);
-      setItem2Cost(loadedState.item2Cost);
-      setItem3Count(loadedState.item3Count);
-      setItem3Cost(loadedState.item3Cost);
-      setItem4Count(loadedState.item4Count);
-      setItem4Cost(loadedState.item4Cost);
-      setItem5Count(loadedState.item5Count);
-      setItem5Cost(loadedState.item5Cost);
-      setItem6Count(loadedState.item6Count);
-      setItem6Cost(loadedState.item6Cost);
-      setItem7Count(loadedState.item7Count);
-      setItem7Cost(loadedState.item7Cost);
-      setItem8Count(loadedState.item8Count);
-      setItem8Cost(loadedState.item8Cost);
-      setItem9Count(loadedState.item9Count);
-      setItem9Cost(loadedState.item9Cost);
-      setItem10Count(loadedState.item10Count);
-      setItem10Cost(loadedState.item10Cost);
-      setGameStartTime(loadedState.gameStartTime);
+      const { buyMultiplier, gameStartTime, items, money } = JSON.parse(
+        localStorage.getItem("state")
+      );
+      setBuyMultiplier(buyMultiplier);
+      setMoney(money);
+      setGameStartTime(gameStartTime);
+      itemCostSetters.forEach((setItemCost, i: number) =>
+        setItemCost(items[i].cost)
+      );
+      itemCountSetters.forEach((setItemCount, i: number) =>
+        setItemCount(items[i].count)
+      );
     } else {
       setGameStartTime(new Date());
     }
 
     setIsLoading(false);
   }, []);
-
-  const items = createGameItems(
-    itemCosts,
-    itemCounts,
-    itemCountSetters,
-    buyMultiplier
-  );
 
   return (
     <StateContext.Provider
@@ -214,26 +183,12 @@ const App: React.SFC<{}> = () => {
             const newGameStartTime = new Date();
             setIsLoading(true);
             setMoney(startingValues.money);
-            setItem1Count(startingValues.item1Count);
-            setItem1Cost(startingValues.item1Cost);
-            setItem2Count(startingValues.item2Count);
-            setItem2Cost(startingValues.item2Cost);
-            setItem3Count(startingValues.item3Count);
-            setItem3Cost(startingValues.item3Cost);
-            setItem4Count(startingValues.item4Count);
-            setItem4Cost(startingValues.item4Cost);
-            setItem5Count(startingValues.item5Count);
-            setItem5Cost(startingValues.item5Cost);
-            setItem6Count(startingValues.item6Count);
-            setItem6Cost(startingValues.item6Cost);
-            setItem7Count(startingValues.item7Count);
-            setItem7Cost(startingValues.item7Cost);
-            setItem8Count(startingValues.item8Count);
-            setItem8Cost(startingValues.item8Cost);
-            setItem9Count(startingValues.item9Count);
-            setItem9Cost(startingValues.item9Cost);
-            setItem10Count(startingValues.item10Count);
-            setItem10Cost(startingValues.item10Cost);
+            itemCostSetters.forEach((setItemCost, i: number) =>
+              setItemCost(startingValues.items[i].cost)
+            );
+            itemCountSetters.forEach((setItemCount, i: number) =>
+              setItemCount(startingValues.items[i].count)
+            );
             setGameStartTime(newGameStartTime);
             localStorage.setItem(
               "state",
