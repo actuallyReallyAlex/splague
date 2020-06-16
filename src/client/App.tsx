@@ -244,6 +244,7 @@ const App: React.SFC<{}> = () => {
       <div id="app">
         <h1>splague</h1>
         <button
+          id="reset"
           onClick={() => {
             const newGameStartTime = new Date();
             setIsLoading(true);
@@ -291,7 +292,7 @@ const App: React.SFC<{}> = () => {
             })}
           </span>
         )}
-        <span>Money - ${money}</span>
+        <span id="money">Money - ${money}</span>
         <span>Earnings - ${earnings}/second</span>
         <button
           onClick={() => {

@@ -25,9 +25,12 @@ const Item: React.SFC<ItemProps> = ({
       {(context) => {
         const { buyMultiplier, money, setMoney } = context;
         return (
-          <>
+          <div
+            id={`${name.toLowerCase().replace(/ /gm, "-")}-container`}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             <span>
-              Item {name} - {count}x - ${income}/second
+              {name} - {count}x - ${income}/second
             </span>
             <span>Base Income - ${baseIncome}/second</span>
             <button
@@ -40,7 +43,7 @@ const Item: React.SFC<ItemProps> = ({
             >
               BUY {buyMultiplier}x - ${cost}
             </button>
-          </>
+          </div>
         );
       }}
     </StateContext.Consumer>
