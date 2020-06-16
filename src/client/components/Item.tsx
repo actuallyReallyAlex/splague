@@ -30,9 +30,10 @@ const Item: React.SFC<ItemProps> = ({
             style={{ display: "flex", flexDirection: "column" }}
           >
             <span>
-              {name} - {count}x - ${income}/second
+              {name} - {count.toLocaleString()}x - ${income.toLocaleString()}
+              /second
             </span>
-            <span>Base Income - ${baseIncome}/second</span>
+            <span>Base Income - ${baseIncome.toLocaleString()}/second</span>
             <button
               disabled={money < cost}
               onClick={() => {
@@ -41,7 +42,7 @@ const Item: React.SFC<ItemProps> = ({
                 setCount(count + 1);
               }}
             >
-              BUY {buyMultiplier}x - ${cost}
+              BUY {buyMultiplier}x - ${cost.toLocaleString()}
             </button>
           </div>
         );

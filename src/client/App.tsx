@@ -258,8 +258,8 @@ const App: React.SFC<{}> = () => {
             })}
           </span>
         )}
-        <span id="money">Money - ${money}</span>
-        <span>Earnings - ${earnings}/second</span>
+        <span id="money">Money - ${money.toLocaleString()}</span>
+        <span>Earnings - ${earnings.toLocaleString()}/second</span>
         <button
           onClick={() => {
             switch (buyMultiplier) {
