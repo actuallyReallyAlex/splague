@@ -32,6 +32,21 @@ const App: React.SFC<{}> = () => {
   const [item5Count, setItem5Count] = React.useState(0);
   const [item5Cost, setItem5Cost] = React.useState(basePrice.item5);
 
+  const [item6Count, setItem6Count] = React.useState(0);
+  const [item6Cost, setItem6Cost] = React.useState(basePrice.item6);
+
+  const [item7Count, setItem7Count] = React.useState(0);
+  const [item7Cost, setItem7Cost] = React.useState(basePrice.item7);
+
+  const [item8Count, setItem8Count] = React.useState(0);
+  const [item8Cost, setItem8Cost] = React.useState(basePrice.item8);
+
+  const [item9Count, setItem9Count] = React.useState(0);
+  const [item9Cost, setItem9Cost] = React.useState(basePrice.item9);
+
+  const [item10Count, setItem10Count] = React.useState(0);
+  const [item10Cost, setItem10Cost] = React.useState(basePrice.item10);
+
   /**
    * Earnings Interval
    */
@@ -41,7 +56,14 @@ const App: React.SFC<{}> = () => {
       item2Count * baseIncome.item2 +
       item3Count * baseIncome.item3 +
       item4Count * baseIncome.item4 +
-      item5Count * baseIncome.item5;
+      item5Count * baseIncome.item5 +
+      item6Count * baseIncome.item6 +
+      item7Count * baseIncome.item7 +
+      item8Count * baseIncome.item8 +
+      item9Count * baseIncome.item9 +
+      item10Count * baseIncome.item10;
+    console.log(item10Count);
+    console.log(item10Cost);
     const newMoney = money + newEarnings;
     setMoney(() => round(newMoney, 2));
     setEarnings(round(newEarnings, 2));
@@ -67,6 +89,16 @@ const App: React.SFC<{}> = () => {
         item4Cost,
         item5Count,
         item5Cost,
+        item6Count,
+        item6Cost,
+        item7Count,
+        item7Cost,
+        item8Count,
+        item8Cost,
+        item9Count,
+        item9Cost,
+        item10Count,
+        item10Cost,
       })
     );
   }, 5000);
@@ -89,6 +121,16 @@ const App: React.SFC<{}> = () => {
       setItem4Cost(loadedState.item4Cost);
       setItem5Count(loadedState.item5Count);
       setItem5Cost(loadedState.item5Cost);
+      setItem6Count(loadedState.item6Count);
+      setItem6Cost(loadedState.item6Cost);
+      setItem7Count(loadedState.item7Count);
+      setItem7Cost(loadedState.item7Cost);
+      setItem8Count(loadedState.item8Count);
+      setItem8Cost(loadedState.item8Cost);
+      setItem9Count(loadedState.item9Count);
+      setItem9Cost(loadedState.item9Cost);
+      setItem10Count(loadedState.item10Count);
+      setItem10Cost(loadedState.item10Cost);
       setGameStartTime(loadedState.gameStartTime);
     } else {
       setGameStartTime(new Date());
@@ -134,6 +176,41 @@ const App: React.SFC<{}> = () => {
       setCost: setItem5Cost,
       setCount: setItem5Count,
     },
+    {
+      cost: round(item6Cost * Math.pow(1.07, item6Count) * buyMultiplier, 2),
+      count: item6Count,
+      name: "Item 6",
+      setCost: setItem6Cost,
+      setCount: setItem6Count,
+    },
+    {
+      cost: round(item7Cost * Math.pow(1.07, item7Count) * buyMultiplier, 2),
+      count: item7Count,
+      name: "Item 7",
+      setCost: setItem7Cost,
+      setCount: setItem7Count,
+    },
+    {
+      cost: round(item8Cost * Math.pow(1.07, item8Count) * buyMultiplier, 2),
+      count: item8Count,
+      name: "Item 8",
+      setCost: setItem8Cost,
+      setCount: setItem8Count,
+    },
+    {
+      cost: round(item9Cost * Math.pow(1.07, item9Count) * buyMultiplier, 2),
+      count: item9Count,
+      name: "Item 9",
+      setCost: setItem9Cost,
+      setCount: setItem9Count,
+    },
+    {
+      cost: round(item10Cost * Math.pow(1.07, item10Count) * buyMultiplier, 2),
+      count: item10Count,
+      name: "Item 10",
+      setCost: setItem10Cost,
+      setCount: setItem10Count,
+    },
   ];
 
   return (
@@ -163,6 +240,16 @@ const App: React.SFC<{}> = () => {
             setItem4Cost(startingValues.item4Cost);
             setItem5Count(startingValues.item5Count);
             setItem5Cost(startingValues.item5Cost);
+            setItem6Count(startingValues.item6Count);
+            setItem6Cost(startingValues.item6Cost);
+            setItem7Count(startingValues.item7Count);
+            setItem7Cost(startingValues.item7Cost);
+            setItem8Count(startingValues.item8Count);
+            setItem8Cost(startingValues.item8Cost);
+            setItem9Count(startingValues.item9Count);
+            setItem9Cost(startingValues.item9Cost);
+            setItem10Count(startingValues.item10Count);
+            setItem10Cost(startingValues.item10Cost);
             setGameStartTime(newGameStartTime);
             localStorage.setItem(
               "state",

@@ -4,6 +4,11 @@ export const baseIncome = {
   item3: 4,
   item4: 10,
   item5: 40,
+  item6: 100,
+  item7: 400,
+  item8: 6666,
+  item9: 98765,
+  item10: 999999,
 };
 
 export const basePrice = {
@@ -12,6 +17,11 @@ export const basePrice = {
   item3: 500,
   item4: 3000,
   item5: 10000,
+  item6: 40000,
+  item7: 200000,
+  item8: 1666666,
+  item9: 123456789,
+  item10: 3999999999,
 };
 
 export const startingValues = {
@@ -27,4 +37,14 @@ export const startingValues = {
   item4Count: 0,
   item5Cost: basePrice.item5,
   item5Count: 0,
+  item6Cost: basePrice.item6,
+  item6Count: 0,
+  item7Cost: basePrice.item7,
+  item7Count: 0,
+  item8Cost: basePrice.item8,
+  item8Count: 0,
+  item9Cost: basePrice.item9,
+  item9Count: 0,
+  item10Cost: basePrice.item10,
+  item10Count: 0,
 };
