@@ -8,6 +8,7 @@ import Item from "./components/Item";
  * Application.
  */
 const App: React.SFC<{}> = () => {
+  const [earnings, setEarnings] = React.useState(0);
   const [money, setMoney] = React.useState(10.0);
   const [isLoading, setIsLoading] = React.useState(true);
   const [itemMultiplier, setItemMultiplier] = React.useState(1);
@@ -31,10 +32,15 @@ const App: React.SFC<{}> = () => {
    * Earnings Interval
    */
   useInterval(() => {
-    const earnings = item1Count * 0.1 + item2Count * 0.25;
-    +item3Count * 0.33 + item4Count * 0.5 + item5Count * 0.7;
-    const newMoney = money + earnings;
+    const newEarnings =
+      item1Count * 0.1 +
+      item2Count * 0.25 +
+      item3Count * 0.33 +
+      item4Count * 0.5 +
+      item5Count * 0.7;
+    const newMoney = money + newEarnings;
     setMoney(() => Math.round(newMoney * 100) / 100);
+    setEarnings(newEarnings);
   }, 1000);
 
   /**
@@ -134,6 +140,7 @@ const App: React.SFC<{}> = () => {
       <div id="app">
         <h1>splague</h1>
         <span>Money - ${money}</span>
+        <span>Earnings - ${earnings}/second</span>
 
         {items.map((itemProps) => (
           <Item key={itemProps.name} {...itemProps} />
