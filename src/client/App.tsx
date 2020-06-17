@@ -187,19 +187,19 @@ const App: React.SFC<{}> = () => {
           items[9].count * items[9].baseIncome * items[9].bonusMultiplier;
 
         const awayTime = formatDistance(saveTimeDate, nowDate);
-        const awayEarnings = round(
-          -differenceInSeconds(saveTimeDate, nowDate) * earningsPerSecond,
-          2
-        );
+        const awayTimeInSeconds = -differenceInSeconds(saveTimeDate, nowDate);
+        const awayEarnings = round(awayTimeInSeconds * earningsPerSecond, 2);
 
         const newMoney = money + awayEarnings;
         setMoney(() => round(newMoney, 2));
 
         setIsLoading(false);
 
-        alert(
-          `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
-        );
+        if (awayTimeInSeconds > 10) {
+          alert(
+            `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
+          );
+        }
       } catch (error) {
         console.error(error);
       }
