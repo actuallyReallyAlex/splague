@@ -7,11 +7,13 @@ import StateContext from "./context/state";
 import Item from "./components/Item";
 import { createGameItems, round } from "./util";
 import { basePrice, startingValues } from "./constants";
+import { editGame, getGame, setGame, deleteGame } from "./api/game";
 
 /**
  * Application.
  */
 const App: React.SFC<{}> = () => {
+  const [id, setId] = React.useState(null);
   const [gameStartTime, setGameStartTime] = React.useState(null);
   const [buyMultiplier, setBuyMultiplier] = React.useState(1);
   const [earnings, setEarnings] = React.useState(0);
@@ -131,70 +133,99 @@ const App: React.SFC<{}> = () => {
    * Save Game State
    */
   useInterval(() => {
-    localStorage.setItem(
-      "state",
-      JSON.stringify({
-        buyMultiplier,
-        gameStartTime,
-        items,
-        money,
-        saveTime: new Date(),
-      })
-    );
+    const saveGame = async () => {
+      try {
+        await editGame(id, { buyMultiplier, items, money });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    saveGame();
   }, 5000);
 
   /**
    * Initialize Game State
    */
   React.useEffect(() => {
-    if (localStorage.getItem("state")) {
-      const {
-        buyMultiplier,
-        gameStartTime,
-        items,
-        money,
-        saveTime,
-      } = JSON.parse(localStorage.getItem("state"));
-      setBuyMultiplier(buyMultiplier);
-      setGameStartTime(gameStartTime);
-      itemCostSetters.forEach((setItemCost, i: number) =>
-        setItemCost(items[i].cost)
-      );
-      itemCountSetters.forEach((setItemCount, i: number) =>
-        setItemCount(items[i].count)
-      );
+    // * Ask DB for Game Data
+    const storedId = localStorage.getItem("id");
+    const getGameData = async () => {
+      try {
+        const game = await getGame(storedId);
+        if (!game) {
+          // * If game does not exist, error
+          console.error(`No Game Exists in DB for Game ID - ${storedId}`);
+          return;
+        }
 
-      const saveTimeDate = new Date(saveTime);
-      const nowDate = new Date();
-      const earningsPerSecond =
-        items[0].count * items[0].baseIncome * items[0].bonusMultiplier +
-        items[1].count * items[1].baseIncome * items[1].bonusMultiplier +
-        items[2].count * items[2].baseIncome * items[2].bonusMultiplier +
-        items[3].count * items[3].baseIncome * items[3].bonusMultiplier +
-        items[4].count * items[4].baseIncome * items[4].bonusMultiplier +
-        items[5].count * items[5].baseIncome * items[5].bonusMultiplier +
-        items[6].count * items[6].baseIncome * items[6].bonusMultiplier +
-        items[7].count * items[7].baseIncome * items[7].bonusMultiplier +
-        items[8].count * items[8].baseIncome * items[8].bonusMultiplier +
-        items[9].count * items[9].baseIncome * items[9].bonusMultiplier;
+        // * If game data exists, set application values with game data values
+        const { buyMultiplier, items, money } = JSON.parse(game.data);
+        const { _id, createdAt, updatedAt } = game;
 
-      const awayTime = formatDistance(saveTimeDate, nowDate);
-      const awayEarnings = round(
-        -differenceInSeconds(saveTimeDate, nowDate) * earningsPerSecond,
-        2
-      );
+        setId(_id);
+        setBuyMultiplier(buyMultiplier);
+        setGameStartTime(createdAt);
+        itemCostSetters.forEach((setItemCost, i: number) =>
+          setItemCost(items[i].cost)
+        );
+        itemCountSetters.forEach((setItemCount, i: number) =>
+          setItemCount(items[i].count)
+        );
 
-      const newMoney = money + awayEarnings;
-      setMoney(() => round(newMoney, 2));
+        const saveTimeDate = new Date(updatedAt);
+        const nowDate = new Date();
+        const earningsPerSecond =
+          items[0].count * items[0].baseIncome * items[0].bonusMultiplier +
+          items[1].count * items[1].baseIncome * items[1].bonusMultiplier +
+          items[2].count * items[2].baseIncome * items[2].bonusMultiplier +
+          items[3].count * items[3].baseIncome * items[3].bonusMultiplier +
+          items[4].count * items[4].baseIncome * items[4].bonusMultiplier +
+          items[5].count * items[5].baseIncome * items[5].bonusMultiplier +
+          items[6].count * items[6].baseIncome * items[6].bonusMultiplier +
+          items[7].count * items[7].baseIncome * items[7].bonusMultiplier +
+          items[8].count * items[8].baseIncome * items[8].bonusMultiplier +
+          items[9].count * items[9].baseIncome * items[9].bonusMultiplier;
 
-      setIsLoading(false);
+        const awayTime = formatDistance(saveTimeDate, nowDate);
+        const awayEarnings = round(
+          -differenceInSeconds(saveTimeDate, nowDate) * earningsPerSecond,
+          2
+        );
 
-      alert(
-        `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
-      );
+        const newMoney = money + awayEarnings;
+        setMoney(() => round(newMoney, 2));
+
+        setIsLoading(false);
+
+        alert(
+          `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const setGameData = async () => {
+      try {
+        const { _id, createdAt } = await setGame({
+          buyMultiplier,
+          items,
+          money,
+        });
+
+        setId(_id);
+        localStorage.setItem("id", _id);
+        setGameStartTime(createdAt);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (storedId) {
+      getGameData();
     } else {
-      setGameStartTime(new Date());
-      setIsLoading(false);
+      setGameData();
     }
   }, []);
 
@@ -212,24 +243,31 @@ const App: React.SFC<{}> = () => {
         <h1>splague</h1>
         <button
           id="reset"
-          onClick={() => {
-            const newGameStartTime = new Date();
+          onClick={async () => {
             setIsLoading(true);
-            setMoney(startingValues.money);
-            itemCostSetters.forEach((setItemCost, i: number) =>
-              setItemCost(startingValues.items[i].cost)
-            );
-            itemCountSetters.forEach((setItemCount, i: number) =>
-              setItemCount(startingValues.items[i].count)
-            );
-            setGameStartTime(newGameStartTime);
-            localStorage.setItem(
-              "state",
-              JSON.stringify({
+
+            try {
+              // * Delete Game from DB
+              await deleteGame(id);
+              // * Set New Game in DB
+              const { _id, createdAt, data } = await setGame({
                 ...startingValues,
-                gameStartTime: newGameStartTime,
-              })
-            );
+              });
+              const parsedData = JSON.parse(data);
+              // * Store values in App state
+              setId(_id);
+              localStorage.setItem("id", _id);
+              setGameStartTime(createdAt);
+              setMoney(parsedData.money);
+              itemCostSetters.forEach((setItemCost, i: number) =>
+                setItemCost(parsedData.items[i].cost)
+              );
+              itemCountSetters.forEach((setItemCount, i: number) =>
+                setItemCount(parsedData.items[i].count)
+              );
+            } catch (error) {
+              console.error(error);
+            }
             setIsLoading(false);
           }}
           type="button"
