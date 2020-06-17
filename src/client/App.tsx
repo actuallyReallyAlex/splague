@@ -1,11 +1,12 @@
 import * as React from "react";
 import formatDistance from "date-fns/formatDistance";
+import differenceInSeconds from "date-fns/differenceInSeconds";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import StateContext from "./context/state";
 import Item from "./components/Item";
 import { createGameItems, round } from "./util";
-import { baseIncome, basePrice, startingValues } from "./constants";
+import { basePrice, startingValues } from "./constants";
 
 /**
  * Application.
@@ -137,6 +138,7 @@ const App: React.SFC<{}> = () => {
         gameStartTime,
         items,
         money,
+        saveTime: new Date(),
       })
     );
   }, 5000);
@@ -146,11 +148,14 @@ const App: React.SFC<{}> = () => {
    */
   React.useEffect(() => {
     if (localStorage.getItem("state")) {
-      const { buyMultiplier, gameStartTime, items, money } = JSON.parse(
-        localStorage.getItem("state")
-      );
+      const {
+        buyMultiplier,
+        gameStartTime,
+        items,
+        money,
+        saveTime,
+      } = JSON.parse(localStorage.getItem("state"));
       setBuyMultiplier(buyMultiplier);
-      setMoney(money);
       setGameStartTime(gameStartTime);
       itemCostSetters.forEach((setItemCost, i: number) =>
         setItemCost(items[i].cost)
@@ -158,11 +163,39 @@ const App: React.SFC<{}> = () => {
       itemCountSetters.forEach((setItemCount, i: number) =>
         setItemCount(items[i].count)
       );
+
+      const saveTimeDate = new Date(saveTime);
+      const nowDate = new Date();
+      const earningsPerSecond =
+        items[0].count * items[0].baseIncome * items[0].bonusMultiplier +
+        items[1].count * items[1].baseIncome * items[1].bonusMultiplier +
+        items[2].count * items[2].baseIncome * items[2].bonusMultiplier +
+        items[3].count * items[3].baseIncome * items[3].bonusMultiplier +
+        items[4].count * items[4].baseIncome * items[4].bonusMultiplier +
+        items[5].count * items[5].baseIncome * items[5].bonusMultiplier +
+        items[6].count * items[6].baseIncome * items[6].bonusMultiplier +
+        items[7].count * items[7].baseIncome * items[7].bonusMultiplier +
+        items[8].count * items[8].baseIncome * items[8].bonusMultiplier +
+        items[9].count * items[9].baseIncome * items[9].bonusMultiplier;
+
+      const awayTime = formatDistance(saveTimeDate, nowDate);
+      const awayEarnings = round(
+        -differenceInSeconds(saveTimeDate, nowDate) * earningsPerSecond,
+        2
+      );
+
+      const newMoney = money + awayEarnings;
+      setMoney(() => round(newMoney, 2));
+
+      setIsLoading(false);
+
+      alert(
+        `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
+      );
     } else {
       setGameStartTime(new Date());
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   }, []);
 
   return (
