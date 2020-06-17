@@ -25,87 +25,19 @@ const App: React.SFC<{}> = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [money, setMoney] = React.useState(50.0);
 
-  const [item1Count, setItem1Count] = React.useState(0);
-  const [item1Cost, setItem1Cost] = React.useState(basePrice.item1);
+  const itemCounts = [];
+  const itemCountSetters = [];
+  const itemCosts = [];
+  const itemCostSetters = [];
 
-  const [item2Count, setItem2Count] = React.useState(0);
-  const [item2Cost, setItem2Cost] = React.useState(basePrice.item2);
-
-  const [item3Count, setItem3Count] = React.useState(0);
-  const [item3Cost, setItem3Cost] = React.useState(basePrice.item3);
-
-  const [item4Count, setItem4Count] = React.useState(0);
-  const [item4Cost, setItem4Cost] = React.useState(basePrice.item4);
-
-  const [item5Count, setItem5Count] = React.useState(0);
-  const [item5Cost, setItem5Cost] = React.useState(basePrice.item5);
-
-  const [item6Count, setItem6Count] = React.useState(0);
-  const [item6Cost, setItem6Cost] = React.useState(basePrice.item6);
-
-  const [item7Count, setItem7Count] = React.useState(0);
-  const [item7Cost, setItem7Cost] = React.useState(basePrice.item7);
-
-  const [item8Count, setItem8Count] = React.useState(0);
-  const [item8Cost, setItem8Cost] = React.useState(basePrice.item8);
-
-  const [item9Count, setItem9Count] = React.useState(0);
-  const [item9Cost, setItem9Cost] = React.useState(basePrice.item9);
-
-  const [item10Count, setItem10Count] = React.useState(0);
-  const [item10Cost, setItem10Cost] = React.useState(basePrice.item10);
-
-  const itemCosts = [
-    item1Cost,
-    item2Cost,
-    item3Cost,
-    item4Cost,
-    item5Cost,
-    item6Cost,
-    item7Cost,
-    item8Cost,
-    item9Cost,
-    item10Cost,
-  ];
-
-  const itemCostSetters = [
-    setItem1Cost,
-    setItem2Cost,
-    setItem3Cost,
-    setItem4Cost,
-    setItem5Cost,
-    setItem6Cost,
-    setItem7Cost,
-    setItem8Cost,
-    setItem9Cost,
-    setItem10Cost,
-  ];
-
-  const itemCounts = [
-    item1Count,
-    item2Count,
-    item3Count,
-    item4Count,
-    item5Count,
-    item6Count,
-    item7Count,
-    item8Count,
-    item9Count,
-    item10Count,
-  ];
-
-  const itemCountSetters = [
-    setItem1Count,
-    setItem2Count,
-    setItem3Count,
-    setItem4Count,
-    setItem5Count,
-    setItem6Count,
-    setItem7Count,
-    setItem8Count,
-    setItem9Count,
-    setItem10Count,
-  ];
+  Object.values(basePrice).forEach((price: number) => {
+    const [itemCount, setItemCount] = React.useState(0);
+    const [itemCost, setItemCost] = React.useState(price);
+    itemCounts.push(itemCount);
+    itemCountSetters.push(setItemCount);
+    itemCosts.push(itemCost);
+    itemCostSetters.push(setItemCost);
+  });
 
   const items = createGameItems(
     itemCosts,
