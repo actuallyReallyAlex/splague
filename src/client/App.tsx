@@ -1,21 +1,21 @@
 import * as React from "react";
 import formatDistance from "date-fns/formatDistance";
-import LoadingIndicator from "./components/LoadingIndicator";
-import useInterval from "./hooks/useInterval";
-import StateContext from "./context/state";
 import Item from "./components/Item";
-import { createGameItems, round } from "./util";
-import { basePrice, startingValues } from "./constants";
+import LoadingIndicator from "./components/LoadingIndicator";
+import StateContext from "./context/state";
+import useInterval from "./hooks/useInterval";
 import {
+  deleteGame,
   editGame,
   getGameData,
   setGame,
   setGameData,
-  deleteGame,
 } from "./api/game";
+import { basePrice, startingValues } from "./constants";
+import { createGameItems, round } from "./util";
 
 /**
- * Application.
+ * Application
  */
 const App: React.SFC<{}> = () => {
   const [id, setId] = React.useState(null);
