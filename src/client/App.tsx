@@ -50,17 +50,12 @@ const App: React.SFC<{}> = () => {
    * Earnings Interval
    */
   useInterval(() => {
-    const newEarnings =
-      items[0].count * items[0].baseIncome * items[0].bonusMultiplier +
-      items[1].count * items[1].baseIncome * items[1].bonusMultiplier +
-      items[2].count * items[2].baseIncome * items[2].bonusMultiplier +
-      items[3].count * items[3].baseIncome * items[3].bonusMultiplier +
-      items[4].count * items[4].baseIncome * items[4].bonusMultiplier +
-      items[5].count * items[5].baseIncome * items[5].bonusMultiplier +
-      items[6].count * items[6].baseIncome * items[6].bonusMultiplier +
-      items[7].count * items[7].baseIncome * items[7].bonusMultiplier +
-      items[8].count * items[8].baseIncome * items[8].bonusMultiplier +
-      items[9].count * items[9].baseIncome * items[9].bonusMultiplier;
+    let newEarnings = 0;
+
+    items.forEach(({ baseIncome, bonusMultiplier, count }) => {
+      newEarnings = newEarnings + count * baseIncome * bonusMultiplier;
+    });
+
     const newMoney = money + newEarnings;
     setMoney(() => round(newMoney, 2));
     setEarnings(round(newEarnings, 2));
