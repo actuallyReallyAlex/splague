@@ -26,10 +26,12 @@ export const basePrice = {
 
 export const startingValues = {
   buyMultiplier: 1,
+  earnings: 0,
   money: 50,
   items: [
     {
       baseIncome: baseIncome.item1,
+      bonusMultiplier: 1,
       cost: basePrice.item1,
       count: 0,
       income: 0,
@@ -37,6 +39,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item2,
+      bonusMultiplier: 1,
       cost: basePrice.item2,
       count: 0,
       income: 0,
@@ -44,6 +47,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item3,
+      bonusMultiplier: 1,
       cost: basePrice.item3,
       count: 0,
       income: 0,
@@ -51,6 +55,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item4,
+      bonusMultiplier: 1,
       cost: basePrice.item4,
       count: 0,
       income: 0,
@@ -58,6 +63,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item5,
+      bonusMultiplier: 1,
       cost: basePrice.item5,
       count: 0,
       income: 0,
@@ -65,6 +71,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item6,
+      bonusMultiplier: 1,
       cost: basePrice.item6,
       count: 0,
       income: 0,
@@ -72,6 +79,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item7,
+      bonusMultiplier: 1,
       cost: basePrice.item7,
       count: 0,
       income: 0,
@@ -79,6 +87,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item8,
+      bonusMultiplier: 1,
       cost: basePrice.item8,
       count: 0,
       income: 0,
@@ -86,6 +95,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item9,
+      bonusMultiplier: 1,
       cost: basePrice.item9,
       count: 0,
       income: 0,
@@ -93,6 +103,7 @@ export const startingValues = {
     },
     {
       baseIncome: baseIncome.item10,
+      bonusMultiplier: 1,
       cost: basePrice.item10,
       count: 0,
       income: 0,
