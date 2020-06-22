@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import formatDistance from "date-fns/formatDistance";
-import Item from "./components/Item";
+import ItemComponent from "./components/Item";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import {
@@ -11,45 +11,49 @@ import {
   setNewEarnings,
   toggleBuyMultiplier,
 } from "./redux/actions";
+import { Item } from "./types";
+
+interface AppProps {
+  buyMultiplier: number;
+  earnings: number;
+  handleBuyMultiplierClick: () => void;
+  handleEarningsInterval: () => void;
+  handleInitializeGameState: () => void;
+  handleResetGame: () => void;
+  handleSaveGame: () => void;
+  items: Item[];
+  money: number;
+  startTime: string;
+}
 
 /**
  * Application
  */
-const App: React.SFC<{
-  buyMultiplier: number;
-  earnings: number;
-  handleBuyMultiplierClick: Function;
-  handleEarningsInterval: Function;
-  handleInitializeGameState: Function;
-  handleResetGame: Function;
-  handleSaveGame: Function;
-  items: any[];
-  money: number;
-  startTime: string;
-}> = ({
-  buyMultiplier,
-  earnings,
-  handleBuyMultiplierClick,
-  handleEarningsInterval,
-  handleInitializeGameState,
-  handleResetGame,
-  handleSaveGame,
-  items,
-  money,
-  startTime,
-}) => {
+const App: React.SFC<AppProps> = (props: AppProps) => {
+  const {
+    buyMultiplier,
+    earnings,
+    handleBuyMultiplierClick,
+    handleEarningsInterval,
+    handleInitializeGameState,
+    handleResetGame,
+    handleSaveGame,
+    items,
+    money,
+    startTime,
+  } = props;
   /**
    * Earnings Interval
    */
   useInterval(() => {
-    handleEarningsInterval(items);
+    handleEarningsInterval();
   }, 1000);
 
   /**
    * Save Game State
    */
   useInterval(() => {
-    handleSaveGame(items);
+    handleSaveGame();
   }, 10000);
 
   /**
@@ -81,7 +85,7 @@ const App: React.SFC<{
       </button>
 
       {items.map((itemProps) => (
-        <Item key={itemProps.name} {...itemProps} />
+        <ItemComponent key={itemProps.name} {...itemProps} />
       ))}
 
       <LoadingIndicator />

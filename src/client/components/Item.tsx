@@ -8,23 +8,24 @@ export interface ItemProps {
   buyMultiplier: number;
   cost: number;
   count: number;
-  handleBuy: Function;
+  handleBuy: (name: string) => void;
   income: number;
   money: number;
   name: string;
 }
 
-const Item: React.SFC<ItemProps> = ({
-  baseIncome,
-  bonusMultiplier,
-  buyMultiplier,
-  cost,
-  count,
-  handleBuy,
-  income,
-  money,
-  name,
-}) => {
+const Item: React.SFC<ItemProps> = (props: ItemProps) => {
+  const {
+    baseIncome,
+    bonusMultiplier,
+    buyMultiplier,
+    cost,
+    count,
+    handleBuy,
+    income,
+    money,
+    name,
+  } = props;
   const finalCost = cost * buyMultiplier;
   return (
     <div

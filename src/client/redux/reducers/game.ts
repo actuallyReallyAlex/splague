@@ -8,6 +8,8 @@ import {
 } from "../actionTypes";
 import { startingValues } from "../../constants";
 
+import { GameAction, GameState } from "../../types";
+
 const initialState = {
   buyMultiplier: startingValues.buyMultiplier,
   earnings: startingValues.earnings,
@@ -17,10 +19,7 @@ const initialState = {
   startTime: "",
 };
 
-export default function (
-  state = initialState,
-  action: { type: string; payload: any }
-) {
+const reducer = (state = initialState, action: GameAction): GameState => {
   switch (action.type) {
     case SET_BUY_MULTIPLIER: {
       return { ...state, buyMultiplier: action.payload.buyMultiplier };
@@ -43,4 +42,6 @@ export default function (
     default:
       return state;
   }
-}
+};
+
+export default reducer;

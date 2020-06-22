@@ -1,14 +1,23 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+interface LoadingIndicatorProps {
+  isLoading: boolean;
+}
+
 /**
  * Displays Loading Indicator.
  */
-const LoadingIndicator: React.SFC<{ isLoading: boolean }> = ({ isLoading }) => {
+const LoadingIndicator: React.SFC<LoadingIndicatorProps> = (
+  props: LoadingIndicatorProps
+) => {
   return (
     <>
-      <div className={!isLoading ? "hidden" : "shade"} />
-      <div className={!isLoading ? "hidden" : undefined} id="loading-indicator">
+      <div className={!props.isLoading ? "hidden" : "shade"} />
+      <div
+        className={!props.isLoading ? "hidden" : undefined}
+        id="loading-indicator"
+      >
         <div className="orbit-spinner">
           <div className="orbit" />
           <div className="orbit" />

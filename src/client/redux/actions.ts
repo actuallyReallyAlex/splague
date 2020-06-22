@@ -12,45 +12,48 @@ import {
 } from "./actionTypes";
 import { round } from "../util";
 
-import { GameDBData } from "../types";
+import { GameAction, GameDBData, Item, UIAction, AppThunk } from "../types";
 
-export const setBuyMultiplier = (buyMultiplier: number) => ({
+export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
   type: SET_BUY_MULTIPLIER,
   payload: { buyMultiplier },
 });
 
-export const setEarnings = (earnings: number) => ({
+export const setEarnings = (earnings: number): GameAction => ({
   type: SET_EARNINGS,
   payload: { earnings },
 });
 
-export const setId = (id: string) => ({ type: SET_ID, payload: { id } });
+export const setId = (id: string): GameAction => ({
+  type: SET_ID,
+  payload: { id },
+});
 
-export const setIsLoading = (isLoading: boolean) => ({
+export const setIsLoading = (isLoading: boolean): UIAction => ({
   type: SET_IS_LOADING,
   payload: { isLoading },
 });
 
-export const setItems = (items: any[]) => ({
+export const setItems = (items: Item[]): GameAction => ({
   type: SET_ITEMS,
   payload: { items },
 });
 
-export const setMoney = (money: number) => ({
+export const setMoney = (money: number): GameAction => ({
   type: SET_MONEY,
   payload: { money },
 });
 
-export const setStartTime = (startTime: string) => ({
+export const setStartTime = (startTime: string): GameAction => ({
   type: SET_START_TIME,
   payload: { startTime },
 });
 
 // * THUNKS
-export const initializeGameState = () => async (
+export const initializeGameState = (): AppThunk => async (
   dispatch,
   getState
-): Promise<any> => {
+): Promise<void> => {
   try {
     const storedId = localStorage.getItem("id");
     if (!storedId) {
@@ -130,7 +133,7 @@ export const initializeGameState = () => async (
   }
 };
 
-export const saveGame = () => async (
+export const saveGame = (): AppThunk => async (
   dispatch,
   getState
 ): Promise<GameDBData> => {
@@ -152,14 +155,14 @@ export const saveGame = () => async (
   }
 };
 
-export const setNewEarnings = () => async (
+export const setNewEarnings = (): AppThunk => async (
   dispatch,
   getState
-): Promise<any> => {
+): Promise<void> => {
   const { items, money } = getState().game;
   let newEarnings = 0;
 
-  items.forEach(({ baseIncome, bonusMultiplier, count, name }) => {
+  items.forEach(({ baseIncome, bonusMultiplier, count }) => {
     newEarnings = newEarnings + count * baseIncome * bonusMultiplier;
   });
 
@@ -168,7 +171,7 @@ export const setNewEarnings = () => async (
   dispatch(setEarnings(round(newEarnings, 2)));
 };
 
-export const resetGame = () => async (dispatch, getState) => {
+export const resetGame = (): AppThunk => async (dispatch, getState) => {
   dispatch(setIsLoading(true));
 
   const { id } = getState().game;
@@ -206,7 +209,10 @@ export const resetGame = () => async (dispatch, getState) => {
   dispatch(setIsLoading(false));
 };
 
-export const buyItem = (itemName) => async (dispatch, getState) => {
+export const buyItem = (itemName: string): AppThunk => async (
+  dispatch,
+  getState
+) => {
   const { buyMultiplier, items, money } = getState().game;
   const selectedItem = items.find(
     (item: {
@@ -253,8 +259,11 @@ export const buyItem = (itemName) => async (dispatch, getState) => {
   dispatch(setItems(newItems));
 };
 
-export const toggleBuyMultiplier = () => async (dispatch, getState) => {
-  const { buyMultiplier, items } = getState().game;
+export const toggleBuyMultiplier = (): AppThunk => async (
+  dispatch,
+  getState
+) => {
+  const { buyMultiplier } = getState().game;
   let newBuyMultiplier: number;
   switch (buyMultiplier) {
     case 1:

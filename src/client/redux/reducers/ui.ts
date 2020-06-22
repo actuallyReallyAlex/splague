@@ -1,13 +1,11 @@
 import { SET_IS_LOADING } from "../actionTypes";
+import { UIAction, UIState } from "../../types";
 
 const initialState = {
   isLoading: true,
 };
 
-export default function (
-  state = initialState,
-  action: { type: string; payload: any }
-) {
+const reducer = (state = initialState, action: UIAction): UIState => {
   switch (action.type) {
     case SET_IS_LOADING: {
       return { ...state, isLoading: action.payload.isLoading };
@@ -15,4 +13,6 @@ export default function (
     default:
       return state;
   }
-}
+};
+
+export default reducer;
