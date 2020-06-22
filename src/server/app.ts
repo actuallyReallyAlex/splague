@@ -42,7 +42,11 @@ class App {
     ];
 
     const corsOptions: CorsOptions = {
-      origin: (requestOrigin: string | undefined, callback: Function): void => {
+      origin: (
+        requestOrigin: string | undefined,
+        // eslint-disable-next-line
+        callback: (error: any, isAllowed?: boolean) => void
+      ): void => {
         if (whitelistDomains.indexOf(requestOrigin) !== -1) {
           callback(null, true);
         } else {

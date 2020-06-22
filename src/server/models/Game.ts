@@ -13,6 +13,7 @@ const gameSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// eslint-disable-next-line
 function applicationToJSON(this: any): void {
   return this.toObject();
 }
