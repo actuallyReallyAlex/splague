@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import format from "date-fns/format";
 import formatDistance from "date-fns/formatDistance";
 import ItemComponent from "./components/Item";
 import LoadingIndicator from "./components/LoadingIndicator";
@@ -84,7 +85,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <h1>splague</h1>
       <img alt="Player Avatar" id="avatar" src={avatar} />
       <span id="name">{name}</span>
-      <span id="date">{date}</span>
+      <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
       <button id="reset" onClick={() => handleResetGame()} type="button">
         RESET
       </button>

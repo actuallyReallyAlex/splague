@@ -36,9 +36,7 @@ context("Splague", () => {
   });
 
   it("Should display game date", () => {
-    // * Should be this
-    // cy.get("#date").should("contain.text", "January 1345");
-    cy.get("#date").should("contain.text", "Fri Jan 01 1345");
+    cy.get("#date").should("contain.text", "January, 1345 AD");
   });
 
   it("Should play a short game", () => {
@@ -47,7 +45,7 @@ context("Splague", () => {
     cy.get("#item-1-container > button").click();
     cy.get("#item-1-container > button").should("be.disabled");
     cy.wait(61000);
-    cy.get("#date").should("contain.text", "Mon Feb 01 1345");
+    cy.get("#date").should("contain.text", "February, 1345 AD");
     cy.wait(15000);
     cy.get("#item-1-container > button").should("be.enabled");
     cy.get("#time-played").should("contain.text", "1 minute");
