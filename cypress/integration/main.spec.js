@@ -34,4 +34,14 @@ context("Splague", () => {
     cy.get("#item-1-container > button").click();
     cy.get("#item-1-container > #progress").should("contain.text", "1 / 10");
   });
+
+  it("Should play a short game", () => {
+    cy.get("#item-1-container > button").click();
+    cy.get("#item-1-container > button").click();
+    cy.get("#item-1-container > button").click();
+    cy.get("#item-1-container > button").should("be.disabled");
+    cy.wait(75000);
+    cy.get("#item-1-container > button").should("be.enabled");
+    cy.get("#time-played").should("contain.text", "1 minute");
+  });
 });

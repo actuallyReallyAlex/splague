@@ -77,15 +77,17 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       </button>
 
       {startTime && (
-        <span>
+        <span id="time-played">
           Time Played -{" "}
           {formatDistance(new Date(startTime), new Date(), {
             includeSeconds: true,
           })}
         </span>
       )}
-      <span id="money">Money - ${money.toLocaleString()}</span>
-      <span>Earnings - ${earnings.toLocaleString()}/second</span>
+      <span>
+        Money - $<span id="money">{money.toLocaleString()}</span>
+      </span>
+      <span id="earnings">Earnings - ${earnings.toLocaleString()}/second</span>
       <button onClick={() => handleBuyMultiplierClick()} type="button">
         Buy Multiplier - {buyMultiplier}
       </button>
