@@ -63,6 +63,16 @@ export interface PlayerState {
   name: string;
 }
 
+export interface StoryAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface StoryState {
+  text: string;
+}
+
 export interface UIAction {
   type: string;
   payload: { isLoading: boolean };
