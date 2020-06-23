@@ -26,6 +26,7 @@ export const basePrice = {
 
 export const startingValues = {
   buyMultiplier: 1,
+  date: new Date(1345, 0, 1).toDateString(),
   earnings: 0,
   money: 50,
   items: [
