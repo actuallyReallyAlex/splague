@@ -12,6 +12,7 @@ context("Splague", () => {
     }
     cy.get("#avatar").should("exist");
     cy.get("#name").should("have.text", "Alex");
+    cy.get("#story").should("have.text", "Welcome to Splague!");
   });
 
   it("Should be able to buy an item", () => {

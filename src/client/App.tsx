@@ -30,6 +30,7 @@ interface AppProps {
   money: number;
   name: string;
   startTime: string;
+  story: string;
 }
 
 /**
@@ -51,6 +52,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     money,
     name,
     startTime,
+    story,
   } = props;
   /**
    * Earnings Interval
@@ -86,6 +88,8 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <img alt="Player Avatar" id="avatar" src={avatar} />
       <span id="name">{name}</span>
       <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
+      <p id="story">{story}</p>
+
       <button id="reset" onClick={() => handleResetGame()} type="button">
         RESET
       </button>
@@ -115,7 +119,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   );
 };
 
-const mapStateToProps = ({ game, player }) => ({
+const mapStateToProps = ({ game, player, story }) => ({
   avatar: player.avatar,
   buyMultiplier: game.buyMultiplier,
   date: game.date,
@@ -124,6 +128,7 @@ const mapStateToProps = ({ game, player }) => ({
   money: game.money,
   name: player.name,
   startTime: game.startTime,
+  story: story.text,
 });
 
 const mapDispatchToProps = (dispatch) => ({

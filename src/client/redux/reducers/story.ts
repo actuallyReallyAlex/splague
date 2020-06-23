@@ -1,7 +1,7 @@
 import { StoryAction, StoryState } from "../../types";
 
 const initialState = {
-  text: "",
+  text: "Welcome to Splague!",
 };
 
 const reducer = (state = initialState, action: StoryAction): StoryState => {
