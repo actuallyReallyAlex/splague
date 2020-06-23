@@ -24,6 +24,7 @@ interface AppProps {
   handleSaveGame: () => void;
   items: Item[];
   money: number;
+  name: string;
   startTime: string;
 }
 
@@ -42,6 +43,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleSaveGame,
     items,
     money,
+    name,
     startTime,
   } = props;
   /**
@@ -69,6 +71,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     <div id="app">
       <h1>splague</h1>
       <img alt="Player Avatar" id="avatar" src={avatar} />
+      <span id="name">{name}</span>
       <button id="reset" onClick={() => handleResetGame()} type="button">
         RESET
       </button>
@@ -102,6 +105,7 @@ const mapStateToProps = ({ game, player }) => ({
   earnings: game.earnings,
   items: game.items,
   money: game.money,
+  name: player.name,
   startTime: game.startTime,
 });
 

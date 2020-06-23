@@ -59,6 +59,7 @@ export interface PlayerAction {
 
 export interface PlayerState {
   avatar: string;
+  name: string;
 }
 
 export interface UIAction {
