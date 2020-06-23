@@ -28,11 +28,17 @@ context("Splague", () => {
     cy.get("#money").should("contain.text", "50");
   });
 
-  it("Should show item progres", () => {
+  it("Should display item progres", () => {
     cy.get("#money").should("contain.text", "50");
     cy.get("#item-1-container > #progress").should("contain.text", "0 / 10");
     cy.get("#item-1-container > button").click();
     cy.get("#item-1-container > #progress").should("contain.text", "1 / 10");
+  });
+
+  it("Should display game date", () => {
+    // * Should be this
+    // cy.get("#date").should("contain.text", "January 1345");
+    cy.get("#date").should("contain.text", "Fri Jan 01 1345");
   });
 
   it("Should play a short game", () => {

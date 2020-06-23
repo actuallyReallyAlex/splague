@@ -35,6 +35,7 @@ export interface GameDBData {
 
 export interface GameState {
   buyMultiplier: number;
+  date: string;
   earnings: number;
   id: string;
   items: Item[];

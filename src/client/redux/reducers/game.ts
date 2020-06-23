@@ -5,6 +5,7 @@ import {
   SET_ITEMS,
   SET_MONEY,
   SET_EARNINGS,
+  SET_DATE,
 } from "../actionTypes";
 import { startingValues } from "../../constants";
 
@@ -12,6 +13,7 @@ import { GameAction, GameState } from "../../types";
 
 const initialState = {
   buyMultiplier: startingValues.buyMultiplier,
+  date: new Date(1345, 0, 1).toDateString(),
   earnings: startingValues.earnings,
   id: "",
   items: startingValues.items,
@@ -23,6 +25,9 @@ const reducer = (state = initialState, action: GameAction): GameState => {
   switch (action.type) {
     case SET_BUY_MULTIPLIER: {
       return { ...state, buyMultiplier: action.payload.buyMultiplier };
+    }
+    case SET_DATE: {
+      return { ...state, date: action.payload.date };
     }
     case SET_EARNINGS: {
       return { ...state, earnings: action.payload.earnings };
