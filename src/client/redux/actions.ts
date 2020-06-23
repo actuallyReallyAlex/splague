@@ -12,6 +12,7 @@ import {
   SET_ITEMS,
   SET_DATE,
   SET_STORY_TEXT,
+  SET_CHAPTER,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -27,6 +28,11 @@ import {
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
   type: SET_BUY_MULTIPLIER,
   payload: { buyMultiplier },
+});
+
+export const setChapter = (chapter: number): StoryAction => ({
+  type: SET_CHAPTER,
+  payload: { chapter },
 });
 
 export const setDate = (date: string): GameAction => ({

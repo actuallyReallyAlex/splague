@@ -72,6 +72,7 @@ export interface StoryAction {
 }
 
 export interface StoryState {
+  chapter: number;
   text: string;
 }
 

@@ -1,4 +1,5 @@
 export const SET_BUY_MULTIPLIER = "SET_BUY_MULTIPLIER";
+export const SET_CHAPTER = "SET_CHAPTER";
 export const SET_DATE = "SET_DATE";
 export const SET_EARNINGS = "SET_EARNINGS";
 export const SET_ID = "SET_ID";

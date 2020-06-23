@@ -12,20 +12,26 @@ import {
   saveGame,
   setNewEarnings,
   toggleBuyMultiplier,
+  setChapter,
+  setStoryText,
 } from "./redux/actions";
 import { Item } from "./types";
 
 interface AppProps {
   avatar: string;
   buyMultiplier: number;
+  chapter: number;
   date: string;
   earnings: number;
   handleBuyMultiplierClick: () => void;
   handleDateInterval: () => void;
   handleEarningsInterval: () => void;
+  handleGoOn: () => void;
   handleInitializeGameState: () => void;
   handleResetGame: () => void;
   handleSaveGame: () => void;
+  handleStartDay: () => void;
+  handleStartJourny: () => void;
   items: Item[];
   money: number;
   name: string;
@@ -40,14 +46,18 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   const {
     avatar,
     buyMultiplier,
+    chapter,
     date,
     earnings,
     handleBuyMultiplierClick,
     handleDateInterval,
     handleEarningsInterval,
+    handleGoOn,
     handleInitializeGameState,
     handleResetGame,
     handleSaveGame,
+    handleStartDay,
+    handleStartJourny,
     items,
     money,
     name,
@@ -90,29 +100,51 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
       <p id="story">{story}</p>
 
-      <button id="reset" onClick={() => handleResetGame()} type="button">
-        RESET
-      </button>
-
-      {startTime && (
-        <span id="time-played">
-          Time Played -{" "}
-          {formatDistance(new Date(startTime), new Date(), {
-            includeSeconds: true,
-          })}
-        </span>
+      {chapter === 0 && (
+        <button id={`story-${chapter}`} onClick={() => handleStartJourny()}>
+          Start Journy
+        </button>
       )}
-      <span>
-        Money - $<span id="money">{money.toLocaleString()}</span>
-      </span>
-      <span id="earnings">Earnings - ${earnings.toLocaleString()}/second</span>
-      <button onClick={() => handleBuyMultiplierClick()} type="button">
-        Buy Multiplier - {buyMultiplier}
-      </button>
+      {chapter === 1 && (
+        <button id={`story-${chapter}`} onClick={() => handleGoOn()}>
+          Go on ...
+        </button>
+      )}
+      {chapter === 2 && (
+        <button id={`story-${chapter}`} onClick={() => handleStartDay()}>
+          Start day
+        </button>
+      )}
 
-      {items.map((itemProps) => (
-        <ItemComponent key={itemProps.name} {...itemProps} />
-      ))}
+      {chapter > 2 && (
+        <>
+          <button id="reset" onClick={() => handleResetGame()} type="button">
+            RESET
+          </button>
+
+          {startTime && (
+            <span id="time-played">
+              Time Played -{" "}
+              {formatDistance(new Date(startTime), new Date(), {
+                includeSeconds: true,
+              })}
+            </span>
+          )}
+          <span>
+            Money - $<span id="money">{money.toLocaleString()}</span>
+          </span>
+          <span id="earnings">
+            Earnings - ${earnings.toLocaleString()}/second
+          </span>
+          <button onClick={() => handleBuyMultiplierClick()} type="button">
+            Buy Multiplier - {buyMultiplier}
+          </button>
+
+          {items.map((itemProps) => (
+            <ItemComponent key={itemProps.name} {...itemProps} />
+          ))}
+        </>
+      )}
 
       <LoadingIndicator />
     </div>
@@ -122,6 +154,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 const mapStateToProps = ({ game, player, story }) => ({
   avatar: player.avatar,
   buyMultiplier: game.buyMultiplier,
+  chapter: story.chapter,
   date: game.date,
   earnings: game.earnings,
   items: game.items,
@@ -135,9 +168,25 @@ const mapDispatchToProps = (dispatch) => ({
   handleBuyMultiplierClick: () => dispatch(toggleBuyMultiplier()),
   handleDateInterval: () => dispatch(progressDate()),
   handleEarningsInterval: () => dispatch(setNewEarnings()),
+  handleGoOn: () => {
+    dispatch(setChapter(2));
+    dispatch(setStoryText("... the Black Plague starts in 1346. Good luck."));
+  },
   handleInitializeGameState: () => dispatch(initializeGameState()),
   handleResetGame: () => dispatch(resetGame()),
   handleSaveGame: () => dispatch(saveGame()),
+  handleStartDay: () => {
+    dispatch(setChapter(3));
+    dispatch(setStoryText("12 months before death..."));
+  },
+  handleStartJourny: () => {
+    dispatch(setChapter(1));
+    dispatch(
+      setStoryText(
+        "You are a level headed doctor of medicine living in Western Europe. Above all else, you desire to help others. The year is 1345."
+      )
+    );
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
