@@ -1,7 +1,7 @@
 import { SET_IS_LOADING } from "../actionTypes";
 import { UIAction, UIState } from "../../types";
 
-const initialState = {
+export const initialState = {
   isLoading: true,
 };
 

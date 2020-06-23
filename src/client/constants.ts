@@ -1,3 +1,8 @@
+import { initialState as gameInitialState } from "./redux/reducers/game";
+import { initialState as playerInitialState } from "./redux/reducers/player";
+import { initialState as storyInitialState } from "./redux/reducers/story";
+import { initialState as uiInitialState } from "./redux/reducers/ui";
+
 export const baseIncome = {
   item1: 0.1,
   item2: 0.5,
@@ -24,91 +29,9 @@ export const basePrice = {
   item10: 3999999999,
 };
 
-export const startingValues = {
-  buyMultiplier: 1,
-  date: new Date(1345, 0, 1).toDateString(),
-  earnings: 0,
-  money: 50,
-  items: [
-    {
-      baseIncome: baseIncome.item1,
-      bonusMultiplier: 1,
-      cost: basePrice.item1,
-      count: 0,
-      income: 0,
-      name: "Item 1",
-    },
-    {
-      baseIncome: baseIncome.item2,
-      bonusMultiplier: 1,
-      cost: basePrice.item2,
-      count: 0,
-      income: 0,
-      name: "Item 2",
-    },
-    {
-      baseIncome: baseIncome.item3,
-      bonusMultiplier: 1,
-      cost: basePrice.item3,
-      count: 0,
-      income: 0,
-      name: "Item 3",
-    },
-    {
-      baseIncome: baseIncome.item4,
-      bonusMultiplier: 1,
-      cost: basePrice.item4,
-      count: 0,
-      income: 0,
-      name: "Item 4",
-    },
-    {
-      baseIncome: baseIncome.item5,
-      bonusMultiplier: 1,
-      cost: basePrice.item5,
-      count: 0,
-      income: 0,
-      name: "Item 5",
-    },
-    {
-      baseIncome: baseIncome.item6,
-      bonusMultiplier: 1,
-      cost: basePrice.item6,
-      count: 0,
-      income: 0,
-      name: "Item 6",
-    },
-    {
-      baseIncome: baseIncome.item7,
-      bonusMultiplier: 1,
-      cost: basePrice.item7,
-      count: 0,
-      income: 0,
-      name: "Item 7",
-    },
-    {
-      baseIncome: baseIncome.item8,
-      bonusMultiplier: 1,
-      cost: basePrice.item8,
-      count: 0,
-      income: 0,
-      name: "Item 8",
-    },
-    {
-      baseIncome: baseIncome.item9,
-      bonusMultiplier: 1,
-      cost: basePrice.item9,
-      count: 0,
-      income: 0,
-      name: "Item 9",
-    },
-    {
-      baseIncome: baseIncome.item10,
-      bonusMultiplier: 1,
-      cost: basePrice.item10,
-      count: 0,
-      income: 0,
-      name: "Item 10",
-    },
-  ],
+export const defaultInitialState = {
+  game: gameInitialState,
+  player: playerInitialState,
+  story: storyInitialState,
+  ui: uiInitialState,
 };

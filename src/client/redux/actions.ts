@@ -1,7 +1,7 @@
 import add from "date-fns/add";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import formatDistance from "date-fns/formatDistance";
-import { startingValues } from "../constants";
+import { defaultInitialState } from "../constants";
 import {
   SET_IS_LOADING,
   SET_ID,
@@ -11,10 +11,18 @@ import {
   SET_EARNINGS,
   SET_ITEMS,
   SET_DATE,
+  SET_STORY_TEXT,
 } from "./actionTypes";
 import { round } from "../util";
 
-import { GameAction, GameDBData, Item, UIAction, AppThunk } from "../types";
+import {
+  GameAction,
+  GameDBData,
+  Item,
+  UIAction,
+  AppThunk,
+  StoryAction,
+} from "../types";
 
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
   type: SET_BUY_MULTIPLIER,
@@ -56,6 +64,11 @@ export const setStartTime = (startTime: string): GameAction => ({
   payload: { startTime },
 });
 
+export const setStoryText = (text: string): StoryAction => ({
+  type: SET_STORY_TEXT,
+  payload: { text },
+});
+
 // * THUNKS
 export const initializeGameState = (): AppThunk => async (
   dispatch,
@@ -64,19 +77,11 @@ export const initializeGameState = (): AppThunk => async (
   try {
     const storedId = localStorage.getItem("id");
     if (!storedId) {
-      const { buyMultiplier, date, items, money } = getState().game;
+      const state = getState();
 
-      const stringifiedData = JSON.stringify({
-        buyMultiplier,
-        date,
-        items,
-        money,
-      });
       const response = await fetch("/game", {
-        body: JSON.stringify({ data: stringifiedData }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: JSON.stringify({ data: JSON.stringify({ ...state }) }),
+        headers: { "Content-Type": "application/json" },
         method: "POST",
       });
       const savedGame: GameDBData = await response.json();
@@ -89,9 +94,9 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setIsLoading(false));
     } else {
       const gameResponse = await fetch(`/game/${storedId}`);
-      const game: GameDBData = await gameResponse.json();
+      const gameInstance: GameDBData = await gameResponse.json();
 
-      if (!game) {
+      if (!gameInstance) {
         // * If game does not exist, error
         // ! This would be a critical bug if encountered
         console.error(`No Game Exists in DB for Game ID - ${storedId}`);
@@ -99,14 +104,20 @@ export const initializeGameState = (): AppThunk => async (
       }
 
       // * If game data exists, set application values with game data values
-      const { buyMultiplier, date, items, money } = JSON.parse(game.data);
-      const { _id, createdAt, updatedAt } = game;
+
+      const state = JSON.parse(gameInstance.data);
+
+      const { game, story } = state;
+      const { buyMultiplier, date, items, money } = game;
+
+      const { _id, createdAt, updatedAt } = gameInstance;
 
       dispatch(setId(_id));
       dispatch(setBuyMultiplier(buyMultiplier));
       dispatch(setStartTime(createdAt));
       dispatch(setItems(items));
       dispatch(setDate(date));
+      dispatch(setStoryText(story.text));
 
       const saveTimeDate = new Date(updatedAt);
       const nowDate = new Date();
@@ -147,18 +158,14 @@ export const saveGame = (): AppThunk => async (
   getState
 ): Promise<GameDBData> => {
   try {
-    const { buyMultiplier, date, id, items, money } = getState().game;
-    const response = await fetch(`/game/${id}`, {
-      body: JSON.stringify({
-        data: JSON.stringify({ buyMultiplier, date, items, money }),
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const state = getState();
+    const response = await fetch(`/game/${state.game.id}`, {
+      body: JSON.stringify({ data: JSON.stringify({ ...state }) }),
+      headers: { "Content-Type": "application/json" },
       method: "PUT",
     });
-    const game: GameDBData = await response.json();
-    return game;
+    const gameData: GameDBData = await response.json();
+    return gameData;
   } catch (error) {
     console.error(error);
   }
@@ -188,17 +195,15 @@ export const resetGame = (): AppThunk => async (dispatch, getState) => {
   try {
     // * Delete Game from DB
     await fetch(`/game/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       method: "DELETE",
     });
     // * Set New Game in DB
     const response = await fetch("/game", {
-      body: JSON.stringify({ data: JSON.stringify({ ...startingValues }) }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: JSON.stringify({
+        data: JSON.stringify({ ...defaultInitialState }),
+      }),
+      headers: { "Content-Type": "application/json" },
       method: "POST",
     });
     const savedGame: GameDBData = await response.json();
@@ -209,10 +214,10 @@ export const resetGame = (): AppThunk => async (dispatch, getState) => {
     dispatch(setId(_id));
     localStorage.setItem("id", _id);
     dispatch(setStartTime(createdAt));
-    dispatch(setMoney(parsedData.money));
-    dispatch(setItems(startingValues.items));
+    dispatch(setMoney(parsedData.game.money));
+    dispatch(setItems(defaultInitialState.game.items));
     dispatch(setEarnings(0));
-    dispatch(setDate(parsedData.date));
+    dispatch(setDate(parsedData.game.date));
   } catch (error) {
     console.error(error);
   }

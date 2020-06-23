@@ -1,6 +1,6 @@
 import { PlayerAction, PlayerState } from "../../types";
 
-const initialState = {
+export const initialState = {
   avatar: "/assets/avatar.png",
   name: "Alex",
 };

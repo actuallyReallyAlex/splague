@@ -3,6 +3,8 @@ import { ThunkAction } from "redux-thunk";
 
 type RootState = {
   game: GameState;
+  player: PlayerState;
+  story: StoryState;
   ui: UIState;
 };
 
