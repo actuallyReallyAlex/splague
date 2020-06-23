@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-type RootState = {
+export type RootState = {
   game: GameState;
   player: PlayerState;
   story: StoryState;
@@ -76,11 +76,15 @@ export interface StoryState {
   text: string;
 }
 
+export type Theme = "dark" | "light";
+
 export interface UIAction {
   type: string;
-  payload: { isLoading: boolean };
+  // eslint-disable-next-line
+  payload: any;
 }
 
 export interface UIState {
   isLoading: boolean;
+  theme: Theme;
 }

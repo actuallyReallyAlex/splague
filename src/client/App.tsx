@@ -14,8 +14,9 @@ import {
   toggleBuyMultiplier,
   setChapter,
   setStoryText,
+  setTheme,
 } from "./redux/actions";
-import { Item } from "./types";
+import { Item, Theme } from "./types";
 
 interface AppProps {
   avatar: string;
@@ -32,11 +33,13 @@ interface AppProps {
   handleSaveGame: () => void;
   handleStartDay: () => void;
   handleStartJourny: () => void;
+  handleThemeToggle: (theme: Theme) => void;
   items: Item[];
   money: number;
   name: string;
   startTime: string;
   story: string;
+  theme: Theme;
 }
 
 /**
@@ -58,11 +61,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleSaveGame,
     handleStartDay,
     handleStartJourny,
+    handleThemeToggle,
     items,
     money,
     name,
     startTime,
     story,
+    theme,
   } = props;
   /**
    * Earnings Interval
@@ -93,7 +98,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   }, []);
 
   return (
-    <div id="app">
+    <div className={theme} id="app">
       <h1>splague</h1>
       <img alt="Player Avatar" id="avatar" src={avatar} />
       <span id="name">{name}</span>
@@ -115,6 +120,10 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
           Start day
         </button>
       )}
+
+      <button id="theme-toggle" onClick={() => handleThemeToggle(theme)}>
+        Toggle Theme
+      </button>
 
       {chapter > 2 && (
         <>
@@ -151,7 +160,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   );
 };
 
-const mapStateToProps = ({ game, player, story }) => ({
+const mapStateToProps = ({ game, player, story, ui }) => ({
   avatar: player.avatar,
   buyMultiplier: game.buyMultiplier,
   chapter: story.chapter,
@@ -162,6 +171,7 @@ const mapStateToProps = ({ game, player, story }) => ({
   name: player.name,
   startTime: game.startTime,
   story: story.text,
+  theme: ui.theme,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -186,6 +196,9 @@ const mapDispatchToProps = (dispatch) => ({
         "You are a level headed doctor of medicine living in Western Europe. Above all else, you desire to help others. The year is 1345."
       )
     );
+  },
+  handleThemeToggle: (theme: Theme) => {
+    dispatch(setTheme(theme === "dark" ? "light" : "dark"));
   },
 });
 

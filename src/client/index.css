@@ -7,12 +7,22 @@ body {
 
 #app {
   align-items: center;
-  color: #0e0e0e;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
   padding: 25px;
+}
+
+/* Theme */
+.dark {
+  background-color: #0e0e0e;
+  color: white;
+}
+
+.light {
+  background-color: white;
+  color: #0e0e0e;
 }
 
 /* Loading Indicator */

@@ -1,7 +1,7 @@
 import { StoryAction, StoryState } from "../../types";
 import { SET_STORY_TEXT, SET_CHAPTER } from "../actionTypes";
 
-export const initialState = {
+export const initialState: StoryState = {
   chapter: 0,
   text: "Welcome to Splague!",
 };

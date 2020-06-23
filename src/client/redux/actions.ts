@@ -13,6 +13,7 @@ import {
   SET_DATE,
   SET_STORY_TEXT,
   SET_CHAPTER,
+  SET_THEME,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -22,7 +23,9 @@ import {
   Item,
   UIAction,
   AppThunk,
+  RootState,
   StoryAction,
+  Theme,
 } from "../types";
 
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
@@ -75,6 +78,11 @@ export const setStoryText = (text: string): StoryAction => ({
   payload: { text },
 });
 
+export const setTheme = (theme: Theme): UIAction => ({
+  type: SET_THEME,
+  payload: { theme },
+});
+
 // * THUNKS
 export const initializeGameState = (): AppThunk => async (
   dispatch,
@@ -111,9 +119,9 @@ export const initializeGameState = (): AppThunk => async (
 
       // * If game data exists, set application values with game data values
 
-      const state = JSON.parse(gameInstance.data);
+      const state: RootState = JSON.parse(gameInstance.data);
 
-      const { game, story } = state;
+      const { game, story, ui } = state;
       const { buyMultiplier, date, items, money } = game;
 
       const { _id, createdAt, updatedAt } = gameInstance;
@@ -124,9 +132,12 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setItems(items));
       dispatch(setDate(date));
       dispatch(setStoryText(story.text));
+      dispatch(setChapter(story.chapter));
+      dispatch(setTheme(ui.theme));
 
       const saveTimeDate = new Date(updatedAt);
       const nowDate = new Date();
+      // TODO - Clean this up to be refactored
       const earningsPerSecond =
         items[0].count * items[0].baseIncome * items[0].bonusMultiplier +
         items[1].count * items[1].baseIncome * items[1].bonusMultiplier +

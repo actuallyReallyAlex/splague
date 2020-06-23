@@ -79,6 +79,12 @@ context("Splague", () => {
     cy.get("#date").should("contain.text", "January, 1345 AD");
   });
 
+  it("Should allow the user to toggle between themes", () => {
+    cy.get("#app").should("have.class", "light");
+    cy.get("#theme-toggle").click();
+    cy.get("#app").should("have.class", "dark");
+  });
+
   it("Should play a short game", () => {
     cy.get("#story").should("have.text", "Welcome to Splague!");
     cy.get("#story-0").click();

@@ -10,7 +10,7 @@ import {
 
 import { GameAction, GameState } from "../../types";
 
-export const initialState = {
+export const initialState: GameState = {
   buyMultiplier: 1,
   date: new Date(1345, 0, 1).toDateString(),
   earnings: 0,
