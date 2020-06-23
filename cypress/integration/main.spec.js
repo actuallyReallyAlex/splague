@@ -10,6 +10,7 @@ context("Splague", () => {
     for (let i = 1; i < 11; i++) {
       cy.get(`#item-${i}-container`).should("exist");
     }
+    cy.get("#avatar").should("exist");
   });
 
   it("Should be able to buy an item", () => {

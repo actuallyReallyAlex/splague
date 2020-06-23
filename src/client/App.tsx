@@ -14,6 +14,7 @@ import {
 import { Item } from "./types";
 
 interface AppProps {
+  avatar: string;
   buyMultiplier: number;
   earnings: number;
   handleBuyMultiplierClick: () => void;
@@ -31,6 +32,7 @@ interface AppProps {
  */
 const App: React.SFC<AppProps> = (props: AppProps) => {
   const {
+    avatar,
     buyMultiplier,
     earnings,
     handleBuyMultiplierClick,
@@ -66,6 +68,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   return (
     <div id="app">
       <h1>splague</h1>
+      <img alt="Player Avatar" id="avatar" src={avatar} />
       <button id="reset" onClick={() => handleResetGame()} type="button">
         RESET
       </button>
@@ -93,7 +96,8 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   );
 };
 
-const mapStateToProps = ({ game }) => ({
+const mapStateToProps = ({ game, player }) => ({
+  avatar: player.avatar,
   buyMultiplier: game.buyMultiplier,
   earnings: game.earnings,
   items: game.items,

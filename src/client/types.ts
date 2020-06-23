@@ -51,6 +51,16 @@ export interface Item {
   name: string;
 }
 
+export interface PlayerAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface PlayerState {
+  avatar: string;
+}
+
 export interface UIAction {
   type: string;
   payload: { isLoading: boolean };
