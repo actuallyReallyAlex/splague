@@ -6,6 +6,7 @@ import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import {
   initializeGameState,
+  progressDate,
   resetGame,
   saveGame,
   setNewEarnings,
@@ -19,6 +20,7 @@ interface AppProps {
   date: string;
   earnings: number;
   handleBuyMultiplierClick: () => void;
+  handleDateInterval: () => void;
   handleEarningsInterval: () => void;
   handleInitializeGameState: () => void;
   handleResetGame: () => void;
@@ -39,6 +41,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     date,
     earnings,
     handleBuyMultiplierClick,
+    handleDateInterval,
     handleEarningsInterval,
     handleInitializeGameState,
     handleResetGame,
@@ -61,6 +64,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   useInterval(() => {
     handleSaveGame();
   }, 10000);
+
+  /**
+   * Date Interval
+   */
+  useInterval(() => {
+    handleDateInterval();
+  }, 60000);
 
   /**
    * Initialize Game State
@@ -117,6 +127,7 @@ const mapStateToProps = ({ game, player }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleBuyMultiplierClick: () => dispatch(toggleBuyMultiplier()),
+  handleDateInterval: () => dispatch(progressDate()),
   handleEarningsInterval: () => dispatch(setNewEarnings()),
   handleInitializeGameState: () => dispatch(initializeGameState()),
   handleResetGame: () => dispatch(resetGame()),

@@ -1,3 +1,4 @@
+import add from "date-fns/add";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import formatDistance from "date-fns/formatDistance";
 import { startingValues } from "../constants";
@@ -9,6 +10,7 @@ import {
   SET_MONEY,
   SET_EARNINGS,
   SET_ITEMS,
+  SET_DATE,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -17,6 +19,11 @@ import { GameAction, GameDBData, Item, UIAction, AppThunk } from "../types";
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
   type: SET_BUY_MULTIPLIER,
   payload: { buyMultiplier },
+});
+
+export const setDate = (date: string): GameAction => ({
+  type: SET_DATE,
+  payload: { date },
 });
 
 export const setEarnings = (earnings: number): GameAction => ({
@@ -279,20 +286,12 @@ export const toggleBuyMultiplier = (): AppThunk => async (
       break;
   }
 
-  // const newItems = items.map(
-  //   (item: {
-  //     baseIncome: number;
-  //     bonusMultiplier: number;
-  //     cost: number;
-  //     count: number;
-  //     income: number;
-  //     name: string;
-  //   }) => ({
-  //     ...item,
-  //     cost: round(item.cost * Math.pow(1.07, item.count) * newBuyMultiplier, 2),
-  //   })
-  // );
-
   dispatch(setBuyMultiplier(newBuyMultiplier));
-  // dispatch(setItems(newItems));
+};
+
+export const progressDate = (): AppThunk => (dispatch, getState) => {
+  // * Should progress date by 1 month
+  const currentDate = getState().game.date;
+  const newDate = add(new Date(currentDate), { months: 1 }).toDateString();
+  dispatch(setDate(newDate));
 };

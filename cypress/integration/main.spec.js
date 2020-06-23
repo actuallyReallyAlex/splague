@@ -46,7 +46,9 @@ context("Splague", () => {
     cy.get("#item-1-container > button").click();
     cy.get("#item-1-container > button").click();
     cy.get("#item-1-container > button").should("be.disabled");
-    cy.wait(75000);
+    cy.wait(61000);
+    cy.get("#date").should("contain.text", "Mon Feb 01 1345");
+    cy.wait(15000);
     cy.get("#item-1-container > button").should("be.enabled");
     cy.get("#time-played").should("contain.text", "1 minute");
   });
