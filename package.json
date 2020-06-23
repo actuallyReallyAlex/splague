@@ -4,7 +4,7 @@
   "description": "A MERN application bootstrapped with create-mern-application.",
   "main": "build/index.js",
   "scripts": {
-    "build": "npm run build-client && npm run build-server",
+    "build": "npm run format && npm run build-client && npm run build-server",
     "build-client": "rimraf dist && webpack --display=errors-only",
     "build-server": "rimraf build && tsc && copyfiles -f src/server/assets/**/* build/assets",
     "cy:open": "cypress open",
