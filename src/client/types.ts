@@ -38,6 +38,8 @@ export interface GameState {
   startTime: string;
 }
 
+export type HomeLocationAction = "cook";
+
 export interface Item {
   baseIncome: number;
   bonusMultiplier: number;
@@ -55,6 +57,8 @@ export type Location =
   | "tavern"
   | "town square";
 
+export type LocationAction = HomeLocationAction;
+
 export interface MapAction {
   type: string;
   // eslint-disable-next-line
@@ -62,6 +66,7 @@ export interface MapAction {
 }
 
 export interface MapState {
+  actions: LocationAction[];
   currentLocation: Location;
 }
 

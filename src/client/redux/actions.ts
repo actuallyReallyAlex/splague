@@ -32,6 +32,7 @@ import {
   Theme,
   UIAction,
   WorldAction,
+  LocationAction,
 } from "../types";
 
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
@@ -361,4 +362,11 @@ export const travel = (location: Location): AppThunk => (
   getState
 ) => {
   dispatch(setCurrentLocation(location));
+};
+
+export const performAction = (action: LocationAction): AppThunk => (
+  dispatch,
+  getState
+) => {
+  alert(`PERFORMING ACTION - ${action}`);
 };

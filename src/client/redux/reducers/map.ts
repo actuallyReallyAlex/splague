@@ -2,6 +2,7 @@ import { MapAction, MapState } from "../../types";
 import { SET_CURRENT_LOCATION } from "../actionTypes";
 
 export const initialState: MapState = {
+  actions: ["cook"],
   currentLocation: "home",
 };
 

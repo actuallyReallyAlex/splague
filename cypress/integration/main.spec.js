@@ -191,6 +191,33 @@ context("Splague", () => {
     cy.get("#location-town-square").should("be.disabled");
   });
 
+  it("Should be able to perform actions based on location", () => {
+    const stub = cy.stub();
+    cy.on("window:alert", stub);
+
+    cy.get("#story").should("have.text", "Welcome to Splague!");
+    cy.get("#story-0").click();
+    cy.get("#story").should(
+      "have.text",
+      "You are a level headed doctor of medicine living in Western Europe. Above all else, you desire to help others. The year is 1345."
+    );
+    cy.get("#story-1").click();
+    cy.get("#story").should(
+      "have.text",
+      "... the Black Plague starts in 1346. Good luck."
+    );
+    cy.get("#story-2").click();
+    cy.get("#story").should("have.text", "12 months before death...");
+
+    cy.get("#current-location").should("have.text", "Current Location - home");
+
+    cy.get("#action-cook")
+      .click()
+      .then(() => {
+        expect(stub.getCall(0)).to.be.calledWith("PERFORMING ACTION - cook");
+      });
+  });
+
   it("Should play a short game", () => {
     cy.get("#story").should("have.text", "Welcome to Splague!");
     cy.get("#story-0").click();
