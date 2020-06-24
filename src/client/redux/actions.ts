@@ -14,6 +14,7 @@ import {
   SET_STORY_TEXT,
   SET_CHAPTER,
   SET_THEME,
+  SET_POPULATION,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -26,6 +27,8 @@ import {
   RootState,
   StoryAction,
   Theme,
+  Population,
+  WorldAction,
 } from "../types";
 
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
@@ -66,6 +69,11 @@ export const setItems = (items: Item[]): GameAction => ({
 export const setMoney = (money: number): GameAction => ({
   type: SET_MONEY,
   payload: { money },
+});
+
+export const setPopulation = (population: Population): WorldAction => ({
+  type: SET_POPULATION,
+  payload: { population },
 });
 
 export const setStartTime = (startTime: string): GameAction => ({
@@ -314,4 +322,16 @@ export const progressDate = (): AppThunk => (dispatch, getState) => {
   const currentDate = getState().game.date;
   const newDate = add(new Date(currentDate), { months: 1 }).toDateString();
   dispatch(setDate(newDate));
+};
+
+export const deathRate = (): AppThunk => (dispatch, getState) => {
+  const { chapter } = getState().story;
+  if (chapter < 3) return;
+  // * Kill off a percentage of the population each interval
+  const { deathRate, population } = getState().world;
+  const { alive, dead, infected } = population;
+  const newDead = alive * deathRate;
+  const newDeadPop = round(dead + newDead, 0);
+  const newAlive = round(alive - newDead, 0);
+  dispatch(setPopulation({ alive: newAlive, dead: newDeadPop, infected }));
 };

@@ -6,15 +6,16 @@ import ItemComponent from "./components/Item";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import {
+  deathRate,
   initializeGameState,
   progressDate,
   resetGame,
   saveGame,
-  setNewEarnings,
-  toggleBuyMultiplier,
   setChapter,
+  setNewEarnings,
   setStoryText,
   setTheme,
+  toggleBuyMultiplier,
 } from "./redux/actions";
 import { Item, Theme, Population, RootState } from "./types";
 
@@ -26,6 +27,7 @@ interface AppProps {
   earnings: number;
   handleBuyMultiplierClick: () => void;
   handleDateInterval: () => void;
+  handleDeathRate: () => void;
   handleEarningsInterval: () => void;
   handleGoOn: () => void;
   handleInitializeGameState: () => void;
@@ -55,6 +57,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     earnings,
     handleBuyMultiplierClick,
     handleDateInterval,
+    handleDeathRate,
     handleEarningsInterval,
     handleGoOn,
     handleInitializeGameState,
@@ -91,6 +94,10 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   useInterval(() => {
     handleDateInterval();
   }, 60000);
+
+  useInterval(() => {
+    handleDeathRate();
+  }, 10000);
 
   /**
    * Initialize Game State
@@ -187,6 +194,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  handleDeathRate: () => dispatch(deathRate()),
   handleBuyMultiplierClick: () => dispatch(toggleBuyMultiplier()),
   handleDateInterval: () => dispatch(progressDate()),
   handleEarningsInterval: () => dispatch(setNewEarnings()),

@@ -109,6 +109,9 @@ context("Splague", () => {
       "have.text",
       "Infected Population - 0"
     );
+    // * Death Rate
+    cy.wait(10000);
+    cy.get("#dead-population").should("have.text", "Dead Population - 443");
   });
 
   it("Should play a short game", () => {

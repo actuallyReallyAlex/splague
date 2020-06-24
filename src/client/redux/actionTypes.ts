@@ -8,6 +8,7 @@ export const SET_ITEM_COST_SETTERS = "SET_ITEM_COST_SETTERS";
 export const SET_ITEM_COUNT_SETTERS = "SET_ITEM_COUNT_SETTERS";
 export const SET_ITEMS = "SET_ITEMS";
 export const SET_MONEY = "SET_MONEY";
+export const SET_POPULATION = "SET_POPULATION";
 export const SET_START_TIME = "SET_START_TIME";
 export const SET_STORY_TEXT = "SET_STORY_TEXT";
 export const SET_THEME = "SET_THEME";
