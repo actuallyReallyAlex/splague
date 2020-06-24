@@ -16,6 +16,7 @@ import {
   SET_THEME,
   SET_POPULATION,
   SET_CURRENT_LOCATION,
+  SET_ACTIONS,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -34,6 +35,11 @@ import {
   WorldAction,
   LocationAction,
 } from "../types";
+
+export const setActions = (actions: LocationAction[]): MapAction => ({
+  type: SET_ACTIONS,
+  payload: { actions },
+});
 
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
   type: SET_BUY_MULTIPLIER,
@@ -362,6 +368,25 @@ export const travel = (location: Location): AppThunk => (
   getState
 ) => {
   dispatch(setCurrentLocation(location));
+  // * Set Actions based on Location
+  const churchActions: LocationAction[] = [];
+  const graveyardActions: LocationAction[] = [];
+  const homeActions: LocationAction[] = ["cook"];
+  const officeActions: LocationAction[] = [];
+  const tavernActions: LocationAction[] = [];
+  const townSquareActions: LocationAction[] = [];
+
+  const actionSets = {
+    church: churchActions,
+    graveyard: graveyardActions,
+    home: homeActions,
+    office: officeActions,
+    tavern: tavernActions,
+    "town square": townSquareActions,
+  };
+
+  const selectedActionSet = actionSets[location];
+  dispatch(setActions(selectedActionSet));
 };
 
 export const performAction = (action: LocationAction): AppThunk => (

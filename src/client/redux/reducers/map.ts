@@ -1,5 +1,5 @@
 import { MapAction, MapState } from "../../types";
-import { SET_CURRENT_LOCATION } from "../actionTypes";
+import { SET_CURRENT_LOCATION, SET_ACTIONS } from "../actionTypes";
 
 export const initialState: MapState = {
   actions: ["cook"],
@@ -8,6 +8,9 @@ export const initialState: MapState = {
 
 const reducer = (state = initialState, action: MapAction): MapState => {
   switch (action.type) {
+    case SET_ACTIONS: {
+      return { ...state, actions: action.payload.actions };
+    }
     case SET_CURRENT_LOCATION: {
       return { ...state, currentLocation: action.payload.currentLocation };
     }
