@@ -16,7 +16,7 @@ import {
   setStoryText,
   setTheme,
 } from "./redux/actions";
-import { Item, Theme } from "./types";
+import { Item, Theme, Population, RootState } from "./types";
 
 interface AppProps {
   avatar: string;
@@ -37,6 +37,7 @@ interface AppProps {
   items: Item[];
   money: number;
   name: string;
+  population: Population;
   startTime: string;
   story: string;
   theme: Theme;
@@ -65,6 +66,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     items,
     money,
     name,
+    population,
     startTime,
     story,
     theme,
@@ -145,6 +147,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
           <span id="earnings">
             Earnings - ${earnings.toLocaleString()}/second
           </span>
+          <span id="alive-population">
+            Alive Population - {population.alive}
+          </span>
+          <span id="dead-population">Dead Population - {population.dead}</span>
+          <span id="infected-population">
+            Infected Population - {population.infected}
+          </span>
           <button onClick={() => handleBuyMultiplierClick()} type="button">
             Buy Multiplier - {buyMultiplier}
           </button>
@@ -160,18 +169,19 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   );
 };
 
-const mapStateToProps = ({ game, player, story, ui }) => ({
-  avatar: player.avatar,
-  buyMultiplier: game.buyMultiplier,
-  chapter: story.chapter,
-  date: game.date,
-  earnings: game.earnings,
-  items: game.items,
-  money: game.money,
-  name: player.name,
-  startTime: game.startTime,
-  story: story.text,
-  theme: ui.theme,
+const mapStateToProps = (state: RootState) => ({
+  avatar: state.player.avatar,
+  buyMultiplier: state.game.buyMultiplier,
+  chapter: state.story.chapter,
+  date: state.game.date,
+  earnings: state.game.earnings,
+  items: state.game.items,
+  money: state.game.money,
+  name: state.player.name,
+  population: state.world.population,
+  startTime: state.game.startTime,
+  story: state.story.text,
+  theme: state.ui.theme,
 });
 
 const mapDispatchToProps = (dispatch) => ({

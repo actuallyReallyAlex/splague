@@ -1,13 +1,6 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-export type RootState = {
-  game: GameState;
-  player: PlayerState;
-  story: StoryState;
-  ui: UIState;
-};
-
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
@@ -65,6 +58,20 @@ export interface PlayerState {
   name: string;
 }
 
+export interface Population {
+  alive: number;
+  dead: number;
+  infected: number;
+}
+
+export type RootState = {
+  game: GameState;
+  player: PlayerState;
+  story: StoryState;
+  ui: UIState;
+  world: WorldState;
+};
+
 export interface StoryAction {
   type: string;
   // eslint-disable-next-line
@@ -87,4 +94,14 @@ export interface UIAction {
 export interface UIState {
   isLoading: boolean;
   theme: Theme;
+}
+
+export interface WorldAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface WorldState {
+  population: Population;
 }
