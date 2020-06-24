@@ -248,6 +248,25 @@ context("Splague", () => {
       .then(() => {
         expect(stub.getCall(4)).to.be.calledWith("PERFORMING ACTION - pray");
       });
+
+    // * Town Square Actions
+    cy.get("#location-town-square").click();
+    cy.get("#current-location").should(
+      "have.text",
+      "Current Location - town square"
+    );
+    cy.get("#action-barter")
+      .click()
+      .then(() => {
+        expect(stub.getCall(5)).to.be.calledWith("PERFORMING ACTION - barter");
+      });
+    cy.get("#action-hear-town-crier")
+      .click()
+      .then(() => {
+        expect(stub.getCall(6)).to.be.calledWith(
+          "PERFORMING ACTION - hear town crier"
+        );
+      });
   });
 
   it("Should play a short game", () => {
