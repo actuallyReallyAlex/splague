@@ -145,6 +145,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
             CHURCH
           </button>
           <button
+            disabled={currentLocation === "graveyard"}
+            id="location-graveyard"
+            onClick={() => handleTravel("graveyard")}
+          >
+            GRAVEYARD
+          </button>
+          <button
             disabled={currentLocation === "home"}
             id="location-home"
             onClick={() => handleTravel("home")}
