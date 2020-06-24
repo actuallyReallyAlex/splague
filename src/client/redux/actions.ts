@@ -15,19 +15,22 @@ import {
   SET_CHAPTER,
   SET_THEME,
   SET_POPULATION,
+  SET_CURRENT_LOCATION,
 } from "./actionTypes";
 import { round } from "../util";
 
 import {
+  AppThunk,
   GameAction,
   GameDBData,
   Item,
-  UIAction,
-  AppThunk,
+  Location,
+  MapAction,
+  Population,
   RootState,
   StoryAction,
   Theme,
-  Population,
+  UIAction,
   WorldAction,
 } from "../types";
 
@@ -39,6 +42,11 @@ export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
 export const setChapter = (chapter: number): StoryAction => ({
   type: SET_CHAPTER,
   payload: { chapter },
+});
+
+export const setCurrentLocation = (currentLocation: Location): MapAction => ({
+  type: SET_CURRENT_LOCATION,
+  payload: { currentLocation },
 });
 
 export const setDate = (date: string): GameAction => ({
@@ -346,4 +354,11 @@ export const growthRate = (): AppThunk => (dispatch, getState) => {
   const newAlivePop = round(alive + newAlive, 0);
   console.log(`newAlive - ${newAlive}`);
   dispatch(setPopulation({ alive: newAlivePop, dead, infected }));
+};
+
+export const travel = (location: Location): AppThunk => (
+  dispatch,
+  getState
+) => {
+  dispatch(setCurrentLocation(location));
 };

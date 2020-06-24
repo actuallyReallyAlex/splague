@@ -17,6 +17,7 @@ import {
   setStoryText,
   setTheme,
   toggleBuyMultiplier,
+  travel,
 } from "./redux/actions";
 import { Item, Theme, Population, RootState, Location } from "./types";
 
@@ -39,6 +40,7 @@ interface AppProps {
   handleStartDay: () => void;
   handleStartJourny: () => void;
   handleThemeToggle: (theme: Theme) => void;
+  handleTravel: (location: Location) => void;
   items: Item[];
   money: number;
   name: string;
@@ -71,6 +73,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleStartDay,
     handleStartJourny,
     handleThemeToggle,
+    handleTravel,
     items,
     money,
     name,
@@ -129,6 +132,28 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
       <p id="story">{story}</p>
 
+      {chapter > 2 && (
+        <div id="map">
+          <span id="current-location">
+            Current Location - {currentLocation}
+          </span>
+          <button
+            disabled={currentLocation === "home"}
+            id="location-home"
+            onClick={() => handleTravel("home")}
+          >
+            HOME
+          </button>
+          <button
+            disabled={currentLocation === "office"}
+            id="location-office"
+            onClick={() => handleTravel("office")}
+          >
+            OFFICE
+          </button>
+        </div>
+      )}
+
       {chapter === 0 && (
         <button id={`story-${chapter}`} onClick={() => handleStartJourny()}>
           Start Journy
@@ -163,9 +188,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
               })}
             </span>
           )}
-          <span id="current-location">
-            Current Location - {currentLocation}
-          </span>
           <span>
             Money - $<span id="money">{money.toLocaleString()}</span>
           </span>
@@ -240,6 +262,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleThemeToggle: (theme: Theme) => {
     dispatch(setTheme(theme === "dark" ? "light" : "dark"));
   },
+  handleTravel: (location: Location) => dispatch(travel(location)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
