@@ -216,6 +216,11 @@ context("Splague", () => {
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith("PERFORMING ACTION - cook");
       });
+    cy.get("#action-sleep")
+      .click()
+      .then(() => {
+        expect(stub.getCall(1)).to.be.calledWith("PERFORMING ACTION - sleep");
+      });
 
     cy.get("#location-town-square").click();
     cy.get("#action-cook").should("not.exist");

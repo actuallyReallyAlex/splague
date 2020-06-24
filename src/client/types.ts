@@ -38,7 +38,7 @@ export interface GameState {
   startTime: string;
 }
 
-export type HomeLocationAction = "cook";
+export type HomeLocationAction = "cook" | "sleep";
 
 export interface Item {
   baseIncome: number;
