@@ -151,14 +151,23 @@ context("Splague", () => {
     cy.get("#story-2").click();
     cy.get("#story").should("have.text", "12 months before death...");
 
+    // * Home
     cy.get("#current-location").should("have.text", "Current Location - home");
     cy.get("#location-home").should("be.disabled");
+    // * Office
     cy.get("#location-office").click();
     cy.get("#current-location").should(
       "have.text",
       "Current Location - office"
     );
     cy.get("#location-office").should("be.disabled");
+    // * Town Square
+    cy.get("#location-town-square").click();
+    cy.get("#current-location").should(
+      "have.text",
+      "Current Location - town square"
+    );
+    cy.get("#location-town-square").should("be.disabled");
   });
 
   it("Should play a short game", () => {

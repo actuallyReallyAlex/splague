@@ -151,6 +151,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
           >
             OFFICE
           </button>
+          <button
+            disabled={currentLocation === "town square"}
+            id="location-town-square"
+            onClick={() => handleTravel("town square")}
+          >
+            TOWN SQUARE
+          </button>
         </div>
       )}
 

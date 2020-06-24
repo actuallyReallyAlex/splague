@@ -47,7 +47,7 @@ export interface Item {
   name: string;
 }
 
-export type Location = "home" | "office";
+export type Location = "home" | "office" | "town square";
 
 export interface MapAction {
   type: string;
