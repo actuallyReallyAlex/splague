@@ -154,6 +154,13 @@ context("Splague", () => {
     // * Home
     cy.get("#current-location").should("have.text", "Current Location - home");
     cy.get("#location-home").should("be.disabled");
+    // * Church
+    cy.get("#location-church").click();
+    cy.get("#current-location").should(
+      "have.text",
+      "Current Location - church"
+    );
+    cy.get("#location-church").should("be.disabled");
     // * Office
     cy.get("#location-office").click();
     cy.get("#current-location").should(

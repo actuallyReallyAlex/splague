@@ -138,6 +138,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
             Current Location - {currentLocation}
           </span>
           <button
+            disabled={currentLocation === "church"}
+            id="location-church"
+            onClick={() => handleTravel("church")}
+          >
+            CHURCH
+          </button>
+          <button
             disabled={currentLocation === "home"}
             id="location-home"
             onClick={() => handleTravel("home")}
