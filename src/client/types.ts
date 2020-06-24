@@ -47,6 +47,18 @@ export interface Item {
   name: string;
 }
 
+export type Location = "home";
+
+export interface MapAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface MapState {
+  currentLocation: Location;
+}
+
 export interface PlayerAction {
   type: string;
   // eslint-disable-next-line
@@ -66,6 +78,7 @@ export interface Population {
 
 export type RootState = {
   game: GameState;
+  map: MapState;
   player: PlayerState;
   story: StoryState;
   ui: UIState;

@@ -18,12 +18,13 @@ import {
   setTheme,
   toggleBuyMultiplier,
 } from "./redux/actions";
-import { Item, Theme, Population, RootState } from "./types";
+import { Item, Theme, Population, RootState, Location } from "./types";
 
 interface AppProps {
   avatar: string;
   buyMultiplier: number;
   chapter: number;
+  currentLocation: Location;
   date: string;
   earnings: number;
   handleBuyMultiplierClick: () => void;
@@ -55,6 +56,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     avatar,
     buyMultiplier,
     chapter,
+    currentLocation,
     date,
     earnings,
     handleBuyMultiplierClick,
@@ -161,6 +163,9 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
               })}
             </span>
           )}
+          <span id="current-location">
+            Current Location - {currentLocation}
+          </span>
           <span>
             Money - $<span id="money">{money.toLocaleString()}</span>
           </span>
@@ -195,6 +200,7 @@ const mapStateToProps = (state: RootState) => ({
   avatar: state.player.avatar,
   buyMultiplier: state.game.buyMultiplier,
   chapter: state.story.chapter,
+  currentLocation: state.map.currentLocation,
   date: state.game.date,
   earnings: state.game.earnings,
   items: state.game.items,
