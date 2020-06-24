@@ -199,7 +199,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
           {actions.map((action: LocationAction) => (
             <button
               key={action}
-              id={`action-${action}`}
+              id={`action-${action.replace(/ /gm, "-")}`}
               onClick={() => handlePerformAction(action)}
             >
               {action}

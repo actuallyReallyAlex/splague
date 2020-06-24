@@ -34,6 +34,8 @@ import {
   UIAction,
   WorldAction,
   LocationAction,
+  ChurchLocationAction,
+  HomeLocationAction,
 } from "../types";
 
 export const setActions = (actions: LocationAction[]): MapAction => ({
@@ -369,9 +371,13 @@ export const travel = (location: Location): AppThunk => (
 ) => {
   dispatch(setCurrentLocation(location));
   // * Set Actions based on Location
-  const churchActions: LocationAction[] = [];
+  const churchActions: ChurchLocationAction[] = [
+    "attend mass",
+    "confess",
+    "pray",
+  ];
   const graveyardActions: LocationAction[] = [];
-  const homeActions: LocationAction[] = ["cook"];
+  const homeActions: HomeLocationAction[] = ["cook", "sleep"];
   const officeActions: LocationAction[] = [];
   const tavernActions: LocationAction[] = [];
   const townSquareActions: LocationAction[] = [];

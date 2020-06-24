@@ -211,6 +211,7 @@ context("Splague", () => {
 
     cy.get("#current-location").should("have.text", "Current Location - home");
 
+    // * Home Actions
     cy.get("#action-cook")
       .click()
       .then(() => {
@@ -221,9 +222,32 @@ context("Splague", () => {
       .then(() => {
         expect(stub.getCall(1)).to.be.calledWith("PERFORMING ACTION - sleep");
       });
-
     cy.get("#location-town-square").click();
     cy.get("#action-cook").should("not.exist");
+
+    // * Church Actions
+    cy.get("#location-church").click();
+    cy.get("#current-location").should(
+      "have.text",
+      "Current Location - church"
+    );
+    cy.get("#action-attend-mass")
+      .click()
+      .then(() => {
+        expect(stub.getCall(2)).to.be.calledWith(
+          "PERFORMING ACTION - attend mass"
+        );
+      });
+    cy.get("#action-confess")
+      .click()
+      .then(() => {
+        expect(stub.getCall(3)).to.be.calledWith("PERFORMING ACTION - confess");
+      });
+    cy.get("#action-pray")
+      .click()
+      .then(() => {
+        expect(stub.getCall(4)).to.be.calledWith("PERFORMING ACTION - pray");
+      });
   });
 
   it("Should play a short game", () => {

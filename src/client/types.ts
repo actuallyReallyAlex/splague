@@ -38,6 +38,7 @@ export interface GameState {
   startTime: string;
 }
 
+export type ChurchLocationAction = "attend mass" | "confess" | "pray";
 export type HomeLocationAction = "cook" | "sleep";
 
 export interface Item {
@@ -57,7 +58,7 @@ export type Location =
   | "tavern"
   | "town square";
 
-export type LocationAction = HomeLocationAction;
+export type LocationAction = ChurchLocationAction | HomeLocationAction;
 
 export interface MapAction {
   type: string;
