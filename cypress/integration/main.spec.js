@@ -100,7 +100,10 @@ context("Splague", () => {
     cy.get("#story-2").click();
     cy.get("#story").should("have.text", "12 months before death...");
 
-    cy.get("#alive-population").should("have.text", "Alive Population - 0");
+    cy.get("#alive-population").should(
+      "have.text",
+      "Alive Population - 443,000,000"
+    );
     cy.get("#dead-population").should("have.text", "Dead Population - 0");
     cy.get("#infected-population").should(
       "have.text",

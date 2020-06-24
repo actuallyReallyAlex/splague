@@ -2,7 +2,7 @@ import { WorldAction, WorldState } from "../../types";
 
 export const initialState: WorldState = {
   population: {
-    alive: 0,
+    alive: 443000000,
     dead: 0,
     infected: 0,
   },

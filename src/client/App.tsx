@@ -148,11 +148,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
             Earnings - ${earnings.toLocaleString()}/second
           </span>
           <span id="alive-population">
-            Alive Population - {population.alive}
+            Alive Population - {population.alive.toLocaleString()}
           </span>
-          <span id="dead-population">Dead Population - {population.dead}</span>
+          <span id="dead-population">
+            Dead Population - {population.dead.toLocaleString()}
+          </span>
           <span id="infected-population">
-            Infected Population - {population.infected}
+            Infected Population - {population.infected.toLocaleString()}
           </span>
           <button onClick={() => handleBuyMultiplierClick()} type="button">
             Buy Multiplier - {buyMultiplier}
