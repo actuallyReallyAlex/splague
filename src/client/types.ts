@@ -40,6 +40,7 @@ export interface GameState {
 
 export type ChurchLocationAction = "attend mass" | "confess" | "pray";
 export type HomeLocationAction = "cook" | "sleep";
+export type TavernLocationAction = "order drink" | "order food";
 export type TownSquareLocationAction = "barter" | "hear town crier";
 
 export interface Item {
@@ -62,6 +63,7 @@ export type Location =
 export type LocationAction =
   | ChurchLocationAction
   | HomeLocationAction
+  | TavernLocationAction
   | TownSquareLocationAction;
 
 export interface MapAction {
