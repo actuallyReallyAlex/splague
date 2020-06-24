@@ -7,6 +7,7 @@ import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import {
   deathRate,
+  growthRate,
   initializeGameState,
   progressDate,
   resetGame,
@@ -30,6 +31,7 @@ interface AppProps {
   handleDeathRate: () => void;
   handleEarningsInterval: () => void;
   handleGoOn: () => void;
+  handleGrowthRate: () => void;
   handleInitializeGameState: () => void;
   handleResetGame: () => void;
   handleSaveGame: () => void;
@@ -60,6 +62,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleDeathRate,
     handleEarningsInterval,
     handleGoOn,
+    handleGrowthRate,
     handleInitializeGameState,
     handleResetGame,
     handleSaveGame,
@@ -95,8 +98,18 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleDateInterval();
   }, 60000);
 
+  /**
+   * Death Rate
+   */
   useInterval(() => {
     handleDeathRate();
+  }, 10000);
+
+  /**
+   * Growth Rate
+   */
+  useInterval(() => {
+    handleGrowthRate();
   }, 10000);
 
   /**
@@ -202,6 +215,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setChapter(2));
     dispatch(setStoryText("... the Black Plague starts in 1346. Good luck."));
   },
+  handleGrowthRate: () => dispatch(growthRate()),
   handleInitializeGameState: () => dispatch(initializeGameState()),
   handleResetGame: () => dispatch(resetGame()),
   handleSaveGame: () => dispatch(saveGame()),

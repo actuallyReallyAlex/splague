@@ -335,3 +335,15 @@ export const deathRate = (): AppThunk => (dispatch, getState) => {
   const newAlive = round(alive - newDead, 0);
   dispatch(setPopulation({ alive: newAlive, dead: newDeadPop, infected }));
 };
+
+export const growthRate = (): AppThunk => (dispatch, getState) => {
+  const { chapter } = getState().story;
+  if (chapter < 3) return;
+  // * Birth a percentage of the population each interval
+  const { growthRate, population } = getState().world;
+  const { alive, dead, infected } = population;
+  const newAlive = alive * growthRate;
+  const newAlivePop = round(alive + newAlive, 0);
+  console.log(`newAlive - ${newAlive}`);
+  dispatch(setPopulation({ alive: newAlivePop, dead, infected }));
+};

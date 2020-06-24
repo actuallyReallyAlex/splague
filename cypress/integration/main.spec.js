@@ -109,8 +109,12 @@ context("Splague", () => {
       "have.text",
       "Infected Population - 0"
     );
-    // * Death Rate
+    // * Death / Growth Rate
     cy.wait(10000);
+    cy.get("#alive-population").should(
+      "have.text",
+      "Alive Population - 443,001,772"
+    );
     cy.get("#dead-population").should("have.text", "Dead Population - 443");
   });
 

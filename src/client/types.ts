@@ -104,5 +104,6 @@ export interface WorldAction {
 
 export interface WorldState {
   deathRate: number;
+  growthRate: number;
   population: Population;
 }

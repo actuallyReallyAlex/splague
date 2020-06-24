@@ -3,6 +3,7 @@ import { SET_POPULATION } from "../actionTypes";
 
 export const initialState: WorldState = {
   deathRate: 0.000001,
+  growthRate: 0.000005,
   population: {
     alive: 443000000,
     dead: 0,
