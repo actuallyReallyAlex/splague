@@ -361,6 +361,12 @@ context("Splague", () => {
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith("PRESCRIBE REMEDY");
       });
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-operation")
+      .click()
+      .then(() => {
+        expect(stub.getCall(1)).to.be.calledWith("PERFORM OPERATION");
+      });
   });
 
   it("Should play a short game", () => {
