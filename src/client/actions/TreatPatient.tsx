@@ -18,6 +18,10 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
       <span id="patient-name">{name}</span>
       <span id="patient-age">{age}</span>
       <span id="patient-complaint">{complaint}</span>
+      <h3>Treatment Options</h3>
+      <button id="treatment-remedy" onClick={() => alert("PRESCRIBE REMEDY")}>
+        Prescribe Remedy
+      </button>
     </div>
   );
 };
