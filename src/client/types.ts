@@ -82,10 +82,21 @@ export interface MapState {
   currentLocation: Location;
 }
 
+export type Operation = "hole in head";
+
 export interface PatientAction {
   type: string;
   // eslint-disable-next-line
   payload: any;
+}
+
+export interface PatientScenario {
+  age: number;
+  chat: string[];
+  complaint: string;
+  name: string;
+  operation: Operation;
+  remedy: Remedy;
 }
 
 export interface PatientState {
@@ -110,6 +121,8 @@ export interface Population {
   dead: number;
   infected: number;
 }
+
+export type Remedy = "potion";
 
 export type RootState = {
   game: GameState;

@@ -220,9 +220,45 @@ context("Splague", () => {
     );
     cy.get("#action-treat-patient").click();
     cy.get("#treat-patient-screen").should("exist");
-    cy.get("#patient-name").should("have.text", "Billy Bob");
-    cy.get("#patient-age").should("have.text", "19");
-    cy.get("#patient-complaint").should("have.text", "Back pain");
+
+    const patientScenarios = [
+      {
+        age: 19,
+        chat: ["Chat 1", "Chat2", "Chat 3"],
+        complaint: "Back pain",
+        name: "Billy Bob",
+        operation: "hole in head",
+        remedy: "potion",
+      },
+      {
+        age: 30,
+        chat: ["Chat 1", "Chat2", "Chat 3"],
+        complaint: "Headache",
+        name: "Jane Jill",
+        operation: "hole in head",
+        remedy: "potion",
+      },
+      {
+        age: 10,
+        chat: ["Chat 1", "Chat2", "Chat 3"],
+        complaint: "Broken foot",
+        name: "Mark Man",
+        operation: "hole in head",
+        remedy: "potion",
+      },
+    ];
+    cy.get("#patient-age").then((age) => {
+      const ageValue = Number(age[0].textContent);
+      const currentPatientScenario = patientScenarios.find(
+        (patientStats) => patientStats.age === ageValue
+      );
+      cy.get("#patient-name").should("have.text", currentPatientScenario.name);
+      cy.get("#patient-age").should("have.text", currentPatientScenario.age);
+      cy.get("#patient-complaint").should(
+        "have.text",
+        currentPatientScenario.complaint
+      );
+    });
 
     // // * Home Actions
     // cy.get("#action-cook")

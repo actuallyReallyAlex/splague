@@ -1,7 +1,7 @@
 import add from "date-fns/add";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import formatDistance from "date-fns/formatDistance";
-import { defaultInitialState } from "../constants";
+import { defaultInitialState, patientScenarios } from "../constants";
 import {
   SET_IS_LOADING,
   SET_ID,
@@ -45,6 +45,7 @@ import {
   GraveyardLocationAction,
   OfficeLocationAction,
   PatientAction,
+  PatientScenario,
 } from "../types";
 
 export const setActions = (actions: LocationAction[]): MapAction => ({
@@ -457,9 +458,11 @@ export const performAction = (action: LocationAction): AppThunk => (
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     sleep: () => {},
     "treat patient": () => {
-      dispatch(setPatientName("Billy Bob"));
-      dispatch(setPatientAge(19));
-      dispatch(setPatientComplaint("Back pain"));
+      const randomIndex = Math.floor(Math.random() * patientScenarios.length);
+      const patientScenario: PatientScenario = patientScenarios[randomIndex];
+      dispatch(setPatientName(patientScenario.name));
+      dispatch(setPatientAge(patientScenario.age));
+      dispatch(setPatientComplaint(patientScenario.complaint));
     },
   };
   const currentActionLogic = actionLogic[action];
