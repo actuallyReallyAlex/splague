@@ -258,6 +258,10 @@ context("Splague", () => {
         "have.text",
         currentPatientScenario.complaint
       );
+      cy.get("#patient-remedy").should(
+        "have.text",
+        currentPatientScenario.remedy
+      );
       // * Chat Lines
       currentPatientScenario.chat.forEach((chatLine, i) => {
         cy.get(`#chat-${i}`).should("exist");

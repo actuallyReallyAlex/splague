@@ -104,6 +104,7 @@ export interface PatientState {
   chat: string[];
   complaint: string;
   name: string;
+  remedy: Remedy;
 }
 
 export interface PlayerAction {

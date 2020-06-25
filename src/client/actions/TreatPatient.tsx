@@ -1,18 +1,19 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { RootState } from "../types";
+import { Remedy, RootState } from "../types";
 
 export interface TreatPatientProps {
   age: number;
   chat: string[];
   complaint: string;
   name: string;
+  remedy: Remedy;
 }
 
 const TreatPatient: React.SFC<TreatPatientProps> = (
   props: TreatPatientProps
 ) => {
-  const { age, chat, complaint, name } = props;
+  const { age, chat, complaint, name, remedy } = props;
   return (
     <div id="treat-patient-screen">
       <h2>Treat Patient</h2>
@@ -24,6 +25,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
           {chatLine}
         </span>
       ))}
+      <span id="patient-remedy">{remedy}</span>
       <h3>Treatment Options</h3>
       <button id="treatment-remedy" onClick={() => alert("PRESCRIBE REMEDY")}>
         Prescribe Remedy
@@ -46,6 +48,7 @@ const mapStateToProps = (state: RootState) => ({
   chat: state.patient.chat,
   complaint: state.patient.complaint,
   name: state.patient.name,
+  remedy: state.patient.remedy,
 });
 
 export default connect(mapStateToProps)(TreatPatient);

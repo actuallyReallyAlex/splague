@@ -18,6 +18,7 @@ import {
   SET_PATIENT_CHAT,
   SET_PATIENT_COMPLAINT,
   SET_PATIENT_NAME,
+  SET_PATIENT_REMEDY,
   SET_POPULATION,
   SET_START_TIME,
   SET_STORY_TEXT,
@@ -40,6 +41,7 @@ import {
   PatientAction,
   PatientScenario,
   Population,
+  Remedy,
   RootState,
   StoryAction,
   TavernLocationAction,
@@ -122,6 +124,11 @@ export const setPatientComplaint = (complaint: string): PatientAction => ({
 export const setPatientName = (name: string): PatientAction => ({
   type: SET_PATIENT_NAME,
   payload: { name },
+});
+
+export const setPatientRemedy = (remedy: Remedy): PatientAction => ({
+  type: SET_PATIENT_REMEDY,
+  payload: { remedy },
 });
 
 export const setPopulation = (population: Population): WorldAction => ({
@@ -470,6 +477,7 @@ export const performAction = (action: LocationAction): AppThunk => (
       dispatch(setPatientChat(patientScenario.chat));
       dispatch(setPatientComplaint(patientScenario.complaint));
       dispatch(setPatientName(patientScenario.name));
+      dispatch(setPatientRemedy(patientScenario.remedy));
     },
   };
   const currentActionLogic = actionLogic[action];
