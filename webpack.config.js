@@ -22,7 +22,7 @@ module.exports = {
     clientLogLevel: "error",
     contentBase: path.join(__dirname, "public"),
     historyApiFallback: true,
-    open: true,
+    open: process.env.NODE_ENV !== "test",
     proxy: {
       "*": "http://localhost:3000",
     },
