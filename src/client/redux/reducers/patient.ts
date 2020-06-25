@@ -4,6 +4,7 @@ import {
   SET_PATIENT_CHAT,
   SET_PATIENT_COMPLAINT,
   SET_PATIENT_NAME,
+  SET_PATIENT_OPERATION,
   SET_PATIENT_REMEDY,
 } from "../actionTypes";
 
@@ -12,6 +13,7 @@ export const initialState: PatientState = {
   chat: [],
   complaint: "",
   name: "",
+  operation: null,
   remedy: null,
 };
 
@@ -28,6 +30,9 @@ const reducer = (state = initialState, action: PatientAction): PatientState => {
     }
     case SET_PATIENT_NAME: {
       return { ...state, name: action.payload.name };
+    }
+    case SET_PATIENT_OPERATION: {
+      return { ...state, operation: action.payload.operation };
     }
     case SET_PATIENT_REMEDY: {
       return { ...state, remedy: action.payload.remedy };

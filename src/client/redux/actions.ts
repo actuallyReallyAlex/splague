@@ -18,6 +18,7 @@ import {
   SET_PATIENT_CHAT,
   SET_PATIENT_COMPLAINT,
   SET_PATIENT_NAME,
+  SET_PATIENT_OPERATION,
   SET_PATIENT_REMEDY,
   SET_POPULATION,
   SET_START_TIME,
@@ -38,6 +39,7 @@ import {
   LocationAction,
   MapAction,
   OfficeLocationAction,
+  Operation,
   PatientAction,
   PatientScenario,
   Population,
@@ -124,6 +126,11 @@ export const setPatientComplaint = (complaint: string): PatientAction => ({
 export const setPatientName = (name: string): PatientAction => ({
   type: SET_PATIENT_NAME,
   payload: { name },
+});
+
+export const setPatientOperation = (operation: Operation): PatientAction => ({
+  type: SET_PATIENT_OPERATION,
+  payload: { operation },
 });
 
 export const setPatientRemedy = (remedy: Remedy): PatientAction => ({
@@ -477,6 +484,7 @@ export const performAction = (action: LocationAction): AppThunk => (
       dispatch(setPatientChat(patientScenario.chat));
       dispatch(setPatientComplaint(patientScenario.complaint));
       dispatch(setPatientName(patientScenario.name));
+      dispatch(setPatientOperation(patientScenario.operation));
       dispatch(setPatientRemedy(patientScenario.remedy));
     },
   };
