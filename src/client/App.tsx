@@ -21,12 +21,14 @@ import {
 } from "./redux/actions";
 import { Item, LocationAction, Population, RootState, Theme } from "./types";
 import Map from "./components/Map";
+import TreatPatient from "./actions/TreatPatient";
 
 interface AppProps {
   actions: LocationAction[];
   avatar: string;
   buyMultiplier: number;
   chapter: number;
+  currentAction: null | LocationAction;
   date: string;
   earnings: number;
   handleBuyMultiplierClick: () => void;
@@ -60,6 +62,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     avatar,
     buyMultiplier,
     chapter,
+    currentAction,
     date,
     earnings,
     handleBuyMultiplierClick,
@@ -125,6 +128,23 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleInitializeGameState();
   }, []);
 
+  const gameActions = {
+    "attend mass": () => null,
+    barter: () => null,
+    confess: () => null,
+    cook: () => null,
+    "hear town crier": () => null,
+    mourn: () => null,
+    "order drink": () => null,
+    "order food": () => null,
+    pray: () => null,
+    "research cure": () => null,
+    sleep: () => null,
+    "treat patient": TreatPatient,
+  };
+
+  const GameAction = currentAction ? gameActions[currentAction] : () => null;
+
   return (
     <div className={theme} id="app">
       <h1>splague</h1>
@@ -134,6 +154,8 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <p id="story">{story}</p>
 
       <Map />
+
+      <GameAction />
 
       {chapter > 2 && (
         <div id="actions">
@@ -218,6 +240,7 @@ const mapStateToProps = (state: RootState) => ({
   avatar: state.player.avatar,
   buyMultiplier: state.game.buyMultiplier,
   chapter: state.story.chapter,
+  currentAction: state.map.currentAction,
   date: state.game.date,
   earnings: state.game.earnings,
   items: state.game.items,

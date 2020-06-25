@@ -17,6 +17,7 @@ import {
   SET_POPULATION,
   SET_CURRENT_LOCATION,
   SET_ACTIONS,
+  SET_CURRENT_ACTION,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -55,6 +56,11 @@ export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
 export const setChapter = (chapter: number): StoryAction => ({
   type: SET_CHAPTER,
   payload: { chapter },
+});
+
+export const setCurrentAction = (currentAction: LocationAction): MapAction => ({
+  type: SET_CURRENT_ACTION,
+  payload: { currentAction },
 });
 
 export const setCurrentLocation = (currentLocation: Location): MapAction => ({
@@ -409,5 +415,5 @@ export const performAction = (action: LocationAction): AppThunk => (
   dispatch,
   getState
 ) => {
-  alert(`PERFORMING ACTION - ${action}`);
+  dispatch(setCurrentAction(action));
 };

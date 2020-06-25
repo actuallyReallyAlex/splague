@@ -78,6 +78,7 @@ export interface MapAction {
 
 export interface MapState {
   actions: LocationAction[];
+  currentAction: null | LocationAction;
   currentLocation: Location;
 }
 
