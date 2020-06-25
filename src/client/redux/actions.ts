@@ -390,7 +390,6 @@ export const growthRate = (): AppThunk => (dispatch, getState) => {
   const { alive, dead, infected } = population;
   const newAlive = alive * growthRate;
   const newAlivePop = round(alive + newAlive, 0);
-  console.log(`newAlive - ${newAlive}`);
   dispatch(setPopulation({ alive: newAlivePop, dead, infected }));
 };
 
