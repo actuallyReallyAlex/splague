@@ -18,23 +18,15 @@ import {
   setStoryText,
   setTheme,
   toggleBuyMultiplier,
-  travel,
 } from "./redux/actions";
-import {
-  Item,
-  Theme,
-  Population,
-  RootState,
-  Location,
-  LocationAction,
-} from "./types";
+import { Item, LocationAction, Population, RootState, Theme } from "./types";
+import Map from "./components/Map";
 
 interface AppProps {
   actions: LocationAction[];
   avatar: string;
   buyMultiplier: number;
   chapter: number;
-  currentLocation: Location;
   date: string;
   earnings: number;
   handleBuyMultiplierClick: () => void;
@@ -50,7 +42,6 @@ interface AppProps {
   handleStartDay: () => void;
   handleStartJourny: () => void;
   handleThemeToggle: (theme: Theme) => void;
-  handleTravel: (location: Location) => void;
   items: Item[];
   money: number;
   name: string;
@@ -69,7 +60,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     avatar,
     buyMultiplier,
     chapter,
-    currentLocation,
     date,
     earnings,
     handleBuyMultiplierClick,
@@ -85,7 +75,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleStartDay,
     handleStartJourny,
     handleThemeToggle,
-    handleTravel,
     items,
     money,
     name,
@@ -144,55 +133,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
       <p id="story">{story}</p>
 
-      {chapter > 2 && (
-        <div id="map">
-          <span id="current-location">
-            Current Location - {currentLocation}
-          </span>
-          <button
-            disabled={currentLocation === "church"}
-            id="location-church"
-            onClick={() => handleTravel("church")}
-          >
-            CHURCH
-          </button>
-          <button
-            disabled={currentLocation === "graveyard"}
-            id="location-graveyard"
-            onClick={() => handleTravel("graveyard")}
-          >
-            GRAVEYARD
-          </button>
-          <button
-            disabled={currentLocation === "home"}
-            id="location-home"
-            onClick={() => handleTravel("home")}
-          >
-            HOME
-          </button>
-          <button
-            disabled={currentLocation === "office"}
-            id="location-office"
-            onClick={() => handleTravel("office")}
-          >
-            OFFICE
-          </button>
-          <button
-            disabled={currentLocation === "tavern"}
-            id="location-tavern"
-            onClick={() => handleTravel("tavern")}
-          >
-            TAVERN
-          </button>
-          <button
-            disabled={currentLocation === "town square"}
-            id="location-town-square"
-            onClick={() => handleTravel("town square")}
-          >
-            TOWN SQUARE
-          </button>
-        </div>
-      )}
+      <Map />
 
       {chapter > 2 && (
         <div id="actions">
@@ -277,7 +218,6 @@ const mapStateToProps = (state: RootState) => ({
   avatar: state.player.avatar,
   buyMultiplier: state.game.buyMultiplier,
   chapter: state.story.chapter,
-  currentLocation: state.map.currentLocation,
   date: state.game.date,
   earnings: state.game.earnings,
   items: state.game.items,
@@ -319,7 +259,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleThemeToggle: (theme: Theme) => {
     dispatch(setTheme(theme === "dark" ? "light" : "dark"));
   },
-  handleTravel: (location: Location) => dispatch(travel(location)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
