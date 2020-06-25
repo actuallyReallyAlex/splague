@@ -38,6 +38,7 @@ import {
   HomeLocationAction,
   TownSquareLocationAction,
   TavernLocationAction,
+  GraveyardLocationAction,
 } from "../types";
 
 export const setActions = (actions: LocationAction[]): MapAction => ({
@@ -378,7 +379,7 @@ export const travel = (location: Location): AppThunk => (
     "confess",
     "pray",
   ];
-  const graveyardActions: LocationAction[] = [];
+  const graveyardActions: GraveyardLocationAction[] = ["mourn"];
   const homeActions: HomeLocationAction[] = ["cook", "sleep"];
   const officeActions: LocationAction[] = [];
   const tavernActions: TavernLocationAction[] = ["order drink", "order food"];

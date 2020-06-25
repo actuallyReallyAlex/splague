@@ -39,6 +39,7 @@ export interface GameState {
 }
 
 export type ChurchLocationAction = "attend mass" | "confess" | "pray";
+export type GraveyardLocationAction = "mourn";
 export type HomeLocationAction = "cook" | "sleep";
 export type TavernLocationAction = "order drink" | "order food";
 export type TownSquareLocationAction = "barter" | "hear town crier";
@@ -62,6 +63,7 @@ export type Location =
 
 export type LocationAction =
   | ChurchLocationAction
+  | GraveyardLocationAction
   | HomeLocationAction
   | TavernLocationAction
   | TownSquareLocationAction;
