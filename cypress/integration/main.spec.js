@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /// <reference types="cypress" />
 
 context("Splague", () => {
@@ -220,6 +221,7 @@ context("Splague", () => {
     cy.get("#action-treat-patient").click();
     cy.get("#treat-patient-screen").should("exist");
     cy.get("#patient-name").should("have.text", "Billy Bob");
+    cy.get("#patient-age").should("have.text", "19");
 
     // // * Home Actions
     // cy.get("#action-cook")

@@ -89,6 +89,7 @@ export interface PatientAction {
 }
 
 export interface PatientState {
+  age: number;
   name: string;
 }
 

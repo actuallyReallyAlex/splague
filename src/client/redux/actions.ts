@@ -19,6 +19,7 @@ import {
   SET_ACTIONS,
   SET_CURRENT_ACTION,
   SET_PATIENT_NAME,
+  SET_PATIENT_AGE,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -98,6 +99,11 @@ export const setItems = (items: Item[]): GameAction => ({
 export const setMoney = (money: number): GameAction => ({
   type: SET_MONEY,
   payload: { money },
+});
+
+export const setPatientAge = (age: number): PatientAction => ({
+  type: SET_PATIENT_AGE,
+  payload: { age },
 });
 
 export const setPatientName = (name: string): PatientAction => ({
@@ -447,6 +453,7 @@ export const performAction = (action: LocationAction): AppThunk => (
     sleep: () => {},
     "treat patient": () => {
       dispatch(setPatientName("Billy Bob"));
+      dispatch(setPatientAge(19));
     },
   };
   const currentActionLogic = actionLogic[action];
