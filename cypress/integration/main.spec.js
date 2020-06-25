@@ -261,6 +261,27 @@ context("Splague", () => {
         expect(stub.getCall(5)).to.be.calledWith("PERFORMING ACTION - mourn");
       });
 
+    // * Office Actions
+    cy.get("#location-office").click();
+    cy.get("#current-location").should(
+      "have.text",
+      "Current Location - office"
+    );
+    cy.get("#action-research-cure")
+      .click()
+      .then(() => {
+        expect(stub.getCall(6)).to.be.calledWith(
+          "PERFORMING ACTION - research cure"
+        );
+      });
+    cy.get("#action-treat-patient")
+      .click()
+      .then(() => {
+        expect(stub.getCall(7)).to.be.calledWith(
+          "PERFORMING ACTION - treat patient"
+        );
+      });
+
     // * Tavern Actions
     cy.get("#location-tavern").click();
     cy.get("#current-location").should(
@@ -270,14 +291,14 @@ context("Splague", () => {
     cy.get("#action-order-drink")
       .click()
       .then(() => {
-        expect(stub.getCall(6)).to.be.calledWith(
+        expect(stub.getCall(8)).to.be.calledWith(
           "PERFORMING ACTION - order drink"
         );
       });
     cy.get("#action-order-food")
       .click()
       .then(() => {
-        expect(stub.getCall(7)).to.be.calledWith(
+        expect(stub.getCall(9)).to.be.calledWith(
           "PERFORMING ACTION - order food"
         );
       });
@@ -291,12 +312,12 @@ context("Splague", () => {
     cy.get("#action-barter")
       .click()
       .then(() => {
-        expect(stub.getCall(8)).to.be.calledWith("PERFORMING ACTION - barter");
+        expect(stub.getCall(10)).to.be.calledWith("PERFORMING ACTION - barter");
       });
     cy.get("#action-hear-town-crier")
       .click()
       .then(() => {
-        expect(stub.getCall(9)).to.be.calledWith(
+        expect(stub.getCall(11)).to.be.calledWith(
           "PERFORMING ACTION - hear town crier"
         );
       });
