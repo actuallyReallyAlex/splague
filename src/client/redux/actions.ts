@@ -18,6 +18,7 @@ import {
   SET_CURRENT_LOCATION,
   SET_ACTIONS,
   SET_CURRENT_ACTION,
+  SET_PATIENT_NAME,
 } from "./actionTypes";
 import { round } from "../util";
 
@@ -41,6 +42,7 @@ import {
   TavernLocationAction,
   GraveyardLocationAction,
   OfficeLocationAction,
+  PatientAction,
 } from "../types";
 
 export const setActions = (actions: LocationAction[]): MapAction => ({
@@ -96,6 +98,11 @@ export const setItems = (items: Item[]): GameAction => ({
 export const setMoney = (money: number): GameAction => ({
   type: SET_MONEY,
   payload: { money },
+});
+
+export const setPatientName = (name: string): PatientAction => ({
+  type: SET_PATIENT_NAME,
+  payload: { name },
 });
 
 export const setPopulation = (population: Population): WorldAction => ({
@@ -415,5 +422,35 @@ export const performAction = (action: LocationAction): AppThunk => (
   dispatch,
   getState
 ) => {
+  const actionLogic = {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    "attend mass": () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    barter: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    confess: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    cook: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    "hear town crier": () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    mourn: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    "order drink": () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    "order food": () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    pray: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    "research cure": () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    sleep: () => {},
+    "treat patient": () => {
+      dispatch(setPatientName("Billy Bob"));
+    },
+  };
+  const currentActionLogic = actionLogic[action];
+
   dispatch(setCurrentAction(action));
+  currentActionLogic();
 };

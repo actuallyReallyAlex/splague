@@ -82,6 +82,16 @@ export interface MapState {
   currentLocation: Location;
 }
 
+export interface PatientAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface PatientState {
+  name: string;
+}
+
 export interface PlayerAction {
   type: string;
   // eslint-disable-next-line
@@ -102,6 +112,7 @@ export interface Population {
 export type RootState = {
   game: GameState;
   map: MapState;
+  patient: PatientState;
   player: PlayerState;
   story: StoryState;
   ui: UIState;
