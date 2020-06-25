@@ -90,6 +90,7 @@ export interface PatientAction {
 
 export interface PatientState {
   age: number;
+  complaint: string;
   name: string;
 }
 

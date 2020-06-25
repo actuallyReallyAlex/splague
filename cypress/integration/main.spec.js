@@ -222,6 +222,7 @@ context("Splague", () => {
     cy.get("#treat-patient-screen").should("exist");
     cy.get("#patient-name").should("have.text", "Billy Bob");
     cy.get("#patient-age").should("have.text", "19");
+    cy.get("#patient-complaint").should("have.text", "Back pain");
 
     // // * Home Actions
     // cy.get("#action-cook")
