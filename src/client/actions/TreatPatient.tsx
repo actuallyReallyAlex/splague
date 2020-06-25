@@ -4,6 +4,7 @@ import { RootState } from "../types";
 
 export interface TreatPatientProps {
   age: number;
+  chat: string[];
   complaint: string;
   name: string;
 }
@@ -11,13 +12,18 @@ export interface TreatPatientProps {
 const TreatPatient: React.SFC<TreatPatientProps> = (
   props: TreatPatientProps
 ) => {
-  const { age, complaint, name } = props;
+  const { age, chat, complaint, name } = props;
   return (
     <div id="treat-patient-screen">
       <h2>Treat Patient</h2>
       <span id="patient-name">{name}</span>
       <span id="patient-age">{age}</span>
       <span id="patient-complaint">{complaint}</span>
+      {chat.map((chatLine: string, i: number) => (
+        <span id={`chat-${i}`} key={i}>
+          {chatLine}
+        </span>
+      ))}
       <h3>Treatment Options</h3>
       <button id="treatment-remedy" onClick={() => alert("PRESCRIBE REMEDY")}>
         Prescribe Remedy
@@ -37,6 +43,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
 
 const mapStateToProps = (state: RootState) => ({
   age: state.patient.age,
+  chat: state.patient.chat,
   complaint: state.patient.complaint,
   name: state.patient.name,
 });

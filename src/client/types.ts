@@ -101,6 +101,7 @@ export interface PatientScenario {
 
 export interface PatientState {
   age: number;
+  chat: string[];
   complaint: string;
   name: string;
 }

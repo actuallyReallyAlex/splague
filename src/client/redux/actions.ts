@@ -3,49 +3,50 @@ import differenceInSeconds from "date-fns/differenceInSeconds";
 import formatDistance from "date-fns/formatDistance";
 import { defaultInitialState, patientScenarios } from "../constants";
 import {
-  SET_IS_LOADING,
-  SET_ID,
-  SET_BUY_MULTIPLIER,
-  SET_START_TIME,
-  SET_MONEY,
-  SET_EARNINGS,
-  SET_ITEMS,
-  SET_DATE,
-  SET_STORY_TEXT,
-  SET_CHAPTER,
-  SET_THEME,
-  SET_POPULATION,
-  SET_CURRENT_LOCATION,
   SET_ACTIONS,
+  SET_BUY_MULTIPLIER,
+  SET_CHAPTER,
   SET_CURRENT_ACTION,
-  SET_PATIENT_NAME,
+  SET_CURRENT_LOCATION,
+  SET_DATE,
+  SET_EARNINGS,
+  SET_ID,
+  SET_IS_LOADING,
+  SET_ITEMS,
+  SET_MONEY,
   SET_PATIENT_AGE,
+  SET_PATIENT_CHAT,
   SET_PATIENT_COMPLAINT,
+  SET_PATIENT_NAME,
+  SET_POPULATION,
+  SET_START_TIME,
+  SET_STORY_TEXT,
+  SET_THEME,
 } from "./actionTypes";
 import { round } from "../util";
 
 import {
   AppThunk,
+  ChurchLocationAction,
   GameAction,
   GameDBData,
+  GraveyardLocationAction,
+  HomeLocationAction,
   Item,
   Location,
-  MapAction,
-  Population,
-  RootState,
-  StoryAction,
-  Theme,
-  UIAction,
-  WorldAction,
   LocationAction,
-  ChurchLocationAction,
-  HomeLocationAction,
-  TownSquareLocationAction,
-  TavernLocationAction,
-  GraveyardLocationAction,
+  MapAction,
   OfficeLocationAction,
   PatientAction,
   PatientScenario,
+  Population,
+  RootState,
+  StoryAction,
+  TavernLocationAction,
+  Theme,
+  TownSquareLocationAction,
+  UIAction,
+  WorldAction,
 } from "../types";
 
 export const setActions = (actions: LocationAction[]): MapAction => ({
@@ -106,6 +107,11 @@ export const setMoney = (money: number): GameAction => ({
 export const setPatientAge = (age: number): PatientAction => ({
   type: SET_PATIENT_AGE,
   payload: { age },
+});
+
+export const setPatientChat = (chat: string[]): PatientAction => ({
+  type: SET_PATIENT_CHAT,
+  payload: { chat },
 });
 
 export const setPatientComplaint = (complaint: string): PatientAction => ({
@@ -460,9 +466,10 @@ export const performAction = (action: LocationAction): AppThunk => (
     "treat patient": () => {
       const randomIndex = Math.floor(Math.random() * patientScenarios.length);
       const patientScenario: PatientScenario = patientScenarios[randomIndex];
-      dispatch(setPatientName(patientScenario.name));
       dispatch(setPatientAge(patientScenario.age));
+      dispatch(setPatientChat(patientScenario.chat));
       dispatch(setPatientComplaint(patientScenario.complaint));
+      dispatch(setPatientName(patientScenario.name));
     },
   };
   const currentActionLogic = actionLogic[action];

@@ -258,6 +258,10 @@ context("Splague", () => {
         "have.text",
         currentPatientScenario.complaint
       );
+      // * Chat Lines
+      currentPatientScenario.chat.forEach((chatLine, i) => {
+        cy.get(`#chat-${i}`).should("exist");
+      });
     });
 
     // // * Home Actions
