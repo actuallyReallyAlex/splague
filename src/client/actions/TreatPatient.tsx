@@ -26,7 +26,10 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         id="treatment-operation"
         onClick={() => alert("PERFORM OPERATION")}
       >
-        Perform Operatioon
+        Perform Operation
+      </button>
+      <button id="treatment-chat" onClick={() => alert("CHAT")}>
+        Chat
       </button>
     </div>
   );
