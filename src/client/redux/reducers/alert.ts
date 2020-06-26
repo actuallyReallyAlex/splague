@@ -2,6 +2,8 @@ import { AlertAction, AlertState } from "../../types";
 
 export const initialState: AlertState = {
   content: "",
+  primaryButton: "",
+  secondaryButton: "",
   title: "",
 };
 

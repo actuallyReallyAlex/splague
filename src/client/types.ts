@@ -9,6 +9,8 @@ export interface AlertAction {
 
 export interface AlertState {
   content: string;
+  primaryButton: string;
+  secondaryButton: string;
   title: string;
 }
 
