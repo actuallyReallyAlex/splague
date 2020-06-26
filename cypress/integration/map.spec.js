@@ -103,28 +103,19 @@ context("Map", () => {
       },
     ];
     cy.get("#patient-age").then((age) => {
-      const ageValue = Number(age[0].textContent);
+      const ageValue = Number(age[0].textContent.replace("AGE: ", ""));
       const currentPatientScenario = patientScenarios.find(
         (patientStats) => patientStats.age === ageValue
       );
       cy.get("#patient-name").should("have.text", currentPatientScenario.name);
-      cy.get("#patient-age").should("have.text", currentPatientScenario.age);
+      cy.get("#patient-age").should(
+        "have.text",
+        `AGE: ${currentPatientScenario.age}`
+      );
       cy.get("#patient-complaint").should(
         "have.text",
-        currentPatientScenario.complaint
+        `COMPLAINT: ${currentPatientScenario.complaint}`
       );
-      cy.get("#patient-remedy").should(
-        "have.text",
-        currentPatientScenario.remedy
-      );
-      cy.get("#patient-operation").should(
-        "have.text",
-        currentPatientScenario.operation
-      );
-      // * Chat Lines
-      currentPatientScenario.chat.forEach((chatLine, i) => {
-        cy.get(`#chat-${i}`).should("exist");
-      });
     });
   });
 });
