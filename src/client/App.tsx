@@ -14,15 +14,15 @@ import {
   setChapter,
   setNewEarnings,
   setStoryText,
-  setTheme,
   toggleBuyMultiplier,
 } from "./redux/actions";
+import TreatPatient from "./actions/TreatPatient";
+import Actions from "./components/Actions";
 import Alert from "./components/Alert";
 import Map from "./components/Map";
-import TreatPatient from "./actions/TreatPatient";
-import { Item, LocationAction, Population, RootState, Theme } from "./types";
 import Stats from "./components/Stats";
-import Actions from "./components/Actions";
+import ThemeToggle from "./components/ThemeToggle";
+import { Item, LocationAction, Population, RootState, Theme } from "./types";
 
 interface AppProps {
   buyMultiplier: number;
@@ -40,7 +40,6 @@ interface AppProps {
   handleSaveGame: () => void;
   handleStartDay: () => void;
   handleStartJourny: () => void;
-  handleThemeToggle: (theme: Theme) => void;
   items: Item[];
   money: number;
   population: Population;
@@ -68,7 +67,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleSaveGame,
     handleStartDay,
     handleStartJourny,
-    handleThemeToggle,
     items,
     money,
     population,
@@ -172,13 +170,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
         </button>
       )}
 
-      <button
-        className="nes-btn is-primary"
-        id="theme-toggle"
-        onClick={() => handleThemeToggle(theme)}
-      >
-        Toggle Theme
-      </button>
+      <ThemeToggle />
 
       {chapter > 2 && (
         <>
@@ -270,9 +262,6 @@ const mapDispatchToProps = (dispatch) => ({
         "You are a level headed doctor of medicine living in Western Europe. Above all else, you desire to help others. The year is 1345."
       )
     );
-  },
-  handleThemeToggle: (theme: Theme) => {
-    dispatch(setTheme(theme === "dark" ? "light" : "dark"));
   },
 });
 
