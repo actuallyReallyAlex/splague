@@ -2,7 +2,9 @@ import { initialState as gameInitialState } from "./redux/reducers/game";
 import { initialState as playerInitialState } from "./redux/reducers/player";
 import { initialState as storyInitialState } from "./redux/reducers/story";
 import { initialState as uiInitialState } from "./redux/reducers/ui";
+import TreatPatient from "./actions/TreatPatient";
 import { PatientScenario, Location } from "./types";
+import { ReactElement } from "react";
 
 export const baseIncome = {
   item1: 0.1,
@@ -35,6 +37,21 @@ export const defaultInitialState = {
   player: playerInitialState,
   story: storyInitialState,
   ui: uiInitialState,
+};
+
+export const gameActions = {
+  "attend mass": (): ReactElement => null,
+  barter: (): ReactElement => null,
+  confess: (): ReactElement => null,
+  cook: (): ReactElement => null,
+  "hear town crier": (): ReactElement => null,
+  mourn: (): ReactElement => null,
+  "order drink": (): ReactElement => null,
+  "order food": (): ReactElement => null,
+  pray: (): ReactElement => null,
+  "research cure": (): ReactElement => null,
+  sleep: (): ReactElement => null,
+  "treat patient": TreatPatient,
 };
 
 export const locations: Location[] = [

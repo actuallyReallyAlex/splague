@@ -15,12 +15,12 @@ import {
   setStoryText,
   toggleBuyMultiplier,
 } from "./redux/actions";
-import TreatPatient from "./actions/TreatPatient";
 import Actions from "./components/Actions";
 import Alert from "./components/Alert";
 import Map from "./components/Map";
 import Stats from "./components/Stats";
 import ThemeToggle from "./components/ThemeToggle";
+import { gameActions } from "./constants";
 import { Item, LocationAction, RootState, Theme } from "./types";
 
 interface AppProps {
@@ -105,21 +105,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
   React.useEffect(() => {
     handleInitializeGameState();
   }, []);
-
-  const gameActions = {
-    "attend mass": () => null,
-    barter: () => null,
-    confess: () => null,
-    cook: () => null,
-    "hear town crier": () => null,
-    mourn: () => null,
-    "order drink": () => null,
-    "order food": () => null,
-    pray: () => null,
-    "research cure": () => null,
-    sleep: () => null,
-    "treat patient": TreatPatient,
-  };
 
   const GameAction = currentAction ? gameActions[currentAction] : () => null;
 
