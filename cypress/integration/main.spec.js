@@ -193,9 +193,6 @@ context("Splague", () => {
   });
 
   it("Should be able to perform actions based on location", () => {
-    // const stub = cy.stub();
-    // cy.on("window:alert", stub);
-
     cy.get("#story").should("have.text", "Welcome to Splague!");
     cy.get("#story-0").click();
     cy.get("#story").should(
@@ -385,9 +382,6 @@ context("Splague", () => {
   });
 
   it("Should treat patient", () => {
-    const stub = cy.stub();
-    cy.on("window:alert", stub);
-
     cy.get("#story").should("have.text", "Welcome to Splague!");
     cy.get("#story-0").click();
     cy.get("#story").should(
@@ -404,21 +398,18 @@ context("Splague", () => {
 
     cy.get("#location-office").click();
     cy.get("#action-treat-patient").click();
-    cy.get("#treatment-remedy")
-      .click()
-      .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith("PRESCRIBE REMEDY");
-      });
-    cy.get("#treatment-operation")
-      .click()
-      .then(() => {
-        expect(stub.getCall(1)).to.be.calledWith("PERFORM OPERATION");
-      });
-    cy.get("#treatment-chat")
-      .click()
-      .then(() => {
-        expect(stub.getCall(2)).to.be.calledWith("CHAT");
-      });
+    cy.get("#treatment-remedy").click();
+    cy.get("#alert").should("contain.text", "PRESCRIBE REMEDY");
+    cy.get("#alert-primary").click();
+    cy.get("#alert").should("not.be.visible");
+    cy.get("#treatment-operation").click();
+    cy.get("#alert").should("contain.text", "PERFORM OPERATION");
+    cy.get("#alert-primary").click();
+    cy.get("#alert").should("not.be.visible");
+    cy.get("#treatment-chat").click();
+    cy.get("#alert").should("contain.text", "CHAT");
+    cy.get("#alert-primary").click();
+    cy.get("#alert").should("not.be.visible");
   });
 
   it("Should play a short game", () => {

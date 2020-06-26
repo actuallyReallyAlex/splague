@@ -22,6 +22,7 @@ import {
 import { Item, LocationAction, Population, RootState, Theme } from "./types";
 import Map from "./components/Map";
 import TreatPatient from "./actions/TreatPatient";
+import Alert from "./components/Alert";
 
 interface AppProps {
   actions: LocationAction[];
@@ -268,6 +269,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       )}
 
       <LoadingIndicator />
+      <Alert />
     </div>
   );
 };

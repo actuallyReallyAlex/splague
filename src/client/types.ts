@@ -9,8 +9,10 @@ export interface AlertAction {
 
 export interface AlertState {
   content: string;
-  primaryAction: string;
-  secondaryAction: string;
+  primaryAction: () => void;
+  primaryActionText: string;
+  secondaryAction: () => void;
+  secondaryActionText: string;
   title: string;
 }
 
@@ -154,6 +156,7 @@ export type Remedy =
   | "strength potion";
 
 export type RootState = {
+  alert: AlertState;
   game: GameState;
   map: MapState;
   patient: PatientState;

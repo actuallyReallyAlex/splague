@@ -10,8 +10,10 @@ export interface TreatPatientProps {
   handleAlert: (
     title: string,
     content: string,
-    primaryAction: string,
-    secondaryAction: string
+    primaryAction: () => void,
+    primaryActionText: string,
+    secondaryAction: () => void,
+    secondaryActionText: string
   ) => void;
   name: string;
   operation: Operation;
@@ -40,7 +42,14 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         className="nes-btn"
         id="treatment-remedy"
         onClick={() =>
-          handleAlert("Prescribe Remedy", "PRESCRIBE REMEDY", "", "")
+          handleAlert(
+            "Prescribe Remedy",
+            "PRESCRIBE REMEDY",
+            () => null,
+            "OK",
+            () => null,
+            "Cancel"
+          )
         }
       >
         Prescribe Remedy
@@ -49,7 +58,14 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         className="nes-btn"
         id="treatment-operation"
         onClick={() =>
-          handleAlert("Perform Operation", "PERFORM OPERATION", "", "")
+          handleAlert(
+            "Perform Operation",
+            "PERFORM OPERATION",
+            () => null,
+            "OK",
+            () => null,
+            "Cancel"
+          )
         }
       >
         Perform Operation
@@ -57,7 +73,16 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
       <button
         className="nes-btn"
         id="treatment-chat"
-        onClick={() => handleAlert("Chat", "CHAT", "", "")}
+        onClick={() =>
+          handleAlert(
+            "Chat",
+            "CHAT",
+            () => null,
+            "OK",
+            () => null,
+            "Cancel"
+          )
+        }
       >
         Chat
       </button>
@@ -78,9 +103,21 @@ const mapDispatchToProps = (dispatch) => ({
   handleAlert: (
     title: string,
     content: string,
-    primaryAction: string,
-    secondaryAction: string
-  ) => dispatch(setAlert(title, content, primaryAction, secondaryAction)),
+    primaryAction: () => void,
+    primaryActionText: string,
+    secondaryAction: () => void,
+    secondaryActionText: string
+  ) =>
+    dispatch(
+      setAlert(
+        title,
+        content,
+        primaryAction,
+        primaryActionText,
+        secondaryAction,
+        secondaryActionText
+      )
+    ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TreatPatient);

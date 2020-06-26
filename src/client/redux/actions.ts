@@ -6,7 +6,9 @@ import {
   SET_ACTIONS,
   SET_ALERT_CONTENT,
   SET_ALERT_PRIMARY_ACTION,
+  SET_ALERT_PRIMARY_ACTION_TEXT,
   SET_ALERT_SECONDARY_ACTION,
+  SET_ALERT_SECONDARY_ACTION_TEXT,
   SET_ALERT_TITLE,
   SET_BUY_MULTIPLIER,
   SET_CHAPTER,
@@ -68,16 +70,32 @@ export const setAlertContent = (content: string): AlertAction => ({
   payload: { content },
 });
 
-export const setAlertPrimaryAction = (primaryAction: string): AlertAction => ({
+export const setAlertPrimaryAction = (
+  primaryAction: () => void
+): AlertAction => ({
   type: SET_ALERT_PRIMARY_ACTION,
   payload: { primaryAction },
 });
 
+export const setAlertPrimaryActionText = (
+  primaryActionText: string
+): AlertAction => ({
+  type: SET_ALERT_PRIMARY_ACTION_TEXT,
+  payload: { primaryActionText },
+});
+
 export const setAlertSecondaryAction = (
-  secondaryAction: string
+  secondaryAction: () => void
 ): AlertAction => ({
   type: SET_ALERT_SECONDARY_ACTION,
   payload: { secondaryAction },
+});
+
+export const setAlertSecondaryActionText = (
+  secondaryActionText: string
+): AlertAction => ({
+  type: SET_ALERT_SECONDARY_ACTION_TEXT,
+  payload: { secondaryActionText },
 });
 
 export const setAlertTitle = (title: string): AlertAction => ({
@@ -257,17 +275,16 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setIsLoading(false));
 
       if (awayTimeInSeconds > 10) {
+        // TODO - Remove Secondary Action
         dispatch(
-          setAlertContent(
-            `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
+          setAlert(
+            "Away Earnings",
+            `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`,
+            () => null,
+            "OK",
+            () => null,
+            "Cancel"
           )
-        );
-        dispatch(setAlertPrimaryAction(""));
-        dispatch(setAlertSecondaryAction(""));
-        dispatch(setAlertTitle("Away Earnings"));
-        // TODO - Remove
-        alert(
-          `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
         );
       }
     }
@@ -533,13 +550,17 @@ export const performAction = (action: LocationAction): AppThunk => (
 export const setAlert = (
   title: string,
   content: string,
-  primaryAction: string,
-  secondaryAction: string
+  primaryAction: () => void,
+  primaryActionText: string,
+  secondaryAction: () => void,
+  secondaryActionText: string
 ): AppThunk => (dispatch, getState) => {
   dispatch(setAlertContent(content));
   dispatch(setAlertPrimaryAction(primaryAction));
+  dispatch(setAlertPrimaryActionText(primaryActionText));
   dispatch(setAlertSecondaryAction(secondaryAction));
+  dispatch(setAlertSecondaryActionText(secondaryActionText));
   dispatch(setAlertTitle(title));
-  // TODO - Remove
-  alert(content);
+  const dialogElement = document.getElementById("alert") as HTMLDialogElement;
+  dialogElement.showModal();
 };
