@@ -1,6 +1,5 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import ItemComponent from "./components/Item";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import {
@@ -13,7 +12,6 @@ import {
   setChapter,
   setNewEarnings,
   setStoryText,
-  toggleBuyMultiplier,
 } from "./redux/actions";
 import Actions from "./components/Actions";
 import Alert from "./components/Alert";
@@ -21,13 +19,11 @@ import Map from "./components/Map";
 import Stats from "./components/Stats";
 import ThemeToggle from "./components/ThemeToggle";
 import { gameActions } from "./constants";
-import { Item, LocationAction, RootState, Theme } from "./types";
+import { LocationAction, RootState, Theme } from "./types";
 
 interface AppProps {
-  buyMultiplier: number;
   chapter: number;
   currentAction: null | LocationAction;
-  handleBuyMultiplierClick: () => void;
   handleDateInterval: () => void;
   handleDeathRate: () => void;
   handleEarningsInterval: () => void;
@@ -38,7 +34,6 @@ interface AppProps {
   handleSaveGame: () => void;
   handleStartDay: () => void;
   handleStartJourny: () => void;
-  items: Item[];
   theme: Theme;
 }
 
@@ -47,10 +42,8 @@ interface AppProps {
  */
 const App: React.SFC<AppProps> = (props: AppProps) => {
   const {
-    buyMultiplier,
     chapter,
     currentAction,
-    handleBuyMultiplierClick,
     handleDateInterval,
     handleDeathRate,
     handleEarningsInterval,
@@ -61,7 +54,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleSaveGame,
     handleStartDay,
     handleStartJourny,
-    items,
     theme,
   } = props;
   /**
@@ -149,28 +141,14 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <ThemeToggle />
 
       {chapter > 2 && (
-        <>
-          <button
-            className="nes-btn is-error"
-            id="reset"
-            onClick={() => handleResetGame()}
-            type="button"
-          >
-            RESET
-          </button>
-
-          <button
-            className="nes-btn"
-            onClick={() => handleBuyMultiplierClick()}
-            type="button"
-          >
-            Buy Multiplier - {buyMultiplier}
-          </button>
-
-          {items.map((itemProps) => (
-            <ItemComponent key={itemProps.name} {...itemProps} />
-          ))}
-        </>
+        <button
+          className="nes-btn is-error"
+          id="reset"
+          onClick={() => handleResetGame()}
+          type="button"
+        >
+          RESET
+        </button>
       )}
 
       <LoadingIndicator />
@@ -180,16 +158,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  buyMultiplier: state.game.buyMultiplier,
   chapter: state.story.chapter,
   currentAction: state.map.currentAction,
-  items: state.game.items,
   theme: state.ui.theme,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleDeathRate: () => dispatch(deathRate()),
-  handleBuyMultiplierClick: () => dispatch(toggleBuyMultiplier()),
   handleDateInterval: () => dispatch(progressDate()),
   handleEarningsInterval: () => dispatch(setNewEarnings()),
   handleGoOn: () => {
