@@ -19,7 +19,7 @@ const Map: React.SFC<MapProps> = (props: MapProps) => {
 
   if (chapter > 2) {
     return (
-      <div className="nes-table-responsive" id="map">
+      <div className="nes-table-responsive flex-col" id="map">
         <h2>Map</h2>
         <span id="current-location">Current Location - {currentLocation}</span>
         <table
@@ -30,7 +30,10 @@ const Map: React.SFC<MapProps> = (props: MapProps) => {
           <tbody>
             <tr>
               {firstLocations.map((location: Location, i: number) => (
-                <td key={`${i}-${location.replace(/ /gm, "-")}`}>
+                <td
+                  key={`${i}-${location.replace(/ /gm, "-")}`}
+                  style={{ width: "250px" }}
+                >
                   <button
                     className={`nes-btn ${
                       currentLocation === location ? "is-disabled" : ""
@@ -38,6 +41,11 @@ const Map: React.SFC<MapProps> = (props: MapProps) => {
                     disabled={currentLocation === location}
                     id={`location-${location.replace(/ /gm, "-")}`}
                     onClick={() => handleTravel(location)}
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      width: "100%",
+                    }}
                   >
                     {location.toUpperCase()}
                   </button>
@@ -46,7 +54,10 @@ const Map: React.SFC<MapProps> = (props: MapProps) => {
             </tr>
             <tr>
               {secondLocations.map((location: Location, i: number) => (
-                <td key={`${i}-${location.replace(/ /gm, "-")}`}>
+                <td
+                  key={`${i}-${location.replace(/ /gm, "-")}`}
+                  style={{ width: "250px" }}
+                >
                   <button
                     className={`nes-btn ${
                       currentLocation === location ? "is-disabled" : ""
@@ -54,6 +65,11 @@ const Map: React.SFC<MapProps> = (props: MapProps) => {
                     disabled={currentLocation === location}
                     id={`location-${location.replace(/ /gm, "-")}`}
                     onClick={() => handleTravel(location)}
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      width: "100%",
+                    }}
                   >
                     {location.toUpperCase()}
                   </button>

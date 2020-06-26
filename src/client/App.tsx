@@ -154,15 +154,17 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
         }`}
       >
         <p className="title">splague</p>
-        <img
-          alt="Player Avatar"
-          className="nes-avatar is-rounded pixelated"
-          id="avatar"
-          src={avatar}
-        />
-        <span id="name">{name}</span>
-        <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
-        <p id="story">{story}</p>
+        <div className="flex-col">
+          <img
+            alt="Player Avatar"
+            className="nes-avatar is-rounded pixelated"
+            id="avatar"
+            src={avatar}
+          />
+          <span id="name">{name}</span>
+          <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
+          <p id="story">{story}</p>
+        </div>
       </div>
 
       <Map />
