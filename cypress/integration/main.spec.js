@@ -437,5 +437,10 @@ context("Splague", () => {
     cy.wait(15000);
     cy.get("#item-1-container > button").should("be.enabled");
     cy.get("#time-played").should("contain.text", "1 minute");
+
+    cy.get("#location-church").click();
+    cy.wait(11000);
+    cy.reload();
+    cy.get("#location-church").should("be.disabled");
   });
 });

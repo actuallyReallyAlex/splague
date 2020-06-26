@@ -242,7 +242,7 @@ export const initializeGameState = (): AppThunk => async (
 
       const state: RootState = JSON.parse(gameInstance.data);
 
-      const { game, story, ui } = state;
+      const { game, map, story, ui } = state;
       const { buyMultiplier, date, items, money } = game;
 
       const { _id, createdAt, updatedAt } = gameInstance;
@@ -255,6 +255,8 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setStoryText(story.text));
       dispatch(setChapter(story.chapter));
       dispatch(setTheme(ui.theme));
+      dispatch(setCurrentLocation(map.currentLocation));
+      dispatch(setActions(map.actions));
 
       const saveTimeDate = new Date(updatedAt);
       const nowDate = new Date();
