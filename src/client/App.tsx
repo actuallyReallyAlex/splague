@@ -1,6 +1,5 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import formatDistance from "date-fns/formatDistance";
 import ItemComponent from "./components/Item";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
@@ -22,13 +21,12 @@ import Alert from "./components/Alert";
 import Map from "./components/Map";
 import Stats from "./components/Stats";
 import ThemeToggle from "./components/ThemeToggle";
-import { Item, LocationAction, Population, RootState, Theme } from "./types";
+import { Item, LocationAction, RootState, Theme } from "./types";
 
 interface AppProps {
   buyMultiplier: number;
   chapter: number;
   currentAction: null | LocationAction;
-  earnings: number;
   handleBuyMultiplierClick: () => void;
   handleDateInterval: () => void;
   handleDeathRate: () => void;
@@ -41,9 +39,6 @@ interface AppProps {
   handleStartDay: () => void;
   handleStartJourny: () => void;
   items: Item[];
-  money: number;
-  population: Population;
-  startTime: string;
   theme: Theme;
 }
 
@@ -55,7 +50,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     buyMultiplier,
     chapter,
     currentAction,
-    earnings,
     handleBuyMultiplierClick,
     handleDateInterval,
     handleDeathRate,
@@ -68,9 +62,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleStartDay,
     handleStartJourny,
     items,
-    money,
-    population,
-    startTime,
     theme,
   } = props;
   /**
@@ -183,29 +174,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
             RESET
           </button>
 
-          {startTime && (
-            <span id="time-played">
-              Time Played -{" "}
-              {formatDistance(new Date(startTime), new Date(), {
-                includeSeconds: true,
-              })}
-            </span>
-          )}
-          <span>
-            Money - $<span id="money">{money.toLocaleString()}</span>
-          </span>
-          <span id="earnings">
-            Earnings - ${earnings.toLocaleString()}/second
-          </span>
-          <span id="alive-population">
-            Alive Population - {population.alive.toLocaleString()}
-          </span>
-          <span id="dead-population">
-            Dead Population - {population.dead.toLocaleString()}
-          </span>
-          <span id="infected-population">
-            Infected Population - {population.infected.toLocaleString()}
-          </span>
           <button
             className="nes-btn"
             onClick={() => handleBuyMultiplierClick()}
@@ -230,11 +198,7 @@ const mapStateToProps = (state: RootState) => ({
   buyMultiplier: state.game.buyMultiplier,
   chapter: state.story.chapter,
   currentAction: state.map.currentAction,
-  earnings: state.game.earnings,
   items: state.game.items,
-  money: state.game.money,
-  population: state.world.population,
-  startTime: state.game.startTime,
   theme: state.ui.theme,
 });
 
