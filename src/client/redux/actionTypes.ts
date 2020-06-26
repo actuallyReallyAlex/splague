@@ -11,6 +11,7 @@ export const SET_CHAPTER = "SET_CHAPTER";
 export const SET_CURRENT_ACTION = "SET_CURRENT_ACTION";
 export const SET_CURRENT_LOCATION = "SET_CURRENT_LOCATION";
 export const SET_DATE = "SET_DATE";
+export const SET_DOCTOR_REPUTATION = "SET_DOCTOR_REPUTATION";
 export const SET_EARNINGS = "SET_EARNINGS";
 export const SET_ID = "SET_ID";
 export const SET_IS_LOADING = "SET_IS_LOADING";

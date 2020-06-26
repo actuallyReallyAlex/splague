@@ -16,6 +16,7 @@ import {
   SET_CURRENT_ACTION,
   SET_CURRENT_LOCATION,
   SET_DATE,
+  SET_DOCTOR_REPUTATION,
   SET_EARNINGS,
   SET_ID,
   SET_IS_LOADING,
@@ -59,6 +60,7 @@ import {
   TownSquareLocationAction,
   UIAction,
   WorldAction,
+  PlayerAction,
 } from "../types";
 
 export const setActions = (actions: LocationAction[]): MapAction => ({
@@ -127,6 +129,13 @@ export const setCurrentLocation = (currentLocation: Location): MapAction => ({
 export const setDate = (date: string): GameAction => ({
   type: SET_DATE,
   payload: { date },
+});
+
+export const setDoctorReputation = (
+  doctorReputation: number
+): PlayerAction => ({
+  type: SET_DOCTOR_REPUTATION,
+  payload: { doctorReputation },
 });
 
 export const setEarnings = (earnings: number): GameAction => ({
@@ -242,7 +251,7 @@ export const initializeGameState = (): AppThunk => async (
 
       const state: RootState = JSON.parse(gameInstance.data);
 
-      const { game, map, story, ui } = state;
+      const { game, map, player, story, ui } = state;
       const { buyMultiplier, date, items, money } = game;
 
       const { _id, createdAt, updatedAt } = gameInstance;
@@ -257,6 +266,7 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setTheme(ui.theme));
       dispatch(setCurrentLocation(map.currentLocation));
       dispatch(setActions(map.actions));
+      dispatch(setDoctorReputation(player.doctorReputation));
 
       const saveTimeDate = new Date(updatedAt);
       const nowDate = new Date();

@@ -31,6 +31,7 @@ interface AppProps {
   chapter: number;
   currentAction: null | LocationAction;
   date: string;
+  doctorReputation: number;
   earnings: number;
   handleBuyMultiplierClick: () => void;
   handleDateInterval: () => void;
@@ -65,6 +66,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     chapter,
     currentAction,
     date,
+    doctorReputation,
     earnings,
     handleBuyMultiplierClick,
     handleDateInterval,
@@ -164,6 +166,9 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
           <span id="name">{name}</span>
           <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
           <p id="story">{story}</p>
+          <span id="doctor-reputation">
+            Doctor Reputation - {doctorReputation}
+          </span>
         </div>
       </div>
 
@@ -283,6 +288,7 @@ const mapStateToProps = (state: RootState) => ({
   chapter: state.story.chapter,
   currentAction: state.map.currentAction,
   date: state.game.date,
+  doctorReputation: state.player.doctorReputation,
   earnings: state.game.earnings,
   items: state.game.items,
   money: state.game.money,

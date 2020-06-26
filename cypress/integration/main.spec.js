@@ -268,117 +268,6 @@ context("Splague", () => {
         cy.get(`#chat-${i}`).should("exist");
       });
     });
-
-    // // * Home Actions
-    // cy.get("#action-cook")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(0)).to.be.calledWith("PERFORMING ACTION - cook");
-    //   });
-    // cy.get("#action-sleep")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(1)).to.be.calledWith("PERFORMING ACTION - sleep");
-    //   });
-    // cy.get("#location-town-square").click();
-    // cy.get("#action-cook").should("not.exist");
-
-    // // * Church Actions
-    // cy.get("#location-church").click();
-    // cy.get("#current-location").should(
-    //   "have.text",
-    //   "Current Location - church"
-    // );
-    // cy.get("#action-attend-mass")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(2)).to.be.calledWith(
-    //       "PERFORMING ACTION - attend mass"
-    //     );
-    //   });
-    // cy.get("#action-confess")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(3)).to.be.calledWith("PERFORMING ACTION - confess");
-    //   });
-    // cy.get("#action-pray")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(4)).to.be.calledWith("PERFORMING ACTION - pray");
-    //   });
-
-    // // * Graveyard Actions
-    // cy.get("#location-graveyard").click();
-    // cy.get("#current-location").should(
-    //   "have.text",
-    //   "Current Location - graveyard"
-    // );
-    // cy.get("#action-mourn")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(5)).to.be.calledWith("PERFORMING ACTION - mourn");
-    //   });
-
-    // // * Office Actions
-    // cy.get("#location-office").click();
-    // cy.get("#current-location").should(
-    //   "have.text",
-    //   "Current Location - office"
-    // );
-    // cy.get("#action-research-cure")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(6)).to.be.calledWith(
-    //       "PERFORMING ACTION - research cure"
-    //     );
-    //   });
-    // cy.get("#action-treat-patient")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(7)).to.be.calledWith(
-    //       "PERFORMING ACTION - treat patient"
-    //     );
-    //   });
-
-    // // * Tavern Actions
-    // cy.get("#location-tavern").click();
-    // cy.get("#current-location").should(
-    //   "have.text",
-    //   "Current Location - tavern"
-    // );
-    // cy.get("#action-order-drink")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(8)).to.be.calledWith(
-    //       "PERFORMING ACTION - order drink"
-    //     );
-    //   });
-    // cy.get("#action-order-food")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(9)).to.be.calledWith(
-    //       "PERFORMING ACTION - order food"
-    //     );
-    //   });
-
-    // // * Town Square Actions
-    // cy.get("#location-town-square").click();
-    // cy.get("#current-location").should(
-    //   "have.text",
-    //   "Current Location - town square"
-    // );
-    // cy.get("#action-barter")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(10)).to.be.calledWith("PERFORMING ACTION - barter");
-    //   });
-    // cy.get("#action-hear-town-crier")
-    //   .click()
-    //   .then(() => {
-    //     expect(stub.getCall(11)).to.be.calledWith(
-    //       "PERFORMING ACTION - hear town crier"
-    //     );
-    //   });
   });
 
   it("Should treat patient", () => {
@@ -426,6 +315,8 @@ context("Splague", () => {
     );
     cy.get("#story-2").click();
     cy.get("#story").should("have.text", "12 months before death...");
+
+    cy.get("#doctor-reputation").should("have.text", "Doctor Reputation - 0");
 
     cy.get("#item-1-container > button").click();
     cy.get("#item-1-container > button").click();
