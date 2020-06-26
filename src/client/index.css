@@ -1,7 +1,16 @@
+/* Font */
+html,
+body,
+pre,
+code,
+kbd,
+samp {
+  font-family: "Press Start 2P", cursive;
+}
+
 /* Application */
 
 body {
-  font-family: "Roboto", "Helvetica Neue", sans-serif;
   margin: 0;
 }
 
