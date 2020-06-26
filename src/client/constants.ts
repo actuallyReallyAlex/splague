@@ -43,7 +43,7 @@ export const patientScenarios: PatientScenario[] = [
     chat: ["Chat 1", "Chat2", "Chat 3"],
     complaint: "Back pain",
     name: "Billy Bob",
-    operation: "hole in head",
+    operation: "leeching",
     remedy: "magic stone",
   },
   {
@@ -59,7 +59,7 @@ export const patientScenarios: PatientScenario[] = [
     chat: ["Chat 1", "Chat2", "Chat 3"],
     complaint: "Broken foot",
     name: "Mark Man",
-    operation: "hole in head",
+    operation: "set bone",
     remedy: "healing elixir",
   },
 ];

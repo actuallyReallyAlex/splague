@@ -82,7 +82,14 @@ export interface MapState {
   currentLocation: Location;
 }
 
-export type Operation = "hole in head";
+export type Operation =
+  | "amputation"
+  | "deliver baby"
+  | "hole in head"
+  | "lance wound"
+  | "leeching"
+  | "remove tooth"
+  | "set bone";
 
 export interface PatientAction {
   type: string;
