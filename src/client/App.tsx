@@ -1,6 +1,5 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import format from "date-fns/format";
 import formatDistance from "date-fns/formatDistance";
 import ItemComponent from "./components/Item";
 import LoadingIndicator from "./components/LoadingIndicator";
@@ -23,15 +22,13 @@ import Alert from "./components/Alert";
 import Map from "./components/Map";
 import TreatPatient from "./actions/TreatPatient";
 import { Item, LocationAction, Population, RootState, Theme } from "./types";
+import Stats from "./components/Stats";
 
 interface AppProps {
   actions: LocationAction[];
-  avatar: string;
   buyMultiplier: number;
   chapter: number;
   currentAction: null | LocationAction;
-  date: string;
-  doctorReputation: number;
   earnings: number;
   handleBuyMultiplierClick: () => void;
   handleDateInterval: () => void;
@@ -48,11 +45,8 @@ interface AppProps {
   handleThemeToggle: (theme: Theme) => void;
   items: Item[];
   money: number;
-  morality: number;
-  name: string;
   population: Population;
   startTime: string;
-  story: string;
   theme: Theme;
 }
 
@@ -62,12 +56,9 @@ interface AppProps {
 const App: React.SFC<AppProps> = (props: AppProps) => {
   const {
     actions,
-    avatar,
     buyMultiplier,
     chapter,
     currentAction,
-    date,
-    doctorReputation,
     earnings,
     handleBuyMultiplierClick,
     handleDateInterval,
@@ -84,11 +75,8 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleThemeToggle,
     items,
     money,
-    morality,
-    name,
     population,
     startTime,
-    story,
     theme,
   } = props;
   /**
@@ -152,28 +140,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 
   return (
     <div className={theme} id="app">
-      <div
-        className={`nes-container with-title is-centered ${
-          theme === "dark" ? "is-dark" : ""
-        }`}
-      >
-        <p className="title">splague</p>
-        <div className="flex-col">
-          <img
-            alt="Player Avatar"
-            className="nes-avatar is-rounded pixelated"
-            id="avatar"
-            src={avatar}
-          />
-          <span id="name">{name}</span>
-          <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
-          <p id="story">{story}</p>
-          <span id="doctor-reputation">
-            Doctor Reputation - {doctorReputation}
-          </span>
-          <span id="morality">Morality - {morality}</span>
-        </div>
-      </div>
+      <Stats />
 
       <Map />
 
@@ -286,20 +253,14 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 
 const mapStateToProps = (state: RootState) => ({
   actions: state.map.actions,
-  avatar: state.player.avatar,
   buyMultiplier: state.game.buyMultiplier,
   chapter: state.story.chapter,
   currentAction: state.map.currentAction,
-  date: state.game.date,
-  doctorReputation: state.player.doctorReputation,
   earnings: state.game.earnings,
   items: state.game.items,
   money: state.game.money,
-  morality: state.player.morality,
-  name: state.player.name,
   population: state.world.population,
   startTime: state.game.startTime,
-  story: state.story.text,
   theme: state.ui.theme,
 });
 
