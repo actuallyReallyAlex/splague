@@ -8,7 +8,6 @@ import {
   deathRate,
   growthRate,
   initializeGameState,
-  performAction,
   progressDate,
   resetGame,
   saveGame,
@@ -23,9 +22,9 @@ import Map from "./components/Map";
 import TreatPatient from "./actions/TreatPatient";
 import { Item, LocationAction, Population, RootState, Theme } from "./types";
 import Stats from "./components/Stats";
+import Actions from "./components/Actions";
 
 interface AppProps {
-  actions: LocationAction[];
   buyMultiplier: number;
   chapter: number;
   currentAction: null | LocationAction;
@@ -37,7 +36,6 @@ interface AppProps {
   handleGoOn: () => void;
   handleGrowthRate: () => void;
   handleInitializeGameState: () => void;
-  handlePerformAction: (action: LocationAction) => void;
   handleResetGame: () => void;
   handleSaveGame: () => void;
   handleStartDay: () => void;
@@ -55,7 +53,6 @@ interface AppProps {
  */
 const App: React.SFC<AppProps> = (props: AppProps) => {
   const {
-    actions,
     buyMultiplier,
     chapter,
     currentAction,
@@ -67,7 +64,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleGoOn,
     handleGrowthRate,
     handleInitializeGameState,
-    handlePerformAction,
     handleResetGame,
     handleSaveGame,
     handleStartDay,
@@ -146,20 +142,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 
       <GameAction />
 
-      {chapter > 2 && (
-        <div id="actions">
-          {actions.map((action: LocationAction) => (
-            <button
-              className="nes-btn"
-              key={action}
-              id={`action-${action.replace(/ /gm, "-")}`}
-              onClick={() => handlePerformAction(action)}
-            >
-              {action}
-            </button>
-          ))}
-        </div>
-      )}
+      {chapter > 2 && <Actions />}
 
       {chapter === 0 && (
         <button
@@ -252,7 +235,6 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  actions: state.map.actions,
   buyMultiplier: state.game.buyMultiplier,
   chapter: state.story.chapter,
   currentAction: state.map.currentAction,
@@ -275,8 +257,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleGrowthRate: () => dispatch(growthRate()),
   handleInitializeGameState: () => dispatch(initializeGameState()),
-  handlePerformAction: (action: LocationAction) =>
-    dispatch(performAction(action)),
   handleResetGame: () => dispatch(resetGame()),
   handleSaveGame: () => dispatch(saveGame()),
   handleStartDay: () => {
