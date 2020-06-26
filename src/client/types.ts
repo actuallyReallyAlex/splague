@@ -125,7 +125,13 @@ export interface Population {
   infected: number;
 }
 
-export type Remedy = "potion";
+export type Remedy =
+  | "ancient charm"
+  | "healing elixir"
+  | "healing ointment"
+  | "intelligence potion"
+  | "magic stone"
+  | "strength potion";
 
 export type RootState = {
   game: GameState;

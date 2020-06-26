@@ -25,7 +25,7 @@ import {
   SET_STORY_TEXT,
   SET_THEME,
 } from "./actionTypes";
-import { round } from "../util";
+import { round, randomInteger } from "../util";
 
 import {
   AppThunk,
@@ -478,7 +478,7 @@ export const performAction = (action: LocationAction): AppThunk => (
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     sleep: () => {},
     "treat patient": () => {
-      const randomIndex = Math.floor(Math.random() * patientScenarios.length);
+      const randomIndex = randomInteger(0, patientScenarios.length - 1);
       const patientScenario: PatientScenario = patientScenarios[randomIndex];
       dispatch(setPatientAge(patientScenario.age));
       dispatch(setPatientChat(patientScenario.chat));

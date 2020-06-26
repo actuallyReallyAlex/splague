@@ -228,7 +228,7 @@ context("Splague", () => {
         complaint: "Back pain",
         name: "Billy Bob",
         operation: "hole in head",
-        remedy: "potion",
+        remedy: "magic stone",
       },
       {
         age: 30,
@@ -236,7 +236,7 @@ context("Splague", () => {
         complaint: "Headache",
         name: "Jane Jill",
         operation: "hole in head",
-        remedy: "potion",
+        remedy: "intelligence potion",
       },
       {
         age: 10,
@@ -244,7 +244,7 @@ context("Splague", () => {
         complaint: "Broken foot",
         name: "Mark Man",
         operation: "hole in head",
-        remedy: "potion",
+        remedy: "healing elixir",
       },
     ];
     cy.get("#patient-age").then((age) => {
