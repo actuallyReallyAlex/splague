@@ -38,13 +38,15 @@ const Alert: React.SFC<AlertProps> = (props: AlertProps) => {
           >
             {primaryActionText}
           </button>
-          <button
-            className="nes-btn"
-            id="alert-secondary"
-            onClick={() => secondaryAction()}
-          >
-            {secondaryActionText}
-          </button>
+          {secondaryActionText && (
+            <button
+              className="nes-btn"
+              id="alert-secondary"
+              onClick={() => secondaryAction()}
+            >
+              {secondaryActionText}
+            </button>
+          )}
         </menu>
       </form>
     </dialog>

@@ -275,7 +275,6 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setIsLoading(false));
 
       if (awayTimeInSeconds > 10) {
-        // TODO - Remove Secondary Action
         dispatch(
           setAlert(
             "Away Earnings",
@@ -283,7 +282,7 @@ export const initializeGameState = (): AppThunk => async (
             () => null,
             "OK",
             () => null,
-            "Cancel"
+            ""
           )
         );
       }
