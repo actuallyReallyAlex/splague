@@ -19,10 +19,10 @@ import {
   setTheme,
   toggleBuyMultiplier,
 } from "./redux/actions";
-import { Item, LocationAction, Population, RootState, Theme } from "./types";
+import Alert from "./components/Alert";
 import Map from "./components/Map";
 import TreatPatient from "./actions/TreatPatient";
-import Alert from "./components/Alert";
+import { Item, LocationAction, Population, RootState, Theme } from "./types";
 
 interface AppProps {
   actions: LocationAction[];
@@ -48,6 +48,7 @@ interface AppProps {
   handleThemeToggle: (theme: Theme) => void;
   items: Item[];
   money: number;
+  morality: number;
   name: string;
   population: Population;
   startTime: string;
@@ -83,6 +84,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleThemeToggle,
     items,
     money,
+    morality,
     name,
     population,
     startTime,
@@ -169,6 +171,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
           <span id="doctor-reputation">
             Doctor Reputation - {doctorReputation}
           </span>
+          <span id="morality">Morality - {morality}</span>
         </div>
       </div>
 
@@ -292,6 +295,7 @@ const mapStateToProps = (state: RootState) => ({
   earnings: state.game.earnings,
   items: state.game.items,
   money: state.game.money,
+  morality: state.player.morality,
   name: state.player.name,
   population: state.world.population,
   startTime: state.game.startTime,

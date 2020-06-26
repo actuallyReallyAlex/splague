@@ -317,6 +317,7 @@ context("Splague", () => {
     cy.get("#story").should("have.text", "12 months before death...");
 
     cy.get("#doctor-reputation").should("have.text", "Doctor Reputation - 0");
+    cy.get("#morality").should("have.text", "Morality - 0");
 
     cy.get("#item-1-container > button").click();
     cy.get("#item-1-container > button").click();

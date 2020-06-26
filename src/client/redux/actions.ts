@@ -22,6 +22,7 @@ import {
   SET_IS_LOADING,
   SET_ITEMS,
   SET_MONEY,
+  SET_MORALITY,
   SET_PATIENT_AGE,
   SET_PATIENT_CHAT,
   SET_PATIENT_COMPLAINT,
@@ -163,6 +164,11 @@ export const setMoney = (money: number): GameAction => ({
   payload: { money },
 });
 
+export const setMorality = (morality: number): PlayerAction => ({
+  type: SET_MORALITY,
+  payload: { morality },
+});
+
 export const setPatientAge = (age: number): PatientAction => ({
   type: SET_PATIENT_AGE,
   payload: { age },
@@ -267,6 +273,7 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setCurrentLocation(map.currentLocation));
       dispatch(setActions(map.actions));
       dispatch(setDoctorReputation(player.doctorReputation));
+      dispatch(setMorality(player.morality));
 
       const saveTimeDate = new Date(updatedAt);
       const nowDate = new Date();
