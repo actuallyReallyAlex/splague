@@ -121,3 +121,8 @@ body {
     transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
 }
+
+/* Pixelated */
+.pixelated {
+  image-rendering: pixelated;
+}

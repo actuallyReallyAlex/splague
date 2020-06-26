@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { buyItem } from "../redux/actions";
+import { Theme, RootState } from "../types";
 
 export interface ItemProps {
   baseIncome: number;
@@ -12,6 +13,7 @@ export interface ItemProps {
   income: number;
   money: number;
   name: string;
+  theme: Theme;
 }
 
 const Item: React.SFC<ItemProps> = (props: ItemProps) => {
@@ -25,30 +27,42 @@ const Item: React.SFC<ItemProps> = (props: ItemProps) => {
     income,
     money,
     name,
+    theme,
   } = props;
   const finalCost = cost * buyMultiplier;
   return (
     <div
+      className={`nes-container with-title is-centered ${
+        theme === "dark" ? "is-dark" : ""
+      }`}
       id={`${name.toLowerCase().replace(/ /gm, "-")}-container`}
       style={{ display: "flex", flexDirection: "column" }}
     >
+      <p className="title">{name}</p>
       <span>
-        {name} - {count.toLocaleString()}x - ${income.toLocaleString()}
+        {count.toLocaleString()}x - ${income.toLocaleString()}
         /second
       </span>
       <span>Base Income - ${baseIncome.toLocaleString()}/second</span>
       <span>Bonus Multiplier - {bonusMultiplier}</span>
       <span id="progress">Progress - {count % 10} / 10</span>
-      <button disabled={money < finalCost} onClick={() => handleBuy(name)}>
+      <button
+        className={`nes-btn is-primary ${
+          money < finalCost ? "is-disabled" : ""
+        }`}
+        disabled={money < finalCost}
+        onClick={() => handleBuy(name)}
+      >
         BUY {buyMultiplier}x - ${finalCost.toLocaleString()}
       </button>
     </div>
   );
 };
 
-const mapStateToProps = ({ game }) => ({
-  buyMultiplier: game.buyMultiplier,
-  money: game.money,
+const mapStateToProps = (state: RootState) => ({
+  buyMultiplier: state.game.buyMultiplier,
+  money: state.game.money,
+  theme: state.ui.theme,
 });
 
 const mapDispatchToProps = (dispatch) => ({

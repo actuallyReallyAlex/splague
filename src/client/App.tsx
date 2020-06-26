@@ -147,11 +147,22 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 
   return (
     <div className={theme} id="app">
-      <h1>splague</h1>
-      <img alt="Player Avatar" id="avatar" src={avatar} />
-      <span id="name">{name}</span>
-      <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
-      <p id="story">{story}</p>
+      <div
+        className={`nes-container with-title is-centered ${
+          theme === "dark" ? "is-dark" : ""
+        }`}
+      >
+        <p className="title">splague</p>
+        <img
+          alt="Player Avatar"
+          className="nes-avatar is-rounded pixelated"
+          id="avatar"
+          src={avatar}
+        />
+        <span id="name">{name}</span>
+        <span id="date">{format(new Date(date), "MMMM, yyy G")}</span>
+        <p id="story">{story}</p>
+      </div>
 
       <Map />
 
@@ -161,6 +172,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
         <div id="actions">
           {actions.map((action: LocationAction) => (
             <button
+              className="nes-btn"
               key={action}
               id={`action-${action.replace(/ /gm, "-")}`}
               onClick={() => handlePerformAction(action)}
@@ -172,28 +184,49 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       )}
 
       {chapter === 0 && (
-        <button id={`story-${chapter}`} onClick={() => handleStartJourny()}>
+        <button
+          className="nes-btn is-primary"
+          id={`story-${chapter}`}
+          onClick={() => handleStartJourny()}
+        >
           Start Journy
         </button>
       )}
       {chapter === 1 && (
-        <button id={`story-${chapter}`} onClick={() => handleGoOn()}>
+        <button
+          className="nes-btn is-primary"
+          id={`story-${chapter}`}
+          onClick={() => handleGoOn()}
+        >
           Go on ...
         </button>
       )}
       {chapter === 2 && (
-        <button id={`story-${chapter}`} onClick={() => handleStartDay()}>
+        <button
+          className="nes-btn is-primary"
+          id={`story-${chapter}`}
+          onClick={() => handleStartDay()}
+        >
           Start day
         </button>
       )}
 
-      <button id="theme-toggle" onClick={() => handleThemeToggle(theme)}>
+      <button
+        className="nes-btn is-primary"
+        id="theme-toggle"
+        onClick={() => handleThemeToggle(theme)}
+      >
         Toggle Theme
       </button>
 
       {chapter > 2 && (
         <>
-          <button id="reset" onClick={() => handleResetGame()} type="button">
+          <button
+            className="nes-btn is-error"
+            id="reset"
+            onClick={() => handleResetGame()}
+            type="button"
+          >
             RESET
           </button>
 
@@ -220,7 +253,11 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
           <span id="infected-population">
             Infected Population - {population.infected.toLocaleString()}
           </span>
-          <button onClick={() => handleBuyMultiplierClick()} type="button">
+          <button
+            className="nes-btn"
+            onClick={() => handleBuyMultiplierClick()}
+            type="button"
+          >
             Buy Multiplier - {buyMultiplier}
           </button>
 

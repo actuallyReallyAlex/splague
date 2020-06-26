@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { travel } from "../redux/actions";
+import { locations } from "../constants";
 import { Location, RootState } from "../types";
 
 export interface MapProps {
@@ -16,48 +17,19 @@ const Map: React.SFC<MapProps> = (props: MapProps) => {
     return (
       <div id="map">
         <span id="current-location">Current Location - {currentLocation}</span>
-        <button
-          disabled={currentLocation === "church"}
-          id="location-church"
-          onClick={() => handleTravel("church")}
-        >
-          CHURCH
-        </button>
-        <button
-          disabled={currentLocation === "graveyard"}
-          id="location-graveyard"
-          onClick={() => handleTravel("graveyard")}
-        >
-          GRAVEYARD
-        </button>
-        <button
-          disabled={currentLocation === "home"}
-          id="location-home"
-          onClick={() => handleTravel("home")}
-        >
-          HOME
-        </button>
-        <button
-          disabled={currentLocation === "office"}
-          id="location-office"
-          onClick={() => handleTravel("office")}
-        >
-          OFFICE
-        </button>
-        <button
-          disabled={currentLocation === "tavern"}
-          id="location-tavern"
-          onClick={() => handleTravel("tavern")}
-        >
-          TAVERN
-        </button>
-        <button
-          disabled={currentLocation === "town square"}
-          id="location-town-square"
-          onClick={() => handleTravel("town square")}
-        >
-          TOWN SQUARE
-        </button>
+        {locations.map((location: Location, i: number) => (
+          <button
+            className={`nes-btn ${
+              currentLocation === location ? "is-disabled" : ""
+            }`}
+            disabled={currentLocation === location}
+            id={`location-${location.replace(/ /gm, "-")}`}
+            key={i}
+            onClick={() => handleTravel(location)}
+          >
+            {location.toUpperCase()}
+          </button>
+        ))}
       </div>
     );
   } else {
