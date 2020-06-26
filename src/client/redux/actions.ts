@@ -1,4 +1,5 @@
 import add from "date-fns/add";
+import differenceInMonths from "date-fns/differenceInMonths";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import formatDistance from "date-fns/formatDistance";
 import { defaultInitialState, patientScenarios } from "../constants";
@@ -437,10 +438,17 @@ export const toggleBuyMultiplier = (): AppThunk => async (
 };
 
 export const progressDate = (): AppThunk => (dispatch, getState) => {
+  const { chapter } = getState().story;
   // * Should progress date by 1 month
   const currentDate = getState().game.date;
   const newDate = add(new Date(currentDate), { months: 1 }).toDateString();
+  const monthsUntilDeath = -differenceInMonths(
+    new Date(newDate),
+    new Date(1346, 0, 1)
+  ); // * Months until January 1346
   dispatch(setDate(newDate));
+  dispatch(setChapter(chapter + 1));
+  dispatch(setStoryText(`${monthsUntilDeath} months before death...`));
 };
 
 export const deathRate = (): AppThunk => (dispatch, getState) => {
