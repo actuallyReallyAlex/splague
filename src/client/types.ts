@@ -8,6 +8,7 @@ export interface AlertAction {
 }
 
 export interface AlertState {
+  content: string;
   title: string;
 }
 

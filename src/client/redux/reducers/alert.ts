@@ -1,6 +1,7 @@
 import { AlertAction, AlertState } from "../../types";
 
 export const initialState: AlertState = {
+  content: "",
   title: "",
 };
 
