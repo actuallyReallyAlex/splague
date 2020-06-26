@@ -4,6 +4,10 @@ import formatDistance from "date-fns/formatDistance";
 import { defaultInitialState, patientScenarios } from "../constants";
 import {
   SET_ACTIONS,
+  SET_ALERT_CONTENT,
+  SET_ALERT_PRIMARY_ACTION,
+  SET_ALERT_SECONDARY_ACTION,
+  SET_ALERT_TITLE,
   SET_BUY_MULTIPLIER,
   SET_CHAPTER,
   SET_CURRENT_ACTION,
@@ -28,6 +32,7 @@ import {
 import { round, randomInteger } from "../util";
 
 import {
+  AlertAction,
   AppThunk,
   ChurchLocationAction,
   GameAction,
@@ -56,6 +61,28 @@ import {
 export const setActions = (actions: LocationAction[]): MapAction => ({
   type: SET_ACTIONS,
   payload: { actions },
+});
+
+export const setAlertContent = (content: string): AlertAction => ({
+  type: SET_ALERT_CONTENT,
+  payload: { content },
+});
+
+export const setAlertPrimaryAction = (primaryAction: string): AlertAction => ({
+  type: SET_ALERT_PRIMARY_ACTION,
+  payload: { primaryAction },
+});
+
+export const setAlertSecondaryAction = (
+  secondaryAction: string
+): AlertAction => ({
+  type: SET_ALERT_SECONDARY_ACTION,
+  payload: { secondaryAction },
+});
+
+export const setAlertTitle = (title: string): AlertAction => ({
+  type: SET_ALERT_TITLE,
+  payload: { title },
 });
 
 export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
@@ -230,6 +257,15 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setIsLoading(false));
 
       if (awayTimeInSeconds > 10) {
+        dispatch(
+          setAlertContent(
+            `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
+          )
+        );
+        dispatch(setAlertPrimaryAction(""));
+        dispatch(setAlertSecondaryAction(""));
+        dispatch(setAlertTitle("Away Earnings"));
+        // TODO - Remove
         alert(
           `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`
         );
@@ -492,4 +528,18 @@ export const performAction = (action: LocationAction): AppThunk => (
 
   dispatch(setCurrentAction(action));
   currentActionLogic();
+};
+
+export const setAlert = (
+  title: string,
+  content: string,
+  primaryAction: string,
+  secondaryAction: string
+): AppThunk => (dispatch, getState) => {
+  dispatch(setAlertContent(content));
+  dispatch(setAlertPrimaryAction(primaryAction));
+  dispatch(setAlertSecondaryAction(secondaryAction));
+  dispatch(setAlertTitle(title));
+  // TODO - Remove
+  alert(content);
 };

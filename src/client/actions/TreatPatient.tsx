@@ -1,11 +1,18 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { setAlert } from "../redux/actions";
 import { Operation, Remedy, RootState } from "../types";
 
 export interface TreatPatientProps {
   age: number;
   chat: string[];
   complaint: string;
+  handleAlert: (
+    title: string,
+    content: string,
+    primaryAction: string,
+    secondaryAction: string
+  ) => void;
   name: string;
   operation: Operation;
   remedy: Remedy;
@@ -14,7 +21,7 @@ export interface TreatPatientProps {
 const TreatPatient: React.SFC<TreatPatientProps> = (
   props: TreatPatientProps
 ) => {
-  const { age, chat, complaint, name, operation, remedy } = props;
+  const { age, chat, complaint, handleAlert, name, operation, remedy } = props;
   return (
     <div id="treat-patient-screen">
       <h2>Treat Patient</h2>
@@ -29,16 +36,29 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
       <span id="patient-remedy">{remedy}</span>
       <span id="patient-operation">{operation}</span>
       <h3>Treatment Options</h3>
-      <button id="treatment-remedy" onClick={() => alert("PRESCRIBE REMEDY")}>
+      <button
+        className="nes-btn"
+        id="treatment-remedy"
+        onClick={() =>
+          handleAlert("Prescribe Remedy", "PRESCRIBE REMEDY", "", "")
+        }
+      >
         Prescribe Remedy
       </button>
       <button
+        className="nes-btn"
         id="treatment-operation"
-        onClick={() => alert("PERFORM OPERATION")}
+        onClick={() =>
+          handleAlert("Perform Operation", "PERFORM OPERATION", "", "")
+        }
       >
         Perform Operation
       </button>
-      <button id="treatment-chat" onClick={() => alert("CHAT")}>
+      <button
+        className="nes-btn"
+        id="treatment-chat"
+        onClick={() => handleAlert("Chat", "CHAT", "", "")}
+      >
         Chat
       </button>
     </div>
@@ -54,4 +74,13 @@ const mapStateToProps = (state: RootState) => ({
   remedy: state.patient.remedy,
 });
 
-export default connect(mapStateToProps)(TreatPatient);
+const mapDispatchToProps = (dispatch) => ({
+  handleAlert: (
+    title: string,
+    content: string,
+    primaryAction: string,
+    secondaryAction: string
+  ) => dispatch(setAlert(title, content, primaryAction, secondaryAction)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TreatPatient);
