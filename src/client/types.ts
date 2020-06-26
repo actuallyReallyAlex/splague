@@ -1,6 +1,16 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
+export interface AlertAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface AlertState {
+  title: string;
+}
+
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
