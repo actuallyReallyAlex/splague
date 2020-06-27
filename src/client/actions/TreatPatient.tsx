@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../redux/actions";
-import { Operation, Remedy, RootState, Theme } from "../types";
+import { Operation, Remedy, RootState, Theme, Treatment } from "../types";
 
 export interface TreatPatientProps {
   age: number;
@@ -34,6 +34,48 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     remedy,
     theme,
   } = props;
+
+  const treatments: Treatment[] = [
+    {
+      handler: () =>
+        handleAlert(
+          "Prescribe Remedy",
+          "PRESCRIBE REMEDY",
+          () => null,
+          "OK",
+          () => null,
+          null
+        ),
+      name: "remedy",
+      text: "Prescribe Remedy",
+    },
+    {
+      handler: () =>
+        handleAlert(
+          "Perform Operation",
+          "PERFORM OPERATION",
+          () => null,
+          "OK",
+          () => null,
+          null
+        ),
+      name: "operation",
+      text: "Perform Operation",
+    },
+    {
+      handler: () =>
+        handleAlert(
+          "Chat",
+          "CHAT",
+          () => null,
+          "OK",
+          () => null,
+          null
+        ),
+      name: "chat",
+      text: "Chat",
+    },
+  ];
   return (
     <div id="treat-patient-screen">
       <h2>Treat Patient</h2>
@@ -55,75 +97,22 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         >
           <tbody>
             <tr>
-              <td style={{ width: "250px" }}>
-                <button
-                  className="nes-btn"
-                  id="treatment-remedy"
-                  onClick={() =>
-                    handleAlert(
-                      "Prescribe Remedy",
-                      "PRESCRIBE REMEDY",
-                      () => null,
-                      "OK",
-                      () => null,
-                      "Cancel"
-                    )
-                  }
-                  style={{
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    width: "100%",
-                  }}
-                >
-                  Prescribe Remedy
-                </button>
-              </td>
-              <td style={{ width: "250px" }}>
-                <button
-                  className="nes-btn"
-                  id="treatment-operation"
-                  onClick={() =>
-                    handleAlert(
-                      "Perform Operation",
-                      "PERFORM OPERATION",
-                      () => null,
-                      "OK",
-                      () => null,
-                      "Cancel"
-                    )
-                  }
-                  style={{
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    width: "100%",
-                  }}
-                >
-                  Perform Operation
-                </button>
-              </td>
-              <td style={{ width: "250px" }}>
-                <button
-                  className="nes-btn"
-                  id="treatment-chat"
-                  onClick={() =>
-                    handleAlert(
-                      "Chat",
-                      "CHAT",
-                      () => null,
-                      "OK",
-                      () => null,
-                      "Cancel"
-                    )
-                  }
-                  style={{
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    width: "100%",
-                  }}
-                >
-                  Chat
-                </button>
-              </td>
+              {treatments.map((treatment: Treatment, i: number) => (
+                <td key={`treatment-${i}`} style={{ width: "250px" }}>
+                  <button
+                    className="nes-btn"
+                    id={`treatment-${treatment.name}`}
+                    onClick={treatment.handler}
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      width: "100%",
+                    }}
+                  >
+                    {treatment.text}
+                  </button>
+                </td>
+              ))}
             </tr>
           </tbody>
         </table>

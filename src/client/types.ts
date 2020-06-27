@@ -179,6 +179,12 @@ export interface StoryState {
   text: string;
 }
 
+export interface Treatment {
+  handler: () => void;
+  name: string;
+  text: string;
+}
+
 export type Theme = "dark" | "light";
 
 export interface UIAction {
