@@ -22,18 +22,21 @@ context("Actions", () => {
   it("Should treat patient", () => {
     cy.get("#location-office").click();
     cy.get("#action-treat-patient").click();
+
     cy.get("#treatment-remedy").click();
-    cy.get("#alert").should("contain.text", "PRESCRIBE REMEDY");
-    cy.get("#alert-primary").click();
-    cy.get("#alert").should("not.be.visible");
+    cy.get("#treatment-dialog").should("be.visible");
+    cy.get("#treatment-dialog-primary").click();
+    cy.get("#treatment-dialog").should("not.be.visible");
+
     cy.get("#treatment-operation").click();
-    cy.get("#alert").should("contain.text", "PERFORM OPERATION");
-    cy.get("#alert-primary").click();
-    cy.get("#alert").should("not.be.visible");
+    cy.get("#treatment-dialog").should("be.visible");
+    cy.get("#treatment-dialog-primary").click();
+    cy.get("#treatment-dialog").should("not.be.visible");
+
     cy.get("#treatment-chat").click();
-    cy.get("#alert").should("contain.text", "CHAT");
-    cy.get("#alert-primary").click();
-    cy.get("#alert").should("not.be.visible");
+    cy.get("#treatment-dialog").should("be.visible");
+    cy.get("#treatment-dialog-primary").click();
+    cy.get("#treatment-dialog").should("not.be.visible");
   });
 
   it("Should not display Treat Patient Screen when not at the office", () => {

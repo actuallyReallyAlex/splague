@@ -37,41 +37,98 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
 
   const treatments: Treatment[] = [
     {
-      handler: () =>
-        handleAlert(
-          "Prescribe Remedy",
-          "PRESCRIBE REMEDY",
-          () => null,
-          "OK",
-          () => null,
-          null
-        ),
+      dialogContent: (
+        <>
+          <p className="title">TREATMENT DIALOG</p>
+          <p>TREATMENT DIALOG CONTEXT</p>
+          <menu className="dialog-menu">
+            <button
+              className="nes-btn is-primary"
+              id="treatment-dialog-primary"
+              onClick={() => null}
+            >
+              PRIMARY
+            </button>
+            <button
+              className="nes-btn"
+              id="treatment-dialog-secondary"
+              onClick={() => null}
+            >
+              SECONDARY
+            </button>
+          </menu>
+        </>
+      ),
+      handler: () => {
+        const treatmentDialog = document.getElementById(
+          "treatment-dialog"
+        ) as HTMLDialogElement;
+        treatmentDialog.showModal();
+      },
       name: "remedy",
       text: "Prescribe Remedy",
     },
     {
-      handler: () =>
-        handleAlert(
-          "Perform Operation",
-          "PERFORM OPERATION",
-          () => null,
-          "OK",
-          () => null,
-          null
-        ),
+      dialogContent: (
+        <>
+          <p className="title">TREATMENT DIALOG</p>
+          <p>TREATMENT DIALOG CONTEXT</p>
+          <menu className="dialog-menu">
+            <button
+              className="nes-btn is-primary"
+              id="treatment-dialog-primary"
+              onClick={() => null}
+            >
+              PRIMARY
+            </button>
+            <button
+              className="nes-btn"
+              id="treatment-dialog-secondary"
+              onClick={() => null}
+            >
+              SECONDARY
+            </button>
+          </menu>
+        </>
+      ),
+      handler: () => {
+        const treatmentDialog = document.getElementById(
+          "treatment-dialog"
+        ) as HTMLDialogElement;
+        treatmentDialog.showModal();
+      },
       name: "operation",
       text: "Perform Operation",
     },
     {
-      handler: () =>
-        handleAlert(
-          "Chat",
-          "CHAT",
-          () => null,
-          "OK",
-          () => null,
-          null
-        ),
+      dialogContent: (
+        <>
+          <p className="title">TREATMENT DIALOG</p>
+          <p>TREATMENT DIALOG CONTEXT</p>
+          <menu className="dialog-menu">
+            <button
+              className="nes-btn is-primary"
+              id="treatment-dialog-primary"
+              onClick={() => null}
+            >
+              PRIMARY
+            </button>
+            <button
+              className="nes-btn"
+              id="treatment-dialog-secondary"
+              onClick={() => null}
+            >
+              SECONDARY
+            </button>
+          </menu>
+        </>
+      ),
+      handler: () => {
+        const treatmentDialog = document.getElementById(
+          "treatment-dialog"
+        ) as HTMLDialogElement;
+        treatmentDialog.showModal();
+      },
       name: "chat",
       text: "Chat",
     },
@@ -117,6 +174,33 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
           </tbody>
         </table>
       </div>
+
+      <dialog
+        className={`nes-dialog ${theme === "dark" ? "is-dark" : ""}`}
+        id="treatment-dialog"
+      >
+        <form method="dialog">
+          {/* TREATMENT DIALOG CONTENT */}
+          <p className="title">TREATMENT DIALOG</p>
+          <p>TREATMENT DIALOG CONTEXT</p>
+          <menu className="dialog-menu">
+            <button
+              className="nes-btn is-primary"
+              id="treatment-dialog-primary"
+              onClick={() => null}
+            >
+              PRIMARY
+            </button>
+            <button
+              className="nes-btn"
+              id="treatment-dialog-secondary"
+              onClick={() => null}
+            >
+              SECONDARY
+            </button>
+          </menu>
+        </form>
+      </dialog>
     </div>
   );
 };

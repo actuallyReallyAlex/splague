@@ -180,6 +180,7 @@ export interface StoryState {
 }
 
 export interface Treatment {
+  dialogContent: JSX.Element;
   handler: () => void;
   name: string;
   text: string;
