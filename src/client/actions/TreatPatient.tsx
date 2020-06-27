@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setAlert, setPatientTreatment } from "../redux/actions";
 import Chat from "./treatments/Chat";
 import PerformOperation from "./treatments/PerformOperation";
+import PrescribeRemedy from "./treatments/PrescribeRemedy";
 import {
   Operation,
   Remedy,
@@ -50,30 +51,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
 
   const treatments: Treatment[] = [
     {
-      dialogContent: (
-        <>
-          <p className="title" id="treatment-dialog-title">
-            Prescribe Remedy
-          </p>
-          <p>TREATMENT DIALOG CONTEXT</p>
-          <menu className="dialog-menu">
-            <button
-              className="nes-btn is-primary"
-              id="treatment-dialog-primary"
-              onClick={() => null}
-            >
-              PRIMARY
-            </button>
-            <button
-              className="nes-btn"
-              id="treatment-dialog-secondary"
-              onClick={() => null}
-            >
-              SECONDARY
-            </button>
-          </menu>
-        </>
-      ),
+      dialogContent: <PrescribeRemedy />,
       handler: () => {
         handleTreatmentSelect("remedy");
         const treatmentDialog = document.getElementById(
@@ -156,7 +134,6 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         id="treatment-dialog"
       >
         <form method="dialog">
-          {/* TREATMENT DIALOG CONTENT */}
           {treatment &&
             treatments.find(
               (possibleTreatment: Treatment) =>
