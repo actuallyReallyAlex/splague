@@ -3,3 +3,5 @@ export const round = (n: number, decimals: number): number =>
 
 export const randomInteger = (min: number, max: number): number =>
   Math.floor(Math.random() * (max - min + 1)) + min;
+
+export const isOdd = (number: number): boolean => number % 2 !== 0;

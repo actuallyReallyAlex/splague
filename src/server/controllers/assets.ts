@@ -18,7 +18,7 @@ class AssetsController {
     "favicon-32x32.png",
     "favicon.ico",
     "mstile-150x150.png",
-    "nes.css",
+    "nes.min.css",
     "safari-pinned-tab.svg",
     "site.webmanifest",
   ];

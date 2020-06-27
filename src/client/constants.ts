@@ -66,7 +66,7 @@ export const locations: Location[] = [
 export const patientScenarios: PatientScenario[] = [
   {
     age: 19,
-    chat: ["Chat 1", "Chat2", "Chat 3"],
+    chat: ["Chat 1", "Chat 2", "Chat 3"],
     complaint: "Back pain",
     name: "Billy Bob",
     operation: "leeching",
@@ -74,7 +74,7 @@ export const patientScenarios: PatientScenario[] = [
   },
   {
     age: 30,
-    chat: ["Chat 1", "Chat2", "Chat 3"],
+    chat: ["Chat 1", "Chat 2", "Chat 3"],
     complaint: "Headache",
     name: "Jane Jill",
     operation: "hole in head",
@@ -82,7 +82,7 @@ export const patientScenarios: PatientScenario[] = [
   },
   {
     age: 10,
-    chat: ["Chat 1", "Chat2", "Chat 3"],
+    chat: ["Chat 1", "Chat 2", "Chat 3"],
     complaint: "Broken foot",
     name: "Mark Man",
     operation: "set bone",
