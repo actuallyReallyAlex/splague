@@ -527,6 +527,7 @@ export const travel = (location: Location): AppThunk => (
 
   const selectedActionSet = actionSets[location];
   dispatch(setActions(selectedActionSet));
+  dispatch(setCurrentAction(null));
 };
 
 export const performAction = (action: LocationAction): AppThunk => (

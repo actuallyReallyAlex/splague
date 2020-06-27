@@ -35,4 +35,13 @@ context("Actions", () => {
     cy.get("#alert-primary").click();
     cy.get("#alert").should("not.be.visible");
   });
+
+  it("Should not display Treat Patient Screen when not at the office", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+    cy.get("#treat-patient-screen").should("exist");
+
+    cy.get("#location-home").click();
+    cy.get("#treat-patient-screen").should("not.exist");
+  });
 });
