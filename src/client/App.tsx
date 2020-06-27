@@ -10,7 +10,7 @@ import {
   resetGame,
   saveGame,
   setChapter,
-  setNewEarnings,
+  // setNewEarnings,
   setStoryText,
 } from "./redux/actions";
 import Actions from "./components/Actions";
@@ -26,7 +26,7 @@ interface AppProps {
   currentAction: null | LocationAction;
   handleDateInterval: () => void;
   handleDeathRate: () => void;
-  handleEarningsInterval: () => void;
+  // handleEarningsInterval: () => void;
   handleGoOn: () => void;
   handleGrowthRate: () => void;
   handleInitializeGameState: () => void;
@@ -46,7 +46,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     currentAction,
     handleDateInterval,
     handleDeathRate,
-    handleEarningsInterval,
+    // handleEarningsInterval,
     handleGoOn,
     handleGrowthRate,
     handleInitializeGameState,
@@ -56,12 +56,13 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleStartJourny,
     theme,
   } = props;
+
   /**
    * Earnings Interval
    */
-  useInterval(() => {
-    handleEarningsInterval();
-  }, 1000);
+  // useInterval(() => {
+  //   handleEarningsInterval();
+  // }, 1000);
 
   /**
    * Save Game State
@@ -166,7 +167,7 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleDeathRate: () => dispatch(deathRate()),
   handleDateInterval: () => dispatch(progressDate()),
-  handleEarningsInterval: () => dispatch(setNewEarnings()),
+  // handleEarningsInterval: () => dispatch(setNewEarnings()),
   handleGoOn: () => {
     dispatch(setChapter(2));
     dispatch(setStoryText("... the Black Plague starts in 1346. Good luck."));
