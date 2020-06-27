@@ -1,7 +1,14 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { setAlert } from "../redux/actions";
-import { Operation, Remedy, RootState, Theme, Treatment } from "../types";
+import { setAlert, setPatientTreatment } from "../redux/actions";
+import {
+  Operation,
+  Remedy,
+  RootState,
+  Theme,
+  Treatment,
+  TreatmentType,
+} from "../types";
 
 export interface TreatPatientProps {
   age: number;
@@ -15,6 +22,7 @@ export interface TreatPatientProps {
     secondaryAction: () => void,
     secondaryActionText: string
   ) => void;
+  handleTreatmentSelect: (treatment: TreatmentType) => void;
   name: string;
   operation: Operation;
   remedy: Remedy;
@@ -29,6 +37,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     chat,
     complaint,
     handleAlert,
+    handleTreatmentSelect,
     name,
     operation,
     remedy,
@@ -60,6 +69,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         </>
       ),
       handler: () => {
+        handleTreatmentSelect("remedy");
         const treatmentDialog = document.getElementById(
           "treatment-dialog"
         ) as HTMLDialogElement;
@@ -92,6 +102,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         </>
       ),
       handler: () => {
+        handleTreatmentSelect("operation");
         const treatmentDialog = document.getElementById(
           "treatment-dialog"
         ) as HTMLDialogElement;
@@ -124,6 +135,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         </>
       ),
       handler: () => {
+        handleTreatmentSelect("chat");
         const treatmentDialog = document.getElementById(
           "treatment-dialog"
         ) as HTMLDialogElement;
@@ -234,6 +246,8 @@ const mapDispatchToProps = (dispatch) => ({
         secondaryActionText
       )
     ),
+  handleTreatmentSelect: (treatment: TreatmentType) =>
+    dispatch(setPatientTreatment(treatment)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TreatPatient);

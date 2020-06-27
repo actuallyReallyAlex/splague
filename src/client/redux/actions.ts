@@ -33,6 +33,7 @@ import {
   SET_START_TIME,
   SET_STORY_TEXT,
   SET_THEME,
+  SET_PATIENT_TREATMENT,
 } from "./actionTypes";
 import { round, randomInteger } from "../util";
 
@@ -62,6 +63,7 @@ import {
   UIAction,
   WorldAction,
   PlayerAction,
+  TreatmentType,
 } from "../types";
 
 export const setActions = (actions: LocationAction[]): MapAction => ({
@@ -197,6 +199,13 @@ export const setPatientOperation = (operation: Operation): PatientAction => ({
 export const setPatientRemedy = (remedy: Remedy): PatientAction => ({
   type: SET_PATIENT_REMEDY,
   payload: { remedy },
+});
+
+export const setPatientTreatment = (
+  treatment: TreatmentType
+): PatientAction => ({
+  type: SET_PATIENT_TREATMENT,
+  payload: { treatment },
 });
 
 export const setPopulation = (population: Population): WorldAction => ({

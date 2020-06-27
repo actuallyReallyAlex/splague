@@ -6,6 +6,7 @@ import {
   SET_PATIENT_NAME,
   SET_PATIENT_OPERATION,
   SET_PATIENT_REMEDY,
+  SET_PATIENT_TREATMENT,
 } from "../actionTypes";
 
 export const initialState: PatientState = {
@@ -15,10 +16,14 @@ export const initialState: PatientState = {
   name: "",
   operation: null,
   remedy: null,
+  treatment: null,
 };
 
 const reducer = (state = initialState, action: PatientAction): PatientState => {
   switch (action.type) {
+    case SET_PATIENT_TREATMENT: {
+      return { ...state, treatment: action.payload.treatment };
+    }
     case SET_PATIENT_AGE: {
       return { ...state, age: action.payload.age };
     }

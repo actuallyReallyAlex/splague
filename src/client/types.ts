@@ -128,6 +128,7 @@ export interface PatientState {
   name: string;
   operation: Operation;
   remedy: Remedy;
+  treatment: TreatmentType;
 }
 
 export interface PlayerAction {
@@ -185,6 +186,8 @@ export interface Treatment {
   name: string;
   text: string;
 }
+
+export type TreatmentType = "chat" | "operation" | "remedy";
 
 export type Theme = "dark" | "light";
 
