@@ -25,16 +25,19 @@ context("Actions", () => {
 
     cy.get("#treatment-remedy").click();
     cy.get("#treatment-dialog").should("be.visible");
+    cy.get("#treatment-dialog-title").should("have.text", "Prescribe Remedy");
     cy.get("#treatment-dialog-primary").click();
     cy.get("#treatment-dialog").should("not.be.visible");
 
     cy.get("#treatment-operation").click();
     cy.get("#treatment-dialog").should("be.visible");
+    cy.get("#treatment-dialog-title").should("have.text", "Perform Operation");
     cy.get("#treatment-dialog-primary").click();
     cy.get("#treatment-dialog").should("not.be.visible");
 
     cy.get("#treatment-chat").click();
     cy.get("#treatment-dialog").should("be.visible");
+    cy.get("#treatment-dialog-title").should("have.text", "Chat");
     cy.get("#treatment-dialog-primary").click();
     cy.get("#treatment-dialog").should("not.be.visible");
   });

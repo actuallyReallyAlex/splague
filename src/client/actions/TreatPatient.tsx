@@ -27,6 +27,7 @@ export interface TreatPatientProps {
   operation: Operation;
   remedy: Remedy;
   theme: Theme;
+  treatment: TreatmentType;
 }
 
 const TreatPatient: React.SFC<TreatPatientProps> = (
@@ -42,13 +43,16 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     operation,
     remedy,
     theme,
+    treatment,
   } = props;
 
   const treatments: Treatment[] = [
     {
       dialogContent: (
         <>
-          <p className="title">TREATMENT DIALOG</p>
+          <p className="title" id="treatment-dialog-title">
+            Prescribe Remedy
+          </p>
           <p>TREATMENT DIALOG CONTEXT</p>
           <menu className="dialog-menu">
             <button
@@ -81,7 +85,9 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     {
       dialogContent: (
         <>
-          <p className="title">TREATMENT DIALOG</p>
+          <p className="title" id="treatment-dialog-title">
+            Perform Operation
+          </p>
           <p>TREATMENT DIALOG CONTEXT</p>
           <menu className="dialog-menu">
             <button
@@ -114,7 +120,9 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     {
       dialogContent: (
         <>
-          <p className="title">TREATMENT DIALOG</p>
+          <p className="title" id="treatment-dialog-title">
+            Chat
+          </p>
           <p>TREATMENT DIALOG CONTEXT</p>
           <menu className="dialog-menu">
             <button
@@ -193,24 +201,11 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
       >
         <form method="dialog">
           {/* TREATMENT DIALOG CONTENT */}
-          <p className="title">TREATMENT DIALOG</p>
-          <p>TREATMENT DIALOG CONTEXT</p>
-          <menu className="dialog-menu">
-            <button
-              className="nes-btn is-primary"
-              id="treatment-dialog-primary"
-              onClick={() => null}
-            >
-              PRIMARY
-            </button>
-            <button
-              className="nes-btn"
-              id="treatment-dialog-secondary"
-              onClick={() => null}
-            >
-              SECONDARY
-            </button>
-          </menu>
+          {treatment &&
+            treatments.find(
+              (possibleTreatment: Treatment) =>
+                possibleTreatment.name === treatment
+            ).dialogContent}
         </form>
       </dialog>
     </div>
@@ -225,6 +220,7 @@ const mapStateToProps = (state: RootState) => ({
   operation: state.patient.operation,
   remedy: state.patient.remedy,
   theme: state.ui.theme,
+  treatment: state.patient.treatment,
 });
 
 const mapDispatchToProps = (dispatch) => ({
