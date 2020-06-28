@@ -19,6 +19,7 @@ class AssetsController {
     "favicon.ico",
     "mstile-150x150.png",
     "nes.min.css",
+    "patientAvatar.png",
     "safari-pinned-tab.svg",
     "site.webmanifest",
   ];

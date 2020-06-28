@@ -5,11 +5,12 @@ import { Theme, RootState } from "../../types";
 
 export interface ChatProps {
   chat: string[];
+  patientAvatar: string;
   theme: Theme;
 }
 
 const Chat: React.SFC<ChatProps> = (props: ChatProps) => {
-  const { chat, theme } = props;
+  const { chat, patientAvatar, theme } = props;
   return (
     <>
       <p className="title" id="treatment-dialog-title">
@@ -32,11 +33,19 @@ const Chat: React.SFC<ChatProps> = (props: ChatProps) => {
                   >
                     <p>{chatItem}</p>
                   </div>
-                  <i className="nes-bcrikko" />
+                  <img
+                    alt="Patient Avatar"
+                    className="nes-avatar is-rounded is-large pixelated"
+                    src={patientAvatar}
+                  />
                 </>
               ) : (
                 <>
-                  <i className="nes-bcrikko" />
+                  <img
+                    alt="Patient Avatar"
+                    className="nes-avatar is-rounded is-large pixelated"
+                    src={patientAvatar}
+                  />
                   <div
                     className={`nes-balloon from-left ${
                       theme === "dark" ? "is-dark" : ""
@@ -73,6 +82,7 @@ const Chat: React.SFC<ChatProps> = (props: ChatProps) => {
 
 const mapStateToProps = (state: RootState) => ({
   chat: state.patient.chat,
+  patientAvatar: state.patient.avatar,
   theme: state.ui.theme,
 });
 

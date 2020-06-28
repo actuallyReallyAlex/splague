@@ -114,6 +114,7 @@ export interface PatientAction {
 
 export interface PatientScenario {
   age: number;
+  avatar: string;
   chat: string[];
   complaint: string;
   name: string;
@@ -123,6 +124,7 @@ export interface PatientScenario {
 
 export interface PatientState {
   age: number;
+  avatar: string;
   chat: string[];
   complaint: string;
   name: string;

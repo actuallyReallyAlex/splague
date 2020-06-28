@@ -66,6 +66,7 @@ export const locations: Location[] = [
 export const patientScenarios: PatientScenario[] = [
   {
     age: 19,
+    avatar: "/assets/patientAvatar.png",
     chat: ["Chat 1", "Chat 2", "Chat 3"],
     complaint: "Back pain",
     name: "Billy Bob",
@@ -74,6 +75,7 @@ export const patientScenarios: PatientScenario[] = [
   },
   {
     age: 30,
+    avatar: "/assets/patientAvatar.png",
     chat: ["Chat 1", "Chat 2", "Chat 3"],
     complaint: "Headache",
     name: "Jane Jill",
@@ -82,6 +84,7 @@ export const patientScenarios: PatientScenario[] = [
   },
   {
     age: 10,
+    avatar: "/assets/patientAvatar.png",
     chat: ["Chat 1", "Chat 2", "Chat 3"],
     complaint: "Broken foot",
     name: "Mark Man",

@@ -24,16 +24,17 @@ import {
   SET_MONEY,
   SET_MORALITY,
   SET_PATIENT_AGE,
+  SET_PATIENT_AVATAR,
   SET_PATIENT_CHAT,
   SET_PATIENT_COMPLAINT,
   SET_PATIENT_NAME,
   SET_PATIENT_OPERATION,
   SET_PATIENT_REMEDY,
+  SET_PATIENT_TREATMENT,
   SET_POPULATION,
   SET_START_TIME,
   SET_STORY_TEXT,
   SET_THEME,
-  SET_PATIENT_TREATMENT,
 } from "./actionTypes";
 import { round, randomInteger } from "../util";
 
@@ -174,6 +175,11 @@ export const setMorality = (morality: number): PlayerAction => ({
 export const setPatientAge = (age: number): PatientAction => ({
   type: SET_PATIENT_AGE,
   payload: { age },
+});
+
+export const setPatientAvatar = (avatar: string): PatientAction => ({
+  type: SET_PATIENT_AVATAR,
+  payload: { avatar },
 });
 
 export const setPatientChat = (chat: string[]): PatientAction => ({
@@ -570,6 +576,7 @@ export const performAction = (action: LocationAction): AppThunk => (
       const randomIndex = randomInteger(0, patientScenarios.length - 1);
       const patientScenario: PatientScenario = patientScenarios[randomIndex];
       dispatch(setPatientAge(patientScenario.age));
+      dispatch(setPatientAvatar(patientScenario.avatar));
       dispatch(setPatientChat(patientScenario.chat));
       dispatch(setPatientComplaint(patientScenario.complaint));
       dispatch(setPatientName(patientScenario.name));

@@ -1,6 +1,7 @@
 import { PatientAction, PatientState } from "../../types";
 import {
   SET_PATIENT_AGE,
+  SET_PATIENT_AVATAR,
   SET_PATIENT_CHAT,
   SET_PATIENT_COMPLAINT,
   SET_PATIENT_NAME,
@@ -11,6 +12,7 @@ import {
 
 export const initialState: PatientState = {
   age: null,
+  avatar: "",
   chat: [],
   complaint: "",
   name: "",
@@ -21,11 +23,11 @@ export const initialState: PatientState = {
 
 const reducer = (state = initialState, action: PatientAction): PatientState => {
   switch (action.type) {
-    case SET_PATIENT_TREATMENT: {
-      return { ...state, treatment: action.payload.treatment };
-    }
     case SET_PATIENT_AGE: {
       return { ...state, age: action.payload.age };
+    }
+    case SET_PATIENT_AVATAR: {
+      return { ...state, avatar: action.payload.avatar };
     }
     case SET_PATIENT_CHAT: {
       return { ...state, chat: action.payload.chat };
@@ -41,6 +43,9 @@ const reducer = (state = initialState, action: PatientAction): PatientState => {
     }
     case SET_PATIENT_REMEDY: {
       return { ...state, remedy: action.payload.remedy };
+    }
+    case SET_PATIENT_TREATMENT: {
+      return { ...state, treatment: action.payload.treatment };
     }
     default:
       return state;
