@@ -133,13 +133,11 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         className={`nes-dialog ${theme === "dark" ? "is-dark" : ""}`}
         id="treatment-dialog"
       >
-        <form method="dialog">
-          {treatment &&
-            treatments.find(
-              (possibleTreatment: Treatment) =>
-                possibleTreatment.name === treatment
-            ).dialogContent}
-        </form>
+        {treatment &&
+          treatments.find(
+            (possibleTreatment: Treatment) =>
+              possibleTreatment.name === treatment
+          ).dialogContent}
       </dialog>
     </div>
   );

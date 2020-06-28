@@ -38,9 +38,23 @@ context("Actions", () => {
     cy.get("#treatment-chat").click();
     cy.get("#treatment-dialog").should("be.visible");
     cy.get("#treatment-dialog-title").should("have.text", "Chat");
-    cy.get("#chat-messages").should("contain.text", "Chat 1Chat 2Chat 3");
+    cy.get("#chat-messages").should("contain.text", "Chat 1Next");
     cy.get("#treatment-dialog-primary").click();
     cy.get("#treatment-dialog").should("not.be.visible");
+  });
+
+  it("Should chat with the patient", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+
+    cy.get("#treatment-chat").click();
+    cy.get("#chat-messages").should("contain.text", "Next");
+    cy.get("#chat-messages").should("contain.text", "Chat 1Next");
+    cy.get("#chat-advance").click();
+    cy.get("#chat-messages").should("contain.text", "Chat 1Chat 2Next");
+    cy.get("#chat-advance").click();
+    cy.get("#chat-messages").should("contain.text", "Chat 1Chat 2Chat 3");
+    cy.get("#chat-advance").should("not.exist");
   });
 
   it("Should not display Treat Patient Screen when not at the office", () => {

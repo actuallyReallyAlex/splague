@@ -10,6 +10,9 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
   props: PerformOperationProps
 ) => {
   const { theme } = props;
+  const dialogElement = document.getElementById(
+    "treatment-dialog"
+  ) as HTMLDialogElement;
   return (
     <>
       <p className="title" id="treatment-dialog-title">
@@ -20,14 +23,14 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
         <button
           className="nes-btn is-primary"
           id="treatment-dialog-primary"
-          onClick={() => null}
+          onClick={() => dialogElement.close()}
         >
           PRIMARY
         </button>
         <button
           className="nes-btn"
           id="treatment-dialog-secondary"
-          onClick={() => null}
+          onClick={() => dialogElement.close()}
         >
           SECONDARY
         </button>
