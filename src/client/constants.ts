@@ -3,7 +3,16 @@ import { initialState as playerInitialState } from "./redux/reducers/player";
 import { initialState as storyInitialState } from "./redux/reducers/story";
 import { initialState as uiInitialState } from "./redux/reducers/ui";
 import TreatPatient from "./actions/TreatPatient";
-import { PatientScenario, Location } from "./types";
+import {
+  ChurchLocationAction,
+  GraveyardLocationAction,
+  HomeLocationAction,
+  Location,
+  PatientScenario,
+  OfficeLocationAction,
+  TavernLocationAction,
+  TownSquareLocationAction,
+} from "./types";
 import { ReactElement } from "react";
 
 export const baseIncome = {
@@ -92,3 +101,32 @@ export const patientScenarios: PatientScenario[] = [
     remedy: "healing elixir",
   },
 ];
+
+export const churchActions: ChurchLocationAction[] = [
+  "attend mass",
+  "confess",
+  "pray",
+];
+export const graveyardActions: GraveyardLocationAction[] = ["mourn"];
+export const homeActions: HomeLocationAction[] = ["cook", "sleep"];
+export const officeActions: OfficeLocationAction[] = [
+  "research cure",
+  "treat patient",
+];
+export const tavernActions: TavernLocationAction[] = [
+  "order drink",
+  "order food",
+];
+export const townSquareActions: TownSquareLocationAction[] = [
+  "barter",
+  "hear town crier",
+];
+
+export const actionSets = {
+  church: churchActions,
+  graveyard: graveyardActions,
+  home: homeActions,
+  office: officeActions,
+  tavern: tavernActions,
+  "town square": townSquareActions,
+};

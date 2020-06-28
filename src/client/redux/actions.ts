@@ -2,7 +2,12 @@ import add from "date-fns/add";
 import differenceInMonths from "date-fns/differenceInMonths";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import formatDistance from "date-fns/formatDistance";
-import { defaultInitialState, patientScenarios } from "../constants";
+import {
+  actionSets,
+  defaultInitialState,
+  homeActions,
+  patientScenarios,
+} from "../constants";
 import {
   SET_ACTIONS,
   SET_ALERT_CONTENT,
@@ -41,16 +46,12 @@ import { round, randomInteger } from "../util";
 import {
   AlertAction,
   AppThunk,
-  ChurchLocationAction,
   GameAction,
   GameDBData,
-  GraveyardLocationAction,
-  HomeLocationAction,
   Item,
   Location,
   LocationAction,
   MapAction,
-  OfficeLocationAction,
   Operation,
   PatientAction,
   PatientScenario,
@@ -58,9 +59,7 @@ import {
   Remedy,
   RootState,
   StoryAction,
-  TavernLocationAction,
   Theme,
-  TownSquareLocationAction,
   UIAction,
   WorldAction,
   PlayerAction,
@@ -384,14 +383,55 @@ export const resetGame = (): AppThunk => async (dispatch, getState) => {
     const { _id, createdAt, data } = savedGame;
 
     const parsedData = JSON.parse(data);
-    // * Store values in App state
-    dispatch(setId(_id));
     localStorage.setItem("id", _id);
-    dispatch(setStartTime(createdAt));
-    dispatch(setMoney(parsedData.game.money));
-    dispatch(setItems(defaultInitialState.game.items));
-    dispatch(setEarnings(0));
+
+    // * Store values in App state
+
+    // * Alert
+    dispatch(setAlertContent(""));
+    dispatch(setAlertPrimaryAction(null));
+    dispatch(setAlertPrimaryActionText(""));
+    dispatch(setAlertSecondaryAction(null));
+    dispatch(setAlertSecondaryActionText(""));
+    dispatch(setAlertTitle(""));
+    // * Game
+    dispatch(setBuyMultiplier(1));
     dispatch(setDate(parsedData.game.date));
+    dispatch(setEarnings(0));
+    dispatch(setId(_id));
+    dispatch(setItems(defaultInitialState.game.items));
+    dispatch(setMoney(parsedData.game.money));
+    dispatch(setStartTime(createdAt));
+    // * Map
+    dispatch(setActions(homeActions));
+    dispatch(setCurrentAction(null));
+    dispatch(setCurrentLocation("home"));
+    // * Patient
+    dispatch(setPatientAge(null));
+    dispatch(setPatientAvatar(""));
+    dispatch(setPatientChat([]));
+    dispatch(setPatientComplaint(""));
+    dispatch(setPatientName(""));
+    dispatch(setPatientOperation(null));
+    dispatch(setPatientRemedy(null));
+    dispatch(setPatientTreatment(null));
+    // * Player
+    // TODO - setPlayerAvatar()
+    // TODO - setDoctorReputation
+    // TODO - setMorality()
+    // TODO - setName() / setPlayerName()
+    // * Story
+    dispatch(setChapter(0));
+    dispatch(setStoryText("Welcome to Splague!"));
+    // * UI
+    dispatch(setTheme("light"));
+    // * World
+    // TODO - setDeathRate()
+    // TODO - setGrowthRate()
+    dispatch(setPopulation({ alive: 443000000, dead: 0, infected: 0 }));
+
+    // * Loading Complete
+    dispatch(setIsLoading(false));
   } catch (error) {
     console.error(error);
   }
@@ -514,32 +554,6 @@ export const travel = (location: Location): AppThunk => (
 ) => {
   dispatch(setCurrentLocation(location));
   // * Set Actions based on Location
-  const churchActions: ChurchLocationAction[] = [
-    "attend mass",
-    "confess",
-    "pray",
-  ];
-  const graveyardActions: GraveyardLocationAction[] = ["mourn"];
-  const homeActions: HomeLocationAction[] = ["cook", "sleep"];
-  const officeActions: OfficeLocationAction[] = [
-    "research cure",
-    "treat patient",
-  ];
-  const tavernActions: TavernLocationAction[] = ["order drink", "order food"];
-  const townSquareActions: TownSquareLocationAction[] = [
-    "barter",
-    "hear town crier",
-  ];
-
-  const actionSets = {
-    church: churchActions,
-    graveyard: graveyardActions,
-    home: homeActions,
-    office: officeActions,
-    tavern: tavernActions,
-    "town square": townSquareActions,
-  };
-
   const selectedActionSet = actionSets[location];
   dispatch(setActions(selectedActionSet));
   dispatch(setCurrentAction(null));

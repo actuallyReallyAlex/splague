@@ -29,7 +29,31 @@ context("Application", () => {
     cy.get("#story").should("have.text", "12 months before death...");
     cy.get("#money").should("contain.text", "50");
     cy.get("#reset").click();
+
+    cy.get("#date").should("contain.text", "January, 1345 AD");
+    cy.get("#story").should("contain.text", "Welcome to Splague!");
+    cy.get("#doctor-reputation").should(
+      "contain.text",
+      "Doctor Reputation - 0"
+    );
+    cy.get("#morality").should("contain.text", "Morality - 0");
+    cy.get("#time-played").should(
+      "contain.text",
+      "Time Played - less than 5 seconds"
+    );
     cy.get("#money").should("contain.text", "50");
+    cy.get("#earnings").should("contain.text", "Earnings - $0/second");
+    cy.get("#alive-population").should(
+      "have.text",
+      "Alive Population - 443,000,000"
+    );
+    cy.get("#dead-population").should("have.text", "Dead Population - 0");
+    cy.get("#infected-population").should(
+      "have.text",
+      "Infected Population - 0"
+    );
+    cy.get("#story-0").should("exist");
+    cy.get("#theme-toggle").should("exist");
   });
 
   it("Should allow the user to toggle between themes", () => {
