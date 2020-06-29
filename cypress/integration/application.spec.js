@@ -11,7 +11,6 @@ context("Application", () => {
     cy.get("#avatar").should("exist");
     cy.get("#name").should("have.text", "Alex");
     cy.get("#story").should("have.text", "Welcome to Splague!");
-    cy.get("#menu").should("exist");
   });
 
   it("Shouldn't be able to scroll page vertically", () => {
@@ -36,7 +35,6 @@ context("Application", () => {
     cy.window()
       .its("scrollY")
       .should(($scrollY) => {
-        // expect($scrollY).to.have.value(0);
         expect($scrollY).to.be.closeTo(0, 0);
       });
   });
