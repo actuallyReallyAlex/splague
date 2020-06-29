@@ -13,6 +13,33 @@ context("Application", () => {
     cy.get("#story").should("have.text", "Welcome to Splague!");
   });
 
+  it("Shouldn't be able to scroll page vertically", () => {
+    cy.get("#story").should("have.text", "Welcome to Splague!");
+    cy.get("#story-0").click();
+    cy.get("#story").should(
+      "have.text",
+      "You are a level headed doctor of medicine living in Western Europe. Above all else, you desire to help others. The year is 1345."
+    );
+    cy.get("#story-1").click();
+    cy.get("#story").should(
+      "have.text",
+      "... the Black Plague starts in 1346. Good luck."
+    );
+    cy.get("#story-2").click();
+
+    // * Ability to Test scroll position of window :)
+    cy.window().then((win) => {
+      win.scrollTo(0, 1000);
+    });
+
+    cy.window()
+      .its("scrollY")
+      .should(($scrollY) => {
+        // expect($scrollY).to.have.value(0);
+        expect($scrollY).to.be.closeTo(0, 0);
+      });
+  });
+
   it("Should be able to reset the state", () => {
     cy.get("#story").should("have.text", "Welcome to Splague!");
     cy.get("#story-0").click();
