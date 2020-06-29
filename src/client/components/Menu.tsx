@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { closeMenu } from "../redux/thunks";
+import Stats from "./Stats";
 import { MenuPage, RootState, Theme } from "../types";
 
 export interface MenuProps {
@@ -19,7 +20,7 @@ const Menu: React.SFC<MenuProps> = (props: MenuProps) => {
       <form method="dialog">
         <p className="title">Main Menu</p>
         <h3>{currentpage.toLocaleUpperCase()}</h3>
-        {/* <p>{content}</p> */}
+        {currentpage === "stats" && <Stats />}
         <menu className="dialog-menu">
           <button
             className="nes-btn is-primary"
@@ -28,15 +29,6 @@ const Menu: React.SFC<MenuProps> = (props: MenuProps) => {
           >
             Close
           </button>
-          {/* {secondaryActionText && (
-            <button
-              className="nes-btn"
-              id="menu-secondary"
-              onClick={() => secondaryAction()}
-            >
-              {secondaryActionText}
-            </button>
-          )} */}
         </menu>
       </form>
     </dialog>

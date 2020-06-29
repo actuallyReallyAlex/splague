@@ -17,7 +17,6 @@ import Alert from "./components/Alert";
 import Map from "./components/Map";
 import Menu from "./components/Menu";
 import MenuButton from "./components/MenuButton";
-import Stats from "./components/Stats";
 import ThemeToggle from "./components/ThemeToggle";
 import { gameActions } from "./constants";
 import { LocationAction, RootState, Theme } from "./types";
