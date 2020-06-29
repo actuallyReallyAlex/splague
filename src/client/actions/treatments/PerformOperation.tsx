@@ -1,10 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import {
-  setPatientOperationInProgress,
   setPatientTreatmentDialogIsOpen,
   setPatientSelectedOperation,
 } from "../../redux/actions/patient";
+import { startPatientOperation } from "../../redux/thunks";
 import { Theme, RootState, Operation } from "../../types";
 import { operations } from "../../constants";
 
@@ -13,6 +13,7 @@ export interface PerformOperationProps {
   handleOperationSelect: (string) => void;
   handleOperationStart: () => void;
   operationInProgress: boolean;
+  operationProgress: number;
   selectedOperation: Operation;
   theme: Theme;
 }
@@ -25,6 +26,7 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
     handleOperationSelect,
     handleOperationStart,
     operationInProgress,
+    operationProgress,
     selectedOperation,
     theme,
   } = props;
@@ -60,6 +62,15 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
         Operation In Progress - {operationInProgress ? "true" : "false"}
       </span>
 
+      {operationInProgress && (
+        <progress
+          className="nes-progress is-primary"
+          id="operation-progress"
+          max="100"
+          value={operationProgress}
+        />
+      )}
+
       <menu className="dialog-menu">
         <button
           className={`nes-btn is-primary ${
@@ -87,6 +98,7 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
 
 const mapStateToProps = (state: RootState) => ({
   operationInProgress: state.patient.operationInProgress,
+  operationProgress: state.patient.operationProgress,
   selectedOperation: state.patient.selectedOperation,
   theme: state.ui.theme,
 });
@@ -96,7 +108,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setPatientTreatmentDialogIsOpen(false)),
   handleOperationSelect: (operation: Operation) =>
     dispatch(setPatientSelectedOperation(operation)),
-  handleOperationStart: () => dispatch(setPatientOperationInProgress(true)),
+  handleOperationStart: () => dispatch(startPatientOperation()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PerformOperation);

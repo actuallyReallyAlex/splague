@@ -76,9 +76,17 @@ context("Actions", () => {
       "Operation In Progress - false"
     );
     cy.get("#start-operation").click();
+    cy.get("#operation-progress").should("have.value", 0);
     cy.get("#operation-in-progress").should(
       "have.text",
       "Operation In Progress - true"
+    );
+    cy.wait(3000);
+    cy.get("#operation-progress").should("have.value", 30);
+    cy.wait(7000);
+    cy.get("#operation-in-progress").should(
+      "have.text",
+      "Operation In Progress - false"
     );
   });
 

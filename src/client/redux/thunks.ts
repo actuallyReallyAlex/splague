@@ -35,6 +35,8 @@ import {
   setPatientOperation,
   setPatientRemedy,
   setPatientTreatment,
+  setPatientOperationInProgress,
+  setPatientOperationProgress,
 } from "./actions/patient";
 import { setDoctorReputation, setMorality } from "./actions/player";
 import { setChapter, setStoryText } from "./actions/story";
@@ -444,4 +446,17 @@ export const setAlert = (
   dispatch(setAlertSecondaryAction(secondaryAction));
   dispatch(setAlertSecondaryActionText(secondaryActionText));
   dispatch(setAlertTitle(title));
+};
+
+export const startPatientOperation = (): AppThunk => (dispatch, getState) => {
+  dispatch(setPatientOperationInProgress(true));
+  const operationInterval = setInterval(() => {
+    const currentProgress = getState().patient.operationProgress;
+    if (currentProgress === 100) {
+      dispatch(setPatientOperationInProgress(false));
+      clearInterval(operationInterval);
+    } else {
+      dispatch(setPatientOperationProgress(currentProgress + 10));
+    }
+  }, 1000);
 };

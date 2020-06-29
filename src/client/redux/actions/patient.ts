@@ -6,6 +6,7 @@ import {
   SET_PATIENT_NAME,
   SET_PATIENT_OPERATION,
   SET_PATIENT_OPERATION_IN_PROGRESS,
+  SET_PATIENT_OPERATION_PROGRESS,
   SET_PATIENT_REMEDY,
   SET_PATIENT_SELECTED_OPERATION,
   SET_PATIENT_TREATMENT,
@@ -48,6 +49,13 @@ export const setPatientOperationInProgress = (
 ): PatientAction => ({
   type: SET_PATIENT_OPERATION_IN_PROGRESS,
   payload: { operationInProgress },
+});
+
+export const setPatientOperationProgress = (
+  operationProgress: number
+): PatientAction => ({
+  type: SET_PATIENT_OPERATION_PROGRESS,
+  payload: { operationProgress },
 });
 
 export const setPatientRemedy = (remedy: Remedy): PatientAction => ({

@@ -7,6 +7,7 @@ import {
   SET_PATIENT_NAME,
   SET_PATIENT_OPERATION,
   SET_PATIENT_OPERATION_IN_PROGRESS,
+  SET_PATIENT_OPERATION_PROGRESS,
   SET_PATIENT_REMEDY,
   SET_PATIENT_SELECTED_OPERATION,
   SET_PATIENT_TREATMENT,
@@ -20,6 +21,7 @@ export const initialState: PatientState = {
   complaint: "",
   name: "",
   operation: null,
+  operationProgress: 0,
   operationInProgress: false,
   remedy: null,
   selectedOperation: null,
@@ -52,6 +54,9 @@ const reducer = (state = initialState, action: PatientAction): PatientState => {
         ...state,
         operationInProgress: action.payload.operationInProgress,
       };
+    }
+    case SET_PATIENT_OPERATION_PROGRESS: {
+      return { ...state, operationProgress: action.payload.operationProgress };
     }
     case SET_PATIENT_REMEDY: {
       return { ...state, remedy: action.payload.remedy };
