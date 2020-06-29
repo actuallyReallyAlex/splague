@@ -61,6 +61,21 @@ export type OfficeLocationAction = "research cure" | "treat patient";
 export type TavernLocationAction = "order drink" | "order food";
 export type TownSquareLocationAction = "barter" | "hear town crier";
 
+export interface InventoryAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface InventoryItem {
+  count: number;
+  name: string;
+}
+
+export interface InventoryState {
+  items: InventoryItem[];
+}
+
 export interface Item {
   baseIncome: number;
   bonusMultiplier: number;
