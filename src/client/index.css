@@ -182,3 +182,11 @@ section.message-list {
 .icon-list > .blur-filter {
   filter: blur(10px);
 }
+
+/* Menu */
+
+#open-menu {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
