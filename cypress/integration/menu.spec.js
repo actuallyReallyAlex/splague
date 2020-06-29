@@ -21,5 +21,6 @@ context("Menu", () => {
 
   it("Should exist in <App />", () => {
     cy.get("#menu").should("exist");
+    cy.get("#menu").should("have.prop", "tagName").should("eq", "DIALOG");
   });
 });
