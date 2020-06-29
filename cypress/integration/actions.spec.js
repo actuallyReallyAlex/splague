@@ -1,5 +1,16 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
+
+const operations = [
+  "amputation",
+  "deliver baby",
+  "hole in head",
+  "lance wound",
+  "leeching",
+  "remove tooth",
+  "set bone",
+];
 
 context("Actions", () => {
   beforeEach(() => {
@@ -43,6 +54,18 @@ context("Actions", () => {
     cy.get("#chat-advance").click();
     cy.get("#chat-messages").should("contain.text", "Chat 1Chat 2Chat 3");
     cy.get("#chat-advance").should("not.exist");
+  });
+
+  it("Should perform operation on patient", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-operation").click();
+
+    operations.forEach((operation) => {
+      const replacedValue = operation.replace(/ /gm, "-");
+      cy.get("#operation-select").select(replacedValue);
+      cy.get("#operation-select").should("have.value", replacedValue);
+    });
   });
 
   it("Should not display Treat Patient Screen when not at the office", () => {

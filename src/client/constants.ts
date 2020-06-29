@@ -12,6 +12,7 @@ import {
   OfficeLocationAction,
   TavernLocationAction,
   TownSquareLocationAction,
+  Operation,
 } from "./types";
 import { ReactElement } from "react";
 
@@ -130,3 +131,13 @@ export const actionSets = {
   tavern: tavernActions,
   "town square": townSquareActions,
 };
+
+export const operations: Operation[] = [
+  "amputation",
+  "deliver baby",
+  "hole in head",
+  "lance wound",
+  "leeching",
+  "remove tooth",
+  "set bone",
+];

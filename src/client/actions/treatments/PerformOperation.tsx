@@ -1,7 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { setPatientTreatmentDialogIsOpen } from "../../redux/actions/patient";
-import { Theme, RootState } from "../../types";
+import { Theme, RootState, Operation } from "../../types";
+import { operations } from "../../constants";
 
 export interface PerformOperationProps {
   handleCloseTreatmentDialog: () => void;
@@ -18,7 +19,21 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
       <p className="title" id="treatment-dialog-title">
         Perform Operation
       </p>
-      <p>TREATMENT DIALOG CONTEXT</p>
+
+      <label htmlFor="operation-select">Select Operation to Perform</label>
+      <div className="nes-select">
+        <select id="operation-select" required>
+          <option disabled selected hidden value="">
+            Select...
+          </option>
+          {operations.map((operation: Operation, i: number) => (
+            <option key={i} value={operation.replace(/ /gm, "-")}>
+              {operation.toUpperCase()}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <menu className="dialog-menu">
         <button
           className="nes-btn is-primary"
