@@ -132,6 +132,34 @@ context("Actions", () => {
         (scenario) => scenario.name === patientName
       );
       const correctOperation = patientScenario.operation;
+      const incorrectOperation = operations.filter(
+        (operation) => operation !== correctOperation
+      )[0];
+      // * Select the correct operation
+      const replacedValue = incorrectOperation.replace(/ /gm, "-");
+      cy.get("#operation-select").select(replacedValue);
+      cy.get("#operation-select").should("have.value", replacedValue);
+      // * Start the Operation
+      cy.get("#start-operation").click();
+      // * wait 10 seconds
+      cy.wait(10000);
+      // * Verify that the operation was successful
+      cy.get("#operation-outcome").should("have.text", "FAILURE");
+    });
+  });
+
+  it("Should perform an unsuccessful operation on the patient", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-operation").click();
+
+    // * Get Patient and Know what the correct operation should be
+    cy.get("#patient-name").then(($patientName) => {
+      const patientName = $patientName[0].textContent;
+      const patientScenario = patientScenarios.find(
+        (scenario) => scenario.name === patientName
+      );
+      const correctOperation = patientScenario.operation;
       // * Select the correct operation
       const replacedValue = correctOperation.replace(/ /gm, "-");
       cy.get("#operation-select").select(replacedValue);
