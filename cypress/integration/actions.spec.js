@@ -61,7 +61,7 @@ context("Actions", () => {
     cy.get("#treatment-operation").click();
     cy.get("#treatment-dialog").should("be.visible");
     cy.get("#treatment-dialog-title").should("have.text", "Perform Operation");
-    cy.get("#treatment-dialog-secondary").click();
+    cy.get("#cancel-operation").click();
     cy.get("#treatment-dialog").should("not.be.visible");
 
     cy.get("#treatment-chat").click();
@@ -101,23 +101,17 @@ context("Actions", () => {
 
     cy.get("#start-operation").should("be.enabled");
 
-    cy.get("#operation-in-progress").should(
-      "have.text",
-      "Operation In Progress - false"
-    );
     cy.get("#start-operation").click();
+    cy.get("#start-operation").should("not.exist");
+    cy.get("#cancel-operation").should("not.exist");
+    cy.get("#operation-select").should("not.exist");
     cy.get("#operation-progress").should("have.value", 0);
-    cy.get("#operation-in-progress").should(
-      "have.text",
-      "Operation In Progress - true"
-    );
     cy.wait(3000);
     cy.get("#operation-progress").should("have.value", 30);
     cy.wait(7000);
-    cy.get("#operation-in-progress").should(
-      "have.text",
-      "Operation In Progress - false"
-    );
+    cy.get("#start-operation").should("be.visible");
+    cy.get("#cancel-operation").should("be.visible");
+    cy.get("#operation-select").should("be.visible");
   });
 
   it("Should perform a successful operation on the patient", () => {

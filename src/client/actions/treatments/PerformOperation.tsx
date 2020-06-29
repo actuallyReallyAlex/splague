@@ -39,30 +39,30 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
         Perform Operation
       </p>
 
-      <label htmlFor="operation-select">Select Operation to Perform</label>
-      <div className={`nes-select ${theme === "dark" ? "is-dark" : ""}`}>
-        <select
-          defaultValue=""
-          id="operation-select"
-          onChange={(e) => {
-            handleOperationSelect(e.target.value.replace(/-/gm, " "));
-          }}
-          required
-        >
-          <option hidden value="">
-            Select...
-          </option>
-          {operations.map((operation: Operation, i: number) => (
-            <option key={i} value={operation.replace(/ /gm, "-")}>
-              {operation.toUpperCase()}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <span id="operation-in-progress">
-        Operation In Progress - {operationInProgress ? "true" : "false"}
-      </span>
+      {!operationInProgress && (
+        <>
+          <label htmlFor="operation-select">Select Operation to Perform</label>
+          <div className={`nes-select ${theme === "dark" ? "is-dark" : ""}`}>
+            <select
+              defaultValue=""
+              id="operation-select"
+              onChange={(e) => {
+                handleOperationSelect(e.target.value.replace(/-/gm, " "));
+              }}
+              required
+            >
+              <option hidden value="">
+                Select...
+              </option>
+              {operations.map((operation: Operation, i: number) => (
+                <option key={i} value={operation.replace(/ /gm, "-")}>
+                  {operation.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
+        </>
+      )}
 
       {operationInProgress && (
         <progress
@@ -77,27 +77,29 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
         <span id="operation-outcome">{operationOutcome.toUpperCase()}</span>
       )}
 
-      <menu className="dialog-menu">
-        <button
-          className={`nes-btn is-primary ${
-            !selectedOperation ? "is-disabled" : ""
-          }`}
-          disabled={!selectedOperation}
-          id="start-operation"
-          onClick={() => {
-            handleOperationStart();
-          }}
-        >
-          Start Operation
-        </button>
-        <button
-          className="nes-btn is-secondary"
-          id="treatment-dialog-secondary"
-          onClick={() => handleCloseTreatmentDialog()}
-        >
-          Cancel
-        </button>
-      </menu>
+      {!operationInProgress && (
+        <menu className="dialog-menu">
+          <button
+            className={`nes-btn is-primary ${
+              !selectedOperation ? "is-disabled" : ""
+            }`}
+            disabled={!selectedOperation}
+            id="start-operation"
+            onClick={() => {
+              handleOperationStart();
+            }}
+          >
+            Start Operation
+          </button>
+          <button
+            className="nes-btn is-secondary"
+            id="cancel-operation"
+            onClick={() => handleCloseTreatmentDialog()}
+          >
+            Cancel
+          </button>
+        </menu>
+      )}
     </>
   );
 };
