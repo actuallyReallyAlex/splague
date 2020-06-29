@@ -12,6 +12,36 @@ const operations = [
   "set bone",
 ];
 
+const patientScenarios = [
+  {
+    age: 19,
+    avatar: "/assets/patientAvatar.png",
+    chat: ["Chat 1", "Chat 2", "Chat 3"],
+    complaint: "Back pain",
+    name: "Billy Bob",
+    operation: "leeching",
+    remedy: "magic stone",
+  },
+  {
+    age: 30,
+    avatar: "/assets/patientAvatar.png",
+    chat: ["Chat 1", "Chat 2", "Chat 3"],
+    complaint: "Headache",
+    name: "Jane Jill",
+    operation: "hole in head",
+    remedy: "intelligence potion",
+  },
+  {
+    age: 10,
+    avatar: "/assets/patientAvatar.png",
+    chat: ["Chat 1", "Chat 2", "Chat 3"],
+    complaint: "Broken foot",
+    name: "Mark Man",
+    operation: "set bone",
+    remedy: "healing elixir",
+  },
+];
+
 context("Actions", () => {
   beforeEach(() => {
     cy.visit("http://localhost:8080");
@@ -88,6 +118,31 @@ context("Actions", () => {
       "have.text",
       "Operation In Progress - false"
     );
+  });
+
+  it("Should perform a successful operation on the patient", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-operation").click();
+
+    // * Get Patient and Know what the correct operation should be
+    cy.get("#patient-name").then(($patientName) => {
+      const patientName = $patientName[0].textContent;
+      const patientScenario = patientScenarios.find(
+        (scenario) => scenario.name === patientName
+      );
+      const correctOperation = patientScenario.operation;
+      // * Select the correct operation
+      const replacedValue = correctOperation.replace(/ /gm, "-");
+      cy.get("#operation-select").select(replacedValue);
+      cy.get("#operation-select").should("have.value", replacedValue);
+      // * Start the Operation
+      cy.get("#start-operation").click();
+      // * wait 10 seconds
+      cy.wait(10000);
+      // * Verify that the operation was successful
+      cy.get("#operation-outcome").should("have.text", "SUCCESS");
+    });
   });
 
   it("Should not display Treat Patient Screen when not at the office", () => {

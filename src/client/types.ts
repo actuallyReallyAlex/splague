@@ -120,6 +120,8 @@ export type Operation =
   | "remove tooth"
   | "set bone";
 
+export type OperationOutcome = "success" | "failure";
+
 export interface PatientAction {
   type: string;
   // eslint-disable-next-line
@@ -144,6 +146,7 @@ export interface PatientState {
   name: string;
   operation: Operation;
   operationInProgress: boolean;
+  operationOutcome: OperationOutcome;
   operationProgress: number;
   remedy: Remedy;
   selectedOperation: Operation;

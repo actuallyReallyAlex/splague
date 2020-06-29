@@ -6,13 +6,20 @@ import {
   SET_PATIENT_NAME,
   SET_PATIENT_OPERATION,
   SET_PATIENT_OPERATION_IN_PROGRESS,
+  SET_PATIENT_OPERATION_OUTCOME,
   SET_PATIENT_OPERATION_PROGRESS,
   SET_PATIENT_REMEDY,
   SET_PATIENT_SELECTED_OPERATION,
   SET_PATIENT_TREATMENT,
   SET_PATIENT_TREATMENT_DIALOG_IS_OPEN,
 } from "../actionTypes";
-import { Operation, PatientAction, Remedy, TreatmentType } from "../../types";
+import {
+  Operation,
+  PatientAction,
+  Remedy,
+  TreatmentType,
+  OperationOutcome,
+} from "../../types";
 
 export const setPatientAge = (age: number): PatientAction => ({
   type: SET_PATIENT_AGE,
@@ -49,6 +56,13 @@ export const setPatientOperationInProgress = (
 ): PatientAction => ({
   type: SET_PATIENT_OPERATION_IN_PROGRESS,
   payload: { operationInProgress },
+});
+
+export const setPatientOperationOutcome = (
+  operationOutcome: OperationOutcome
+): PatientAction => ({
+  type: SET_PATIENT_OPERATION_OUTCOME,
+  payload: { operationOutcome },
 });
 
 export const setPatientOperationProgress = (

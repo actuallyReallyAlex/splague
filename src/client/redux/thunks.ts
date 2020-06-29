@@ -36,6 +36,7 @@ import {
   setPatientRemedy,
   setPatientTreatment,
   setPatientOperationInProgress,
+  setPatientOperationOutcome,
   setPatientOperationProgress,
 } from "./actions/patient";
 import { setDoctorReputation, setMorality } from "./actions/player";
@@ -56,6 +57,7 @@ import {
   Item,
   Location,
   LocationAction,
+  OperationOutcome,
   PatientScenario,
   RootState,
 } from "../types";
@@ -453,7 +455,15 @@ export const startPatientOperation = (): AppThunk => (dispatch, getState) => {
   const operationInterval = setInterval(() => {
     const currentProgress = getState().patient.operationProgress;
     if (currentProgress === 100) {
+      // * Operation has completed
       dispatch(setPatientOperationInProgress(false));
+      // * Determine Operation Outcome
+      // TODO - multipliers / factors that influence the outcome more than just "did it match the operation"
+      const patientOperation = getState().patient.operation;
+      const selectedOperation = getState().patient.selectedOperation;
+      const operationOutcome: OperationOutcome =
+        patientOperation === selectedOperation ? "success" : "failure";
+      dispatch(setPatientOperationOutcome(operationOutcome));
       clearInterval(operationInterval);
     } else {
       dispatch(setPatientOperationProgress(currentProgress + 10));

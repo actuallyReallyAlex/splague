@@ -5,7 +5,7 @@ import {
   setPatientSelectedOperation,
 } from "../../redux/actions/patient";
 import { startPatientOperation } from "../../redux/thunks";
-import { Theme, RootState, Operation } from "../../types";
+import { Theme, RootState, Operation, OperationOutcome } from "../../types";
 import { operations } from "../../constants";
 
 export interface PerformOperationProps {
@@ -13,6 +13,7 @@ export interface PerformOperationProps {
   handleOperationSelect: (string) => void;
   handleOperationStart: () => void;
   operationInProgress: boolean;
+  operationOutcome: OperationOutcome;
   operationProgress: number;
   selectedOperation: Operation;
   theme: Theme;
@@ -26,6 +27,7 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
     handleOperationSelect,
     handleOperationStart,
     operationInProgress,
+    operationOutcome,
     operationProgress,
     selectedOperation,
     theme,
@@ -71,6 +73,10 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
         />
       )}
 
+      {operationOutcome && (
+        <span id="operation-outcome">{operationOutcome.toUpperCase()}</span>
+      )}
+
       <menu className="dialog-menu">
         <button
           className={`nes-btn is-primary ${
@@ -98,6 +104,7 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
 
 const mapStateToProps = (state: RootState) => ({
   operationInProgress: state.patient.operationInProgress,
+  operationOutcome: state.patient.operationOutcome,
   operationProgress: state.patient.operationProgress,
   selectedOperation: state.patient.selectedOperation,
   theme: state.ui.theme,
