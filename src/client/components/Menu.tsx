@@ -1,14 +1,16 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { closeMenu } from "../redux/thunks";
 import { MenuPage, RootState, Theme } from "../types";
 
 export interface MenuProps {
   currentpage: MenuPage;
+  handleCloseMenu: () => void;
   theme: Theme;
 }
 
 const Menu: React.SFC<MenuProps> = (props: MenuProps) => {
-  const { currentpage, theme } = props;
+  const { currentpage, handleCloseMenu, theme } = props;
   return (
     <dialog
       className={`nes-dialog ${theme === "dark" ? "is-dark" : ""}`}
@@ -18,24 +20,24 @@ const Menu: React.SFC<MenuProps> = (props: MenuProps) => {
         <p className="title">Main Menu</p>
         <h3>{currentpage.toLocaleUpperCase()}</h3>
         {/* <p>{content}</p> */}
-        {/* <menu className="dialog-menu">
+        <menu className="dialog-menu">
           <button
             className="nes-btn is-primary"
-            id="alert-primary"
-            onClick={() => primaryAction()}
+            id="close-menu"
+            onClick={() => handleCloseMenu()}
           >
-            {primaryActionText}
+            Close
           </button>
-          {secondaryActionText && (
+          {/* {secondaryActionText && (
             <button
               className="nes-btn"
-              id="alert-secondary"
+              id="menu-secondary"
               onClick={() => secondaryAction()}
             >
               {secondaryActionText}
             </button>
-          )}
-        </menu> */}
+          )} */}
+        </menu>
       </form>
     </dialog>
   );
@@ -46,4 +48,8 @@ const mapStateToProps = (state: RootState) => ({
   theme: state.ui.theme,
 });
 
-export default connect(mapStateToProps)(Menu);
+const mapDispatchToProps = (dispatch) => ({
+  handleCloseMenu: () => dispatch(closeMenu()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -28,4 +28,12 @@ context("Menu", () => {
     cy.get("#open-menu").click();
     cy.get("#menu").should("be.visible");
   });
+
+  it("Should be able to close Menu.", () => {
+    cy.get("#menu").should("not.be.visible");
+    cy.get("#open-menu").click();
+    cy.get("#menu").should("be.visible");
+    cy.get("#close-menu").click();
+    cy.get("#menu").should("not.be.visible");
+  });
 });
