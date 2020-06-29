@@ -4,6 +4,7 @@ import { RootState, Theme } from "../types";
 
 export interface AlertProps {
   content: string;
+  isOpen: boolean;
   primaryAction: () => void;
   primaryActionText: string;
   secondaryAction: () => void;
@@ -15,6 +16,7 @@ export interface AlertProps {
 const Alert: React.SFC<AlertProps> = (props: AlertProps) => {
   const {
     content,
+    isOpen,
     primaryAction,
     primaryActionText,
     secondaryAction,
@@ -23,38 +25,43 @@ const Alert: React.SFC<AlertProps> = (props: AlertProps) => {
     title,
   } = props;
   return (
-    <dialog
-      className={`nes-dialog ${theme === "dark" ? "is-dark" : ""}`}
-      id="alert"
-    >
-      <form method="dialog">
-        <p className="title">{title}</p>
-        <p>{content}</p>
-        <menu className="dialog-menu">
-          <button
-            className="nes-btn is-primary"
-            id="alert-primary"
-            onClick={() => primaryAction()}
-          >
-            {primaryActionText}
-          </button>
-          {secondaryActionText && (
+    <div className={`dialog-container ${isOpen ? "" : "hidden"}`}>
+      <dialog
+        className={`dialog-inner nes-dialog ${
+          theme === "dark" ? "is-dark" : ""
+        }`}
+        id="alert"
+      >
+        <form method="dialog">
+          <p className="title">{title}</p>
+          <p>{content}</p>
+          <menu className="dialog-menu">
             <button
-              className="nes-btn"
-              id="alert-secondary"
-              onClick={() => secondaryAction()}
+              className="nes-btn is-primary"
+              id="alert-primary"
+              onClick={() => primaryAction()}
             >
-              {secondaryActionText}
+              {primaryActionText}
             </button>
-          )}
-        </menu>
-      </form>
-    </dialog>
+            {secondaryActionText && (
+              <button
+                className="nes-btn"
+                id="alert-secondary"
+                onClick={() => secondaryAction()}
+              >
+                {secondaryActionText}
+              </button>
+            )}
+          </menu>
+        </form>
+      </dialog>
+    </div>
   );
 };
 
 const mapStateToProps = (state: RootState) => ({
   content: state.alert.content,
+  isOpen: state.alert.isOpen,
   primaryAction: state.alert.primaryAction,
   primaryActionText: state.alert.primaryActionText,
   secondaryAction: state.alert.secondaryAction,

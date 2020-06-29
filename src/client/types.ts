@@ -9,6 +9,7 @@ export interface AlertAction {
 
 export interface AlertState {
   content: string;
+  isOpen: boolean;
   primaryAction: () => void;
   primaryActionText: string;
   secondaryAction: () => void;

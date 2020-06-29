@@ -9,6 +9,7 @@ import {
   setAlertSecondaryAction,
   setAlertSecondaryActionText,
   setAlertTitle,
+  setAlertIsOpen,
 } from "./actions/alert";
 import {
   setBuyMultiplier,
@@ -137,12 +138,13 @@ export const initializeGameState = (): AppThunk => async (
           setAlert(
             "Away Earnings",
             `You were away for ${awayTime}. You earned $${awayEarnings.toLocaleString()}`,
-            () => null,
+            () => dispatch(setAlertIsOpen(false)),
             "OK",
-            () => null,
+            () => dispatch(setAlertIsOpen(false)),
             ""
           )
         );
+        dispatch(setAlertIsOpen(true));
       }
     }
   } catch (error) {
@@ -442,6 +444,4 @@ export const setAlert = (
   dispatch(setAlertSecondaryAction(secondaryAction));
   dispatch(setAlertSecondaryActionText(secondaryActionText));
   dispatch(setAlertTitle(title));
-  const dialogElement = document.getElementById("alert") as HTMLDialogElement;
-  dialogElement.showModal();
 };

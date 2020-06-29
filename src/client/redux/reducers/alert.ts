@@ -1,6 +1,7 @@
 import { AlertAction, AlertState } from "../../types";
 import {
   SET_ALERT_CONTENT,
+  SET_ALERT_IS_OPEN,
   SET_ALERT_PRIMARY_ACTION,
   SET_ALERT_PRIMARY_ACTION_TEXT,
   SET_ALERT_SECONDARY_ACTION,
@@ -10,6 +11,7 @@ import {
 
 export const initialState: AlertState = {
   content: "",
+  isOpen: false,
   primaryAction: null,
   primaryActionText: "",
   secondaryAction: null,
@@ -21,6 +23,9 @@ const reducer = (state = initialState, action: AlertAction): AlertState => {
   switch (action.type) {
     case SET_ALERT_CONTENT: {
       return { ...state, content: action.payload.content };
+    }
+    case SET_ALERT_IS_OPEN: {
+      return { ...state, isOpen: action.payload.isOpen };
     }
     case SET_ALERT_PRIMARY_ACTION: {
       return { ...state, primaryAction: action.payload.primaryAction };

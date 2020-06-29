@@ -1,5 +1,6 @@
 import {
   SET_ALERT_CONTENT,
+  SET_ALERT_IS_OPEN,
   SET_ALERT_PRIMARY_ACTION,
   SET_ALERT_PRIMARY_ACTION_TEXT,
   SET_ALERT_SECONDARY_ACTION,
@@ -11,6 +12,11 @@ import { AlertAction } from "../../types";
 export const setAlertContent = (content: string): AlertAction => ({
   type: SET_ALERT_CONTENT,
   payload: { content },
+});
+
+export const setAlertIsOpen = (isOpen: boolean): AlertAction => ({
+  type: SET_ALERT_IS_OPEN,
+  payload: { isOpen },
 });
 
 export const setAlertPrimaryAction = (

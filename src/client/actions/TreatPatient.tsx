@@ -1,6 +1,5 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { setAlert } from "../redux/thunks";
 import {
   setPatientTreatment,
   setPatientTreatmentDialogIsOpen,
@@ -21,14 +20,6 @@ export interface TreatPatientProps {
   age: number;
   chat: string[];
   complaint: string;
-  handleAlert: (
-    title: string,
-    content: string,
-    primaryAction: () => void,
-    primaryActionText: string,
-    secondaryAction: () => void,
-    secondaryActionText: string
-  ) => void;
   handleOpenTreatmentDialog: () => void;
   handleTreatmentSelect: (treatment: TreatmentType) => void;
   name: string;
@@ -46,7 +37,6 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     age,
     chat,
     complaint,
-    handleAlert,
     handleOpenTreatmentDialog,
     handleTreatmentSelect,
     name,
@@ -163,24 +153,6 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleAlert: (
-    title: string,
-    content: string,
-    primaryAction: () => void,
-    primaryActionText: string,
-    secondaryAction: () => void,
-    secondaryActionText: string
-  ) =>
-    dispatch(
-      setAlert(
-        title,
-        content,
-        primaryAction,
-        primaryActionText,
-        secondaryAction,
-        secondaryActionText
-      )
-    ),
   handleOpenTreatmentDialog: () =>
     dispatch(setPatientTreatmentDialogIsOpen(true)),
   handleTreatmentSelect: (treatment: TreatmentType) =>
