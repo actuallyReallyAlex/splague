@@ -1,7 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../redux/thunks";
-import { setPatientTreatment } from "../redux/actions/patient";
+import {
+  setPatientTreatment,
+  setPatientTreatmentDialogIsOpen,
+} from "../redux/actions/patient";
 import Chat from "./treatments/Chat";
 import PerformOperation from "./treatments/PerformOperation";
 import PrescribeRemedy from "./treatments/PrescribeRemedy";
@@ -26,12 +29,14 @@ export interface TreatPatientProps {
     secondaryAction: () => void,
     secondaryActionText: string
   ) => void;
+  handleOpenTreatmentDialog: () => void;
   handleTreatmentSelect: (treatment: TreatmentType) => void;
   name: string;
   operation: Operation;
   remedy: Remedy;
   theme: Theme;
   treatment: TreatmentType;
+  treatmentDialogIsOpen: boolean;
 }
 
 const TreatPatient: React.SFC<TreatPatientProps> = (
@@ -42,12 +47,14 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     chat,
     complaint,
     handleAlert,
+    handleOpenTreatmentDialog,
     handleTreatmentSelect,
     name,
     operation,
     remedy,
     theme,
     treatment,
+    treatmentDialogIsOpen,
   } = props;
 
   const treatments: Treatment[] = [
@@ -55,10 +62,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
       dialogContent: <PrescribeRemedy />,
       handler: () => {
         handleTreatmentSelect("remedy");
-        const treatmentDialog = document.getElementById(
-          "treatment-dialog"
-        ) as HTMLDialogElement;
-        treatmentDialog.showModal();
+        handleOpenTreatmentDialog();
       },
       name: "remedy",
       text: "Prescribe Remedy",
@@ -67,10 +71,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
       dialogContent: <PerformOperation />,
       handler: () => {
         handleTreatmentSelect("operation");
-        const treatmentDialog = document.getElementById(
-          "treatment-dialog"
-        ) as HTMLDialogElement;
-        treatmentDialog.showModal();
+        handleOpenTreatmentDialog();
       },
       name: "operation",
       text: "Perform Operation",
@@ -79,10 +80,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
       dialogContent: <Chat />,
       handler: () => {
         handleTreatmentSelect("chat");
-        const treatmentDialog = document.getElementById(
-          "treatment-dialog"
-        ) as HTMLDialogElement;
-        treatmentDialog.showModal();
+        handleOpenTreatmentDialog();
       },
       name: "chat",
       text: "Chat",
@@ -130,16 +128,24 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         </table>
       </div>
 
-      <dialog
-        className={`nes-dialog ${theme === "dark" ? "is-dark" : ""}`}
-        id="treatment-dialog"
+      {/* Container */}
+      <div
+        className={`dialog-container ${treatmentDialogIsOpen ? "" : "hidden"}`}
       >
-        {treatment &&
-          treatments.find(
-            (possibleTreatment: Treatment) =>
-              possibleTreatment.name === treatment
-          ).dialogContent}
-      </dialog>
+        {/* Dialog */}
+        <dialog
+          className={`dialog-inner nes-dialog ${
+            theme === "dark" ? "is-dark" : ""
+          }`}
+          id="treatment-dialog"
+        >
+          {treatment &&
+            treatments.find(
+              (possibleTreatment: Treatment) =>
+                possibleTreatment.name === treatment
+            ).dialogContent}
+        </dialog>
+      </div>
     </div>
   );
 };
@@ -153,6 +159,7 @@ const mapStateToProps = (state: RootState) => ({
   remedy: state.patient.remedy,
   theme: state.ui.theme,
   treatment: state.patient.treatment,
+  treatmentDialogIsOpen: state.patient.treatmentDialogIsOpen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -174,6 +181,8 @@ const mapDispatchToProps = (dispatch) => ({
         secondaryActionText
       )
     ),
+  handleOpenTreatmentDialog: () =>
+    dispatch(setPatientTreatmentDialogIsOpen(true)),
   handleTreatmentSelect: (treatment: TreatmentType) =>
     dispatch(setPatientTreatment(treatment)),
 });

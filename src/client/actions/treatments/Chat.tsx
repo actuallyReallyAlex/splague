@@ -1,27 +1,31 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { isOdd } from "../../util";
+import { setPatientTreatmentDialogIsOpen } from "../../redux/actions/patient";
 import { Theme, RootState } from "../../types";
 
 export interface ChatProps {
   chat: string[];
+  handleCloseTreatmentDialog: () => void;
   patientAvatar: string;
   playerAvatar: string;
   theme: Theme;
 }
 
 const Chat: React.SFC<ChatProps> = (props: ChatProps) => {
-  const { chat, patientAvatar, playerAvatar, theme } = props;
+  const {
+    chat,
+    handleCloseTreatmentDialog,
+    patientAvatar,
+    playerAvatar,
+    theme,
+  } = props;
 
   const [chatStep, setChatStep] = React.useState(0);
 
   const filteredChat: string[] = chat.filter(
     (chatString: string, i: number) => i <= chatStep
   );
-
-  const dialogElement = document.getElementById(
-    "treatment-dialog"
-  ) as HTMLDialogElement;
 
   return (
     <>
@@ -87,14 +91,14 @@ const Chat: React.SFC<ChatProps> = (props: ChatProps) => {
         <button
           className="nes-btn is-primary"
           id="treatment-dialog-primary"
-          onClick={() => dialogElement.close()}
+          onClick={() => handleCloseTreatmentDialog()}
         >
           PRIMARY
         </button>
         <button
           className="nes-btn"
           id="treatment-dialog-secondary"
-          onClick={() => dialogElement.close()}
+          onClick={() => handleCloseTreatmentDialog()}
         >
           SECONDARY
         </button>
@@ -110,4 +114,9 @@ const mapStateToProps = (state: RootState) => ({
   theme: state.ui.theme,
 });
 
-export default connect(mapStateToProps)(Chat);
+const mapDispatchToProps = (dispatch) => ({
+  handleCloseTreatmentDialog: () =>
+    dispatch(setPatientTreatmentDialogIsOpen(false)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);

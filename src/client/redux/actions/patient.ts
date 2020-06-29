@@ -7,6 +7,7 @@ import {
   SET_PATIENT_OPERATION,
   SET_PATIENT_REMEDY,
   SET_PATIENT_TREATMENT,
+  SET_PATIENT_TREATMENT_DIALOG_IS_OPEN,
 } from "../actionTypes";
 import { Operation, PatientAction, Remedy, TreatmentType } from "../../types";
 
@@ -50,4 +51,11 @@ export const setPatientTreatment = (
 ): PatientAction => ({
   type: SET_PATIENT_TREATMENT,
   payload: { treatment },
+});
+
+export const setPatientTreatmentDialogIsOpen = (
+  treatmentDialogIsOpen: boolean
+): PatientAction => ({
+  type: SET_PATIENT_TREATMENT_DIALOG_IS_OPEN,
+  payload: { treatmentDialogIsOpen },
 });

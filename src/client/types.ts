@@ -144,6 +144,7 @@ export interface PatientState {
   operation: Operation;
   remedy: Remedy;
   treatment: TreatmentType;
+  treatmentDialogIsOpen: boolean;
 }
 
 export interface PlayerAction {

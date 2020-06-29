@@ -8,6 +8,7 @@ import {
   SET_PATIENT_OPERATION,
   SET_PATIENT_REMEDY,
   SET_PATIENT_TREATMENT,
+  SET_PATIENT_TREATMENT_DIALOG_IS_OPEN,
 } from "../actionTypes";
 
 export const initialState: PatientState = {
@@ -19,6 +20,7 @@ export const initialState: PatientState = {
   operation: null,
   remedy: null,
   treatment: null,
+  treatmentDialogIsOpen: false,
 };
 
 const reducer = (state = initialState, action: PatientAction): PatientState => {
@@ -46,6 +48,12 @@ const reducer = (state = initialState, action: PatientAction): PatientState => {
     }
     case SET_PATIENT_TREATMENT: {
       return { ...state, treatment: action.payload.treatment };
+    }
+    case SET_PATIENT_TREATMENT_DIALOG_IS_OPEN: {
+      return {
+        ...state,
+        treatmentDialogIsOpen: action.payload.treatmentDialogIsOpen,
+      };
     }
     default:
       return state;
