@@ -177,6 +177,7 @@ export type RootState = {
   alert: AlertState;
   game: GameState;
   map: MapState;
+  menu: MenuState;
   patient: PatientState;
   player: PlayerState;
   story: StoryState;

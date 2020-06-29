@@ -14,6 +14,7 @@ import { setChapter, setStoryText } from "./redux/actions/story";
 import Actions from "./components/Actions";
 import Alert from "./components/Alert";
 import Map from "./components/Map";
+import Menu from "./components/Menu";
 import Stats from "./components/Stats";
 import ThemeToggle from "./components/ThemeToggle";
 import { gameActions } from "./constants";
@@ -150,8 +151,9 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
         </button>
       )}
 
-      <LoadingIndicator />
       <Alert />
+      <LoadingIndicator />
+      <Menu />
     </div>
   );
 };
