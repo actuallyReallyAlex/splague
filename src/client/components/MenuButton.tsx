@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { openMenu } from "../redux/thunks";
+import { setIsVisible } from "../redux/actions/menu";
 
 export interface MenuButtonProps {
   handleOpenMenu: () => void;
@@ -16,7 +16,7 @@ const MenuButton: React.SFC<MenuButtonProps> = (props: MenuButtonProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleOpenMenu: () => dispatch(openMenu()),
+  handleOpenMenu: () => dispatch(setIsVisible(true)),
 });
 
 export default connect(null, mapDispatchToProps)(MenuButton);

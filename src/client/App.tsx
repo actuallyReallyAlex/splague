@@ -6,7 +6,6 @@ import {
   deathRate,
   growthRate,
   initializeGameState,
-  openMenu,
   progressDate,
   resetGame,
   saveGame,
@@ -20,6 +19,7 @@ import MenuButton from "./components/MenuButton";
 import ThemeToggle from "./components/ThemeToggle";
 import { gameActions } from "./constants";
 import { LocationAction, RootState, Theme } from "./types";
+import { setIsVisible } from "./redux/actions/menu";
 
 interface AppProps {
   chapter: number;
@@ -178,7 +178,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleGrowthRate: () => dispatch(growthRate()),
   handleInitializeGameState: () => dispatch(initializeGameState()),
-  handleOpenMenu: () => dispatch(openMenu()),
+  handleOpenMenu: () => dispatch(setIsVisible(true)),
   handleResetGame: () => dispatch(resetGame()),
   handleSaveGame: () => dispatch(saveGame()),
   handleStartDay: () => {
