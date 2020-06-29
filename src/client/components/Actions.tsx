@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { performAction } from "../redux/actions";
+import { performAction } from "../redux/thunks";
 import { LocationAction, RootState } from "../types";
 
 export interface ActionsProps {

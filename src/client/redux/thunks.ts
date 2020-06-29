@@ -3,235 +3,58 @@ import differenceInMonths from "date-fns/differenceInMonths";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import formatDistance from "date-fns/formatDistance";
 import {
+  setAlertContent,
+  setAlertPrimaryAction,
+  setAlertPrimaryActionText,
+  setAlertSecondaryAction,
+  setAlertSecondaryActionText,
+  setAlertTitle,
+} from "./actions/alert";
+import {
+  setBuyMultiplier,
+  setDate,
+  setEarnings,
+  setId,
+  setItems,
+  setMoney,
+  setStartTime,
+} from "./actions/game";
+import {
+  setActions,
+  setCurrentAction,
+  setCurrentLocation,
+} from "./actions/map";
+import {
+  setPatientAge,
+  setPatientAvatar,
+  setPatientChat,
+  setPatientComplaint,
+  setPatientName,
+  setPatientOperation,
+  setPatientRemedy,
+  setPatientTreatment,
+} from "./actions/patient";
+import { setDoctorReputation, setMorality } from "./actions/player";
+import { setChapter, setStoryText } from "./actions/story";
+import { setIsLoading, setTheme } from "./actions/ui";
+import { setPopulation } from "./actions/world";
+import {
   actionSets,
   defaultInitialState,
   homeActions,
   patientScenarios,
 } from "../constants";
-import {
-  SET_ACTIONS,
-  SET_ALERT_CONTENT,
-  SET_ALERT_PRIMARY_ACTION,
-  SET_ALERT_PRIMARY_ACTION_TEXT,
-  SET_ALERT_SECONDARY_ACTION,
-  SET_ALERT_SECONDARY_ACTION_TEXT,
-  SET_ALERT_TITLE,
-  SET_BUY_MULTIPLIER,
-  SET_CHAPTER,
-  SET_CURRENT_ACTION,
-  SET_CURRENT_LOCATION,
-  SET_DATE,
-  SET_DOCTOR_REPUTATION,
-  SET_EARNINGS,
-  SET_ID,
-  SET_IS_LOADING,
-  SET_ITEMS,
-  SET_MONEY,
-  SET_MORALITY,
-  SET_PATIENT_AGE,
-  SET_PATIENT_AVATAR,
-  SET_PATIENT_CHAT,
-  SET_PATIENT_COMPLAINT,
-  SET_PATIENT_NAME,
-  SET_PATIENT_OPERATION,
-  SET_PATIENT_REMEDY,
-  SET_PATIENT_TREATMENT,
-  SET_POPULATION,
-  SET_START_TIME,
-  SET_STORY_TEXT,
-  SET_THEME,
-} from "./actionTypes";
 import { round, randomInteger } from "../util";
 
 import {
-  AlertAction,
   AppThunk,
-  GameAction,
   GameDBData,
   Item,
   Location,
   LocationAction,
-  MapAction,
-  Operation,
-  PatientAction,
   PatientScenario,
-  Population,
-  Remedy,
   RootState,
-  StoryAction,
-  Theme,
-  UIAction,
-  WorldAction,
-  PlayerAction,
-  TreatmentType,
 } from "../types";
-
-export const setActions = (actions: LocationAction[]): MapAction => ({
-  type: SET_ACTIONS,
-  payload: { actions },
-});
-
-export const setAlertContent = (content: string): AlertAction => ({
-  type: SET_ALERT_CONTENT,
-  payload: { content },
-});
-
-export const setAlertPrimaryAction = (
-  primaryAction: () => void
-): AlertAction => ({
-  type: SET_ALERT_PRIMARY_ACTION,
-  payload: { primaryAction },
-});
-
-export const setAlertPrimaryActionText = (
-  primaryActionText: string
-): AlertAction => ({
-  type: SET_ALERT_PRIMARY_ACTION_TEXT,
-  payload: { primaryActionText },
-});
-
-export const setAlertSecondaryAction = (
-  secondaryAction: () => void
-): AlertAction => ({
-  type: SET_ALERT_SECONDARY_ACTION,
-  payload: { secondaryAction },
-});
-
-export const setAlertSecondaryActionText = (
-  secondaryActionText: string
-): AlertAction => ({
-  type: SET_ALERT_SECONDARY_ACTION_TEXT,
-  payload: { secondaryActionText },
-});
-
-export const setAlertTitle = (title: string): AlertAction => ({
-  type: SET_ALERT_TITLE,
-  payload: { title },
-});
-
-export const setBuyMultiplier = (buyMultiplier: number): GameAction => ({
-  type: SET_BUY_MULTIPLIER,
-  payload: { buyMultiplier },
-});
-
-export const setChapter = (chapter: number): StoryAction => ({
-  type: SET_CHAPTER,
-  payload: { chapter },
-});
-
-export const setCurrentAction = (currentAction: LocationAction): MapAction => ({
-  type: SET_CURRENT_ACTION,
-  payload: { currentAction },
-});
-
-export const setCurrentLocation = (currentLocation: Location): MapAction => ({
-  type: SET_CURRENT_LOCATION,
-  payload: { currentLocation },
-});
-
-export const setDate = (date: string): GameAction => ({
-  type: SET_DATE,
-  payload: { date },
-});
-
-export const setDoctorReputation = (
-  doctorReputation: number
-): PlayerAction => ({
-  type: SET_DOCTOR_REPUTATION,
-  payload: { doctorReputation },
-});
-
-export const setEarnings = (earnings: number): GameAction => ({
-  type: SET_EARNINGS,
-  payload: { earnings },
-});
-
-export const setId = (id: string): GameAction => ({
-  type: SET_ID,
-  payload: { id },
-});
-
-export const setIsLoading = (isLoading: boolean): UIAction => ({
-  type: SET_IS_LOADING,
-  payload: { isLoading },
-});
-
-export const setItems = (items: Item[]): GameAction => ({
-  type: SET_ITEMS,
-  payload: { items },
-});
-
-export const setMoney = (money: number): GameAction => ({
-  type: SET_MONEY,
-  payload: { money },
-});
-
-export const setMorality = (morality: number): PlayerAction => ({
-  type: SET_MORALITY,
-  payload: { morality },
-});
-
-export const setPatientAge = (age: number): PatientAction => ({
-  type: SET_PATIENT_AGE,
-  payload: { age },
-});
-
-export const setPatientAvatar = (avatar: string): PatientAction => ({
-  type: SET_PATIENT_AVATAR,
-  payload: { avatar },
-});
-
-export const setPatientChat = (chat: string[]): PatientAction => ({
-  type: SET_PATIENT_CHAT,
-  payload: { chat },
-});
-
-export const setPatientComplaint = (complaint: string): PatientAction => ({
-  type: SET_PATIENT_COMPLAINT,
-  payload: { complaint },
-});
-
-export const setPatientName = (name: string): PatientAction => ({
-  type: SET_PATIENT_NAME,
-  payload: { name },
-});
-
-export const setPatientOperation = (operation: Operation): PatientAction => ({
-  type: SET_PATIENT_OPERATION,
-  payload: { operation },
-});
-
-export const setPatientRemedy = (remedy: Remedy): PatientAction => ({
-  type: SET_PATIENT_REMEDY,
-  payload: { remedy },
-});
-
-export const setPatientTreatment = (
-  treatment: TreatmentType
-): PatientAction => ({
-  type: SET_PATIENT_TREATMENT,
-  payload: { treatment },
-});
-
-export const setPopulation = (population: Population): WorldAction => ({
-  type: SET_POPULATION,
-  payload: { population },
-});
-
-export const setStartTime = (startTime: string): GameAction => ({
-  type: SET_START_TIME,
-  payload: { startTime },
-});
-
-export const setStoryText = (text: string): StoryAction => ({
-  type: SET_STORY_TEXT,
-  payload: { text },
-});
-
-export const setTheme = (theme: Theme): UIAction => ({
-  type: SET_THEME,
-  payload: { theme },
-});
 
 // * THUNKS
 export const initializeGameState = (): AppThunk => async (

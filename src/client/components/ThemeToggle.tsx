@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { setTheme } from "../redux/actions";
+import { setTheme } from "../redux/actions/ui";
 import { RootState, Theme } from "../types";
 
 export interface ThemeToggleProps {

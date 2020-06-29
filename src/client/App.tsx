@@ -9,10 +9,8 @@ import {
   progressDate,
   resetGame,
   saveGame,
-  setChapter,
-  // setNewEarnings,
-  setStoryText,
-} from "./redux/actions";
+} from "./redux/thunks";
+import { setChapter, setStoryText } from "./redux/actions/story";
 import Actions from "./components/Actions";
 import Alert from "./components/Alert";
 import Map from "./components/Map";

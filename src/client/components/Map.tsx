@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { travel } from "../redux/actions";
+import { travel } from "../redux/thunks";
 import { locations } from "../constants";
 import { Location, RootState, Theme } from "../types";
 

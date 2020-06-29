@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { setAlert, setPatientTreatment } from "../redux/actions";
+import { setAlert } from "../redux/thunks";
+import { setPatientTreatment } from "../redux/actions/patient";
 import Chat from "./treatments/Chat";
 import PerformOperation from "./treatments/PerformOperation";
 import PrescribeRemedy from "./treatments/PrescribeRemedy";
