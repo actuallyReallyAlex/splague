@@ -16,6 +16,7 @@ import Actions from "./components/Actions";
 import Alert from "./components/Alert";
 import Map from "./components/Map";
 import Menu from "./components/Menu";
+import MenuButton from "./components/MenuButton";
 import Stats from "./components/Stats";
 import ThemeToggle from "./components/ThemeToggle";
 import { gameActions } from "./constants";
@@ -144,28 +145,20 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <ThemeToggle />
 
       {chapter > 2 && (
-        <>
-          <button
-            className="nes-btn is-error"
-            id="reset"
-            onClick={() => handleResetGame()}
-            type="button"
-          >
-            RESET
-          </button>
-          <button
-            className="nes-btn"
-            id="open-menu"
-            onClick={() => handleOpenMenu()}
-          >
-            OPEN MENU
-          </button>
-        </>
+        <button
+          className="nes-btn is-error"
+          id="reset"
+          onClick={() => handleResetGame()}
+          type="button"
+        >
+          RESET
+        </button>
       )}
 
       <Alert />
       <LoadingIndicator />
       <Menu />
+      <MenuButton />
     </div>
   );
 };
