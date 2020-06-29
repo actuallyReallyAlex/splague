@@ -5,7 +5,9 @@ import {
   SET_PATIENT_COMPLAINT,
   SET_PATIENT_NAME,
   SET_PATIENT_OPERATION,
+  SET_PATIENT_OPERATION_IN_PROGRESS,
   SET_PATIENT_REMEDY,
+  SET_PATIENT_SELECTED_OPERATION,
   SET_PATIENT_TREATMENT,
   SET_PATIENT_TREATMENT_DIALOG_IS_OPEN,
 } from "../actionTypes";
@@ -41,9 +43,23 @@ export const setPatientOperation = (operation: Operation): PatientAction => ({
   payload: { operation },
 });
 
+export const setPatientOperationInProgress = (
+  operationInProgress: boolean
+): PatientAction => ({
+  type: SET_PATIENT_OPERATION_IN_PROGRESS,
+  payload: { operationInProgress },
+});
+
 export const setPatientRemedy = (remedy: Remedy): PatientAction => ({
   type: SET_PATIENT_REMEDY,
   payload: { remedy },
+});
+
+export const setPatientSelectedOperation = (
+  selectedOperation: Operation
+): PatientAction => ({
+  type: SET_PATIENT_SELECTED_OPERATION,
+  payload: { selectedOperation },
 });
 
 export const setPatientTreatment = (

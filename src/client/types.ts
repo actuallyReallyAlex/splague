@@ -143,7 +143,9 @@ export interface PatientState {
   complaint: string;
   name: string;
   operation: Operation;
+  operationInProgress: boolean;
   remedy: Remedy;
+  selectedOperation: Operation;
   treatment: TreatmentType;
   treatmentDialogIsOpen: boolean;
 }

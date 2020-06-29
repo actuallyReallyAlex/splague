@@ -31,7 +31,7 @@ context("Actions", () => {
     cy.get("#treatment-operation").click();
     cy.get("#treatment-dialog").should("be.visible");
     cy.get("#treatment-dialog-title").should("have.text", "Perform Operation");
-    cy.get("#treatment-dialog-primary").click();
+    cy.get("#treatment-dialog-secondary").click();
     cy.get("#treatment-dialog").should("not.be.visible");
 
     cy.get("#treatment-chat").click();
@@ -61,11 +61,25 @@ context("Actions", () => {
     cy.get("#action-treat-patient").click();
     cy.get("#treatment-operation").click();
 
+    cy.get("#start-operation").should("be.disabled");
+
     operations.forEach((operation) => {
       const replacedValue = operation.replace(/ /gm, "-");
       cy.get("#operation-select").select(replacedValue);
       cy.get("#operation-select").should("have.value", replacedValue);
     });
+
+    cy.get("#start-operation").should("be.enabled");
+
+    cy.get("#operation-in-progress").should(
+      "have.text",
+      "Operation In Progress - false"
+    );
+    cy.get("#start-operation").click();
+    cy.get("#operation-in-progress").should(
+      "have.text",
+      "Operation In Progress - true"
+    );
   });
 
   it("Should not display Treat Patient Screen when not at the office", () => {
