@@ -108,13 +108,9 @@ context("Actions", () => {
     cy.get("#operation-progress").should("have.value", 0);
     cy.wait(3000);
     cy.get("#operation-progress").should("have.value", 30);
-    cy.wait(7000);
-    cy.get("#start-operation").should("be.visible");
-    cy.get("#cancel-operation").should("be.visible");
-    cy.get("#operation-select").should("be.visible");
   });
 
-  it("Should perform a successful operation on the patient", () => {
+  it("Should perform an unsuccessful operation on the patient", () => {
     cy.get("#location-office").click();
     cy.get("#action-treat-patient").click();
     cy.get("#treatment-operation").click();
@@ -139,10 +135,15 @@ context("Actions", () => {
       cy.wait(10000);
       // * Verify that the operation was successful
       cy.get("#operation-outcome").should("have.text", "FAILURE");
+      cy.get("#operation-select").should("not.exist");
+      cy.get("#start-operation").should("not.exist");
+      cy.get("#cancel-operation").should("not.exist");
+      cy.get("#ok").click();
+      cy.get("#treatment-dialog").should("not.be.visible");
     });
   });
 
-  it("Should perform an unsuccessful operation on the patient", () => {
+  it("Should perform a successful operation on the patient", () => {
     cy.get("#location-office").click();
     cy.get("#action-treat-patient").click();
     cy.get("#treatment-operation").click();
@@ -164,6 +165,11 @@ context("Actions", () => {
       cy.wait(10000);
       // * Verify that the operation was successful
       cy.get("#operation-outcome").should("have.text", "SUCCESS");
+      cy.get("#operation-select").should("not.exist");
+      cy.get("#start-operation").should("not.exist");
+      cy.get("#cancel-operation").should("not.exist");
+      cy.get("#ok").click();
+      cy.get("#treatment-dialog").should("not.be.visible");
     });
   });
 

@@ -39,7 +39,7 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
         Perform Operation
       </p>
 
-      {!operationInProgress && (
+      {!operationInProgress && !operationOutcome && (
         <>
           <label htmlFor="operation-select">Select Operation to Perform</label>
           <div className={`nes-select ${theme === "dark" ? "is-dark" : ""}`}>
@@ -77,7 +77,7 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
         <span id="operation-outcome">{operationOutcome.toUpperCase()}</span>
       )}
 
-      {!operationInProgress && (
+      {!operationInProgress && !operationOutcome && (
         <menu className="dialog-menu">
           <button
             className={`nes-btn is-primary ${
@@ -97,6 +97,18 @@ const PerformOperation: React.SFC<PerformOperationProps> = (
             onClick={() => handleCloseTreatmentDialog()}
           >
             Cancel
+          </button>
+        </menu>
+      )}
+
+      {operationOutcome && (
+        <menu className="dialog-menu">
+          <button
+            className="nes-btn is-primary"
+            id="ok"
+            onClick={() => handleCloseTreatmentDialog()}
+          >
+            OK
           </button>
         </menu>
       )}
