@@ -103,7 +103,10 @@ export interface MenuAction {
   payload: any;
 }
 
+export type MenuPage = "stats";
+
 export interface MenuState {
+  currentPage: MenuPage;
   isVisible: boolean;
 }
 

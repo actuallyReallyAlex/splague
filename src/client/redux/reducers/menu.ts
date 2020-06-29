@@ -1,6 +1,7 @@
 import { MenuAction, MenuState } from "../../types";
 
 export const initialState: MenuState = {
+  currentPage: "stats",
   isVisible: false,
 };
 
