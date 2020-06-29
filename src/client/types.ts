@@ -97,6 +97,16 @@ export interface MapState {
   currentLocation: Location;
 }
 
+export interface MenuAction {
+  type: string;
+  // eslint-disable-next-line
+  payload: any;
+}
+
+export interface MenuState {
+  isVisible: boolean;
+}
+
 export type Operation =
   | "amputation"
   | "deliver baby"
