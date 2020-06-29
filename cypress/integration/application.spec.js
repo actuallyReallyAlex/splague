@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
 
-context("Application", () => {
+context.skip("Application", () => {
   beforeEach(() => {
     cy.visit("http://localhost:8080");
   });

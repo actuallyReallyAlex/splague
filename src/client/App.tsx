@@ -6,6 +6,7 @@ import {
   deathRate,
   growthRate,
   initializeGameState,
+  openMenu,
   progressDate,
   resetGame,
   saveGame,
@@ -29,6 +30,7 @@ interface AppProps {
   handleGoOn: () => void;
   handleGrowthRate: () => void;
   handleInitializeGameState: () => void;
+  handleOpenMenu: () => void;
   handleResetGame: () => void;
   handleSaveGame: () => void;
   handleStartDay: () => void;
@@ -49,6 +51,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
     handleGoOn,
     handleGrowthRate,
     handleInitializeGameState,
+    handleOpenMenu,
     handleResetGame,
     handleSaveGame,
     handleStartDay,
@@ -102,7 +105,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 
   return (
     <div className={theme} id="app">
-      <Stats />
+      {/* <Stats /> */}
 
       <Map />
 
@@ -141,14 +144,23 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <ThemeToggle />
 
       {chapter > 2 && (
-        <button
-          className="nes-btn is-error"
-          id="reset"
-          onClick={() => handleResetGame()}
-          type="button"
-        >
-          RESET
-        </button>
+        <>
+          <button
+            className="nes-btn is-error"
+            id="reset"
+            onClick={() => handleResetGame()}
+            type="button"
+          >
+            RESET
+          </button>
+          <button
+            className="nes-btn"
+            id="open-menu"
+            onClick={() => handleOpenMenu()}
+          >
+            OPEN MENU
+          </button>
+        </>
       )}
 
       <Alert />
@@ -174,6 +186,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleGrowthRate: () => dispatch(growthRate()),
   handleInitializeGameState: () => dispatch(initializeGameState()),
+  handleOpenMenu: () => dispatch(openMenu()),
   handleResetGame: () => dispatch(resetGame()),
   handleSaveGame: () => dispatch(saveGame()),
   handleStartDay: () => {

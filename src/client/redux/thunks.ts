@@ -24,6 +24,7 @@ import {
   setCurrentAction,
   setCurrentLocation,
 } from "./actions/map";
+import { setIsVisible } from "./actions/menu";
 import {
   setPatientAge,
   setPatientAvatar,
@@ -443,4 +444,16 @@ export const setAlert = (
   dispatch(setAlertTitle(title));
   const dialogElement = document.getElementById("alert") as HTMLDialogElement;
   dialogElement.showModal();
+};
+
+export const openMenu = (): AppThunk => (dispatch, getState) => {
+  const dialogElement = document.getElementById("menu") as HTMLDialogElement;
+  dialogElement.showModal();
+  dispatch(setIsVisible(true));
+};
+
+export const closeMenu = (): AppThunk => (dispatch, getState) => {
+  const dialogElement = document.getElementById("menu") as HTMLDialogElement;
+  dialogElement.close();
+  dispatch(setIsVisible(false));
 };

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
 
-context("Actions", () => {
+context.skip("Actions", () => {
   beforeEach(() => {
     cy.visit("http://localhost:8080");
     cy.get("#story").should("have.text", "Welcome to Splague!");
