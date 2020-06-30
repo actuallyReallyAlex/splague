@@ -200,6 +200,7 @@ export type Remedy =
 export type RootState = {
   alert: AlertState;
   game: GameState;
+  inventory: InventoryState;
   map: MapState;
   menu: MenuState;
   patient: PatientState;

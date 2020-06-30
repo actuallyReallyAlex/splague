@@ -21,6 +21,7 @@ import ThemeToggle from "./components/ThemeToggle";
 import { gameActions } from "./constants";
 import { LocationAction, RootState, Theme } from "./types";
 import { setIsVisible } from "./redux/actions/menu";
+import Inventory from "./components/Inventory";
 
 interface AppProps {
   chapter: number;
@@ -157,6 +158,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       )}
 
       <Alert />
+      <Inventory />
       <LoadingIndicator />
       <Menu />
       <MenuButton />

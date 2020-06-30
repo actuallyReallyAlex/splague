@@ -13,7 +13,7 @@ const InventoryToggle: React.SFC<InventoryToggleProps> = (
   return (
     <button
       className="nes-btn is-primary"
-      id="inventory-toggle"
+      id="open-inventory"
       onClick={() => handleInventoryToggle()}
     >
       Inventory
