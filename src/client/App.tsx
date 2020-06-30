@@ -13,6 +13,7 @@ import {
 import { setChapter, setStoryText } from "./redux/actions/story";
 import Actions from "./components/Actions";
 import Alert from "./components/Alert";
+import InventoryToggle from "./components/InventoryToggle";
 import Map from "./components/Map";
 import Menu from "./components/Menu";
 import MenuButton from "./components/MenuButton";
@@ -142,6 +143,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       )}
 
       <ThemeToggle />
+      <InventoryToggle />
 
       {chapter > 2 && (
         <button
