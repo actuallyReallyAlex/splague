@@ -223,3 +223,11 @@ section.message-list {
   overflow-y: auto;
   position: relative;
 }
+
+/* Inventory */
+
+.inventory-slot {
+  height: 50px;
+  text-align: center;
+  width: 50px;
+}

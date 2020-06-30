@@ -19,4 +19,8 @@ context("Inventory", () => {
     cy.get("#close-inventory").click();
     cy.get("#inventory").should("not.be.visible");
   });
+
+  it("Should contain 25 inventory spots", () => {
+    cy.get(".inventory-slot").its("length").should("be", "25");
+  });
 });
