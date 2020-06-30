@@ -2,7 +2,7 @@ import { PlayerAction, PlayerState } from "../../types";
 import { SET_DOCTOR_REPUTATION, SET_MORALITY } from "../actionTypes";
 
 export const initialState: PlayerState = {
-  avatar: "/assets/avatar.png",
+  avatar: "/assets/playerAvatar.png",
   doctorReputation: 0,
   morality: 0,
   name: "Alex",

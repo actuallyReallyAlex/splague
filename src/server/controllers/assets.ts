@@ -21,6 +21,7 @@ class AssetsController {
     "mstile-150x150.png",
     "nes.min.css",
     "patientAvatar.png",
+    "playerAvatar.png",
     "rock.png",
     "safari-pinned-tab.svg",
     "site.webmanifest",
