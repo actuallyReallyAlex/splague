@@ -10,6 +10,7 @@ import {
   progressDate,
   resetGame,
   saveGame,
+  startGame,
 } from "./redux/thunks";
 import { setChapter, setStoryText } from "./redux/actions/story";
 import Actions from "./components/Actions";
@@ -23,8 +24,6 @@ import { gameActions } from "./constants";
 import { LocationAction, RootState, Theme } from "./types";
 import { setIsVisible } from "./redux/actions/menu";
 import Inventory from "./components/Inventory";
-import { addInventoryItem } from "./redux/actions/inventory";
-import { rock, eyeOfNewt, moldyBread } from "./constants";
 
 interface AppProps {
   chapter: number;
@@ -189,13 +188,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleOpenMenu: () => dispatch(setIsVisible(true)),
   handleResetGame: () => dispatch(resetGame()),
   handleSaveGame: () => dispatch(saveGame()),
-  handleStartDay: () => {
-    dispatch(setChapter(3));
-    dispatch(setStoryText("12 months before death..."));
-    dispatch(addInventoryItem(rock));
-    dispatch(addInventoryItem(eyeOfNewt));
-    dispatch(addInventoryItem(moldyBread));
-  },
+  handleStartDay: () => dispatch(startGame()),
   handleStartJourny: () => {
     dispatch(setChapter(1));
     dispatch(

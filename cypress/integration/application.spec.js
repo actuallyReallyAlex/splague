@@ -70,4 +70,9 @@ context("Application", () => {
     cy.reload();
     cy.get("#location-church").should("be.disabled");
   });
+
+  it("Shouldn't crash the game if the user refreshes the page in the 1st 10 seconds", () => {
+    cy.reload();
+    cy.get("#story-0").should("not.exist");
+  });
 });

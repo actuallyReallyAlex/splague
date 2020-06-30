@@ -20,12 +20,12 @@ import {
   setMoney,
   setStartTime,
 } from "./actions/game";
+import { addInventoryItem, setInventoryItems } from "./actions/inventory";
 import {
   setActions,
   setCurrentAction,
   setCurrentLocation,
 } from "./actions/map";
-import { setIsVisible } from "./actions/menu";
 import {
   setPatientAge,
   setPatientAvatar,
@@ -48,6 +48,9 @@ import {
   defaultInitialState,
   homeActions,
   patientScenarios,
+  rock,
+  eyeOfNewt,
+  moldyBread,
 } from "../constants";
 import { round, randomInteger } from "../util";
 
@@ -61,9 +64,17 @@ import {
   PatientScenario,
   RootState,
 } from "../types";
-import { setInventoryItems } from "./actions/inventory";
 
 // * THUNKS
+export const startGame = (): AppThunk => async (dispatch, getState) => {
+  dispatch(setChapter(3));
+  dispatch(setStoryText("12 months before death..."));
+  dispatch(addInventoryItem(rock));
+  dispatch(addInventoryItem(eyeOfNewt));
+  dispatch(addInventoryItem(moldyBread));
+  // * Save game here
+  dispatch(saveGame());
+};
 export const initializeGameState = (): AppThunk => async (
   dispatch,
   getState
