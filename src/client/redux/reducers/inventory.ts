@@ -1,4 +1,8 @@
-import { ADD_INVENTORY_ITEM, REMOVE_INVENTORY_ITEM } from "../actionTypes";
+import {
+  ADD_INVENTORY_ITEM,
+  REMOVE_INVENTORY_ITEM,
+  SET_INVENTORY_IS_OPEN,
+} from "../actionTypes";
 import { InventoryAction, InventoryState, InventoryItem } from "../../types";
 
 export const initialState: InventoryState = {
@@ -24,6 +28,9 @@ const reducer = (
           ),
         ],
       };
+    }
+    case SET_INVENTORY_IS_OPEN: {
+      return { ...state, isOpen: action.payload.isOpen };
     }
     default:
       return state;
