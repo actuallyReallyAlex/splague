@@ -14,17 +14,22 @@ const reducer = (
   state = initialState,
   action: InventoryAction
 ): InventoryState => {
+  // addInventoryItem(rock)  rock = { image: "/assets/avatar.png", name: "Rock "}
+  // removeInventoryItem(3)
+
   switch (action.type) {
     case ADD_INVENTORY_ITEM: {
-      return { ...state, items: [...state.items, action.payload.item] };
+      return {
+        ...state,
+        items: [...state.items, { ...action.payload.inventoryItem }],
+      };
     }
     case REMOVE_INVENTORY_ITEM: {
       return {
         ...state,
         items: [
           ...state.items.filter(
-            (item: InventoryItem) =>
-              item.name !== action.payload.inventoryItem.name
+            (item: InventoryItem, i) => i !== action.payload.inventoryIndex
           ),
         ],
       };

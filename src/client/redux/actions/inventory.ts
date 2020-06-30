@@ -13,10 +13,10 @@ export const addInventoryItem = (
 });
 
 export const removeInventoryItem = (
-  inventoryItem: InventoryItem
+  inventoryIndex: number
 ): InventoryAction => ({
   type: REMOVE_INVENTORY_ITEM,
-  payload: { inventoryItem },
+  payload: { inventoryIndex },
 });
 
 export const setInventoryIsOpen = (isOpen: boolean): InventoryAction => ({

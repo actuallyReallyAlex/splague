@@ -22,6 +22,8 @@ import { gameActions } from "./constants";
 import { LocationAction, RootState, Theme } from "./types";
 import { setIsVisible } from "./redux/actions/menu";
 import Inventory from "./components/Inventory";
+import { addInventoryItem } from "./redux/actions/inventory";
+import { rock, eyeOfNewt, moldyBread } from "./constants";
 
 interface AppProps {
   chapter: number;
@@ -188,6 +190,9 @@ const mapDispatchToProps = (dispatch) => ({
   handleStartDay: () => {
     dispatch(setChapter(3));
     dispatch(setStoryText("12 months before death..."));
+    dispatch(addInventoryItem(rock));
+    dispatch(addInventoryItem(eyeOfNewt));
+    dispatch(addInventoryItem(moldyBread));
   },
   handleStartJourny: () => {
     dispatch(setChapter(1));

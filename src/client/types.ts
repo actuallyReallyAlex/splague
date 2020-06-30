@@ -68,7 +68,7 @@ export interface InventoryAction {
 }
 
 export interface InventoryItem {
-  count: number;
+  image: string;
   name: string;
 }
 
