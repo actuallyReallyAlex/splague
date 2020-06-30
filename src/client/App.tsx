@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import ReactTooltip from "react-tooltip";
 import LoadingIndicator from "./components/LoadingIndicator";
 import useInterval from "./hooks/useInterval";
 import {
@@ -164,6 +165,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
       <LoadingIndicator />
       <Menu />
       <MenuButton />
+      <ReactTooltip effect="solid" type={theme === "dark" ? "light" : "dark"} />
     </div>
   );
 };
