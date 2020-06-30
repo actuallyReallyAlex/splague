@@ -73,6 +73,7 @@ export interface InventoryItem {
 }
 
 export interface InventoryState {
+  isOpen: boolean;
   items: InventoryItem[];
 }
 

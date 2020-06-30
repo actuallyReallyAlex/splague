@@ -2,6 +2,7 @@ import { ADD_INVENTORY_ITEM, REMOVE_INVENTORY_ITEM } from "../actionTypes";
 import { InventoryAction, InventoryState, InventoryItem } from "../../types";
 
 export const initialState: InventoryState = {
+  isOpen: false,
   items: [],
 };
 
