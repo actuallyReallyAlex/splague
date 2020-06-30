@@ -2,6 +2,7 @@ import {
   ADD_INVENTORY_ITEM,
   REMOVE_INVENTORY_ITEM,
   SET_INVENTORY_IS_OPEN,
+  SET_INVENTORY_ITEMS,
 } from "../actionTypes";
 import { InventoryAction, InventoryState, InventoryItem } from "../../types";
 
@@ -14,9 +15,6 @@ const reducer = (
   state = initialState,
   action: InventoryAction
 ): InventoryState => {
-  // addInventoryItem(rock)  rock = { image: "/assets/avatar.png", name: "Rock "}
-  // removeInventoryItem(3)
-
   switch (action.type) {
     case ADD_INVENTORY_ITEM: {
       return {
@@ -36,6 +34,9 @@ const reducer = (
     }
     case SET_INVENTORY_IS_OPEN: {
       return { ...state, isOpen: action.payload.isOpen };
+    }
+    case SET_INVENTORY_ITEMS: {
+      return { ...state, items: action.payload.items };
     }
     default:
       return state;

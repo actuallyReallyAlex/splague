@@ -61,6 +61,7 @@ import {
   PatientScenario,
   RootState,
 } from "../types";
+import { setInventoryItems } from "./actions/inventory";
 
 // * THUNKS
 export const initializeGameState = (): AppThunk => async (
@@ -100,7 +101,7 @@ export const initializeGameState = (): AppThunk => async (
 
       const state: RootState = JSON.parse(gameInstance.data);
 
-      const { game, map, player, story, ui } = state;
+      const { game, inventory, map, player, story, ui } = state;
       const { buyMultiplier, date, items, money } = game;
 
       const { _id, createdAt, updatedAt } = gameInstance;
@@ -117,6 +118,7 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setActions(map.actions));
       dispatch(setDoctorReputation(player.doctorReputation));
       dispatch(setMorality(player.morality));
+      dispatch(setInventoryItems(inventory.items));
 
       const saveTimeDate = new Date(updatedAt);
       const nowDate = new Date();

@@ -34,4 +34,28 @@ context("Inventory", () => {
       });
     });
   });
+
+  it("Should retain items on refresh", () => {
+    cy.get(".inventory-slot").then(($inventoryItems) => {
+      Array.from($inventoryItems).forEach((inventoryItem, i) => {
+        if (i < 3) {
+          expect(inventoryItem.children.length).to.equal(1);
+        } else {
+          expect(inventoryItem.children.length).to.equal(0);
+        }
+      });
+    });
+    cy.wait(10000);
+    cy.reload();
+    cy.get("#open-inventory").click();
+    cy.get(".inventory-slot").then(($inventoryItems) => {
+      Array.from($inventoryItems).forEach((inventoryItem, i) => {
+        if (i < 3) {
+          expect(inventoryItem.children.length).to.equal(1);
+        } else {
+          expect(inventoryItem.children.length).to.equal(0);
+        }
+      });
+    });
+  });
 });
