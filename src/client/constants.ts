@@ -141,3 +141,17 @@ export const operations: Operation[] = [
   "remove tooth",
   "set bone",
 ];
+
+export const rock = {
+  name: "Rock",
+};
+
+export const eyeOfNewt = {
+  name: "Eye of Newt",
+};
+
+export const moldyBread = {
+  name: "Moldy Bread",
+};
+
+export const inventoryItems = [rock, eyeOfNewt, moldyBread];
