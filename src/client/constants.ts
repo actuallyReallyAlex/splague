@@ -143,17 +143,17 @@ export const operations: Operation[] = [
 ];
 
 export const rock = {
-  image: "/assets/avatar.png",
+  image: "/assets/rock.png",
   name: "Rock",
 };
 
 export const eyeOfNewt = {
-  image: "/assets/avatar.png",
+  image: "/assets/eyeOfNewt.png",
   name: "Eye of Newt",
 };
 
 export const moldyBread = {
-  image: "/assets/avatar.png",
+  image: "/assets/moldyBread.png",
   name: "Moldy Bread",
 };
 

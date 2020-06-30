@@ -7,29 +7,29 @@ import path from "path";
 class AssetsController {
   public router: Router = express.Router();
 
-  /* NEW LINE */
   static assetList: string[] = [
     "android-chrome-192x192.png",
     "android-chrome-512x512.png",
     "apple-touch-icon.png",
     "avatar.png",
     "browserconfig.xml",
+    "eyeOfNewt.png",
     "favicon-16x16.png",
     "favicon-32x32.png",
     "favicon.ico",
+    "moldyBread.png",
     "mstile-150x150.png",
     "nes.min.css",
     "patientAvatar.png",
+    "rock.png",
     "safari-pinned-tab.svg",
     "site.webmanifest",
   ];
 
-  /* NEW LINE */
   constructor() {
     this.initializeRoutes();
   }
 
-  /* NEW LINE */
   public initializeRoutes(): void {
     AssetsController.assetList.forEach((asset: string) => {
       this.router.get(
@@ -42,5 +42,4 @@ class AssetsController {
   }
 }
 
-/* NEW LINE */
 export default AssetsController;
