@@ -182,6 +182,7 @@ export interface PlayerAction {
 
 export interface PlayerState {
   avatar: string;
+  doctorExperience: number;
   doctorReputation: number;
   morality: number;
   name: string;
