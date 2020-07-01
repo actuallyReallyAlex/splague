@@ -165,7 +165,11 @@ export interface PatientState {
   operationOutcome: OperationOutcome;
   operationProgress: number;
   remedy: Remedy;
+  remedyInProgress: boolean;
+  remedyOutcome: RemedyOutcome;
+  remedyProgress: number;
   selectedOperation: Operation;
+  selectedRemedy: Remedy;
   treatment: TreatmentType;
   treatmentDialogIsOpen: boolean;
 }
@@ -196,6 +200,8 @@ export type Remedy =
   | "intelligence potion"
   | "magic stone"
   | "strength potion";
+
+export type RemedyOutcome = "success" | "failure";
 
 export type RootState = {
   alert: AlertState;

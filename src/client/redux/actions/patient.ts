@@ -9,7 +9,11 @@ import {
   SET_PATIENT_OPERATION_OUTCOME,
   SET_PATIENT_OPERATION_PROGRESS,
   SET_PATIENT_REMEDY,
+  SET_PATIENT_REMEDY_IN_PROGRESS,
+  SET_PATIENT_REMEDY_OUTCOME,
+  SET_PATIENT_REMEDY_PROGRESS,
   SET_PATIENT_SELECTED_OPERATION,
+  SET_PATIENT_SELECTED_REMEDY,
   SET_PATIENT_TREATMENT,
   SET_PATIENT_TREATMENT_DIALOG_IS_OPEN,
 } from "../actionTypes";
@@ -19,6 +23,7 @@ import {
   Remedy,
   TreatmentType,
   OperationOutcome,
+  RemedyOutcome,
 } from "../../types";
 
 export const setPatientAge = (age: number): PatientAction => ({
@@ -77,11 +82,39 @@ export const setPatientRemedy = (remedy: Remedy): PatientAction => ({
   payload: { remedy },
 });
 
+export const setPatientRemedyInProgress = (
+  remedyInProgress: boolean
+): PatientAction => ({
+  type: SET_PATIENT_REMEDY_IN_PROGRESS,
+  payload: { remedyInProgress },
+});
+
+export const setPatientRemedyOutcome = (
+  remedyOutcome: RemedyOutcome
+): PatientAction => ({
+  type: SET_PATIENT_REMEDY_OUTCOME,
+  payload: { remedyOutcome },
+});
+
+export const setPatientRemedyProgress = (
+  remedyProgress: number
+): PatientAction => ({
+  type: SET_PATIENT_REMEDY_PROGRESS,
+  payload: { remedyProgress },
+});
+
 export const setPatientSelectedOperation = (
   selectedOperation: Operation
 ): PatientAction => ({
   type: SET_PATIENT_SELECTED_OPERATION,
   payload: { selectedOperation },
+});
+
+export const setPatientSelectedRemedy = (
+  selectedRemedy: Remedy
+): PatientAction => ({
+  type: SET_PATIENT_SELECTED_REMEDY,
+  payload: { selectedRemedy },
 });
 
 export const setPatientTreatment = (

@@ -19,6 +19,7 @@ import {
   TavernLocationAction,
   TownSquareLocationAction,
   Operation,
+  Remedy,
 } from "./types";
 import { ReactElement } from "react";
 
@@ -168,5 +169,14 @@ export const moldyBread = {
   image: "/assets/moldyBread.png",
   name: "Moldy Bread",
 };
+
+export const remedies: Remedy[] = [
+  "ancient charm",
+  "healing elixir",
+  "healing ointment",
+  "intelligence potion",
+  "magic stone",
+  "strength potion",
+];
 
 export const inventoryItems = [rock, eyeOfNewt, moldyBread];

@@ -10,7 +10,11 @@ import {
   SET_PATIENT_OPERATION_OUTCOME,
   SET_PATIENT_OPERATION_PROGRESS,
   SET_PATIENT_REMEDY,
+  SET_PATIENT_REMEDY_IN_PROGRESS,
+  SET_PATIENT_REMEDY_OUTCOME,
+  SET_PATIENT_REMEDY_PROGRESS,
   SET_PATIENT_SELECTED_OPERATION,
+  SET_PATIENT_SELECTED_REMEDY,
   SET_PATIENT_TREATMENT,
   SET_PATIENT_TREATMENT_DIALOG_IS_OPEN,
 } from "../actionTypes";
@@ -22,11 +26,15 @@ export const initialState: PatientState = {
   complaint: "",
   name: "",
   operation: null,
+  operationInProgress: false,
   operationOutcome: null,
   operationProgress: 0,
-  operationInProgress: false,
   remedy: null,
+  remedyInProgress: false,
+  remedyOutcome: null,
+  remedyProgress: 0,
   selectedOperation: null,
+  selectedRemedy: null,
   treatment: null,
   treatmentDialogIsOpen: false,
 };
@@ -66,8 +74,20 @@ const reducer = (state = initialState, action: PatientAction): PatientState => {
     case SET_PATIENT_REMEDY: {
       return { ...state, remedy: action.payload.remedy };
     }
+    case SET_PATIENT_REMEDY_IN_PROGRESS: {
+      return { ...state, remedyInProgress: action.payload.remedyInProgress };
+    }
+    case SET_PATIENT_REMEDY_OUTCOME: {
+      return { ...state, remedyOutcome: action.payload.remedyOutcome };
+    }
+    case SET_PATIENT_REMEDY_PROGRESS: {
+      return { ...state, remedyProgress: action.payload.remedyProgress };
+    }
     case SET_PATIENT_SELECTED_OPERATION: {
       return { ...state, selectedOperation: action.payload.selectedOperation };
+    }
+    case SET_PATIENT_SELECTED_REMEDY: {
+      return { ...state, selectedRemedy: action.payload.selectedRemedy };
     }
     case SET_PATIENT_TREATMENT: {
       return { ...state, treatment: action.payload.treatment };

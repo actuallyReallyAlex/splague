@@ -42,6 +42,9 @@ import {
   setPatientOperationInProgress,
   setPatientOperationOutcome,
   setPatientOperationProgress,
+  setPatientRemedyInProgress,
+  setPatientRemedyProgress,
+  setPatientRemedyOutcome,
 } from "./actions/patient";
 import { setDoctorReputation, setMorality } from "./actions/player";
 import { setChapter, setStoryText } from "./actions/story";
@@ -67,6 +70,7 @@ import {
   OperationOutcome,
   PatientScenario,
   RootState,
+  RemedyOutcome,
 } from "../types";
 
 // * THUNKS
@@ -488,6 +492,27 @@ export const startPatientOperation = (): AppThunk => (dispatch, getState) => {
       clearInterval(operationInterval);
     } else {
       dispatch(setPatientOperationProgress(currentProgress + 10));
+    }
+  }, 1000);
+};
+
+export const startPatientRemedy = (): AppThunk => (dispatch, getState) => {
+  dispatch(setPatientRemedyInProgress(true));
+  const remedyInterval = setInterval(() => {
+    const currentProgress = getState().patient.remedyProgress;
+    if (currentProgress === 100) {
+      // * Remedy has completed
+      dispatch(setPatientRemedyInProgress(false));
+      // * Determine Remedy Outcome
+      // TODO - multipliers / factors that influence the outcome more than just "did it match the operation"
+      const patientRemedy = getState().patient.remedy;
+      const selectedRemedy = getState().patient.selectedRemedy;
+      const remedyOutcome: RemedyOutcome =
+        patientRemedy === selectedRemedy ? "success" : "failure";
+      dispatch(setPatientRemedyOutcome(remedyOutcome));
+      clearInterval(remedyInterval);
+    } else {
+      dispatch(setPatientRemedyProgress(currentProgress + 10));
     }
   }, 1000);
 };

@@ -1,12 +1,12 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import {
-  setPatientTreatmentDialogIsOpen,
   setPatientSelectedOperation,
+  setPatientTreatmentDialogIsOpen,
 } from "../../redux/actions/patient";
 import { startPatientOperation } from "../../redux/thunks";
-import { Theme, RootState, Operation, OperationOutcome } from "../../types";
 import { operations } from "../../constants";
+import { Operation, OperationOutcome, RootState, Theme } from "../../types";
 
 export interface PerformOperationProps {
   handleCloseTreatmentDialog: () => void;
