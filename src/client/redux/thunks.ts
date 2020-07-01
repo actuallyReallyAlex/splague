@@ -20,7 +20,11 @@ import {
   setMoney,
   setStartTime,
 } from "./actions/game";
-import { addInventoryItem, setInventoryItems } from "./actions/inventory";
+import {
+  addInventoryItem,
+  setInventoryItems,
+  setInventoryIsOpen,
+} from "./actions/inventory";
 import {
   setActions,
   setCurrentAction,
@@ -225,7 +229,7 @@ export const resetGame = (): AppThunk => async (dispatch, getState) => {
     const savedGame: GameDBData = await response.json();
     const { _id, createdAt, data } = savedGame;
 
-    const parsedData = JSON.parse(data);
+    const parsedData: RootState = JSON.parse(data);
     localStorage.setItem("id", _id);
 
     // * Store values in App state
@@ -245,10 +249,14 @@ export const resetGame = (): AppThunk => async (dispatch, getState) => {
     dispatch(setItems(defaultInitialState.game.items));
     dispatch(setMoney(parsedData.game.money));
     dispatch(setStartTime(createdAt));
+    // * Inventory
+    dispatch(setInventoryIsOpen(false));
+    dispatch(setInventoryItems(parsedData.inventory.items));
     // * Map
     dispatch(setActions(homeActions));
     dispatch(setCurrentAction(null));
     dispatch(setCurrentLocation("home"));
+    // * Menu
     // * Patient
     dispatch(setPatientAge(null));
     dispatch(setPatientAvatar(""));

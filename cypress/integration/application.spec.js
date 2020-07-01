@@ -47,6 +47,14 @@ context("Application", () => {
     );
     cy.get("#story-0").should("exist");
     cy.get("#theme-toggle").should("exist");
+
+    // * Inventory should have 0 items
+    cy.get("#open-inventory").click();
+    cy.get(".inventory-slot").then(($inventoryItems) => {
+      Array.from($inventoryItems).forEach((inventoryItem) => {
+        expect(inventoryItem.children.length).to.equal(0);
+      });
+    });
   });
 
   it("Should allow the user to toggle between themes", () => {

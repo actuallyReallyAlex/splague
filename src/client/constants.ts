@@ -1,7 +1,13 @@
+import { initialState as alertInitialState } from "./redux/reducers/alert";
 import { initialState as gameInitialState } from "./redux/reducers/game";
+import { initialState as inventoryInitialState } from "./redux/reducers/inventory";
+import { initialState as mapInitialState } from "./redux/reducers/map";
+import { initialState as menuInitialState } from "./redux/reducers/menu";
+import { initialState as patientInitialState } from "./redux/reducers/patient";
 import { initialState as playerInitialState } from "./redux/reducers/player";
 import { initialState as storyInitialState } from "./redux/reducers/story";
 import { initialState as uiInitialState } from "./redux/reducers/ui";
+import { initialState as worldInitialState } from "./redux/reducers/world";
 import TreatPatient from "./actions/TreatPatient";
 import {
   ChurchLocationAction,
@@ -43,10 +49,16 @@ export const basePrice = {
 };
 
 export const defaultInitialState = {
+  alert: alertInitialState,
   game: gameInitialState,
+  inventory: inventoryInitialState,
+  map: mapInitialState,
+  menu: menuInitialState,
+  patient: patientInitialState,
   player: playerInitialState,
   story: storyInitialState,
   ui: uiInitialState,
+  world: worldInitialState,
 };
 
 export const gameActions = {
