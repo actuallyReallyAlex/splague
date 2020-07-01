@@ -46,7 +46,11 @@ import {
   setPatientRemedyProgress,
   setPatientRemedyOutcome,
 } from "./actions/patient";
-import { setDoctorReputation, setMorality } from "./actions/player";
+import {
+  setDoctorReputation,
+  setMorality,
+  setDoctorExperience,
+} from "./actions/player";
 import { setChapter, setStoryText } from "./actions/story";
 import { setIsLoading, setTheme } from "./actions/ui";
 import { setPopulation } from "./actions/world";
@@ -136,6 +140,7 @@ export const initializeGameState = (): AppThunk => async (
       dispatch(setCurrentLocation(map.currentLocation));
       dispatch(setActions(map.actions));
       dispatch(setDoctorReputation(player.doctorReputation));
+      dispatch(setDoctorExperience(player.doctorExperience));
       dispatch(setMorality(player.morality));
       dispatch(setInventoryItems(inventory.items));
 
@@ -480,14 +485,25 @@ export const startPatientOperation = (): AppThunk => (dispatch, getState) => {
   const operationInterval = setInterval(() => {
     const currentProgress = getState().patient.operationProgress;
     if (currentProgress === 100) {
+      const { doctorExperience, doctorReputation } = getState().player;
       // * Operation has completed
       dispatch(setPatientOperationInProgress(false));
       // * Determine Operation Outcome
-      // TODO - multipliers / factors that influence the outcome more than just "did it match the operation"
       const patientOperation = getState().patient.operation;
       const selectedOperation = getState().patient.selectedOperation;
-      const operationOutcome: OperationOutcome =
-        patientOperation === selectedOperation ? "success" : "failure";
+      let operationOutcome: OperationOutcome = "failure";
+      dispatch(setDoctorExperience(doctorExperience + 1));
+      if (patientOperation === selectedOperation) {
+        // * Additional factors to influence the outcome
+        const isSuccessful = Math.random() * (1 + doctorExperience) >= 0.25;
+        if (isSuccessful) {
+          operationOutcome = "success";
+          dispatch(setDoctorReputation(doctorReputation + 1));
+        } else {
+          dispatch(setDoctorReputation(doctorReputation - 1));
+        }
+      }
+
       dispatch(setPatientOperationOutcome(operationOutcome));
       clearInterval(operationInterval);
     } else {
@@ -500,15 +516,26 @@ export const startPatientRemedy = (): AppThunk => (dispatch, getState) => {
   dispatch(setPatientRemedyInProgress(true));
   const remedyInterval = setInterval(() => {
     const currentProgress = getState().patient.remedyProgress;
+
     if (currentProgress === 100) {
+      const { doctorExperience, doctorReputation } = getState().player;
       // * Remedy has completed
       dispatch(setPatientRemedyInProgress(false));
       // * Determine Remedy Outcome
-      // TODO - multipliers / factors that influence the outcome more than just "did it match the operation"
       const patientRemedy = getState().patient.remedy;
       const selectedRemedy = getState().patient.selectedRemedy;
-      const remedyOutcome: RemedyOutcome =
-        patientRemedy === selectedRemedy ? "success" : "failure";
+      let remedyOutcome: RemedyOutcome = "failure";
+      dispatch(setDoctorExperience(doctorExperience + 1));
+      if (patientRemedy === selectedRemedy) {
+        // * Additional factors to influence outcome
+        const isSuccessful = Math.random() * (1 + doctorExperience) >= 0.25;
+        if (isSuccessful) {
+          remedyOutcome = "success";
+          dispatch(setDoctorReputation(doctorReputation + 1));
+        } else {
+          dispatch(setDoctorReputation(doctorReputation - 1));
+        }
+      }
       dispatch(setPatientRemedyOutcome(remedyOutcome));
       clearInterval(remedyInterval);
     } else {

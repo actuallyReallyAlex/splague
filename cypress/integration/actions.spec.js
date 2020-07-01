@@ -152,36 +152,6 @@ context("Actions", () => {
     });
   });
 
-  it("Should perform a successful operation on the patient", () => {
-    cy.get("#location-office").click();
-    cy.get("#action-treat-patient").click();
-    cy.get("#treatment-operation").click();
-
-    // * Get Patient and Know what the correct operation should be
-    cy.get("#patient-name").then(($patientName) => {
-      const patientName = $patientName[0].textContent;
-      const patientScenario = patientScenarios.find(
-        (scenario) => scenario.name === patientName
-      );
-      const correctOperation = patientScenario.operation;
-      // * Select the correct operation
-      const replacedValue = correctOperation.replace(/ /gm, "-");
-      cy.get("#operation-select").select(replacedValue);
-      cy.get("#operation-select").should("have.value", replacedValue);
-      // * Start the Operation
-      cy.get("#start-operation").click();
-      // * wait 10 seconds
-      cy.wait(10000);
-      // * Verify that the operation was successful
-      cy.get("#operation-outcome").should("have.text", "SUCCESS");
-      cy.get("#operation-select").should("not.exist");
-      cy.get("#start-operation").should("not.exist");
-      cy.get("#cancel-operation").should("not.exist");
-      cy.get("#ok").click();
-      cy.get("#treatment-dialog").should("not.be.visible");
-    });
-  });
-
   it("Should create an unsuccessful remedy for the patient", () => {
     cy.get("#location-office").click();
     cy.get("#action-treat-patient").click();
@@ -207,36 +177,6 @@ context("Actions", () => {
       cy.wait(10000);
       // * Verify that the remedy was not successful
       cy.get("#remedy-outcome").should("have.text", "FAILURE");
-      cy.get("#remedy-select").should("not.exist");
-      cy.get("#start-remedy").should("not.exist");
-      cy.get("#cancel-remedy").should("not.exist");
-      cy.get("#ok").click();
-      cy.get("#treatment-dialog").should("not.be.visible");
-    });
-  });
-
-  it("Should perform a successful operation on the patient", () => {
-    cy.get("#location-office").click();
-    cy.get("#action-treat-patient").click();
-    cy.get("#treatment-remedy").click();
-
-    // * Get Patient and Know what the correct remedy should be
-    cy.get("#patient-name").then(($patientName) => {
-      const patientName = $patientName[0].textContent;
-      const patientScenario = patientScenarios.find(
-        (scenario) => scenario.name === patientName
-      );
-      const correctRemedy = patientScenario.remedy;
-      // * Select the correct remedy
-      const replacedValue = correctRemedy.replace(/ /gm, "-");
-      cy.get("#remedy-select").select(replacedValue);
-      cy.get("#remedy-select").should("have.value", replacedValue);
-      // * Start the Remedy
-      cy.get("#start-remedy").click();
-      // * wait 10 seconds
-      cy.wait(10000);
-      // * Verify that the operation was successful
-      cy.get("#remedy-outcome").should("have.text", "SUCCESS");
       cy.get("#remedy-select").should("not.exist");
       cy.get("#start-remedy").should("not.exist");
       cy.get("#cancel-remedy").should("not.exist");
