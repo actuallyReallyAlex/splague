@@ -14,6 +14,8 @@ import {
   Theme,
   Treatment,
   TreatmentType,
+  OperationOutcome,
+  RemedyOutcome,
 } from "../types";
 
 export interface TreatPatientProps {
@@ -24,7 +26,9 @@ export interface TreatPatientProps {
   handleTreatmentSelect: (treatment: TreatmentType) => void;
   name: string;
   operation: Operation;
+  operationOutcome: OperationOutcome;
   remedy: Remedy;
+  remedyOutcome: RemedyOutcome;
   theme: Theme;
   treatment: TreatmentType;
   treatmentDialogIsOpen: boolean;
@@ -41,7 +45,9 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
     handleTreatmentSelect,
     name,
     operation,
+    operationOutcome,
     remedy,
+    remedyOutcome,
     theme,
     treatment,
     treatmentDialogIsOpen,
@@ -54,6 +60,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         handleTreatmentSelect("remedy");
         handleOpenTreatmentDialog();
       },
+      isDisabled: remedyOutcome !== null,
       name: "remedy",
       text: "Prescribe Remedy",
     },
@@ -63,6 +70,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         handleTreatmentSelect("operation");
         handleOpenTreatmentDialog();
       },
+      isDisabled: operationOutcome !== null,
       name: "operation",
       text: "Perform Operation",
     },
@@ -72,6 +80,7 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
         handleTreatmentSelect("chat");
         handleOpenTreatmentDialog();
       },
+      isDisabled: false,
       name: "chat",
       text: "Chat",
     },
@@ -100,7 +109,10 @@ const TreatPatient: React.SFC<TreatPatientProps> = (
               {treatments.map((treatment: Treatment, i: number) => (
                 <td key={`treatment-${i}`} style={{ width: "250px" }}>
                   <button
-                    className="nes-btn"
+                    className={`nes-btn ${
+                      treatment.isDisabled ? "is-disabled" : ""
+                    }`}
+                    disabled={treatment.isDisabled}
                     id={`treatment-${treatment.name}`}
                     onClick={treatment.handler}
                     style={{
@@ -146,7 +158,9 @@ const mapStateToProps = (state: RootState) => ({
   complaint: state.patient.complaint,
   name: state.patient.name,
   operation: state.patient.operation,
+  operationOutcome: state.patient.operationOutcome,
   remedy: state.patient.remedy,
+  remedyOutcome: state.patient.remedyOutcome,
   theme: state.ui.theme,
   treatment: state.patient.treatment,
   treatmentDialogIsOpen: state.patient.treatmentDialogIsOpen,

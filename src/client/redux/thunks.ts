@@ -455,7 +455,9 @@ export const performAction = (action: LocationAction): AppThunk => (
       dispatch(setPatientComplaint(patientScenario.complaint));
       dispatch(setPatientName(patientScenario.name));
       dispatch(setPatientOperation(patientScenario.operation));
+      dispatch(setPatientOperationOutcome(null));
       dispatch(setPatientRemedy(patientScenario.remedy));
+      dispatch(setPatientRemedyOutcome(null));
     },
   };
   const currentActionLogic = actionLogic[action];

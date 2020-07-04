@@ -185,6 +185,40 @@ context("Actions", () => {
     });
   });
 
+  it("Should disable Operation button after an operation takes place", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-operation").click();
+    cy.get("#operation-select").select(operations[0].replace(/ /gm, "-"));
+    cy.get("#start-operation").click();
+    cy.wait(11000);
+    cy.get("#treatment-operation").should("be.disabled");
+  });
+
+  it("Should disable Remedy button after a remedy takes place", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-remedy").click();
+    cy.get("#remedy-select").select(remedies[0].replace(/ /gm, "-"));
+    cy.get("#start-remedy").click();
+    cy.wait(11000);
+    cy.get("#treatment-remedy").should("be.disabled");
+  });
+
+  it("Should reset buttons after clicking 'Treat Patient' and getting a new patient", () => {
+    cy.get("#location-office").click();
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-remedy").click();
+    cy.get("#remedy-select").select(remedies[0].replace(/ /gm, "-"));
+    cy.get("#start-remedy").click();
+    cy.wait(11000);
+    cy.get("#treatment-remedy").should("be.disabled");
+    cy.get("#ok").click();
+
+    cy.get("#action-treat-patient").click();
+    cy.get("#treatment-remedy").should("be.enabled");
+  });
+
   it("Should not display Treat Patient Screen when not at the office", () => {
     cy.get("#location-office").click();
     cy.get("#action-treat-patient").click();

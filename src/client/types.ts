@@ -231,6 +231,7 @@ export interface StoryState {
 export interface Treatment {
   dialogContent: JSX.Element;
   handler: () => void;
+  isDisabled: boolean;
   name: string;
   text: string;
 }
