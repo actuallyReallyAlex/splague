@@ -53,7 +53,7 @@ const patientScenarios = [
 
 context("Actions", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:8080");
+    cy.visit("http://localhost:3000");
     cy.onboard();
   });
 

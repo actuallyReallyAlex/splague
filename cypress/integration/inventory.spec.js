@@ -3,7 +3,7 @@
 
 context("Inventory", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:8080");
+    cy.visit("http://localhost:3000");
     cy.onboard();
     cy.get("#inventory").should("not.be.visible");
     cy.get("#open-inventory").click();

@@ -18,7 +18,7 @@
     "start": "start-server-and-test dev http://localhost:3000 'webpack-dev-server --info=false'",
     "test": "start-server-and-test test-server http://localhost:3000 cy:run",
     "test-gui": "start-server-and-test test-server http://localhost:3000 cy:open",
-    "test-server": "env-cmd -e test npm start"
+    "test-server": "env-cmd -e test npm run spinup"
   },
   "keywords": [],
   "author": "",
