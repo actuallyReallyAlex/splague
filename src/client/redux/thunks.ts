@@ -374,6 +374,7 @@ export const toggleBuyMultiplier = (): AppThunk => async (
 export const progressDate = (): AppThunk => (dispatch, getState) => {
   const { chapter } = getState().story;
   // * Should progress date by 1 month
+  if (chapter < 3) return;
   const currentDate = getState().game.date;
   const newDate = add(new Date(currentDate), { months: 1 }).toDateString();
   const monthsUntilDeath = -differenceInMonths(

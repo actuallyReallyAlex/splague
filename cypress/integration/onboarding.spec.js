@@ -22,4 +22,10 @@ context("Onboarding", () => {
 
     cy.get("#current-location").should("contain.text", "home");
   });
+
+  it("Should not progress date while onboarding", () => {
+    cy.get("body").should("contain.text", "Welcome to Splague!");
+    cy.wait(61000);
+    cy.get("body").should("contain.text", "Welcome to Splague!");
+  });
 });
