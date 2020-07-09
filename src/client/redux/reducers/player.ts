@@ -3,6 +3,7 @@ import {
   SET_DOCTOR_EXPERIENCE,
   SET_DOCTOR_REPUTATION,
   SET_MORALITY,
+  SET_PLAYER_NAME,
 } from "../actionTypes";
 
 export const initialState: PlayerState = {
@@ -10,7 +11,7 @@ export const initialState: PlayerState = {
   doctorExperience: 0,
   doctorReputation: 0,
   morality: 0,
-  name: "Alex",
+  name: "",
 };
 
 const reducer = (state = initialState, action: PlayerAction): PlayerState => {
@@ -23,6 +24,9 @@ const reducer = (state = initialState, action: PlayerAction): PlayerState => {
     }
     case SET_MORALITY: {
       return { ...state, morality: action.payload.morality };
+    }
+    case SET_PLAYER_NAME: {
+      return { ...state, name: action.payload.name };
     }
     default:
       return state;

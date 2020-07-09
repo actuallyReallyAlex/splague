@@ -3,21 +3,28 @@ import { connect } from "react-redux";
 import { startGame } from "../redux/thunks";
 import { setChapter, setStoryText } from "../redux/actions/story";
 import { RootState } from "../types";
+import { setPlayerName } from "../redux/actions/player";
 
 export interface OnboardingProps {
   chapter: number;
+  handleAskName: () => void;
   handleGoOn: () => void;
+  handlePlayerNameChange: (e) => void;
   handleStartDay: () => void;
   handleStartJourny: () => void;
+  playerName: string;
   storyText: string;
 }
 
 const Onboarding: React.SFC<OnboardingProps> = (props: OnboardingProps) => {
   const {
     chapter,
+    handleAskName,
     handleGoOn,
+    handlePlayerNameChange,
     handleStartDay,
     handleStartJourny,
+    playerName,
     storyText,
   } = props;
 
@@ -39,17 +46,42 @@ const Onboarding: React.SFC<OnboardingProps> = (props: OnboardingProps) => {
       Go on ...
     </button>,
     <button
-      className="nes-btn is-primary"
+      className={`nes-btn is-primary ${!playerName ? "is-disabled" : ""}`}
+      disabled={!playerName}
       id={`story-${chapter}`}
       key="button-2"
+      onClick={() => handleAskName()}
+    >
+      That&apos;s me!
+    </button>,
+    <button
+      className="nes-btn is-primary"
+      id={`story-${chapter}`}
+      key="button-3"
       onClick={() => handleStartDay()}
     >
       Start day
     </button>,
   ];
+
+  const content = [
+    null,
+    null,
+    <div className="nes-field" key="player-name">
+      <label htmlFor="player-name">Name</label>
+      <input
+        className="nes-input"
+        id="player-name"
+        onChange={(e) => handlePlayerNameChange(e)}
+        type="text"
+      />
+    </div>,
+    null,
+  ];
   return (
     <div>
       <p id="story">{storyText}</p>
+      {content[chapter]}
       {buttons[chapter]}
     </div>
   );
@@ -57,13 +89,21 @@ const Onboarding: React.SFC<OnboardingProps> = (props: OnboardingProps) => {
 
 const mapStateToProps = (state: RootState) => ({
   chapter: state.story.chapter,
+  playerName: state.player.name,
   storyText: state.story.text,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  handleAskName: () => {
+    dispatch(setChapter(3));
+    dispatch(setStoryText("... the Black Plague starts in 1346. Good luck."));
+  },
   handleGoOn: () => {
     dispatch(setChapter(2));
-    dispatch(setStoryText("... the Black Plague starts in 1346. Good luck."));
+    dispatch(setStoryText("What is your name?"));
+  },
+  handlePlayerNameChange: (e) => {
+    dispatch(setPlayerName(e.target.value));
   },
   handleStartDay: () => dispatch(startGame()),
   handleStartJourny: () => {

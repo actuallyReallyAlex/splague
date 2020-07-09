@@ -90,7 +90,7 @@ const App: React.SFC<AppProps> = (props: AppProps) => {
 
   return (
     <div className={theme} id="app">
-      {chapter < 3 ? (
+      {chapter < 4 ? (
         <Onboarding />
       ) : (
         <>

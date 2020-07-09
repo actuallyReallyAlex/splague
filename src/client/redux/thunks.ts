@@ -50,6 +50,7 @@ import {
   setDoctorReputation,
   setMorality,
   setDoctorExperience,
+  setPlayerName,
 } from "./actions/player";
 import { setChapter, setStoryText } from "./actions/story";
 import { setIsLoading, setTheme } from "./actions/ui";
@@ -79,7 +80,7 @@ import {
 
 // * THUNKS
 export const startGame = (): AppThunk => async (dispatch, getState) => {
-  dispatch(setChapter(3));
+  dispatch(setChapter(4));
   dispatch(setStoryText("12 months before death..."));
   dispatch(addInventoryItem(rock));
   dispatch(addInventoryItem(eyeOfNewt));
@@ -279,7 +280,7 @@ export const resetGame = (): AppThunk => async (dispatch, getState) => {
     // TODO - setPlayerAvatar()
     // TODO - setDoctorReputation
     // TODO - setMorality()
-    // TODO - setName() / setPlayerName()
+    dispatch(setPlayerName(""));
     // * Story
     dispatch(setChapter(0));
     dispatch(setStoryText("Welcome to Splague!"));
