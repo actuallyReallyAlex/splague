@@ -23,11 +23,16 @@ Cypress.Commands.add("onboard", () => {
   cy.get("#player-name").type("Alex");
   cy.get("#story-2").click();
 
+  cy.get("body").should("contain.text", "What do you look like?");
+  cy.get("#story-3").should("be.disabled");
+  cy.get("#avatar-1").click();
+  cy.get("#story-3").click();
+
   cy.get("body").should(
     "contain.text",
     "... the Black Plague starts in 1346. Good luck."
   );
-  cy.get("#story-3").click();
+  cy.get("#story-4").click();
 
   cy.get("#current-location").should("contain.text", "home");
 });

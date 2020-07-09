@@ -51,6 +51,7 @@ import {
   setMorality,
   setDoctorExperience,
   setPlayerName,
+  setPlayerAvatar,
 } from "./actions/player";
 import { setChapter, setStoryText } from "./actions/story";
 import { setIsLoading, setTheme } from "./actions/ui";
@@ -80,7 +81,7 @@ import {
 
 // * THUNKS
 export const startGame = (): AppThunk => async (dispatch, getState) => {
-  dispatch(setChapter(4));
+  dispatch(setChapter(5));
   dispatch(setStoryText("12 months before death..."));
   dispatch(addInventoryItem(rock));
   dispatch(addInventoryItem(eyeOfNewt));
@@ -277,9 +278,9 @@ export const resetGame = (): AppThunk => async (dispatch, getState) => {
     dispatch(setPatientRemedy(null));
     dispatch(setPatientTreatment(null));
     // * Player
-    // TODO - setPlayerAvatar()
     // TODO - setDoctorReputation
     // TODO - setMorality()
+    dispatch(setPlayerAvatar(""));
     dispatch(setPlayerName(""));
     // * Story
     dispatch(setChapter(0));

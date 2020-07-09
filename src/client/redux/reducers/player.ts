@@ -3,11 +3,12 @@ import {
   SET_DOCTOR_EXPERIENCE,
   SET_DOCTOR_REPUTATION,
   SET_MORALITY,
+  SET_PLAYER_AVATAR,
   SET_PLAYER_NAME,
 } from "../actionTypes";
 
 export const initialState: PlayerState = {
-  avatar: "/assets/playerAvatar.png",
+  avatar: "",
   doctorExperience: 0,
   doctorReputation: 0,
   morality: 0,
@@ -24,6 +25,9 @@ const reducer = (state = initialState, action: PlayerAction): PlayerState => {
     }
     case SET_MORALITY: {
       return { ...state, morality: action.payload.morality };
+    }
+    case SET_PLAYER_AVATAR: {
+      return { ...state, avatar: action.payload.avatar };
     }
     case SET_PLAYER_NAME: {
       return { ...state, name: action.payload.name };

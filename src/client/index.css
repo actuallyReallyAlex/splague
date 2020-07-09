@@ -231,3 +231,7 @@ section.message-list {
   text-align: center;
   width: 50px;
 }
+
+.avatar_select_cell:hover {
+  background-color: blue;
+}
